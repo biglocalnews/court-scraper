@@ -1,4 +1,5 @@
 import shutil
+import re
 import time
 
 from my_fake_useragent import UserAgent
@@ -28,6 +29,7 @@ class LoginPageLocators:
 class PortalPageLocators:
 
     PORTAL_BUTTONS = (By.CSS_SELECTOR, '.portlet-buttons')
+    IMAGES = (By.TAG_NAME, 'img')
 
 
 class SearchPageLocators:
@@ -71,10 +73,7 @@ class SearchBox:
 
 class SearchResults:
 
-    locator = (By.CSS_SELECTOR, 'tr.k-detail-row')
-    # other possible selectors...
-    #  'td.k-detail-cell'
-    #  'a.caseLink'
+    locator = (By.CSS_SELECTOR, 'tr.k-master-row')
 
     def __get__(self, obj, owner):
         """Gets the text of the specified object"""
@@ -83,15 +82,36 @@ class SearchResults:
             lambda driver: driver.find_elements(*self.locator)
         )
         elements = driver.find_elements(*self.locator)
-        #TODO: extract data from elements here
-        #return element.get_attribute("value")
-        return [1,2,3]
+        return self._extract_case_metadata(elements)
 
-    def _extract_results_metadata(search_results):
-        case_rows = search_results['results_el'].find_elements_by_css_selector('tr.k-detail-row')
-        case_data = search_results['results_el'].find_elements_by_css_selector('td.k-detail-cell')
-        case_links = search_results['results_el'].find_elements_by_css_selector('a.caseLink')
-        return case_rows
+    def _extract_case_metadata(self, elements):
+        data = []
+        for el in elements:
+            raw_text = el.get_attribute('innerText').strip('\t')
+            if self._is_case_row(raw_text):
+                case_num, \
+                style_def, \
+                file_date, \
+                status, \
+                party_name = [
+                    field.strip() for field \
+                    in raw_text.split('\t')
+                ]
+                data.append({
+                    'case_num': case_num,
+                    'style_defendant': style_def,
+                    'file_date': file_date,
+                    'status': status,
+                    'party_name': party_name,
+                })
+        return data
+
+    def _is_case_row(self, text):
+        case_num = text.split('\t')[0]
+        case_num_pattern = r'^\d\d[A-Z0-9]{6}$'
+        if re.match(case_num_pattern, case_num) and len(case_num) == 8:
+            return True
+        return False
 
 
 
@@ -150,14 +170,20 @@ class PortalPage(BasePage):
         self._click_port_button('smart_search')
 
     def _click_port_button(self, name):
-        buttons = self.driver.find_elements(*PortalPageLocators.PORTAL_BUTTONS)
-        map = {
-            'payments': 0,
-            'hearings' : 1,
-            'smart_search': 2
+        images = self.driver.find_elements(*PortalPageLocators.IMAGES)
+        img_names = {
+            'hearings' : 'Icon_SearchHearing.svg',
+            'smart_search': 'Icon_SmartSearch.svg'
         }
-        idx = map[name]
-        buttons[idx].click()
+        image_name = img_names['smart_search']
+        button = None
+        for img in images:
+            src = img.get_attribute('src')
+            if src.endswith(image_name):
+                # If image matches, get parent anchor tag
+                button = img.find_element_by_xpath('..')
+                break
+        button.click()
 
 
 class SearchPage(BasePage):
@@ -218,8 +244,6 @@ class OdysseySite:
         self.timeout = timeout
 
     def search(self, search_terms, download_assets=False, headless=True):
-        failed_searches = []
-        results = []
         self.driver = self._init_chrome_driver(headless=headless)
         login_page = LoginPage(
             self.driver,
@@ -230,10 +254,8 @@ class OdysseySite:
         login_page.go_to()
         login_page.login()
         portal_page = PortalPage(self.driver)
-
-        # Instantiate search_page = SearchPge(self.driver)
-        # run search for search terms
-        data = []
+        portal_page.go_to_smart_search()
+        results = []
         try:
             for term in search_terms:
                 # Conduct search
@@ -242,21 +264,12 @@ class OdysseySite:
                 search_page.submit_search(self.timeout)
                 results_page = SearchResultsPage(self.driver)
                 if results_page.results_found():
-                    data.extend(results_page.results)
-                """
-                # TODO step through detail pages if requested
-                try:
-                    if download_assets:
-                        pass
-                        # TODO: step through pages and download assets
-                        # Save file assets based on case IDs
-                    else:
-                        return results
-                finally:
-                    self.driver.quit()
-                """
-                #TODO: return to search page
-            return data
+                    results.extend(results_page.results)
+                if download_assets:
+                    # TODO: step through pages and
+                    # save data/file assets by case number and/or year
+                    pass
+            return results
         finally:
             self.driver.quit()
 
