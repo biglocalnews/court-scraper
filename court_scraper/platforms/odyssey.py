@@ -41,17 +41,18 @@ class SearchResultsPageLocators:
 
 
 # Page elements
-class SearchInputTextElement:
-    """This class gets the search text from the specified locator"""
+class SearchBox:
 
-    #The locator for search box where search string is entered
-    locator = 'q'
+    # locator for search box where search
+    # term is entered
+    locator = SearchPageLocators.SEARCH_BOX
 
     def __set__(self, obj, value):
         """Sets the text to the value supplied"""
         driver = obj.driver
         WebDriverWait(driver, 100).until(
-            lambda driver: driver.find_element_by_name(self.locator))
+            lambda driver: driver.find_element(*self.locator)
+        )
         driver.find_element(*self.locator).clear()
         driver.find_element(*self.locator).send_keys(value)
 
@@ -59,8 +60,9 @@ class SearchInputTextElement:
         """Gets the text of the specified object"""
         driver = obj.driver
         WebDriverWait(driver, 100).until(
-            lambda driver: driver.find_element_by_name(self.locator))
-        element = driver.find_element_by_name(self.locator)
+            lambda driver: driver.find_element(*self.locator)
+        )
+        element = driver.find_element(*self.locator)
         return element.get_attribute("value")
 
 
@@ -83,6 +85,10 @@ class BasePage:
         return self.driver.find_element(*locator)
 
 
+# TODO: Refactor to use FormFieldElement or UsernameField
+# and PasswordField (sted of fill_form_field), to
+# match the page element strategy used for SearchBox field
+# on SearchPage
 class LoginPage(BasePage):
 
     locators = LoginPageLocators
@@ -102,6 +108,7 @@ class LoginPage(BasePage):
         self.fill_form_field('USERNAME', self.username)
         self.fill_form_field('PASSWORD', self.password)
         self.click('SIGN_IN_BUTTON')
+
 
 class PortalPage(BasePage):
 
@@ -126,21 +133,17 @@ class PortalPage(BasePage):
 
 class SearchPage(BasePage):
 
-    #search_text_element = SearchTextElement()
+    search_box = SearchBox()
 
-    def enter_search_term(self, term):
-        search_input = self.driver.find_element(*SearchPageLocators.SEARCH_BOX)
-        search_input.send_keys(term)
-
-    """
-    def submit_search(self, timeout):
-      WebDriverWait(driver, timeout).until(
-            EC.element_to_be_clickable(*SearchPageLocators.SEARCH_SUBMIT_BUTTON)
+    def submit_search(self, timeout=30):
+        WebDriverWait(self.driver, timeout).until(
+            EC.element_to_be_clickable(
+                *SearchPageLocators.SEARCH_SUBMIT_BUTTON
+            )
         )
         self.driver.find_element(
             *SearchPageLocators.SEARCH_SUBMIT_BUTTON
         ).click()
-    """
 
 class SearchResultsPage(BasePage):
 
@@ -176,22 +179,29 @@ class OdysseySite:
         portal_page = PortalPage(self.driver)
         portal_page.go_to_smart_search()
 
-        import ipdb
-        ipdb.set_trace()
-
         # Instantiate search_page = SearchPge(self.driver)
         # run search for search terms
-        for term in search_terms:
-            try:
-                results = self._search(self.driver, term)
-                if download_assets:
-                    pass
-                    # TODO: step through pages and download assets
-                    # Save file assets based on case IDs
-                else:
-                    return results
-            finally:
-                self.driver.quit()
+        try:
+            for term in search_terms:
+                # Conduct search
+                search_page = SearchPage(self.driver)
+                search_page.search_box = term
+                search_page.submit_search(self.timeout)
+                #TODO: search_results_page = SearchResultsPage(self.driver)
+                """
+                try:
+                    results = self._search(self.driver, term)
+                    if download_assets:
+                        pass
+                        # TODO: step through pages and download assets
+                        # Save file assets based on case IDs
+                    else:
+                        return results
+                finally:
+                    self.driver.quit()
+                """
+        finally:
+            self.driver.quit()
 
     def _init_chrome_driver(self, headless=True):
         chrome_options = self._build_chrome_options(headless=headless)
