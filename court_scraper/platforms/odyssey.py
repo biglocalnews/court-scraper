@@ -17,6 +17,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 
 
+
 class LoginPageLocators:
 
     USERNAME = (By.ID, 'UserName')
@@ -37,7 +38,9 @@ class SearchPageLocators:
 
 
 class SearchResultsPageLocators:
-    pass
+
+    RESULTS_LIST = (By.CSS_SELECTOR, '#SmartSearchResults')
+    NO_RESULTS_MSG = (By.XPATH, '//*[@id="ui-tabs-1"]/div/p')
 
 
 # Page elements
@@ -64,6 +67,32 @@ class SearchBox:
         )
         element = driver.find_element(*self.locator)
         return element.get_attribute("value")
+
+
+class SearchResults:
+
+    locator = (By.CSS_SELECTOR, 'tr.k-detail-row')
+    # other possible selectors...
+    #  'td.k-detail-cell'
+    #  'a.caseLink'
+
+    def __get__(self, obj, owner):
+        """Gets the text of the specified object"""
+        driver = obj.driver
+        WebDriverWait(driver, 100).until(
+            lambda driver: driver.find_elements(*self.locator)
+        )
+        elements = driver.find_elements(*self.locator)
+        #TODO: extract data from elements here
+        #return element.get_attribute("value")
+        return [1,2,3]
+
+    def _extract_results_metadata(search_results):
+        case_rows = search_results['results_el'].find_elements_by_css_selector('tr.k-detail-row')
+        case_data = search_results['results_el'].find_elements_by_css_selector('td.k-detail-cell')
+        case_links = search_results['results_el'].find_elements_by_css_selector('a.caseLink')
+        return case_rows
+
 
 
 ## Pages
@@ -138,21 +167,45 @@ class SearchPage(BasePage):
     def submit_search(self, timeout=30):
         WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable(
-                *SearchPageLocators.SEARCH_SUBMIT_BUTTON
+                SearchPageLocators.SEARCH_SUBMIT_BUTTON
             )
         )
         self.driver.find_element(
             *SearchPageLocators.SEARCH_SUBMIT_BUTTON
         ).click()
 
+
 class SearchResultsPage(BasePage):
 
-    def results_found(self):
-        # TODO: Determine if results found on page
-        return "No results found." not in self.driver.page_source
+    results = SearchResults()
 
-    def case_metadata(self):
-        pass
+    @retry(
+        stop_max_attempt_number=7,
+        stop_max_delay=30000,
+        wait_exponential_multiplier=1000,
+        wait_exponential_max=10000
+    )
+    def results_found(self):
+        try:
+            results_el = self.driver.find_element(
+                *SearchResultsPageLocators.RESULTS_LIST
+            )
+
+            found = True
+        except NoSuchElementException:
+            pass
+        try:
+            no_results_el = self.driver.find_element(
+                *SearchResultsPageLocators.NO_RESULTS_MSG
+            )
+        except NoSuchElementException:
+            pass
+        if results_el and found == True:
+            return True
+        elif 'No cases match' in no_results.get_attribute('innerText'):
+            return False
+        else:
+            raise Exception("Search not yet completed")
 
 
 class OdysseySite:
@@ -177,20 +230,22 @@ class OdysseySite:
         login_page.go_to()
         login_page.login()
         portal_page = PortalPage(self.driver)
-        portal_page.go_to_smart_search()
 
         # Instantiate search_page = SearchPge(self.driver)
         # run search for search terms
+        data = []
         try:
             for term in search_terms:
                 # Conduct search
                 search_page = SearchPage(self.driver)
                 search_page.search_box = term
                 search_page.submit_search(self.timeout)
-                #TODO: search_results_page = SearchResultsPage(self.driver)
+                results_page = SearchResultsPage(self.driver)
+                if results_page.results_found():
+                    data.extend(results_page.results)
                 """
+                # TODO step through detail pages if requested
                 try:
-                    results = self._search(self.driver, term)
                     if download_assets:
                         pass
                         # TODO: step through pages and download assets
@@ -200,6 +255,8 @@ class OdysseySite:
                 finally:
                     self.driver.quit()
                 """
+                #TODO: return to search page
+            return data
         finally:
             self.driver.quit()
 
@@ -238,17 +295,8 @@ class OdysseySite:
         chrome_options.add_argument(f'user-agent={randomua}')
         return chrome_options
 
+    """
     def _search(self, search_term):
-        self.driver.get(self.site_url)
-        print("Searching for '{}'".format(search_term))
-        submit_button_xpath = '//*[@id="btnSSSubmit"]'
-        WebDriverWait(driver, self.timeout).until(
-            EC.element_to_be_clickable((By.XPATH, submit_button_xpath))
-        )
-        time.sleep(.2)
-        search_input = driver.find_element_by_css_selector('#SearchCriteriaContainer input')
-        search_input.send_keys(search_term)
-        driver.find_element_by_xpath(submit_button_xpath).click()
         search_results = self._wait_for_search_results(driver)
         if search_results['status'] == 'results found':
             case_metadata = self._extract_results_metadata(driver)
@@ -265,44 +313,10 @@ class OdysseySite:
         case_rows = search_results['results_el'].find_elements_by_css_selector('tr.k-detail-row')
         case_data = search_results['results_el'].find_elements_by_css_selector('td.k-detail-cell')
         case_links = search_results['results_el'].find_elements_by_css_selector('a.caseLink')
-        import ipdb
-        ipdb.set_trace()
         return case_rows
+    """
 
     # TODO
     def _scrape_case_page(self, driver):
         pass
 
-    @retry(
-        stop_max_attempt_number=7,
-        stop_max_delay=30000,
-        wait_exponential_multiplier=1000,
-        wait_exponential_max=10000
-    )
-    def _wait_for_search_results(self, driver):
-        try:
-            results_div = driver.find_element_by_css_selector('#SmartSearchResults')
-        except NoSuchElementException:
-            results_div = None
-        try:
-            no_results = driver.find_element_by_xpath('//*[@id="ui-tabs-1"]/div/p')
-        except NoSuchElementException:
-            no_results = None
-        payload = {
-            'status': None,
-            'results_el': None,
-        }
-        if results_div:
-            payload.update({
-                    'status': 'results found',
-                    'results_el': results_div
-                })
-            return payload
-        elif 'No cases match' in no_results.get_attribute('innerText'):
-            payload.update({
-                'status': 'No results',
-                'results_el': no_results
-            })
-            return payload
-        else:
-            raise Exception("Search not yet completed")
