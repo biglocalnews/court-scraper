@@ -1,6 +1,7 @@
 import shutil
 import re
 import time
+from pathlib import Path
 
 from my_fake_useragent import UserAgent
 from retrying import retry
@@ -14,11 +15,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-## Locators
 from selenium.webdriver.common.by import By
 
 
-
+## Locators
 class LoginPageLocators:
 
     USERNAME = (By.ID, 'UserName')
@@ -47,6 +47,16 @@ class SearchResultsPageLocators:
     # Get table rows that are the grandparent of case links;
     # they contain all case metadata in search results.
     RESULT_ROWS = (By.XPATH, "//a[@class='caseLink']/../..")
+    # After a successful search, the page listing all cases
+    # can be accessed as the second "step" in a 3-part series
+    # of tabs. When a case link is clicked, that changes
+    # screen to the 3rd step. To return to the case results list,
+    # you must use the below selector and click the link
+    CASE_RESULTS_TAB = (
+        By.XPATH,
+        "//p[@class='step-label' and contains(text(), 'Search Results')]/.."
+    )
+
 
 # Page elements
 class SearchBox:
@@ -65,7 +75,6 @@ class SearchBox:
         driver.find_element(*self.locator).send_keys(value)
 
     def __get__(self, obj, owner):
-        """Gets the text of the specified object"""
         driver = obj.driver
         WebDriverWait(driver, 100).until(
             lambda driver: driver.find_element(*self.locator)
@@ -73,6 +82,57 @@ class SearchBox:
         element = driver.find_element(*self.locator)
         return element.get_attribute("value")
 
+
+class ResultRow:
+
+    def __init__(self, row_element):
+        self.el = row_element
+
+    @property
+    def metadata(self):
+        case_detail_url = self.el.find_element(
+                *SearchResultsPageLocators.CASE_DETAIL_LINK
+            ).get_attribute('data-url')
+        case_num, style_def, file_date, status, party_name = [
+            field.strip() for field in self.inner_text.split('\t')
+        ]
+        return {
+            'case_num': case_num,
+            'style_defendant': style_def,
+            'file_date': file_date,
+            'status': status,
+            'party_name': party_name,
+            'case_detail_url': case_detail_url,
+        }
+
+    @property
+    def is_case_row(self):
+        case_num = self.inner_text.split('\t')[0]
+        case_num_pattern = r'^\d\d[A-Z0-9]{6}$'
+        if re.match(case_num_pattern, case_num) and len(case_num) == 8:
+            return True
+        return False
+
+    @property
+    def inner_text(self):
+        return self.el.get_attribute('innerText').strip('\t')
+
+    @property
+    def detail_page_link(self):
+        return self.el.find_element(
+            *SearchResultsPageLocators.CASE_DETAIL_LINK
+        )
+
+class CaseDetailLinks:
+
+    locator = SearchResultsPageLocators.CASE_DETAIL_LINK
+
+    def __get__(self, obj, owner):
+        driver = obj.driver
+        WebDriverWait(driver, 100).until(
+            lambda driver: driver.find_elements(*self.locator)
+        )
+        return driver.find_elements(*self.locator)
 
 class SearchResults:
 
@@ -85,41 +145,16 @@ class SearchResults:
             lambda driver: driver.find_elements(*self.locator)
         )
         elements = driver.find_elements(*self.locator)
-        return self._extract_case_metadata(elements)
+        case_rows = self._prep_case_rows(elements)
+        return case_rows
 
-    def _extract_case_metadata(self, elements):
-        data = []
+    def _prep_case_rows(self, elements):
+        case_rows = []
         for el in elements:
-            raw_text = el.get_attribute('innerText').strip('\t')
-            if self._is_case_row(raw_text):
-                case_detail_url = el\
-                    .find_element(*SearchResultsPageLocators.CASE_DETAIL_LINK)\
-                    .get_attribute('data-url')
-                case_num, \
-                style_def, \
-                file_date, \
-                status, \
-                party_name = [
-                    field.strip() for field \
-                    in raw_text.split('\t')
-                ]
-                data.append({
-                    'case_num': case_num,
-                    'style_defendant': style_def,
-                    'file_date': file_date,
-                    'status': status,
-                    'party_name': party_name,
-                    'case_detail_url': case_detail_url,
-                })
-        return data
-
-    def _is_case_row(self, text):
-        case_num = text.split('\t')[0]
-        case_num_pattern = r'^\d\d[A-Z0-9]{6}$'
-        if re.match(case_num_pattern, case_num) and len(case_num) == 8:
-            return True
-        return False
-
+            row = ResultRow(el)
+            if row.is_case_row:
+                case_rows.append(row)
+        return case_rows
 
 ## Pages
 class BasePage:
@@ -210,6 +245,7 @@ class SearchPage(BasePage):
 class SearchResultsPage(BasePage):
 
     results = SearchResults()
+    case_detail_links = CaseDetailLinks()
 
     @retry(
         stop_max_attempt_number=7,
@@ -239,13 +275,10 @@ class SearchResultsPage(BasePage):
         else:
             raise Exception("Search not yet completed")
 
-    def get_case_details(self):
-        #TODO: step into each result download HTML
-        # step back to results page
-        case_data = []
-        # cache case detail HTML page
-        # extract data from page using CaseDetailParse
-        return case_data
+    def back_to_search_results(self):
+        self.driver.find_element(
+            *SearchResultsPageLocators.CASE_RESULTS_TAB
+        ).click()
 
 class OdysseySite:
 
@@ -256,7 +289,7 @@ class OdysseySite:
         self.download_dir = download_dir
         self.timeout = timeout
 
-    def search(self, search_terms, cache_pages=False, store_data=False, headless=True):
+    def search(self, search_terms, get_detail_page_html=False, headless=True):
         self.driver = self._init_chrome_driver(headless=headless)
         login_page = LoginPage(
             self.driver,
@@ -277,17 +310,16 @@ class OdysseySite:
                 search_page.submit_search(self.timeout)
                 results_page = SearchResultsPage(self.driver)
                 if results_page.results_found():
-                    #TODO: test if a simple requests.get works
-                    # on case detail pages using data-url
-                    #import ipdb; ipdb.set_trace()
-                    results.extend(results_page.results)
-                    # TODO: step through pages and
-                    # for link in results.case_detail_links:
-                    #   detail_page = CaseDetailPage(self.driver)
-                    #   detail_page.save_html_to_cache(cache_dir)
-                    #   save data/file assets by state_county/case_num+year?/UTC.html
-                    #   results.append(detail_page.case_data)
-                    pass
+                    for case_row in results_page.results:
+                        row_data = case_row.metadata
+                        if get_detail_page_html:
+                            # TODO proper wait timer, or possibly
+                            # make case row a legit descriptor
+                            case_row.detail_page_link.click()
+                            time.sleep(2)
+                            row_data['page_source'] = self.driver.page_source
+                            results_page.back_to_search_results()
+                        results.append(row_data)
             return results
         finally:
             self.driver.quit()
@@ -326,3 +358,5 @@ class OdysseySite:
         randomua = ua.random()
         chrome_options.add_argument(f'user-agent={randomua}')
         return chrome_options
+
+
