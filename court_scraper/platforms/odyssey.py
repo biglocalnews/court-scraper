@@ -19,6 +19,7 @@ from selenium.webdriver.common.by import By
 
 
 ## Locators
+
 class LoginPageLocators:
 
     USERNAME = (By.ID, 'UserName')
@@ -56,6 +57,14 @@ class SearchResultsPageLocators:
         By.XPATH,
         "//p[@class='step-label' and contains(text(), 'Search Results')]/.."
     )
+
+class CaseDetailPageLocators:
+
+    FINANCIAL_INFO = (
+        By.CSS_SELECTOR,
+        'div#divFinancialInformation_body h1'
+    )
+
 
 
 # Page elements
@@ -280,6 +289,22 @@ class SearchResultsPage(BasePage):
             *SearchResultsPageLocators.CASE_RESULTS_TAB
         ).click()
 
+
+class CaseDetailPage(BasePage):
+
+    financials_locator = CaseDetailPageLocators.FINANCIAL_INFO
+
+    @property
+    def page_source(self):
+        WebDriverWait(self.driver, 10).until(
+            EC.text_to_be_present_in_element(
+                self.financials_locator,
+                'Financial'
+            )
+        )
+        return self.driver.page_source
+
+
 class OdysseySite:
 
     def __init__(self, url, username, password, download_dir, timeout=60):
@@ -304,7 +329,6 @@ class OdysseySite:
         results = []
         try:
             for term in search_terms:
-                # Conduct search
                 search_page = SearchPage(self.driver)
                 search_page.search_box = term
                 search_page.submit_search(self.timeout)
@@ -313,11 +337,9 @@ class OdysseySite:
                     for case_row in results_page.results:
                         row_data = case_row.metadata
                         if get_detail_page_html:
-                            # TODO proper wait timer, or possibly
-                            # make case row a legit descriptor
                             case_row.detail_page_link.click()
-                            time.sleep(2)
-                            row_data['page_source'] = self.driver.page_source
+                            detail_page = CaseDetailPage(self.driver)
+                            row_data['page_source'] = detail_page.page_source
                             results_page.back_to_search_results()
                         results.append(row_data)
             return results
