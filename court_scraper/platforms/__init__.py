@@ -1,2 +1,1 @@
-
-from .odyssey import OdysseySite
+from .odyssey.site import OdysseySite
