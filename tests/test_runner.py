@@ -1,4 +1,4 @@
-from unittest.mock import call, patch, Mock, DEFAULT
+from unittest.mock import call, patch, Mock
 
 import pytest
 
@@ -33,3 +33,4 @@ def test_site_calls(court_scraper_dir, config_path):
         login_call, search_call = site_class.mock_calls[1:3]
         assert login_call == call().login()
         assert search_call == call().search(terms=['foo'],headless=True)
+
