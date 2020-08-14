@@ -8,7 +8,7 @@ DEFAULT_CACHE=str(Path(os.getcwd()).joinpath('data'))
 DEFAULT_CONFIG=str(Path(os.getcwd()).joinpath('config.json'))
 
 
-from court_scraper.platforms.odyssey import OdysseySite
+from court_scraper.platforms import OdysseySite
 
 
 def main():
@@ -26,9 +26,11 @@ def main():
     download_dir = configs['download_dir']
     logfile_path = configs['logfile']
     Path(download_dir).mkdir(parents=True, exist_ok=True)
-    #url = "https://publicrecordsaccess.fultoncountyga.gov/Portal/Home/Dashboard/29"
+    # url = "https://publicrecordsaccess.fultoncountyga.gov/Portal/Home/Dashboard/29"
     url = "https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29"
     search_terms = ['Smith']#, 'foobar']
+    # Case number for Dekalb
+    search_terms = ['19D67383']
     scraper = OdysseySite(
         url,
         username,
