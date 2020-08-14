@@ -1,0 +1,8 @@
+plaftorms:
+  odyssey_site: &ODYSSEY_SITE
+      username: 'user1@example.com'
+      password: 'SECRETPASS'
+ga_dekalb: *ODYSSEY_SITE
+ga_fulton:
+  username: 'user2@example.com'
+  password: 'secret2'

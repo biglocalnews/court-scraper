@@ -1,17 +1,17 @@
 import shutil
 
-from my_fake_useragent import UserAgent
+from my_fake_useragent import useragent
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import options
 
-from .pages.case_detail import CaseDetailPage
-from .pages.login import LoginPage
-from .pages.portal import PortalPage
-from .pages.search import SearchPage
-from .pages.search_results import SearchResultsPage
+from .pages.case_detail import casedetailpage
+from .pages.login import loginpage
+from .pages.portal import portalpage
+from .pages.search import searchpage
+from .pages.search_results import searchresultspage
 
 
-class OdysseySite:
+class odysseysite:
 
     def __init__(self, url, username, password, download_dir, timeout=60):
         self.site_url = url
@@ -20,7 +20,7 @@ class OdysseySite:
         self.download_dir = download_dir
         self.timeout = timeout
 
-    def search(self, search_terms, get_detail_page_html=False, headless=True):
+    def login(self):
         self.driver = self._init_chrome_driver(headless=headless)
         login_page = LoginPage(
             self.driver,
@@ -30,6 +30,8 @@ class OdysseySite:
         )
         login_page.go_to()
         login_page.login()
+
+    def search(self, search_terms, get_detail_page_html=False, headless=True):
         portal_page = PortalPage(self.driver)
         portal_page.go_to_smart_search()
         results = []

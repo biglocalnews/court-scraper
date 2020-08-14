@@ -4,7 +4,10 @@
 from setuptools import setup, find_packages
 
 requirements = [
+    'click',
+    'lxml',
     'my-fake-useragent',
+    'pyyaml',
     'retrying',
     'selenium',
 ]
