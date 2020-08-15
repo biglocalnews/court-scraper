@@ -11,7 +11,7 @@ from .pages.search import searchpage
 from .pages.search_results import searchresultspage
 
 
-class odysseysite:
+class OdysseySite:
 
     def __init__(self, url, username, password, download_dir, timeout=60):
         self.site_url = url
@@ -31,7 +31,7 @@ class odysseysite:
         login_page.go_to()
         login_page.login()
 
-    def search(self, search_terms, get_detail_page_html=False, headless=True):
+    def search(self, search_terms=[], get_detail_page_html=False, headless=True):
         portal_page = PortalPage(self.driver)
         portal_page.go_to_smart_search()
         results = []
