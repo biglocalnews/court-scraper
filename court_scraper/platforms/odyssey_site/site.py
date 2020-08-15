@@ -1,14 +1,14 @@
 import shutil
 
-from my_fake_useragent import useragent
+from my_fake_useragent import UserAgent
 from selenium import webdriver
-from selenium.webdriver.chrome.options import options
+from selenium.webdriver.chrome.options import Options
 
-from .pages.case_detail import casedetailpage
-from .pages.login import loginpage
-from .pages.portal import portalpage
-from .pages.search import searchpage
-from .pages.search_results import searchresultspage
+from .pages.case_detail import CaseDetailPage
+from .pages.login import LoginPage
+from .pages.portal import PortalPage
+from .pages.search import SearchPage
+from .pages.search_results import SearchResultsPage
 
 
 class OdysseySite:
@@ -20,7 +20,7 @@ class OdysseySite:
         self.download_dir = download_dir
         self.timeout = timeout
 
-    def login(self):
+    def login(self, headless=True):
         self.driver = self._init_chrome_driver(headless=headless)
         login_page = LoginPage(
             self.driver,
