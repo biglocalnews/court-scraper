@@ -43,17 +43,11 @@ CONFIG_PATH = str(Path(CACHE_DIR).joinpath('config.yaml'))
     help="Text file containing one or more search terms."
 )
 @click.option(
-    '-l',
-    '--list-scrapers',
-    is_flag=True,
-    help="List available scrapers."
-)
-@click.option(
     '--with-browser',
     is_flag=True,
     help="Open graphical browser during Selenium-based scrapes. By default, runs headless."
 )
-def cli(place_id, search_term, search_terms_file, list_scrapers, with_browser):
+def cli(place_id, search_term, search_terms_file, with_browser):
     """Search court site."""
     # Ensure cache directory exists
     cache_dir = Path(CACHE_DIR)
@@ -77,15 +71,6 @@ def cli(place_id, search_term, search_terms_file, list_scrapers, with_browser):
         CONFIG_PATH,
         place_id
     )
-    """
-    if list_scrapers:
-        click.echo('Available scrapers:')
-        #TODO: Add help message specifying that scraper code
-        # (e.g. ga_fulton) must be used when scraping
-        for scraper in runner.list_scrapers():
-            msg = '- {}'.format(scraper)
-            click.echo(msg)
-    """
     if search_term:
         search_terms = [search_term]
     else:
