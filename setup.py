@@ -5,6 +5,7 @@ from setuptools import setup, find_packages
 
 requirements = [
     'click',
+    'click-option-group',
     'lxml',
     'my-fake-useragent',
     'pyyaml',
@@ -31,7 +32,7 @@ setup(
     include_package_data=True,
     entry_points='''
         [console_scripts]
-        court-scraper=court_scraper.cli:main
+        court-scraper=court_scraper.cli:cli
     ''',
     install_requires=requirements,
     license="ISC license",
