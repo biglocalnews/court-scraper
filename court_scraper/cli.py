@@ -5,7 +5,6 @@ from pathlib import Path
 
 import click
 from click_option_group import optgroup, RequiredMutuallyExclusiveOptionGroup
-#from court_scraper.cli.custom_options import MutuallyExclusiveOption
 
 from court_scraper.runner import Runner
 
@@ -50,12 +49,11 @@ CONFIG_PATH = str(Path(CACHE_DIR).joinpath('config.yaml'))
     help="List available scrapers."
 )
 @click.option(
-    '--headless/--with-browser',
-    default=True,
-    show_default="--headless",
-    help="Enable/disable headless mode for Selenium-based browser scraping."
+    '--with-browser',
+    is_flag=True,
+    help="Open graphical browser during Selenium-based scrapes. By default, runs headless."
 )
-def cli(place_id, search_term, search_terms_file, list_scrapers, headless):
+def cli(place_id, search_term, search_terms_file, list_scrapers, with_browser):
     """Search court site."""
     # Ensure cache directory exists
     cache_dir = Path(CACHE_DIR)
@@ -74,7 +72,6 @@ def cli(place_id, search_term, search_terms_file, list_scrapers, headless):
     console.setFormatter(formatter)
     logging.getLogger('').addHandler(console)
     logger = logging.getLogger(__name__)
-
     runner = Runner(
         CACHE_DIR,
         CONFIG_PATH,
@@ -95,13 +92,11 @@ def cli(place_id, search_term, search_terms_file, list_scrapers, headless):
         search_terms = [t.strip() for t in search_terms_file]
     kwargs = {
         'search_terms': search_terms,
-        'headless': headless,
+        'headless': not with_browser,
     }
-    try:
-        data = runner.search(**kwargs)
-        print(data)
-    except Exception as e:
-        traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-        logger.error("ERROR: A fatal error occurred while running scraper!!!")
-        logger.error(traceback_str)
-
+    # TODO: Restore catch-all try/except
+    data = runner.search(**kwargs)
+    # TODO: Do something with the data :)
+    #traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+    #logger.error("ERROR: A fatal error occurred while running scraper!!!")
+    #logger.error(traceback_str)
