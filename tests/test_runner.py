@@ -20,7 +20,7 @@ def test_site_calls(court_scraper_dir, config_path):
             config_path,
             'ga_dekalb'
         )
-        r.search(terms=['foo'])
+        r.search(search_terms=['foo'])
         username = 'user1@example.com'
         password = 'SECRETPASS'
         expected_args = [
@@ -29,8 +29,8 @@ def test_site_calls(court_scraper_dir, config_path):
             password,
             court_scraper_dir
         ]
-        site_class.assert_called_once_with(*expected_args, headless=True)
+        site_class.assert_called_once_with(*expected_args)
         login_call, search_call = site_class.mock_calls[1:3]
-        assert login_call == call().login()
-        assert search_call == call().search(terms=['foo'],headless=True)
+        assert login_call == call().login(headless=True)
+        assert search_call == call().search(search_terms=['foo'],headless=True)
 

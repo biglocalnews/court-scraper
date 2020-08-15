@@ -20,7 +20,7 @@ class Runner:
     """
     Facade class to simplify invocation and usage of scrapers.
 
-    Keyword arguments:
+    Arguments:
 
     - cache_dir -- Path to cache directory for scraped file artifacts (default: {})
     - config_path -- Path to location of config file
@@ -33,14 +33,14 @@ class Runner:
         self.config_path = config_path
         self.place_id = place_id
 
-    def search(self, terms=[], headless=True):
+    def search(self, search_terms=[], headless=True):
         """
         For a given scraper, executes the search, acquisition
         and processing of case info.
 
         Keyword arguments:
 
-        - terms - List of search terms
+        - search_terms - List of search terms
         - headless - Whether or not to run headless (default: True)
 
         Returns: List of dicts containing case metadata
@@ -48,25 +48,20 @@ class Runner:
         SiteKls = self._get_site_class()
         url = self.site_meta['home_url']
         username, password = self._get_login_creds()
-        args = [url]
+        pos_args = [url]
         if username and password:
-            args.extend([username, password])
-        try:
-            site = SiteKls(
-                *args,
-                self.cache_dir,
-                headless=headless
-            )
-            if username and password:
-                site.login()
-            data = site.search(terms=terms, headless=headless)
-            success_msg = "{} search ran successfully".format(self.place_id)
-            logger.info(success_msg)
-            return data
-        except Exception as e:
-            message = '{} search raised an error\n'.format(self.place_id)
-            message += ''.join(traceback.format_tb(e.__traceback__))
-            logger.error(message)
+            pos_args.extend([username, password])
+        site = SiteKls(
+            *pos_args,
+            self.cache_dir,
+        )
+        if username and password:
+            site.login(headless=headless)
+        logger.info(
+            "Executing search for {}".format(self.place_id)
+        )
+        data = site.search(search_terms=search_terms, headless=headless)
+        return data
 
     def list_scrapers(self):
         """
@@ -80,15 +75,19 @@ class Runner:
         pass
 
     def _get_site_class(self):
-        # Site types for one-off scrapers should live in
-        # a module for state and county, e.g. ny_westchester.
-        # This module name should match the site_type in sites_meta.csv
+        # Site types for one-off scrapers should live in the scrapers
+        # namespace in a module named by state and county, e.g. ny_westchester.
+        # Platform site classes should live in platforms namespace
+        # in a snake_case module (e.g. odyssey_site).
+        # In both cases, sites_meta.csv should specify the module name
+        # in the site_type field as a snake_case value (ny_westchester, odyssey_site).
         if self.place_id == self.site_type:
-            target_module = 'court_scraper.scrapers.{}'.format(place_id)
+            parent_mod = 'scrapers'
         else:
-            target_module = 'court_scraper.platforms.{}'.format(site_type)
+            parent_mod = 'platforms'
+        target_module = 'court_scraper.{}.{}'.format(parent_mod, self.site_type)
         mod = importlib.import_module(target_module)
-        kls_name = self.site_type.title().replace('_','').lower()
+        kls_name = self.site_type.title().replace('_','')
         return getattr(mod, kls_name)
 
     @property
