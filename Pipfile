@@ -15,6 +15,7 @@ lxml = "*"
 click = "*"
 pyyaml = "*"
 click-option-group = "*"
+sqlalchemy = "*"
 
 [requires]
 python_version = "3.7"

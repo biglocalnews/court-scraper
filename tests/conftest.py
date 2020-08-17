@@ -19,6 +19,13 @@ def config_path(tmp_path):
 
 
 @pytest.fixture
+def db_path(court_scraper_dir):
+    return str(
+        Path(court_scraper_dir).joinpath('cases.db')
+    )
+
+
+@pytest.fixture
 def create_scraper_dir(court_scraper_dir):
     Path(court_scraper_dir).mkdir(parents=True, exist_ok=True)
 

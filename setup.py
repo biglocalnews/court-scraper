@@ -11,6 +11,7 @@ requirements = [
     'pyyaml',
     'retrying',
     'selenium',
+    'sqlalchemy'
 ]
 
 test_requirements = [
