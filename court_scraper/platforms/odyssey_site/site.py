@@ -31,7 +31,7 @@ class OdysseySite:
         login_page.go_to()
         login_page.login()
 
-    def search(self, search_terms=[], get_detail_page_html=False, headless=True):
+    def search(self, search_terms=[], headless=True):
         portal_page = PortalPage(self.driver)
         portal_page.go_to_smart_search()
         results = []
@@ -44,12 +44,12 @@ class OdysseySite:
                 if results_page.results_found():
                     for case_row in results_page.results:
                         row_data = case_row.metadata
-                        if get_detail_page_html:
-                            case_row.detail_page_link.click()
-                            detail_page = CaseDetailPage(self.driver)
-                            row_data['page_source'] = detail_page.page_source
-                            results_page.back_to_search_results()
+                        case_row.detail_page_link.click()
+                        detail_page = CaseDetailPage(self.driver)
+                        row_data['page_source'] = detail_page.page_source
                         results.append(row_data)
+                        results_page.back_to_search_results()
+                results_page.back_to_smart_search_tab()
             return results
         finally:
             self.driver.quit()

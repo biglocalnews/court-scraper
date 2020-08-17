@@ -27,6 +27,10 @@ class SearchResultsPageLocators:
         By.XPATH,
         "//p[@class='step-label' and contains(text(), 'Search Results')]/.."
     )
+    SMART_SEARCH_TAB = (
+         By.XPATH,
+        "//p[@class='step-label' and contains(text(), 'Smart Search')]/.."
+    )
 
 
 # Elements
@@ -127,8 +131,14 @@ class SearchResultsPage(BasePage):
             raise Exception("Search not yet completed")
 
     def back_to_search_results(self):
-        self.driver.find_element(
-            *SearchResultsPageLocators.CASE_RESULTS_TAB
-        ).click()
+        self._locate_and_click(
+            SearchResultsPageLocators.CASE_RESULTS_TAB
+        )
 
+    def back_to_smart_search_tab(self):
+        self._locate_and_click(
+            SearchResultsPageLocators.SMART_SEARCH_TAB
+        )
 
+    def _locate_and_click(self, locator):
+        self.driver.find_element(*locator).click()
