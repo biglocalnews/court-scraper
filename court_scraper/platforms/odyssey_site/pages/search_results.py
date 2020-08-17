@@ -82,8 +82,8 @@ class ResultRow:
     @property
     def is_case_row(self):
         case_num = self.inner_text.split('\t')[0]
-        case_num_pattern = r'^\d\d[A-Z0-9]{6}$'
-        if re.match(case_num_pattern, case_num) and len(case_num) == 8:
+        case_num_pattern = r'^\d\d[A-Z0-9]+$'
+        if re.match(case_num_pattern, case_num):
             return True
         return False
 
