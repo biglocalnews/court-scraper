@@ -6,15 +6,8 @@ from pathlib import Path
 import click
 from click_option_group import optgroup, RequiredMutuallyExclusiveOptionGroup
 
+from court_scraper.configs import Configs
 from court_scraper.runner import Runner
-
-try:
-    CACHE_DIR = os.environ['COURT_SCRAPER_DIR']
-except KeyError:
-    CACHE_DIR = str(Path(os.path.expanduser('~')).joinpath('.court-scraper'))
-
-CONFIG_PATH = str(Path(CACHE_DIR).joinpath('config.yaml'))
-
 
 
 @click.command(
@@ -49,8 +42,9 @@ CONFIG_PATH = str(Path(CACHE_DIR).joinpath('config.yaml'))
 )
 def cli(place_id, search_term, search_terms_file, with_browser):
     """Search court site."""
+    configs = Configs()
     # Ensure cache directory exists
-    cache_dir = Path(CACHE_DIR)
+    cache_dir = Path(configs.cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
     log_file = str(cache_dir.joinpath('logfile.txt'))
     logging.basicConfig(
@@ -67,8 +61,8 @@ def cli(place_id, search_term, search_terms_file, with_browser):
     logging.getLogger('').addHandler(console)
     logger = logging.getLogger(__name__)
     runner = Runner(
-        CACHE_DIR,
-        CONFIG_PATH,
+        configs.cache_dir,
+        configs.config_file_path,
         place_id
     )
     if search_term:
@@ -80,7 +74,8 @@ def cli(place_id, search_term, search_terms_file, with_browser):
         'headless': not with_browser,
     }
     # TODO: Restore catch-all try/except
-    data = runner.search(**kwargs)
+    results = runner.search(**kwargs)
+    runner.cache_detail_pages(results)
     # TODO: Do something with the data :)
     #traceback_str = ''.join(traceback.format_tb(e.__traceback__))
     #logger.error("ERROR: A fatal error occurred while running scraper!!!")

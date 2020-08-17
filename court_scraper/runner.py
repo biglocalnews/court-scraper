@@ -1,6 +1,7 @@
 import importlib
 import logging
 import traceback
+from pathlib import Path
 
 import yaml
 try:
@@ -63,6 +64,33 @@ class Runner:
         data = site.search(search_terms=search_terms, headless=headless)
         return data
 
+
+    def cache_detail_pages(self, search_results):
+        """
+        Caches HTML source, if available, for case detail pages
+
+        Arguments:
+        - search_results (list of dicts)
+
+        Return value: None
+        """
+        for result in search_results:
+            try:
+                page_source = result['page_source']
+            except KeyError:
+                continue
+            outdir = Path(self.cache_dir)\
+                .joinpath('cache')\
+                .joinpath(self.place_id)
+            outdir.mkdir(parents=True, exist_ok=True)
+            case_num = result['case_num']
+            outfile = str(
+                outdir.joinpath('{}.html'.format(case_num))
+            )
+            logger.info('Caching file: {}'.format(outfile))
+            with open(outfile, 'w') as fh:
+                fh.write(page_source)
+
     def list_scrapers(self):
         """
         List available scrapers.
@@ -117,3 +145,5 @@ class Runner:
             except KeyError:
                     pass
             return (username, password)
+
+

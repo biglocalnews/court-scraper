@@ -1,10 +1,12 @@
-from unittest.mock import call, patch, Mock
+from pathlib import Path
+from unittest.mock import call, patch, MagicMock, Mock
 
 import pytest
 
 from .conftest import (
     config_path,
     court_scraper_dir,
+    file_contents
 )
 from court_scraper.runner import Runner
 
@@ -34,3 +36,23 @@ def test_site_calls(court_scraper_dir, config_path):
         assert login_call == call().login(headless=True)
         assert search_call == call().search(search_terms=['foo'],headless=True)
 
+
+@pytest.mark.usefixtures('create_scraper_dir', 'create_config')
+def test_page_source_caching(court_scraper_dir, config_path):
+    data = [
+        {
+            'case_num': '20A123',
+            'page_source': '<html>foo</html>'
+        }
+    ]
+    r = Runner(
+        court_scraper_dir,
+        config_path,
+        'ga_dekalb'
+    )
+    r.cache_detail_pages(data)
+    cache_file = Path(court_scraper_dir)\
+        .joinpath('cache/ga_dekalb/20A123.html')
+    expected = data[0]['page_source']
+    actual = file_contents(cache_file)
+    assert expected == actual
