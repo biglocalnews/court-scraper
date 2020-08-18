@@ -25,9 +25,22 @@ class CaseInfo:
     _map = {}
 
     def __init__(self, data):
+        self.data = data
         for key, val in data.items():
             try:
                 field = self._map[key]
             except KeyError:
                 field = key
             setattr(self, field, val)
+
+    @property
+    def standard_data(self):
+        """
+        Return data dict of fields that map
+        to Case table columns.
+        """
+        return {
+            'place_id': self.place_id,
+            'number': self.number,
+            'status': self.status,
+        }
