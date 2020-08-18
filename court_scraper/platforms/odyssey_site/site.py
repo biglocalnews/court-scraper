@@ -4,6 +4,8 @@ from my_fake_useragent import UserAgent
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from court_scraper.case_info import CaseInfo
+
 from .pages.case_detail import CaseDetailPage
 from .pages.login import LoginPage
 from .pages.portal import PortalPage
@@ -35,6 +37,7 @@ class OdysseySite:
         portal_page = PortalPage(self.driver)
         portal_page.go_to_smart_search()
         results = []
+        CaseInfoKls = self._get_case_info_mapped_class()
         try:
             for term in search_terms:
                 search_page = SearchPage(self.driver)
@@ -47,12 +50,21 @@ class OdysseySite:
                         case_row.detail_page_link.click()
                         detail_page = CaseDetailPage(self.driver)
                         row_data['page_source'] = detail_page.page_source
-                        results.append(row_data)
+                        ci = CaseInfoKls(row_data)
+                        results.append(ci)
                         results_page.back_to_search_results()
                 results_page.back_to_smart_search_tab()
             return results
         finally:
             self.driver.quit()
+
+    def _get_case_info_mapped_class(self):
+        mapping = {
+            'case_num': 'number',
+            'file_date': 'filing_date',
+        }
+        CaseInfo._map = mapping
+        return CaseInfo
 
     def _init_chrome_driver(self, headless=True):
         chrome_options = self._build_chrome_options(headless=headless)

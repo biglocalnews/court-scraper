@@ -70,22 +70,21 @@ class Runner:
         Caches HTML source, if available, for case detail pages
 
         Arguments:
-        - search_results (list of dicts)
+        - search_results (list of CaseInfo instances)
 
         Return value: None
         """
-        for result in search_results:
+        for case in search_results:
             try:
-                page_source = result['page_source']
-            except KeyError:
+                page_source = case.page_source
+            except AttributeError:
                 continue
             outdir = Path(self.cache_dir)\
                 .joinpath('cache')\
                 .joinpath(self.place_id)
             outdir.mkdir(parents=True, exist_ok=True)
-            case_num = result['case_num']
             outfile = str(
-                outdir.joinpath('{}.html'.format(case_num))
+                outdir.joinpath('{}.html'.format(case.number))
             )
             logger.info('Caching file: {}'.format(outfile))
             with open(outfile, 'w') as fh:
