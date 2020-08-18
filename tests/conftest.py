@@ -59,3 +59,29 @@ def read_fixture(file_name):
 def file_contents(pth):
     with open(pth, 'r') as f:
         return f.read()
+
+
+@pytest.fixture
+def case_data():
+    return [
+        {'place_id': 'ga_dekalb', 'case_num': '1'},
+        {'place_id': 'ga_dekalb', 'case_num': '2'},
+    ]
+
+
+@pytest.fixture
+def optional_case_data():
+    return [
+        {
+            'place_id': 'ga_dekalb',
+            'case_num': '1',
+            'status': 'Open',
+            'filing_date': '01/02/2019',
+        },
+        {
+            'place_id': 'ga_dekalb',
+            'case_num': '2',
+            'status': 'Closed',
+            'filing_date': '03/04/2019',
+        }
+    ]
