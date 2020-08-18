@@ -18,20 +18,24 @@ class Datastore:
         Base.metadata.create_all(self.engine)
         Session.configure(bind=self.engine)
 
-    def add(self, cases):
+    def upsert(self, cases):
         """
-        Adds case data to db if it doesn't
-        already exist.
+        Update or insert case data
         """
         session = Session()
-        for c in cases:
-            kwargs = {
-                'place_id': c['place_id'],
-                'number': c['case_num'],
-            }
+        for case_data in cases:
+            place_id = case_data.pop('place_id')
+            number = case_data.pop('number')
             try:
-                case_obj = session.query(Case).filter_by(**kwargs).one()
+                case_obj = session.query(Case)\
+                        .filter_by(
+                            place_id=place_id,
+                            number=number)\
+                        .one()
+                # Update fields other than place_id and number
+                for attr, val in case_data.items():
+                    setattr(case_obj, attr, val)
             except NoResultFound:
-                case_obj = Case(**kwargs)
+                case_obj = Case(place_id=place_id, number=number, **case_data)
                 session.add(case_obj)
         session.commit()

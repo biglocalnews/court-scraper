@@ -8,5 +8,15 @@ class Configs:
         try:
             self.cache_dir = os.environ['COURT_SCRAPER_DIR']
         except KeyError:
-            self.cache_dir = str(Path(os.path.expanduser('~')).joinpath('.court-scraper'))
-        self.config_file_path = str(Path(self.cache_dir).joinpath('config.yaml'))
+            self.cache_dir = str(
+                Path(os.path.expanduser('~'))\
+                .joinpath('.court-scraper')
+            )
+        self.config_file_path = str(
+            Path(self.cache_dir)\
+            .joinpath('config.yaml')
+        )
+        self.db_path = str(
+            Path(self.cache_dir)\
+            .joinpath('cases.db')
+        )

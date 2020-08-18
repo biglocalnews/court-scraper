@@ -18,13 +18,15 @@ def test_standardized_data():
     data = {
         'place_id': 'ga_dekalb',
         'case_num': '1',
+        'status': 'Open',
         'foo': 'bar',
     }
     # Number should be standardized,
     # and foo should not appear
     expected = {
         'place_id': 'ga_dekalb',
-        'number': '1'
+        'number': '1',
+        'status': 'Open',
     }
     CaseInfo._map = mapping
     ci = CaseInfo(data)

@@ -7,6 +7,7 @@ import click
 from click_option_group import optgroup, RequiredMutuallyExclusiveOptionGroup
 
 from court_scraper.configs import Configs
+from court_scraper.datastore import Datastore
 from court_scraper.runner import Runner
 
 
@@ -73,10 +74,19 @@ def cli(place_id, search_term, search_terms_file, with_browser):
         'search_terms': search_terms,
         'headless': not with_browser,
     }
-    # TODO: Restore catch-all try/except
+    # Restore catch-all try/except
     results = runner.search(**kwargs)
     runner.cache_detail_pages(results)
-    # TODO: Do something with the data :)
+    dstore = Datastore(configs.db_path)
+    logger.info(
+        "Adding {} results to {}".format(len(results), configs.db_path)
+    )
+    to_db = []
+    for result in results:
+        # Place ID is required Case db table
+        result.place_id = place_id
+        to_db.append(result.standard_data)
+    dstore.upsert(to_db)
     #traceback_str = ''.join(traceback.format_tb(e.__traceback__))
     #logger.error("ERROR: A fatal error occurred while running scraper!!!")
     #logger.error(traceback_str)

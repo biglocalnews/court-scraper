@@ -85,3 +85,19 @@ def optional_case_data():
             'filing_date': '03/04/2019',
         }
     ]
+
+
+@pytest.fixture
+def required_case_data():
+    return [
+        {
+            'place_id': 'ga_dekalb',
+            'number': '1',
+            'status': 'Open',
+        },
+        {
+            'place_id': 'ga_dekalb',
+            'number': '2',
+            'status': 'Closed',
+        }
+    ]
