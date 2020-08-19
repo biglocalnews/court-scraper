@@ -101,3 +101,7 @@ def required_case_data():
             'status': 'Closed',
         }
     ]
+
+@pytest.fixture
+def sites_csv_text():
+    return read_fixture('sites_meta.csv')

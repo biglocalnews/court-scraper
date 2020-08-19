@@ -90,17 +90,6 @@ class Runner:
             with open(outfile, 'w') as fh:
                 fh.write(page_source)
 
-    def list_scrapers(self):
-        """
-        List available scrapers.
-
-        Returns: List of scraper names and IDs.
-
-        """
-        #return [str(ScraperKls()) for ScraperKls in self.scrapers()]
-        # TODO: List available scrapers using SiteMeta
-        pass
-
     def _get_site_class(self):
         # Site types for one-off scrapers should live in the scrapers
         # namespace in a module named by state and county, e.g. ny_westchester.

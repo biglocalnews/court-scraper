@@ -2,13 +2,8 @@ from unittest.mock import patch
 
 import pytest
 
-from .conftest import read_fixture
+from .conftest import read_fixture, sites_csv_text
 from court_scraper.sites_meta import SitesMeta
-
-
-@pytest.fixture
-def sites_csv_text():
-    return read_fixture('sites_meta.csv')
 
 
 def test_url_lookup_by_state_county(sites_csv_text):
