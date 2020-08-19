@@ -233,15 +233,14 @@ the following fields:
 * `state` - 2-letter state abbreviation, lower cased
 * `county` - Name of county (without the word "County"), lower cased
 * `site_type` - Base name of the Python module where the scraper lives.
-   For For example, `ny_westchester` for single-location sites; `odyssey_site` for platform-based sites.
+   For example, `ny_westchester` for single-location sites; `odyssey_site` for platform-based sites.
 * `site_version` - Platform based sites often have multiple versions.
   Use this field to denote a new version of a platform-based site.
-* `captcha_service_required` - Mark an "x" in this field if a site uses
-  Captchas
+* `captcha_service_required` - Mark an "x" in this field if a site class must handle Captchas
 * `home_url` - Starting page for a site scraper
 
 It's important to note that *every jurisdiction covered* by a site scraper
 must be entered in `sites_meta.csv`, even if the sites share a common
-platform. For example, there are separate entries in `sites_meta.csv`
+platform. For example, there are separate entries in [sites_meta.csv][]
 for Chatham, Dekalb and Fulton counties in Georgia, even though all
 three sites use the same version of the Odyssey courts platform.
