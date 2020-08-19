@@ -16,7 +16,7 @@ in the United States.
 ### Pre-reqs
 
 * Python >= 3.7
-* [Pipenv](https://pipenv.pypa.io/en/latest/)
+* (optional) [Pipenv](https://pipenv.pypa.io/en/latest/) is not required, but useful for contributing code
 
 Additionally, scrapers that rely on Selenium require:
 
@@ -48,21 +48,22 @@ export COURT_SCRAPER_DIR=/some/other/path/
 
 ### Configuration
 
-User credentials to log into court sites should 
+User credentials to log into court sites should
 be stored in a YAML configuration file.
 
-This file is expected to live inside the storage 
-location for court-scraper files, and logs.
+This file is expected to live inside the storage
+location for scraped files, logs, etc.
 
 On Mac/Linux, it woudl live at `~/.court-scraper/config.yaml`.
 
 The YAML configuration must contain credentials for each
 location based on a place ID, which is a combination
-of state and county.
+of state and county (e.g. `ga_dekalb` for Dekalb County, GA).
 
 Courts with a common software platform that allow sharing
-of credentials can inherit credentials from a common entry
-under `platforms`. See below for examples of both cases.
+of credentials can inherit credentials from a single entry
+
+Here's an example configuration file:
 
 ```
 platforms:
@@ -107,10 +108,10 @@ IDs for the state and county.
 
 To search for cases, use the `search` subcommand.
 
+> Note the use of the place ID acquired from the [`info` subcommand](#info).
+
 ```
 # Search Dekalb County, GA for CASE ID 123
-# Note the use of the place ID acquired from the "info"
-# subcommand.
 court-scraper search --place-id ga_dekalb ---search-term 123
 
 ```
