@@ -54,7 +54,7 @@ be stored in a YAML configuration file.
 This file is expected to live inside the storage
 location for scraped files, logs, etc.
 
-On Mac/Linux, it woudl live at `~/.court-scraper/config.yaml`.
+On Mac/Linux, it would live at `~/.court-scraper/config.yaml`.
 
 The YAML configuration must contain credentials for each
 location based on a place ID, which is a combination
