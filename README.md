@@ -158,18 +158,22 @@ Adding 2 results to /Users/someuser/.court-scraper/cases.db
 
 We welcome contributions of new court scrapers as well as bug fixes.
 
-It's generally a good idea to review our Issues and start a conversation
+It's generally a good idea to review our [Issues][] and start a conversation
 with our team before implementing code, to ensure the code meets our standards
 and to avoid duplication of effort.
+
+[Issues]: https://github.com/biglocalnews/court-scraper/issues
 
 To send us code:
 
 * Fork this repo
+* Add a site scraper using the [steps outlined below](#adding-a-scraper)
 * Send us a pull request
 
 > Please try to include test coverage for contributions, and
 > ensure that existing test coverage passes before sending a pull
-> request.
+> request. Pull requests will not be accepted for code that breaks
+> existing functionality.
 
 ### Adding a scraper
 
@@ -221,8 +225,10 @@ add a site class to the `court_scraper.platforms` namespace.
 For example, `court_scraper/platforms/odyssey_site.py`.
 
 The final step to adding a site scraper involves adding some
-metadata to the [data/sites_meta.csv](data/sites_meta.csv) file. This file contains
+metadata to [sites_meta.csv][]. This file contains
 the following fields:
+
+[sites_meta.csv]: https://github.com/biglocalnews/court-scraper/blob/master/court_scraper/data/sites_meta.csv
 
 * `state` - 2-letter state abbreviation, lower cased
 * `county` - Name of county (without the word "County"), lower cased
