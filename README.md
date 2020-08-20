@@ -61,23 +61,24 @@ location based on a place ID, which is a combination
 of state and county (e.g. `ga_dekalb` for Dekalb County, GA).
 
 Courts with a common software platform that allow sharing
-of credentials can inherit credentials from a single entry
+of credentials can inherit credentials from a single entry.
 
 Here's an example configuration file:
 
 ```
+# ~/.court-scraper/config.yaml
 platforms:
   # Mark a platform pass for reuse in multiple sites
   odyssey_site: &ODYSSEY_SITE
-      username: 'user@example.com'
-      password: 'SECRET_PASS'
+    username: 'user@example.com'
+    password: 'SECRET_PASS'
 # Inherit platform credentials across multiple courts
 ga_chatham: *ODYSSEY_SITE
 ga_dekalb: *ODYSSEY_SITE
 ga_fulton: *ODYSSEY_SITE
 
 # Or simply set site-specific attributes
-ny_westchester
+ny_westchester:
   username: 'user2@example.com'
   password: 'GREAT_PASSWORD'
 ```
