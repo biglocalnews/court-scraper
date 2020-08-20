@@ -1,10 +1,5 @@
-import shutil
-
-from my_fake_useragent import UserAgent
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
 from court_scraper.case_info import CaseInfo
+from court_scraper.base.selenium_site import SeleniumSite
 
 from .pages.case_detail import CaseDetailPage
 from .pages.login import LoginPage
@@ -13,7 +8,7 @@ from .pages.search import SearchPage
 from .pages.search_results import SearchResultsPage
 
 
-class OdysseySite:
+class OdysseySite(SeleniumSite):
 
     def __init__(self, url, username, password, download_dir, timeout=60):
         self.site_url = url
@@ -66,39 +61,5 @@ class OdysseySite:
         CaseInfo._map = mapping
         return CaseInfo
 
-    def _init_chrome_driver(self, headless=True):
-        chrome_options = self._build_chrome_options(headless=headless)
-        executable_path = shutil.which('chromedriver')
-        driver = webdriver.Chrome(options=chrome_options, executable_path=executable_path)
-        return driver
-
-    def _build_chrome_options(self, headless=True):
-        # this code alters the browser to download the pdfs
-        # it was taken from https://medium.com/@moungpeter/how-to-automate-downloading-files-using-python-selenium-and-headless-chrome-9014f0cdd196
-        def enable_download_headless(browser, download_dir):
-            browser.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
-            params = {'cmd':'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': download_dir}}
-            browser.execute("send_command", params)
-        # Options were slightly modified by commenting out things I didn't want
-        chrome_options = Options()
-        if headless:
-            chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--window-size=1920x1080")
-        chrome_options.add_argument("--disable-notifications")
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--verbose')
-        chrome_options.add_experimental_option("prefs", {
-                "download.default_directory": self.download_dir,
-                "download.prompt_for_download": False,
-                "download.directory_upgrade": True,
-                "safebrowsing_for_trusted_sources_enabled": False,
-                "safebrowsing.enabled": False
-        })
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--disable-software-rasterizer')
-        ua = UserAgent(family='chrome')
-        randomua = ua.random()
-        chrome_options.add_argument(f'user-agent={randomua}')
-        return chrome_options
-
+    
 
