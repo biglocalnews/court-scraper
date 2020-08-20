@@ -249,7 +249,7 @@ three sites use the same version of the Odyssey courts platform.
 ### Testing
 
 This code base was developed on Python 3.7 and uses the
-[pytest]() for unit testing.
+[pytest](https://docs.pytest.org/en/latest/contents.html) for unit testing.
 
 Assuming you've cloned this repo locally, you can run
 tests by using Pipenv to install dependencies and
