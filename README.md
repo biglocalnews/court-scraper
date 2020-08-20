@@ -245,3 +245,25 @@ must be entered in `sites_meta.csv`, even if the sites share a common
 platform. For example, there are separate entries in [sites_meta.csv][]
 for Chatham, Dekalb and Fulton counties in Georgia, even though all
 three sites use the same version of the Odyssey courts platform.
+
+### Testing
+
+This code base was developed on Python 3.7 and uses the
+[pytest]() for unit testing.
+
+Assuming you've cloned this repo locally, you can run
+tests by using Pipenv to install dependencies and
+then executing pytest in an active virtual environment.
+
+```
+cd court-scraper/
+pipenv install
+
+# Execute tests
+pipenv run pytest
+
+# or
+
+pipenv shell
+pytest
+```
