@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 requirements = [
     'click',
@@ -29,8 +29,9 @@ setup(
     author="Serdar Tumgoren",
     author_email='zstumgoren@gmail.com',
     url='https://github.com/biglocalnews/court-scraper',
-    packages=find_packages(),
-    include_package_data=True,
+    packages=['court_scraper'],
+    package_dir={'court_scraper': 'court_scraper'},
+    package_data={'court_scraper': ['data/*.csv']},
     entry_points='''
         [console_scripts]
         court-scraper=court_scraper.cli:cli
