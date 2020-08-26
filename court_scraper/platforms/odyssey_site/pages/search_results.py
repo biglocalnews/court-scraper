@@ -109,23 +109,23 @@ class SearchResultsPage(BasePage):
         wait_exponential_max=10000
     )
     def results_found(self):
+        found = False
         try:
             results_el = self.driver.find_element(
                 *SearchResultsPageLocators.RESULTS_DIV
             )
-
             found = True
         except NoSuchElementException:
-            pass
+            results_el = None
         try:
             no_results_el = self.driver.find_element(
                 *SearchResultsPageLocators.NO_RESULTS_MSG
             )
         except NoSuchElementException:
-            pass
+            no_results_el = ''
         if results_el and found == True:
             return True
-        elif 'No cases match' in no_results.get_attribute('innerText'):
+        elif 'No cases match' in no_results_el.get_attribute('innerText'):
             return False
         else:
             raise Exception("Search not yet completed")
