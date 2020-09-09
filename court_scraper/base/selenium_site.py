@@ -34,6 +34,10 @@ class SeleniumSite:
         ua = UserAgent(family='chrome')
         randomua = ua.random()
         chrome_options.add_argument(f'user-agent={randomua}')
+<<<<<<< Updated upstream:court_scraper/base/selenium_site.py
         return chrome_options
 
 
+=======
+        return chrome_options
+>>>>>>> Stashed changes:court_scraper/base/selenium_base.py
