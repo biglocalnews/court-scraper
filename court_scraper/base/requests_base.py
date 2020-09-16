@@ -4,11 +4,14 @@ from fake_useragent import UserAgent
 
 class RequestsPage:
         
-    def get_html(self, url, payload=None):
+    def get_html(self, url, payload=None, fakeuser=None):
         self.url = url
-        fakeuser = UserAgent()
-        headers = {'user-agent': fakeuser.chrome}
-        data = requests.get(url, headers=headers, params=payload)
+        if fakeuser:
+            fakeuser = UserAgent()
+            headers = {'user-agent': fakeuser.chrome}
+            data = requests.get(url, headers=headers, params=payload)
+        else:
+            data = requests.get(url, params=payload)
         return data
 
     def save_html(self, data, filename):

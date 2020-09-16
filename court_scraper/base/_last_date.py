@@ -2,7 +2,7 @@ from datetime import timedelta, datetime
 from pandas.tseries.holiday import USFederalHolidayCalendar
 
 class LastDate:
-    
+
     def __init__(self):
         now = datetime.today()
         self.current_year = now.year
