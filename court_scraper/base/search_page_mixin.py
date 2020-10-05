@@ -1,4 +1,4 @@
-from ._last_date import LastDate
+from .last_date import LastDate
 
 class SearchPageMixIn():
 
@@ -21,17 +21,17 @@ class SearchPageMixIn():
             try:
                 self.single_case_result = self.driver.find_element(*self.single_case_locator).text
             except:
-                pass
-            try:
-                self.case_rows = self.driver.find_elements(*self.row_locator)
-            except:
-                pass
+                try:
+                    self.case_rows = self.driver.find_elements(*self.row_locator)
+                except:
+                    pass
         else:
             self.parser = etree.HTMLParser()
             self.tree = etree.parse(StringIO(self.output.text), self.parser)
             self.case_rows = self.tree.xpath(f'//*[contains(text(), "{self.case_prefix}-")]')
-            self.case_number = self.case_rows[len(self.case_rows)-1].text
-        if self.case_number != 'No records found' and self.case_number != None:
+        self.case_number = self.case_rows[len(self.case_rows)-1].text
+        #this is intended to check for the first three characters of "No cases found" or similar test that might appear at the provided location
+        if self.case_number[0:3] != self.empty_return_text and self.case_number != None:
             return self.case_number
         elif self.single_case_result != None:
             return self.single_case_result
@@ -57,7 +57,7 @@ class SearchPageMixIn():
                 pass  
         return result
 
-    def most_recent_case(self, county, year, case_prefix, session=None, driver=None, row_locator=None, single_case_locator=None):
+    def most_recent_case(self, county, year, case_prefix, session=None, driver=None, row_locator=None, single_case_locator=None, empty_return_text=None):
         self.county = county
         self.year = year
         self.case_prefix = case_prefix
@@ -65,6 +65,7 @@ class SearchPageMixIn():
         self.row_locator = row_locator
         self.single_case_locator = single_case_locator
         self.session = session
+        self.empty_return_text = empty_return_text
         self._get_last_workday()
         if self.driver != None:
             self._county_specific_selenium_steps()

@@ -21,7 +21,7 @@ class RecaptchaV2(Recaptcha):
         try:
             self._recaptcha_V2_solver()
         except:
-            raise AnticaptchaError('AntiCaptcha returned an error')
+            raise AntiCaptchaError('AntiCaptcha returned an error')
         try:
             self._inject_response()
         except:

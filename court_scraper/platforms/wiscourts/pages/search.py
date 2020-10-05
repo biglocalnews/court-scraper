@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 from .base_page import BasePage
 from court_scraper.base.search_page_mixin import SearchPageMixIn
@@ -39,14 +40,16 @@ class ResultsLocators:
     SHOW_ALL_RESULTS = (By.XPATH, '//*[@id="caseSearchResults_length"]/label/select/option[5]')
     RESULTS_TABLE_ROWS = (By.XPATH, '//*[@id="caseSearchResults"]/tbody/tr')
     RESULTS_TABLE = (By.XPATH, '//*[@id="caseSearchResults"]')
-    ASCENDING = (By.XPATH, '//*[@id="caseSearchResults"]/thead/tr[1]/th[1]')
+    YEAR_FILTER = (By.XPATH, '//*[@id="caseSearchResults"]/thead/tr[2]/td[1]/input')
     SINGLE_CASE_RETURN = (By.XPATH, '//*[@id="case-header-info"]/h4')
+    EMPTY_RETURN = 'No'
+    SORT = (By.XPATH, '//*[@id="caseSearchResults"]/thead/tr[1]/th[1]')
 
-class SearchPage(BasePage, SearchPageMixIn):
+class SearchPage(WisconsinBasePage, SearchPageMixIn):
     
     search = SearchLocators()
     results = ResultsLocators()
-    urls = URLs()
+    urls = WisconsinURLs()
 
     def _county_specific_selenium_steps(self):
         self.go_to()
@@ -65,10 +68,17 @@ class SearchPage(BasePage, SearchPageMixIn):
             self.solve_captcha()
         try:
             self.click(self.results.SHOW_ALL_RESULTS)
-            time.sleep(.2)
-            self.click(self.results.ASCENDING)
         except:
             pass
-    
+        time.sleep(.2)
+        self.click(self.results.SORT)
+        time.sleep(.2)
+        if test_driver.find_element(*self.results.SORT).get_attribute('aria-sort') == 'descending':
+            self.click(self.results.SORT)
+        else:
+            pass
+        time.sleep(.2)
+        self.fill_form_field(self.results.YEAR_FILTER, str(self.year))
+        
     def most_recent_case(self, county, year, case_prefix, session=None, driver=None, row_locator=None, single_case_locator=None):
-        return super().most_recent_case(county, year, case_prefix, session=None, driver=self.driver, row_locator=self.results.RESULTS_TABLE_ROWS, single_case_locator=self.results.SINGLE_CASE_RETURN)
+        return super().most_recent_case(county, year, case_prefix, session=None, driver=self.driver, row_locator=self.results.RESULTS_TABLE_ROWS, single_case_locator=self.results.SINGLE_CASE_RETURN, empty_return_text=self.results.EMPTY_RETURN)
