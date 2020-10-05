@@ -1,4 +1,4 @@
 from .base import WisconsinBasePage
 
-class CaseDetails(WisconsinBasePage):
+class CaseDetails(BasePage):
     pass

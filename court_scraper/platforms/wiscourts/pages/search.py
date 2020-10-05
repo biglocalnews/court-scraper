@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
 
-from .base import WisconsinBasePage
-from court_scraper.base._search_page_mixin import SearchPageMixIn
-from court_scraper.base.captcha_solver import CaptchaSolvers
-from .config import WisconsinVariables, WisconsinURLs, CaptchaLocators
+from .base_page import BasePage
+from court_scraper.base.search_page_mixin import SearchPageMixIn
+from court_scraper.captcha.invisible_recaptcha_v2 import InvisibleRecaptchaV2
+from captcha import CaptchaLocators
+from url import URLs
 
 class SearchLocators:
     
@@ -41,11 +42,11 @@ class ResultsLocators:
     ASCENDING = (By.XPATH, '//*[@id="caseSearchResults"]/thead/tr[1]/th[1]')
     SINGLE_CASE_RETURN = (By.XPATH, '//*[@id="case-header-info"]/h4')
 
-class SearchPage(WisconsinBasePage, SearchPageMixIn):
+class SearchPage(BasePage, SearchPageMixIn):
     
     search = SearchLocators()
     results = ResultsLocators()
-    urls = WisconsinURLs()
+    urls = URLs()
 
     def _county_specific_selenium_steps(self):
         self.go_to()

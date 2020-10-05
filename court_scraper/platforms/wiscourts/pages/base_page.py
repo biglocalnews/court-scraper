@@ -4,16 +4,16 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+import time
 
-from court_scraper.base.selenium_base import SeleniumPage
-from court_scraper.base.captcha_solver import CaptchaSolvers
-from .config import *
+from court_scraper.base.selenium_base_page import SeleniumBasePage
+from court_scraper.captcha.invisible_recaptcha_v2 import InvisibleRecaptchaV2
+from .captcha import CaptchaVariables
 
-class WisconsinBasePage(SeleniumPage):
+class BasePage(SeleniumBasePage):
     
-    captcha = CaptchaSolvers()
-    locators = CaptchaLocators()
-    variables = WisconsinVariables()
+    captcha = InvisibleRecaptchaV2()
+    variables = CaptchaVariables()
     
     def __init__(self, driver, url):
         super().__init__(driver)
@@ -24,14 +24,13 @@ class WisconsinBasePage(SeleniumPage):
         time.sleep(1)
     
     def test_captcha(self):
-        return self.captcha.test(self.driver, self.locators.CAPTCHA[1])
+        return self.captcha.test(self.driver, self.variables.CAPTCHA[1])
         
         
     def solve_captcha(self):
         self.captcha.solve(
-            self.driver, self.variables.CAPTCHA_TYPE, 
-            self.variables.SITEKEY, self.variables.APIKEY, 
-            self.locators.CAPTCHA[1],  self.variables.CALLBACK_FUNCTION
+            self.driver, self.variables.SITEKEY, self.variables.APIKEY, 
+            self.variables.CAPTCHA[1],  self.variables.CALLBACK_FUNCTION
         )
          
     def save_cookies(self):

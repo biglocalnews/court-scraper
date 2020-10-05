@@ -2,7 +2,7 @@ import requests
 from lxml import html
 from fake_useragent import UserAgent
 
-class RequestsPage:
+class RequestsBasePage:
         
     def get_html(self, url, payload=None, fakeuser=None):
         self.url = url

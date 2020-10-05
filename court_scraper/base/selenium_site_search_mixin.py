@@ -1,4 +1,4 @@
-class SiteSearchMixIn():
+class SeleniumSiteSearchMixIn():
     
     def search(self, search_terms=[], headless=True):
         portal_page = PortalPage(self.driver)

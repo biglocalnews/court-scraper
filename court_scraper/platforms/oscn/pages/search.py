@@ -3,12 +3,12 @@ from lxml import html
 from fake_useragent import UserAgent
 from io import StringIO, BytesIO
 
-from court_scraper.base._last_date import LastDate
-from court_scraper.base.requests_base import RequestsPage
-from .config import OklahomaURLs
-from court_scraper.base._search_page_mixin import SearchPageMixIn
+from court_scraper.base.last_date import LastDate
+from court_scraper.base.requests_base_page import RequestsBasePage
+from court_scraper.base.search_page_mixin import SearchPageMixIn
+from .url import OklahomaURLs
 
-class SearchPage(RequestsPage, SearchPageMixIn):
+class Search(RequestsBasePage, SearchPageMixIn):
     
     url = OklahomaURLs.search_page
         

@@ -2,8 +2,8 @@ import requests
 from lxml import html
 from fake_useragent import UserAgent
 
-from .base.requests_base import RequestsPage
-from .ok_urls import OklahomaURLs
+from court_scraper.base.request_base_page import RequestsBasePage
+from .url import OklahomaURLs
 
 class CaseDetails(RequestsPage):
     

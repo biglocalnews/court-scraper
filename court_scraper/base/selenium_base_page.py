@@ -1,6 +1,6 @@
 from selenium.webdriver.common.keys import Keys
 
-class SeleniumPage:
+class SeleniumBasePage:
 
     def __init__(self, driver):
         self.driver = driver

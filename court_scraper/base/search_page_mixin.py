@@ -5,7 +5,7 @@ class SearchPageMixIn():
     lastdate = LastDate()
 
     def _county_specific_selenium_search(self):
-        return exception('County is not supported. Are you a developer? Did you forget to provide county-specific steps for searching?')
+        raise CountyNotSupported('County is not supported. Are you a developer? Did you forget to provide county-specific steps for searching?')
     
     def _get_last_workday(self, subtract_days = 1):
         self.subtract_days = subtract_days
