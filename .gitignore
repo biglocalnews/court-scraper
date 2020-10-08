@@ -2,3 +2,4 @@
 __pycache__/
 config.json
 .python-version
+.vscode/settings.json
