@@ -1,0 +1,271 @@
+state,county,title,site_type,site_version,captcha_service_required,home_url,raw_text,scrape
+ca,butte,"Superior Court of California, County of Butte",odyssey_site,1,NA,https://cabutteodyprod.tylerhost.net/Portal,"
+
+Click here for the Butte County Courts main website.
+
+
+      Note: Please do not use the “Register” option to apply for an account. An account is not required to search for public cases or hearings. 
+    
+
+      Hint: You can search for a partial name in Smart Search by using the asterisk character (e.g. Smith, J*).
+    
+
+      ***The online portal for case access will be offline on Sunday, 09/13/2020 from 4:00 a.m. - 8:00 a.m., for maintenance.***
+    
+",TRUE
+ca,calaveras,Court Records Inquiry,odyssey_site,2,NA,https://cacalaverasodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
+ca,calaveras,NA,odyssey_site,1,NA,https://cacalaverasportal.tylerhost.net/Portal,"
+
+      Information on the portal is made available pursuant to California Rules of Court. An account is not required to search for hearings, court calendars or register of actions.  For daily court calendars you will need to know who the judge is, that information is available on the main website by selecting “Judicial Calendar Assignment” under USEFUL INFORMATION. 
+    
+
+      Registration for the portal is only required if you are an Attorney of Record or Justice Partner. After Registration remember to Request Access for your specific role.  NOTE: Access Request may take as long as 30 Business days to complete while account verification is completed.
+    
+",TRUE
+ca,calaveras,Court Records Inquiry,odyssey_site,2,NA,https://cacalaverasodytest.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
+ca,glenn,"Superior Court of California, County of Glenn",odyssey_site,1,NA,https://caglennportal.tylerhost.net/Portal,"
+
+      Note: Please do not use the “Register” option to apply for an account. An account is not required to search for public cases or hearings.
+    
+
+      Hint: You can search for a partial name in Smart Search by using the asterisk character (e.g. Smith, J*). 
+    
+",TRUE
+ca,kings,"Superior Court of California, County of Kings",odyssey_site,1,NA,https://cakingsportal.tylerhost.net/Portal,"
+
+      Please note that financial case information for cases filed prior to October 24, 2014, will not be accessible through this web-portal. For cases filed prior to this date please contact the Clerk’s Office at 559-582-1010 extension 6100 for assistance in obtaining financial information. Cases filed after October 24, 2014, will be accessible through the web-portal for on-line payments with a credit/debit card transaction.
+    
+
+      ATTENTION: The Court has been experiencing technical problems with the online credit card payment system.  If you receive an error message indicating that your payment was not processed, DO NOT ATTEMPT TO MAKE ANOTHER PAYMENT. Please call the Court at 559-582-1010 Ext. 6100 for assistance.
+    
+
+      ATTENTION: Do not use the ""Pay Online"" web payment option if you want to contest your citation or appear before a judge.
+    
+",TRUE
+ca,kings,"Superior Court of California, County of Kings",odyssey_site,1,NA,https://cakingsodyprod.tylerhost.net/Portal,"
+
+      Please note that financial case information for cases filed prior to October 24, 2014, will not be accessible through this web-portal. For cases filed prior to this date please contact the Clerk’s Office at 559-582-1010 extension 6100 for assistance in obtaining financial information. Cases filed after October 24, 2014, will be accessible through the web-portal for on-line payments with a credit/debit card transaction.
+    
+
+      ATTENTION: The Court has been experiencing technical problems with the online credit card payment system.  If you receive an error message indicating that your payment was not processed, DO NOT ATTEMPT TO MAKE ANOTHER PAYMENT. Please call the Court at 559-582-1010 Ext. 6100 for assistance.
+    
+
+      ATTENTION: Do not use the ""Pay Online"" web payment option if you want to contest your citation or appear before a judge.
+    
+",FALSE
+ca,sutter,"Superior Court of California, County of Sutter Portal",odyssey_site,1,NA,https://casutterportal.tylerhost.net/Portal,"
+
+To contest your citation, do not pay your fine through this website. If you pay through this website, you will be giving up the right to contest your citation. Click here for further instructions on how to contest your citation.
+
+
+Click here to return to the Sutter Superior Court homepage
+
+
+      Welcome to the Superior Court of California, County of Sutter Public Portal.  Do not register to make payments or search for cases.  Some cases may not be visible to the public.  Access to additional documents and case types is available at the Sutter Superior Courthouse pursuant to California Rule of Court 2.503.
+    
+
+      •	 When you select the Smart Search option it is important to note the way names must be entered  (Last name, First name). You may use a * as a wildcard character (such as Smi* for Smith or Smitty), however, entering too little information will limit your results and you may not see the case you are searching for, in which case you will see a message asking that you narrow the search by entering more precise criteria. 
+    
+
+      •	 When entering a case number you must include all of the case number digits after the year or none of the zeros after the year to find a specific case. Example CVFL-17-1234 must be searched as CVFL171234 or CVFL170001234.
+    
+
+For additional help please see the Online User Guide
+
+",TRUE
+ca,sutter,Court Records Inquiry,odyssey_site,2,NA,https://casutterodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
+ca,yuba,"Superior Court of California, County of Yuba Public Portal",odyssey_site,1,NA,https://cayubaportal.tylerhost.net/Portal,"
+
+If you are an attorney requesting access to your cases, you must submit a form available at www.yuba.courts.ca.gov/AttorneyAccess.pdf before access will be granted.
+
+",TRUE
+ca,yuba,"Superior Court of California, County of Yuba Public Portal",odyssey_site,1,NA,https://cayubaodyprod.tylerhost.net/Portal,"
+
+If you are an attorney requesting access to your cases, you must submit a form available at www.yuba.courts.ca.gov/AttorneyAccess.pdf before access will be granted.
+
+",FALSE
+ga,chatham,NA,odyssey_site,1,NA,https://cmsportal.chathamcounty.org/Portal/Home/Dashboard/29,NA,TRUE
+ga,dekalb,NA,odyssey_site,1,NA,https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29,NA,TRUE
+ga,fulton,NA,odyssey_site,1,NA,https://publicrecordsaccess.fultoncountyga.gov/Portal/Home/Dashboard/29,NA,TRUE
+ga,houston,Houston County State Court Public Search  Portal,odyssey_site,1,NA,https://gahoustonportal.tylerhost.net/Portal,"
+
+      To pay your traffic citation, choose the search option ""Make Payment"", then choose the ""citation"" option.  Enter the citation number. If that does not work, then try the citation number without the alpha letter and first zero. (for example, T022222 would be 22222).  Prior to calling the Clerk's Office, if you are unable to locate your case by citation number, please try using your name and date of birth. Once your citation comes up, you must click the box in the left-hand column.
+    
+",TRUE
+ga,spalding,Spalding County Online Records Search,odyssey_site,1,NA,https://gaspaldingprodportal.tylerhost.net/Portal,"
+
+    No notifications exist.
+  
+",TRUE
+ga,statewide,re:SearchGA,odyssey_site,1,NA,https://researchga.tylerhost.net/Portal,re:SearchGA,FALSE
+il,state,NA,odyssey_site,3,NA,https://researchil.tylerhost.net/CourtRecordsSearch/Home#/home,NA,TRUE
+il,tazewell,Tazewell County Circuit Court,odyssey_site,1,NA,https://iltazewellportal.tylerhost.net/Portal,Tazewell County Circuit Court,TRUE
+la,sttammany,St Tammany Parish Clerk of Court,odyssey_site,1,NA,https://lasttammanyportal.tylerhost.net/Portal,St Tammany Parish Clerk of Court,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://efilema.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://rhodeisland.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://oregon.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://efilega.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://efilingmail.tylerhost.net/PublicAccess/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://idaho.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Software & Services for the Public Sector | Tyler Technologies,odyssey_site,1,NA,https://panorama.tylerhost.net/Portal,Software & Services for the Public Sector | Tyler Technologies,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://indiana.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://southdakota-stage.tylerhost.net/PublicAccess/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://california.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://georgia.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://maryland.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://nevada.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://lehigh.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://newmexico.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://tennessee.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://northdakota.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://newhampshire.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://southdakota.tylerhost.net/PublicAccess/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,NA,odyssey_site,2,NA,https://incode.tylerhost.net/PublicAccess/default.aspx,NA,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://virginia.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://minnesota.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://ohio.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,LANDESK Web Desk - Log on,odyssey_site,1,NA,https://odydemomirror.tylerhost.net/Portal,LANDESK Web Desk - Log on,FALSE
+NA,NA,LANDESK Web Desk - Log on,odyssey_site,1,NA,https://servicedesk.tylerhost.net/Portal,LANDESK Web Desk - Log on,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://maine.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://georgia-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://efile-tribalcourts.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://louisiana.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Tyler Technologies,odyssey_site,1,NA,https://tylerhost.net/Portal,Tyler Technologies,FALSE
+NA,NA,Tyler Technologies,odyssey_site,1,NA,https://www.tylerhost.net/Portal,Tyler Technologies,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://massachusetts.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://illinois.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://oregon-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://nevada-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://newhampshire-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://rhodeisland-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Illinois eFiling Stage Site,odyssey_site,2,NA,https://illinois-stage.tylerhost.net/default.aspx,Illinois eFiling Stage Site,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://idaho-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://vermont.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,SoftCode CivilView | Tyler Technologies,odyssey_site,1,NA,https://civilview.tylerhost.net/Portal,SoftCode CivilView | Tyler Technologies,FALSE
+NA,NA,NA,odyssey_site,2,NA,https://ivisions.tylerhost.net/PublicAccess/default.aspx,NA,FALSE
+NA,NA,Indiana eFiling Test Site,odyssey_site,2,NA,https://indiana-test.tylerhost.net/default.aspx,Indiana eFiling Test Site,FALSE
+NA,NA,Indiana eFiling Stage Site,odyssey_site,2,NA,https://indiana-stage.tylerhost.net/default.aspx,Indiana eFiling Stage Site,FALSE
+NA,NA,Ohio eFiling Stage Site,odyssey_site,2,NA,https://ohio-stage.tylerhost.net/default.aspx,Ohio eFiling Stage Site,FALSE
+NA,NA,Welcome,odyssey_site,2,NA,https://ims.tylerhost.net/default.aspx,Welcome,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://mn-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://newmexico-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://massachusetts-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://maryland-stage.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+NA,NA,Odyssey File & Serve,odyssey_site,2,NA,https://efilemd.tylerhost.net/default.aspx,Odyssey File & Serve,FALSE
+ohio,state,Ohio Odyssey Portal,odyssey_site,1,NA,https://ohcourtportal.tylerhost.net/Portal,Ohio Odyssey Portal,TRUE
+ri,state,NA,odyssey_site,1,NA,https://publicportal.courts.ri.gov/PublicPortal,NA,TRUE
+tx,andrews,Andrews County Jail Records Search,odyssey_site,2,NA,https://txandrewsodyprod.tylerhost.net/PublicAccess/default.aspx,Andrews County Jail Records Search,FALSE
+tx,austin,NA,odyssey_site,2,NA,http://public.austincounty.com/default.aspx,NA,TRUE
+tx,burnet,Burnet County Court Records Search,odyssey_site,2,NA,https://txburnetodyprod.tylerhost.net/PublicAccess/default.aspx,Burnet County Court Records Search,FALSE
+tx,calhoun,Tyler Odyssey Portal,odyssey_site,1,NA,https://txcalhounportal.tylerhost.net/Portal,"
+
+    No notifications exist.
+  
+",TRUE
+tx,cameron,NA,odyssey_site,1,NA,https://portal.co.cameron.tx.us/PortalProd/,NA,TRUE
+tx,chambers,Chambers County - Portal,odyssey_site,1,NA,https://txchambersportal.tylerhost.net/Portal,"
+
+      Chambers County provides this web site as a public service. Information available on this web site is collected, maintained, and provided solely for the convenience of public users. While every effort is made to ensure that this information is accurate, the District and County Clerks and Justices of the Peace do not certify the authenticity of the information contained herein. The District and County Clerks and Justices of the Peace shall under no circumstance be responsible for any error or omission which may occur in these records, nor liable for any actions taken as a result of reliance upon any information contained within this web site from whatever source, or any other consequence from such reliance. Images may be unavailable while system backups are in progress.
+    
+
+      This website offers access to certain cases not otherwise sealed or secure by court order or applicable law. Cases are searchable by cause number, party or date range and unlimited view only access is free.  Documents can be viewed and purchased for $.10 a page.  If you do not find a case in this system you can review the case by coming into the clerk's office or contacting them by phone or email to purchase the documents.  As a courtesy to our users we offer several levels of access.
+    
+
+      Anonymous User – provides an index to all cases, unlimited searches.
+    
+
+      Registered User – provides an index, events and orders of the court, and view/purchase documents, unlimited access.
+    
+
+      Party to a Case - an individual directly involved in a case. Allowed access to case information and free copies of documents (must provide case number(s)).
+    
+
+      Special Access – specialized access to case information and documents. Must provide business information at registration.  For paralegals and bondsman.
+    
+
+      Attorney Access – specialized access to case information and documents on cases within their portfolio. Must provide firm information and bar number.
+    
+
+      State Agency-specialized access to case information and documents. Limited to governmental agencies.
+    
+",TRUE
+tx,chambers,Court Records Inquiry,odyssey_site,2,NA,https://txchambersodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
+tx,denton,NA,odyssey_site,2,NA,http://justice1.dentoncounty.com/PublicAccess/default.aspx,NA,TRUE
+tx,elpaso,NA,odyssey_site,2,NA,https://casesearch.epcounty.com/PublicAccess/default.aspx,NA,TRUE
+tx,fortbend,NA,odyssey_site,2,NA,http://tylerpaw.co.fort-bend.tx.us/PublicAccess/default.aspx,NA,TRUE
+tx,gillespie,NA,odyssey_site,2,NA,https://odysseypa.tylerhost.net/Gillespie/default.aspx,NA,TRUE
+tx,hale,Court Records Inquiry,odyssey_site,2,NA,https://txhaleodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
+tx,harrison,Court Records Inquiry,odyssey_site,2,NA,https://txharrisonodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
+tx,henderson,Henderson County Discovery Portal,odyssey_site,1,NA,https://txhendersonodyprod.tylerhost.net/Portal,"
+
+    No notifications exist.
+  
+",FALSE
+tx,hood,Hood County District Clerk Court Records Portal,odyssey_site,1,NA,https://txhoododyprod.tylerhost.net/Portal,"
+
+      CONFIDENTIALITY NOTICE: At this time, only a registered user with elevated access, i.e. Attorney of Record, District Attorney, or Attorney General, will have access to documents on their cases. For the Attorney of Record, a one page preview will be enabled. It is our intent to provide the documents needed, however, the Portal will only allow access to original documents not requiring redaction and redacted documents. If payment is made for copies, and upon download the user discovers a ‘redacted’ version instead of an ‘original’, the user may request via email the ‘original’ document by providing proof of the ‘redacted’ document attached to the email request. As an elevated access user having access to documents on the case, be advised they are intended only for you, the elevated access user. They may contain information which is confidential, sensitive, or both. You are further notified that any disclosure, copying, forwarding, or other distribution of documents, or the taking of any action in reliance upon the information contained in the documents is strictly prohibited and reason for us to discontinue your registered/elevated access.
+    
+",TRUE
+tx,howard,Howard County Judicial and Jail Record Searches,odyssey_site,2,NA,https://txhowardodyprod.tylerhost.net/PublicAccess/default.aspx,Howard County Judicial and Jail Record Searches,FALSE
+tx,karnes,Karnes County Court Records,odyssey_site,2,NA,https://txkarnesprodportal.tylerhost.net/PublicAccess/default.aspx,Karnes County Court Records,FALSE
+tx,kaufman,Tyler Odyssey Portal,odyssey_site,1,NA,https://txkaufmanportal.tylerhost.net/Portal,"
+
+    No notifications exist.
+  
+",TRUE
+tx,kaufman,Kaufman County Courts Records Inquiry,odyssey_site,2,NA,https://txkaufmanodyprod.tylerhost.net/PublicAccess/default.aspx,Kaufman County Courts Records Inquiry,FALSE
+tx,kendall,Tyler Odyssey Portal,odyssey_site,1,NA,https://txkendallportal.tylerhost.net/Portal,"
+
+    No notifications exist.
+  
+",FALSE
+tx,kerr,NA,odyssey_site,2,NA,http://courts.co.kerr.tx.us/CaseManagement/PublicAccess/default.aspx,NA,TRUE
+tx,lamar,Lamar County Court Records Inquiry,odyssey_site,2,NA,https://txlamarodyprod.tylerhost.net/PublicAccess/default.aspx,Lamar County Court Records Inquiry,FALSE
+tx,lamar,Lamar County Court Records Portal,odyssey_site,1,NA,https://txlamarodyportal.tylerhost.net/Portal,"
+
+      Welcome to the Lamar County Portal. If you would like to make a payment on a criminal or traffic case, please click on the ""Make Payments"" button below. You do not need to register with the site if you are making a criminal/traffic case payment.
+    
+
+      Although Lamar County Courts make every effort to ensure that the information provided is accurate, neither Lamar County nor any agency, officer, elected official or employee of Lamar County, warrants the accuracy, reliability or timeliness of any information on the website and shall not be liable for any losses caused by such reliance on the accuracy, reliability or timeliness of such information, including, but not limited to incidental and consequential damages. 
+    
+
+      Not all cases are eligible for online payment. No online payments will be accepted from those considered a juvenile as defined by certain offenses, and may include defendants who are under the age of 21. 
+    
+
+      Payments constitute a plea of no contest and will result in a conviction.
+    
+
+      Contact the court if you would like to request drivers safety course, deferred disposition, jail credit or to plead not guilty. Once a payment is made online, you will not be able to ask for a drivers safety course, deferred disposition, jail credit, or change your plea at a later date. 
+    
+",TRUE
+tx,montgomery,NA,odyssey_site,2,NA,http://odyssey.mctx.org/Unsecured/default.aspx,NA,TRUE
+tx,morris,Morris County's Court Records Inquiry,odyssey_site,2,NA,https://txmorrisodyprod.tylerhost.net/PublicAccess/default.aspx,Morris County's Court Records Inquiry,FALSE
+tx,navarro,Navarro County Courts Records Inquiry,odyssey_site,2,NA,https://txnavarroodyprod.tylerhost.net/PublicAccess/default.aspx,Navarro County Courts Records Inquiry,FALSE
+tx,parker,Court Records Inquiry,odyssey_site,2,NA,https://txparkerodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
+tx,sanjacinto,San Jacinto Court Records Inquiry,odyssey_site,2,NA,https://txsanjacintoodyprod.tylerhost.net/PublicAccess/default.aspx,San Jacinto Court Records Inquiry,FALSE
+tx,smith,NA,odyssey_site,2,NA,https://odysseypa.smith-county.com/PublicAccess/default.aspx,NA,TRUE
+tx,walker,Tyler Odyssey Portal,odyssey_site,1,NA,https://txwalkerportal.tylerhost.net/Portal,"
+
+    No notifications exist.
+  
+",TRUE
+tx,wichita,Tyler Odyssey Portal,odyssey_site,1,NA,https://txwichitaportal.tylerhost.net/Portal,"
+
+    No notifications exist.
+  
+",TRUE
+tx,wichita,Wichita County Jail Records Inquiry,odyssey_site,2,NA,https://txwichitaodyprod.tylerhost.net/PublicAccess/default.aspx,Wichita County Jail Records Inquiry,FALSE
+tx,williamson,NA,odyssey_site,2,NA,http://judicialrecords.wilco.org/PublicAccess/default.aspx,NA,TRUE
+tx,wood,Wood County Court Records Inquiry,odyssey_site,2,NA,https://txwoododyprod.tylerhost.net/PublicAccess/default.aspx,Wood County Court Records Inquiry,FALSE
+ca,santabarbara,Santa Barbara Superior Court,odyssey_site,1,NA,https://portal.sbcourts.org/CASBPORTAL,NA,TRUE
+ca,santaclara,Santa Clara Superior Court,odyssey_site,1,NA,https://cmportal.scscourt.org/Portal,NA,TRUE
+ca,santacruz,Santa Cruz Superior Court,odyssey_site,1,NA,https://portal.santacruzcourt.org/portal,NA,TRUE
+ca,stanislaus,Stanislaus Superior Court,odyssey_site,1,NA,https://portal.stanct.org/Portal/,NA,TRUE
+fl,pinellas,Clerk of the Circuit Court and Comptroller Pinellas County,odyssey_site,2,NA,https://ccmspa.pinellascounty.org/PublicAccess/default.aspx,NA,FALSE
+ca,sanmateo,San Mateo County Superior Court,odyssey_site,1,NA,https://odyportal-ext.sanmateocourt.org/portal-external,NA,TRUE
+il,kane,Thomas M Hartwell Circuit Clerk 16th Judicial Circuit,odyssey_site,1,NA,https://kanecoportal.co.kane.il.us/portal,NA,TRUE
+nv,clark,Eighth Judicial District Court Portal,odyssey_site,1,NA,https://www.clarkcountycourts.us/portal,NA,TRUE
+nv,washoe,Washoe,odyssey_site,2,NA,https://justicecourts.washoecounty.us/Public/default.aspx,NA,FALSE
+or,state,Oregon Judicial Department,odyssey_site,1,NA,https://webportal.courts.oregon.gov/portal/,NA,TRUE
+vt,state,Vermont Judiciary Public Portal,odyssey_site,1,NA,https://publicportal.courts.vt.gov/Portal/,NA,TRUE
+wa,state,Odyssey Portal - Washington Courts Online Case Search,odyssey_site,1,NA,https://odysseyportal.courts.wa.gov/odyportal,NA,TRUE
