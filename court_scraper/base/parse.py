@@ -135,7 +135,7 @@ class Parser:
     it follows this logic{div/table item is in}/{div/html element text is in}/{text to search}/{xpath to follow to get to relative field}
     
     """
-    def string_search(self, text, table, route=None, text_location=None):
+    def string_search(self, text, table='', route=None, text_location=None):
         self.text = text
         self.table = table
         self.route = route
