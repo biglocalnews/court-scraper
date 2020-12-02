@@ -10,7 +10,7 @@ from court_scraper.base.selenium_base_page import SeleniumBasePage
 from court_scraper.captcha.invisible_recaptcha_v2 import InvisibleRecaptchaV2
 from .captcha import CaptchaVariables
 
-class BasePage(SeleniumBasePage):
+class WisconsinBasePage(SeleniumBasePage):
     
     captcha = InvisibleRecaptchaV2()
     variables = CaptchaVariables()
@@ -21,11 +21,9 @@ class BasePage(SeleniumBasePage):
     
     def go_to(self):
         self.driver.get(self.site_url)
-        time.sleep(1)
     
     def test_captcha(self):
         return self.captcha.test(self.driver, self.variables.CAPTCHA[1])
-        
         
     def solve_captcha(self):
         self.captcha.solve(
