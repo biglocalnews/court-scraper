@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-from .base_page import BasePage
+from .base_page import WisconsinBasePage
 from court_scraper.base.search_page_mixin import SearchPageMixIn
 from court_scraper.captcha.invisible_recaptcha_v2 import InvisibleRecaptchaV2
 from captcha import CaptchaLocators
