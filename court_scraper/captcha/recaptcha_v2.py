@@ -8,12 +8,11 @@ class RecaptchaV2(Recaptcha):
     
     def _inject_response(self):
         self.driver.execute_script(f'document.getElementById("g-recaptcha-response").innerHTML = "{self.g_response}"')
-    
     def _submit(self):
         if self.script_submit != None:
             self.driver.execute_script(self.script_submit)
         elif self.xpath_submit != None:
-            self.driver.find_element(xpath_submit).click()
+            self.driver.find_element_by_xpath(self.xpath_submit).click()
         else:
             raise SubmitException('no way to submit provided')
         
