@@ -4,6 +4,7 @@
 - [Setup](#setup)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [Testing](#testing)
 
 ## Overview
 
@@ -246,7 +247,7 @@ platform. For example, there are separate entries in [sites_meta.csv][]
 for Chatham, Dekalb and Fulton counties in Georgia, even though all
 three sites use the same version of the Odyssey courts platform.
 
-### Testing
+## Testing
 
 This code base was developed on Python 3.7 and uses the
 [pytest](https://docs.pytest.org/en/latest/contents.html) for unit testing.
@@ -267,3 +268,63 @@ pipenv run pytest
 pipenv shell
 pytest
 ```
+
+### Slow tests
+
+Slow-running tests should be [marked][] as such:
+
+
+```
+@pytest.mark.slow
+def test_something_slow():
+    ...
+
+```
+
+Slow tests are skipped by default. To run them, pass the `--runslow` flag
+when invoking pytest:
+
+```
+pytest --runslow
+```
+
+### Live tests
+
+Tests that hit live web sites should be [marked][] as `webtest`,
+allowing them to be [executed selectively][]:
+
+```
+@pytest.mark.webtest
+def test_that_hits_live_website():
+    ...
+
+# On the command line, run only tests marked as "webtest"
+pytest -m webtest
+```
+
+In many cases, it make sense to mark tests that hit live sies
+as both `webtest` and `slow`:
+
+```
+@pytest.mark.webtest
+@pytest.mark.slow
+def test_that_hits_live_website():
+    ...
+
+# On the command line, you'll need two flags
+pytest --runslow -m webtest
+```
+
+### Test login credentials
+
+Tests that hit [live web sites](#live-tests) may require authentication,
+as in the case of some Odyssey sites such as Dekalb and Chatham counties
+in Georgia.
+
+Such tests require creating user accounts and adding login credentials
+to a local YAML configuration file, as described above in
+the [Configuration section](#configuration).
+
+
+[marked]: https://docs.pytest.org/en/stable/example/markers.html
+[executed selectively]: https://docs.pytest.org/en/stable/example/markers.html#marking-test-functions-and-selecting-them-for-a-run

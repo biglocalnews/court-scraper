@@ -1,7 +1,45 @@
+from os.path import expanduser
 import shutil
 from pathlib import Path
 
 import pytest
+import yaml
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--runslow", action="store_true", default=False, help="run slow tests"
+    )
+
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "slow: mark test as slow to run")
+    config.addinivalue_line("markers", "webtest: mark test as hitting live websites")
+
+
+def pytest_collection_modifyitems(config, items):
+    if config.getoption("--runslow"):
+        # --runslow given in cli: do not skip slow tests
+        return
+    skip_slow = pytest.mark.skip(reason="need --runslow option to run")
+    for item in items:
+        if "slow" in item.keywords:
+            item.add_marker(skip_slow)
+
+
+@pytest.fixture
+def live_configs():
+    try:
+        home = expanduser("~")
+        config_path = Path(home, '.court-scraper/config.yaml')
+    except KeyError:
+        return ''
+    with open(config_path,'r') as fh:
+        return yaml.load(fh, Loader=Loader)
 
 
 @pytest.fixture
