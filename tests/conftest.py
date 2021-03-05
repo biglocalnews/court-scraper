@@ -14,6 +14,10 @@ def pytest_addoption(parser):
     parser.addoption(
         "--runslow", action="store_true", default=False, help="run slow tests"
     )
+    parser.addoption(
+        "--headless", action="store_true", default=False,
+        help="Run live webtests in headless mode"
+    )
 
 
 def pytest_configure(config):
@@ -29,6 +33,11 @@ def pytest_collection_modifyitems(config, items):
     for item in items:
         if "slow" in item.keywords:
             item.add_marker(skip_slow)
+
+
+@pytest.fixture
+def headless(request):
+    return request.config.getoption("--headless")
 
 
 @pytest.fixture

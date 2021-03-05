@@ -315,6 +315,29 @@ def test_that_hits_live_website():
 pytest --runslow -m webtest
 ```
 
+Live web tests of Selenium-based scrapers will open a
+web browser by default. All tests of Selenium scrapers
+should use the `headless` fixture in order to provide
+the ability to disable running tests in browser.
+
+> These tests should typically be marked as `slow` and `webtest`
+> as well.
+
+```
+@pytest.mark.webtest
+@pytest.mark.slow
+def test_selenium_scrape(headless):
+```
+
+You can then activate headless mode when running
+pytest by using the `--headless` flag:
+
+
+```
+pytest --headless --runslow
+```
+
+
 ### Test login credentials
 
 Tests that hit [live web sites](#live-tests) may require authentication,
