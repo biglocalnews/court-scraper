@@ -250,7 +250,7 @@ three sites use the same version of the Odyssey courts platform.
 ## Testing
 
 This code base was developed on Python 3.7 and uses the
-[pytest](https://docs.pytest.org/en/latest/contents.html) for unit testing.
+[pytest](https://docs.pytest.org/en/latest/contents.html) library for unit testing.
 
 Assuming you've cloned this repo locally, you can run
 tests by using Pipenv to install dependencies and
@@ -302,7 +302,7 @@ def test_that_hits_live_website():
 pytest -m webtest
 ```
 
-In many cases, it make sense to mark tests that hit live sies
+In many cases, tests that hit live websites should be marked
 as both `webtest` and `slow`:
 
 ```
