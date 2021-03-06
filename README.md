@@ -4,6 +4,7 @@
 - [Setup](#setup)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [Testing](#testing)
 
 ## Overview
 
@@ -246,10 +247,10 @@ platform. For example, there are separate entries in [sites_meta.csv][]
 for Chatham, Dekalb and Fulton counties in Georgia, even though all
 three sites use the same version of the Odyssey courts platform.
 
-### Testing
+## Testing
 
 This code base was developed on Python 3.7 and uses the
-[pytest](https://docs.pytest.org/en/latest/contents.html) for unit testing.
+[pytest](https://docs.pytest.org/en/latest/contents.html) library for unit testing.
 
 Assuming you've cloned this repo locally, you can run
 tests by using Pipenv to install dependencies and
@@ -267,3 +268,86 @@ pipenv run pytest
 pipenv shell
 pytest
 ```
+
+### Slow tests
+
+Slow-running tests should be [marked][] as such:
+
+
+```
+@pytest.mark.slow
+def test_something_slow():
+    ...
+
+```
+
+Slow tests are skipped by default. To run them, pass the `--runslow` flag
+when invoking pytest:
+
+```
+pytest --runslow
+```
+
+### Live tests
+
+Tests that hit live web sites should be [marked][] as `webtest`,
+allowing them to be [executed selectively][]:
+
+```
+@pytest.mark.webtest
+def test_that_hits_live_website():
+    ...
+
+# On the command line, run only tests marked as "webtest"
+pytest -m webtest
+```
+
+In many cases, tests that hit live websites should be marked
+as both `webtest` and `slow`:
+
+```
+@pytest.mark.webtest
+@pytest.mark.slow
+def test_that_hits_live_website():
+    ...
+
+# On the command line, you'll need two flags
+pytest --runslow -m webtest
+```
+
+Live web tests of Selenium-based scrapers will open a
+web browser by default. All tests of Selenium scrapers
+should use the `headless` fixture in order to provide
+the ability to disable running tests in browser.
+
+> These tests should typically be marked as `slow` and `webtest`
+> as well.
+
+```
+@pytest.mark.webtest
+@pytest.mark.slow
+def test_selenium_scrape(headless):
+```
+
+You can then activate headless mode when running
+pytest by using the `--headless` flag:
+
+
+```
+pytest --headless --runslow
+```
+
+
+### Test login credentials
+
+Tests that hit [live web sites](#live-tests) may require authentication,
+as in the case of some Odyssey sites such as Dekalb and Chatham counties
+in Georgia.
+
+Such tests require creating user accounts and adding login credentials
+to a local YAML configuration file, as described above in
+the [Configuration section](#configuration).
+
+
+[marked]: https://docs.pytest.org/en/stable/example/markers.html
+[executed selectively]: https://docs.pytest.org/en/stable/example/markers.html#marking-test-functions-and-selecting-them-for-a-run
