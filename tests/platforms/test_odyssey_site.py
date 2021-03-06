@@ -31,6 +31,10 @@ def test_login(webdriver_mock, login_page_mock):
     "test_input",
     [
         (
+            "https://cmsportal.chathamcounty.org/Portal/Home/Dashboard/29",
+            ["MGCV20-00001"]
+        ),
+        (
             "https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29",
             ["19d89169"]
         ),

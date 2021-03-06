@@ -51,9 +51,7 @@ class SearchResults:
     def _prep_case_rows(self, elements):
         case_rows = []
         for el in elements:
-            row = ResultRow(el)
-            if row.is_case_row:
-                case_rows.append(row)
+            case_rows.append(ResultRow(el))
         return case_rows
 
 
@@ -78,14 +76,6 @@ class ResultRow:
             'party_name': party_name,
             'case_detail_url': case_detail_url,
         }
-
-    @property
-    def is_case_row(self):
-        case_num = self.inner_text.split('\t')[0]
-        case_num_pattern = r'^\d\d[A-Z0-9]+$'
-        if re.match(case_num_pattern, case_num):
-            return True
-        return False
 
     @property
     def inner_text(self):
