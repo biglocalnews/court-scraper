@@ -114,7 +114,7 @@ To search for cases, use the `search` subcommand.
 
 ```
 # Search Dekalb County, GA for CASE ID 123
-court-scraper search --place-id ga_dekalb ---search-term 123
+court-scraper search --place-id ga_dekalb --search-term 123
 
 ```
 
