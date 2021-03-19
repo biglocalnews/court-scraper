@@ -202,7 +202,7 @@ class NyWestchester:
         self.site_url = url
         self.download_dir = download_dir
 
-    def search(self, search_terms=[], =True):
+    def search(self, search_terms=[]):
         # Do things of varying complexity with search terms.
         # This method should return a list of CaseInfo
         # instances containing case metadata and, if available,
