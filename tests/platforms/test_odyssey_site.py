@@ -47,3 +47,30 @@ def test_search(test_input, headless, live_configs, court_scraper_dir):
     site.login(username, password)
     results = site.search(search_terms=case_ids)
     assert len(results) == 1
+    # Scrapes Case Detail page HTML by default
+    assert 'page_source' in results[0].data.keys()
+
+
+@pytest.mark.parametrize(
+    "test_input",
+    [
+        (
+            "https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29",
+            ["19d89169"]
+        ),
+    ]
+)
+@pytest.mark.slow
+@pytest.mark.webtest
+def test_skip_case_details(test_input, headless, live_configs, court_scraper_dir):
+    "should support option to skip scraping of case details"
+    auth = live_configs['ga_dekalb']
+    username = auth['username']
+    password = auth['password']
+    url, case_ids = test_input
+    site = OdysseySite(url, download_dir=court_scraper_dir, headless=headless)
+    site.login(username, password)
+    results = site.search(search_terms=case_ids, case_details=False)
+    # Should *NOT* have case detail HTML stored on return object
+    assert len(results) == 1
+    assert 'page_source' not in results[0].data.keys()

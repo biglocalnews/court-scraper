@@ -28,7 +28,7 @@ class OdysseySite(SeleniumSite):
         login_page.go_to()
         login_page.login()
 
-    def search(self, search_terms=[]):
+    def search(self, search_terms=[], case_details=True):
         portal_page = PortalPage(self.driver)
         portal_page.go_to_smart_search()
         results = []
@@ -42,12 +42,13 @@ class OdysseySite(SeleniumSite):
                 if results_page.results_found():
                     for case_row in results_page.results:
                         row_data = case_row.metadata
-                        case_row.detail_page_link.click()
-                        detail_page = CaseDetailPage(self.driver)
-                        row_data['page_source'] = detail_page.page_source
+                        if case_details:
+                            case_row.detail_page_link.click()
+                            detail_page = CaseDetailPage(self.driver)
+                            row_data['page_source'] = detail_page.page_source
+                            results_page.back_to_search_results()
                         ci = CaseInfoKls(row_data)
                         results.append(ci)
-                        results_page.back_to_search_results()
                 results_page.back_to_smart_search_tab()
             return results
         finally:
@@ -60,6 +61,3 @@ class OdysseySite(SeleniumSite):
         }
         CaseInfo._map = mapping
         return CaseInfo
-
-    
-
