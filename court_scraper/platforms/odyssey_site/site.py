@@ -10,15 +10,15 @@ from .pages.search_results import SearchResultsPage
 
 class OdysseySite(SeleniumSite):
 
-    def __init__(self, url, username, password, download_dir, timeout=60):
+    def __init__(self, url, download_dir, timeout=60, headless=True):
         self.site_url = url
-        self.username = username
-        self.password = password
         self.download_dir = download_dir
         self.timeout = timeout
-
-    def login(self, headless=True):
         self.driver = self._init_chrome_driver(headless=headless)
+
+    def login(self, username, password):
+        self.username = username
+        self.password = password
         login_page = LoginPage(
             self.driver,
             self.site_url,
@@ -28,7 +28,7 @@ class OdysseySite(SeleniumSite):
         login_page.go_to()
         login_page.login()
 
-    def search(self, search_terms=[], headless=True):
+    def search(self, search_terms=[]):
         portal_page = PortalPage(self.driver)
         portal_page.go_to_smart_search()
         results = []

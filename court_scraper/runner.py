@@ -50,18 +50,17 @@ class Runner:
         url = self.site_meta['home_url']
         username, password = self._get_login_creds()
         pos_args = [url]
-        if username and password:
-            pos_args.extend([username, password])
         site = SiteKls(
             *pos_args,
             self.cache_dir,
+            headless=headless
         )
         if username and password:
-            site.login(headless=headless)
+            site.login(username, password)
         logger.info(
             "Executing search for {}".format(self.place_id)
         )
-        data = site.search(search_terms=search_terms, headless=headless)
+        data = site.search(search_terms=search_terms)
         return data
 
 

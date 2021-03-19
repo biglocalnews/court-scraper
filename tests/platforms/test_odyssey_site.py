@@ -8,16 +8,12 @@ from court_scraper.platforms.odyssey_site import OdysseySite
 @patch('court_scraper.platforms.odyssey_site.site.LoginPage')
 @patch('court_scraper.base.selenium_site.webdriver')
 def test_login(webdriver_mock, login_page_mock):
-    site = OdysseySite(
-        'http://somesite.com',
-        'user',
-        'pass',
-        '/some_path/'
-    )
-    site.login()
-    # Login initializes chrome driver
+    site = OdysseySite('http://somesite.com', '/tmp/some_path/')
+    # Web driver instantiated during Site class initialization
     assert webdriver_mock.Chrome.called
-    # and calls login
+    # Login requires password
+    site.login('user', 'pass')
+    # login method goes to login page and submits user creds
     expected_calls = [
         call().go_to(),
         call().login()
@@ -47,7 +43,7 @@ def test_search(test_input, headless, live_configs, court_scraper_dir):
     username = auth['username']
     password = auth['password']
     url, case_ids = test_input
-    site = OdysseySite(url, username, password, download_dir=court_scraper_dir)
-    site.login(headless=headless)
-    results = site.search(search_terms=case_ids, headless=False)
+    site = OdysseySite(url, download_dir=court_scraper_dir, headless=headless)
+    site.login(username, password)
+    results = site.search(search_terms=case_ids)
     assert len(results) == 1
