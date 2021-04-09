@@ -15,6 +15,7 @@ class SearchResultsPageLocators:
     RESULTS_DIV = (By.CSS_SELECTOR, '#SmartSearchResults')
     NO_RESULTS_MSG = (By.XPATH, '//*[@id="ui-tabs-1"]/div/p')
     CASE_DETAIL_LINK = (By.CSS_SELECTOR, 'a.caseLink')
+    RESULT_HEADERS = (By.CSS_SELECTOR, 'th.k-header')
     # Get table rows that are the grandparent of case links;
     # they contain all case metadata in search results.
     RESULT_ROWS = (By.XPATH, "//a[@class='caseLink']/../..")
@@ -34,6 +35,27 @@ class SearchResultsPageLocators:
 
 
 # Elements
+class ResultHeaders:
+    """Gets field names in search results"""
+
+    locator = SearchResultsPageLocators.RESULT_HEADERS
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    @property
+    def values(self):
+        driver = self.driver
+        WebDriverWait(driver, 100).until(
+            lambda driver: driver.find_elements(*self.locator)
+        )
+        return [
+            el.text.strip()
+            for el in driver.find_elements(*self.locator)
+            if el.text.strip()
+        ]
+
+
 class SearchResults:
 
     locator = SearchResultsPageLocators.RESULT_ROWS
@@ -45,19 +67,21 @@ class SearchResults:
             lambda driver: driver.find_elements(*self.locator)
         )
         elements = driver.find_elements(*self.locator)
-        case_rows = self._prep_case_rows(elements)
+        headers = ResultHeaders(driver).values
+        case_rows = self._prep_case_rows(headers, elements)
         return case_rows
 
-    def _prep_case_rows(self, elements):
+    def _prep_case_rows(self, headers, elements):
         case_rows = []
         for el in elements:
-            case_rows.append(ResultRow(el))
+            case_rows.append(ResultRow(headers, el))
         return case_rows
 
 
 class ResultRow:
 
-    def __init__(self, row_element):
+    def __init__(self, headers, row_element):
+        self.headers = headers
         self.el = row_element
 
     @property
@@ -65,21 +89,16 @@ class ResultRow:
         case_detail_url = self.el.find_element(
                 *SearchResultsPageLocators.CASE_DETAIL_LINK
             ).get_attribute('data-url')
-        case_num, style_def, file_date, status, party_name = [
-            field.strip() for field in self.inner_text.split('\t')
-        ]
-        return {
-            'case_num': case_num,
-            'style_defendant': style_def,
-            'file_date': file_date,
-            'status': status,
-            'party_name': party_name,
-            'case_detail_url': case_detail_url,
-        }
+        data = dict(zip(self.headers, self.values))
+        data['case_detail_url'] = case_detail_url
+        return data
 
     @property
-    def inner_text(self):
-        return self.el.get_attribute('innerText').strip('\t')
+    def values(self):
+        return [
+            el.text.strip() for el in self.el.find_elements_by_xpath('child::*')
+            if el.text.strip()
+        ]
 
     @property
     def detail_page_link(self):

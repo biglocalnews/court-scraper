@@ -95,6 +95,7 @@ class Runner:
         Base parser provides functionality for opening html and saving json;
 
         """
+        pass
 
     def _get_site_class(self):
         # Site types for one-off scrapers should live in the scrapers

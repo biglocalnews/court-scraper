@@ -56,8 +56,11 @@ class OdysseySite(SeleniumSite):
 
     def _get_case_info_mapped_class(self):
         mapping = {
-            'case_num': 'number',
-            'file_date': 'filing_date',
+            'Case Number': 'number',
+            'Style / Defendant': 'defendant',
+            'File Date': 'filing_date',
+            'Party Name': 'party',
+            'Status': 'status',
         }
         CaseInfo._map = mapping
         return CaseInfo
