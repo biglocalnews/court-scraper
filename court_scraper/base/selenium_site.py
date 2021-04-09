@@ -15,22 +15,22 @@ class SeleniumSite:
 
     def _build_chrome_options(self, headless=True, random_user=False):
         chrome_options = Options()
+        chrome_options.add_argument("--disable-notifications")
+        chrome_options.add_argument('--verbose')
+        chrome_options.add_argument("--window-size=1920x1080")
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_experimental_option("prefs", {
+            "download.default_directory": self.download_dir,
+            "download.prompt_for_download": False,
+            "download.directory_upgrade": True,
+            "safebrowsing_for_trusted_sources_enabled": False,
+            "safebrowsing.enabled": False
+        })
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--disable-software-rasterizer')
         if headless:
             chrome_options.add_argument("--headless")
         if random_user:
-            chrome_options.add_argument("--window-size=1920x1080")
-            chrome_options.add_argument("--disable-notifications")
-            chrome_options.add_argument('--no-sandbox')
-            chrome_options.add_argument('--verbose')
-            chrome_options.add_experimental_option("prefs", {
-                    "download.default_directory": self.download_dir,
-                    "download.prompt_for_download": False,
-                    "download.directory_upgrade": True,
-                    "safebrowsing_for_trusted_sources_enabled": False,
-                    "safebrowsing.enabled": False
-            })
-            chrome_options.add_argument('--disable-gpu')
-            chrome_options.add_argument('--disable-software-rasterizer')
             ua = UserAgent(family='chrome')
             randomua = ua.random()
             chrome_options.add_argument(f'user-agent={randomua}')
