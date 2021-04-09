@@ -39,8 +39,15 @@ class CaseInfo:
         Return data dict of fields that map
         to Case table columns.
         """
-        return {
+        data = {
             'place_id': self.place_id,
             'number': self.number,
-            'status': self.status,
         }
+        # Strongly encouraged, not always available
+        for attr in ['filing_date', 'status']:
+            try:
+                data[attr] = getattr(self, attr)
+            except AttributeError:
+                data[attr] = None
+        return data
+

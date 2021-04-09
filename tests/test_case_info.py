@@ -27,7 +27,9 @@ def test_standardized_data():
         'place_id': 'ga_dekalb',
         'number': '1',
         'status': 'Open',
+        'filing_date': None,
     }
     CaseInfo._map = mapping
     ci = CaseInfo(data)
     assert ci.standard_data == expected
+
