@@ -28,9 +28,15 @@ class OdysseySite(SeleniumSite):
         login_page.go_to()
         login_page.login()
 
+    def go_to_home(self):
+        self.driver.get(self.site_url)
+
     def search(self, search_terms=[], case_details=True):
         portal_page = PortalPage(self.driver)
-        portal_page.go_to_smart_search()
+        if portal_page.is_current_page:
+            portal_page.go_to_smart_search()
+        else:
+            self.go_to_home()
         results = []
         CaseInfoKls = self._get_case_info_mapped_class()
         try:
@@ -61,6 +67,8 @@ class OdysseySite(SeleniumSite):
             'File Date': 'filing_date',
             'Party Name': 'party',
             'Status': 'status',
+            'Type': 'type',
+            'Location': 'location',
         }
         CaseInfo._map = mapping
         return CaseInfo

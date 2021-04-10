@@ -13,6 +13,12 @@ class PortalPage(BasePage):
 
     locators = PortalPageLocators
 
+    @property
+    def is_current_page(self):
+        return len(
+            self.driver.find_elements(*self.locators.PORTAL_BUTTONS)
+        ) > 0
+
     def go_to_hearings_search(self):
         self._click_port_button('hearings')
 
@@ -20,7 +26,7 @@ class PortalPage(BasePage):
         self._click_port_button('smart_search')
 
     def _click_port_button(self, name):
-        images = self.driver.find_elements(*PortalPageLocators.IMAGES)
+        images = self.driver.find_elements(*self.locators.IMAGES)
         img_names = {
             'hearings' : 'Icon_SearchHearing.svg',
             'smart_search': 'Icon_SmartSearch.svg'

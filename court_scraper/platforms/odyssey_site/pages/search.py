@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from .base import BasePage
+from court_scraper.captcha import resolve_recaptcha_v2
 
 
 # Locators
@@ -42,6 +43,7 @@ class SearchPage(BasePage):
 
     search_box = SearchBox()
 
+    @resolve_recaptcha_v2
     def submit_search(self, timeout=30):
         WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable(

@@ -132,6 +132,8 @@ class SearchResultsPage(BasePage):
             )
         except NoSuchElementException:
             no_results_el = ''
+        if 'no results found' in self.driver.page_source.lower():
+            return False
         if results_el and found == True:
             return True
         elif 'No cases match' in no_results_el.get_attribute('innerText'):

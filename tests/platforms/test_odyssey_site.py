@@ -55,6 +55,44 @@ def test_search(test_input, headless, live_configs, court_scraper_dir):
     "test_input",
     [
         (
+            "https://portal.napa.courts.ca.gov/Secure/Home/Dashboard/29",
+            ["20CV000569"]
+        ),
+    ]
+)
+@pytest.mark.slow
+@pytest.mark.webtest
+def test_search_nologin_no_captcha(test_input, headless, court_scraper_dir):
+    url, case_ids = test_input
+    site = OdysseySite(url, download_dir=court_scraper_dir, headless=headless)
+    results = site.search(search_terms=case_ids)
+    assert len(results) == 1
+    # Scrapes Case Detail page HTML by default
+    assert 'page_source' in results[0].data.keys()
+
+
+@pytest.mark.parametrize(
+    "test_input",
+    [
+        (
+            "https://portal.napa.courts.ca.gov/Secure/Home/Dashboard/29",
+            ["20CV000023"]
+        ),
+    ]
+)
+@pytest.mark.slow
+@pytest.mark.webtest
+def test_search_nologin_no_captcha_noresults(test_input, headless, court_scraper_dir):
+    url, case_ids = test_input
+    site = OdysseySite(url, download_dir=court_scraper_dir, headless=headless)
+    results = site.search(search_terms=case_ids)
+    assert len(results) == 0
+
+
+@pytest.mark.parametrize(
+    "test_input",
+    [
+        (
             "https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29",
             ["19d89169"]
         ),

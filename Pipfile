@@ -17,6 +17,7 @@ click = "*"
 pyyaml = "*"
 click-option-group = "*"
 sqlalchemy = "*"
+anticaptchaofficial = "*"
 
 [requires]
 python_version = "3.7"
