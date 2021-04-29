@@ -123,7 +123,9 @@ class Runner:
             return self._site_meta
         except AttributeError:
             sm = SitesMeta()
-            key = tuple(self.place_id.split('_'))
+            state = self.place_id[0:2]
+            county = self.place_id[3:].replace('_', ' ').strip()
+            key = (state, county)
             site_info = sm.data[key]
             self._site_meta = site_info
             return self._site_meta

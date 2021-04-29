@@ -24,7 +24,7 @@ def test_scraper_caching(court_scraper_dir, monkeypatch):
             'page_source': '<html>foo</html>'
         })
     ]
-    # Need to monkeypatch because Configs class is instanstiated
+    # Need to monkeypatch because Configs class is instantiated
     # in global scope of cli.py, and the import at top of this
     # test file executes cli.py before this test runs (therefore
     # standard patching doesn't work b/c it occurs too late)
@@ -51,6 +51,7 @@ def test_list_scrapers(sites_csv_text):
         runner = CliRunner()
         response = runner.invoke(cli.cli, ['info'])
         expected = "\nAvailable scrapers:\n\n" +\
+                " * CA - San Mateo (ca_san_mateo)\n" +\
                 " * GA - Chatham (ga_chatham)\n" +\
                 " * GA - Dekalb (ga_dekalb)\n" +\
                 " * GA - Fulton (ga_fulton)\n\n" +\

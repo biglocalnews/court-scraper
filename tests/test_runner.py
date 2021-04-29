@@ -58,3 +58,22 @@ def test_page_source_caching(court_scraper_dir, config_path):
         .joinpath('cache/ga_dekalb/20A123.html')
     actual = file_contents(cache_file)
     assert case.page_source == actual
+
+
+@pytest.mark.usefixtures('create_scraper_dir', 'create_config')
+def test_multiword_county(court_scraper_dir, config_path):
+    "Multiword counties should not raise errors"
+    site_class = Mock(name='OdysseySite')
+    to_patch = 'court_scraper.runner.Runner._get_site_class'
+    with patch(to_patch) as mock_method:
+        mock_method.return_value = site_class
+        r = Runner(
+            court_scraper_dir,
+            config_path,
+            'ca_san_mateo'
+        )
+        r.search(search_terms=['foo'])
+        search_call = site_class.mock_calls[-1]
+        expected_call = call().search(search_terms=['foo'])
+        assert search_call == expected_call
+

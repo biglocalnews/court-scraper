@@ -1,4 +1,7 @@
 state,county,site_type,site_version,captcha_service_required,home_url
+ca,napa,odyssey_site,1,,https://portal.napa.courts.ca.gov/Secure/Home/Dashboard/29
+ca,san mateo,odyssey_site,1,True,https://odyportal-ext.sanmateocourt.org/Portal-External/Home/Dashboard/29
+ca,sonoma,odyssey_site,1,True,https://cmsportal.sonomacourt.org/IPortal/Home/Dashboard/29
 ga,chatham,odyssey_site,1,,https://cmsportal.chathamcounty.org/Portal/Home/Dashboard/29
 ga,dekalb,odyssey_site,1,,https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29
 ga,fulton,odyssey_site,1,,https://publicrecordsaccess.fultoncountyga.gov/Portal/Home/Dashboard/29

@@ -107,7 +107,7 @@ def info():
         entry = " * {} - {} ({})\n".format(
             state.upper(),
             county.title(),
-            '_'.join((state, county))
+            '_'.join((state, county.replace(' ', '_')))
         )
         msg += entry
     end_note = "\nNOTE: Scraper IDs (in parentheses) should be " +\
