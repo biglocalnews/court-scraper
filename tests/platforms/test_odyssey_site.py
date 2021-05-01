@@ -112,3 +112,22 @@ def test_skip_case_details(test_input, headless, live_configs, court_scraper_dir
     # Should *NOT* have case detail HTML stored on return object
     assert len(results) == 1
     assert 'page_source' not in results[0].data.keys()
+
+
+@pytest.mark.parametrize(
+    "test_input",
+    [
+        (
+            "https://portal.napa.courts.ca.gov/Secure/Home/Dashboard/29",
+            ["20CV0000*"]
+        ),
+    ]
+)
+@pytest.mark.slow
+@pytest.mark.webtest
+def test_maximize_displayed_results(test_input, headless, court_scraper_dir):
+    "should automatically maximize the number of results displayed on results page"
+    url, case_ids = test_input
+    site = OdysseySite(url, download_dir=court_scraper_dir, headless=headless)
+    results = site.search(search_terms=case_ids, case_details=False)
+    assert len(results) == 91

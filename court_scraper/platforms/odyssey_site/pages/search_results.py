@@ -15,6 +15,7 @@ class SearchResultsPageLocators:
     RESULTS_DIV = (By.CSS_SELECTOR, '#SmartSearchResults')
     NO_RESULTS_MSG = (By.XPATH, '//*[@id="ui-tabs-1"]/div/p')
     CASE_DETAIL_LINK = (By.CSS_SELECTOR, 'a.caseLink')
+    RESULTS_PER_PAGE_MENU = (By.CSS_SELECTOR, 'span.k-dropdown')
     RESULT_HEADERS = (By.CSS_SELECTOR, 'th.k-header')
     # Get table rows that are the grandparent of case links;
     # they contain all case metadata in search results.
@@ -151,5 +152,29 @@ class SearchResultsPage(BasePage):
             SearchResultsPageLocators.SMART_SEARCH_TAB
         )
 
+    def has_paged_results_menu(self):
+        try:
+            self._locate(
+                SearchResultsPageLocators.RESULTS_PER_PAGE_MENU
+            )
+            return True
+        except NoSuchElementException:
+            return False
+
+    def display_max_results(self):
+        # Click "items per page" dropdown menu
+        self._locate_and_click(
+            SearchResultsPageLocators.RESULTS_PER_PAGE_MENU
+        )
+        # GROSS: Get last ul, then last item of that ul. And click.
+        self.driver\
+            .find_elements_by_tag_name('ul')[-1]\
+            .find_elements_by_tag_name('li')[-1]\
+            .click()
+
+    def _locate(self, locator):
+        return self.driver.find_element(*locator)
+
+
     def _locate_and_click(self, locator):
-        self.driver.find_element(*locator).click()
+        self._locate(locator).click()

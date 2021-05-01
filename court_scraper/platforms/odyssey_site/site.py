@@ -46,6 +46,8 @@ class OdysseySite(SeleniumSite):
                 search_page.submit_search(self.timeout)
                 results_page = SearchResultsPage(self.driver)
                 if results_page.results_found():
+                    if results_page.has_paged_results_menu():
+                        results_page.display_max_results()
                     for case_row in results_page.results:
                         row_data = case_row.metadata
                         if case_details:
