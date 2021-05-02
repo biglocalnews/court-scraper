@@ -18,43 +18,43 @@ ok,pushmataha,oscn,1,,https://www.oscn.net/dockets/
 ok,roger mills,oscn,1,,https://www.oscn.net/dockets/
 ok,rogers,oscn,1,,https://www.oscn.net/dockets/
 ok,tulsa,oscn,1,,https://www.oscn.net/dockets/
-wa,adams,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,asotin,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,benton,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,chelan,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,clallam,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,clark,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,columbia,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,cowlitz,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,douglas,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,ferry,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,franklin,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,garfield,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,grant,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,grays harbor,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,island,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,jefferson,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,kitsap,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,kittitas,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,klickatat,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,lewis,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,lincoln,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,mason,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,okanogan,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,pacific,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,pend oreille,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,san juan,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,skagit,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,skamania,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,snohomish,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,spokane,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,stevens,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,thurston,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,wahkiakum,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,walla walla,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,whatcom,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,whitman,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
-wa,yakima,odyssey_site,1,1,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,adams,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,asotin,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,benton,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,chelan,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,clallam,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,clark,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,columbia,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,cowlitz,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,douglas,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,ferry,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,franklin,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,garfield,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,grant,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,grays harbor,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,island,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,jefferson,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,kitsap,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,kittitas,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,klickatat,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,lewis,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,lincoln,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,mason,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,okanogan,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,pacific,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,pend oreille,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,san juan,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,skagit,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,skamania,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,snohomish,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,spokane,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,stevens,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,thurston,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,wahkiakum,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,walla walla,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,whatcom,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,whitman,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
+wa,yakima,odyssey_site,1,True,https://odysseyportal.courts.wa.gov/ODYPORTAL/Home/Dashboard/29
 wi,adams,wiscourts,1,True,https://wcca.wicourts.gov/advanced.html
 wi,ashland,wiscourts,1,True,https://wcca.wicourts.gov/advanced.html
 wi,barron,wiscourts,1,True,https://wcca.wicourts.gov/advanced.html
