@@ -84,6 +84,27 @@ ny_westchester:
   password: 'GREAT_PASSWORD'
 ```
 
+#### CAPTCHA-protected sites
+
+`court-scraper` uses the [Anti-captcha][] service to handle sites protected by [CAPTCHAs](https://en.wikipedia.org/wiki/CAPTCHA).
+
+[Anti-captcha]: https://anti-captcha.com
+
+If you plan to scrape a CAPTCHA-protected site, register with the
+[Anti-captcha][] service and obtain an API key.
+
+Then, add your API key to your local court-scraper configuration file as shown below:
+
+```
+# ~/.court-scraper/config.yaml
+captcha_service_api_key: 'YOUR_API_KEY'
+```
+
+Once configured, you should be able to query captcha-protected sites currently supported by court-scraper.
+
+> This configuration currently works only for sites that use the
+> Odyssey platform (e.g. Sonoma County, CA).
+
 ## Usage
 
 ### Info
