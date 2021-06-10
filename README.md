@@ -2,6 +2,9 @@
 
 - [Overview](#overview)
 - [Setup](#setup)
+  - [Pre-reqs](#pre-reqs)
+  - [Install](#install)
+  - [Configuration](#configuration)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Testing](#testing)
