@@ -131,3 +131,27 @@ def test_maximize_displayed_results(test_input, headless, court_scraper_dir):
     site = OdysseySite(url, download_dir=court_scraper_dir, headless=headless)
     results = site.search(search_terms=case_ids, case_details=False)
     assert len(results) == 91
+
+
+@pytest.mark.parametrize(
+    "test_input",
+    [
+        (
+            "https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29",
+            ["19D93839"]
+        ),
+    ]
+)
+@pytest.mark.slow
+@pytest.mark.webtest
+def test_malformed_result_listing(test_input, headless, live_configs, court_scraper_dir):
+    "should handle result listings that have an extra leading blank cell"
+    auth = live_configs['ga_dekalb']
+    username = auth['username']
+    password = auth['password']
+    url, case_ids = test_input
+    site = OdysseySite(url, download_dir=court_scraper_dir, headless=headless)
+    site.login(username, password)
+    results = site.search(search_terms=case_ids, case_details=False)
+    assert len(results) == 1
+    assert results[0].data['File Date'] == '10/02/2019'

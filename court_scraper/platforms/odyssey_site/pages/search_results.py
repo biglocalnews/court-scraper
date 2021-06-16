@@ -96,10 +96,12 @@ class ResultRow:
 
     @property
     def values(self):
-        return [
-            el.text.strip() for el in self.el.find_elements_by_xpath('child::*')
-            if el.text.strip()
-        ]
+        vals = []
+        for idx, el in enumerate(self.el.find_elements_by_xpath('child::*')):
+            if idx == 0 and el.get_attribute('class') == 'k-hierarchy-cell':
+                continue
+            vals.append(el.text.strip())
+        return vals
 
     @property
     def detail_page_link(self):
