@@ -1,4 +1,5 @@
 state,county,site_type,site_version,captcha_protected,home_url
+ca,kern,odyssey_site,1,,https://odyprodportal.kern.courts.ca.gov/PORTALPROD/Home/Dashboard/29
 ca,napa,odyssey_site,1,,https://portal.napa.courts.ca.gov/Secure/Home/Dashboard/29
 ca,san mateo,odyssey_site,1,True,https://odyportal-ext.sanmateocourt.org/Portal-External/Home/Dashboard/29
 ca,sonoma,odyssey_site,1,True,https://cmsportal.sonomacourt.org/IPortal/Home/Dashboard/29
