@@ -10,6 +10,20 @@ except ImportError:
     from yaml import Loader
 
 
+# NOTE: To check if vcrpy/pytest-vcr
+# is using cassettes as opposed to making
+# live web requests, uncomment below
+# and pass pytest caplog fixture to
+# a test function. More details here:
+#    https://vcrpy.readthedocs.io/en/latest/debugging.html
+# import vcr
+# import logging
+# Initialize logging in order see output from vcrpy
+# logging.basicConfig()
+# vcr_log = logging.getLogger("vcr")
+# vcr_log.setLevel(logging.INFO)
+
+
 def pytest_addoption(parser):
     parser.addoption(
         "--runslow", action="store_true", default=False, help="run slow tests"
