@@ -5,9 +5,9 @@ from ..parsers.case_detail import CaseDetailParser
 
 class CaseDetailPage:
 
-    def __init__(self, place, case_number, parser_kls=CaseDetailParser):
+    def __init__(self, place_id, case_number, parser_kls=CaseDetailParser):
         self.url = 'https://www.oscn.net/dockets/GetCaseInformation.aspx'
-        self.place = place
+        self.place_id = place_id
         self.case_number = case_number
         self.parser_kls = parser_kls
 
@@ -28,10 +28,15 @@ class CaseDetailPage:
             return self._output
         except AttributeError:
             payload = {
-                'db': self.place.strip().lower().replace(' ', ''),
+                'db': self._place,
                 'number': self.case_number,
             }
             response = requests.get(self.url, params=payload)
             _html = response.text
             self._output = _html
             return _html
+
+    @property
+    def _place(self):
+        county_bits = self.place_id.split('_')[1:]
+        return "".join(county_bits).lower().strip()

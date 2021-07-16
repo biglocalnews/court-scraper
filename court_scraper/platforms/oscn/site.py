@@ -25,9 +25,8 @@ class Site:
         results = []
         # This will be a county typically, but we could at some
         # point support a state-wide search
-        place_name = self._titlecase_place_id(self.place_id)
         for case_number in search_terms:
-            page = CaseDetailPage(place_name, case_number)
+            page = CaseDetailPage(self.place_id, case_number)
             # Prepare CaseInfo class instances
             # for any valid case detail pages
             data = { 'place_id': self.place_id }
@@ -35,9 +34,4 @@ class Site:
             case = CaseInfo(data)
             results.append(case)
         return results
-
-    def _titlecase_place_id(self, place_id):
-        county_bits = place_id.replace('_', ' ').split(' ')[1:]
-        return " ".join(county_bits).title()
-
 

@@ -20,6 +20,13 @@ from court_scraper.platforms.oscn import Oscn
             'close_date': '01/23/2019',
             'judge': 'Civil Docket B',
             'type': 'Civil relief more than $10,000: PREMISES LIABILITY'
+        }),
+        # Multi-word countycase
+        ('ok_roger_mills', 'CV-2021-14', {
+            'filing_date': '07/09/2021',
+            'close_date': None,
+            'judge': 'Weedon, Jill Carpenter',
+            'type': 'Civil Misc.: AD VALOREM TAX APPEAL'
         })
     ]
 )
@@ -36,5 +43,12 @@ def test_search_by_case_id(place_id, case_number, expected):
     assert case.close_date == expected['close_date']
     assert case.type == expected['type']
     assert case.judge == expected['judge']
+
+@pytest.mark.vcr()
+def test_search_by_case_id_multiple_results():
+    site = Oscn('ok_tulsa')
+    case_numbers = ['CJ-2021-2045', 'CJ-2018-2919']
+    results = site.search(search_terms=case_numbers)
+    assert len(results) == 2
 
 
