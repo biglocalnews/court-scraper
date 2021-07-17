@@ -18,8 +18,7 @@ requirements = [
 test_requirements = [
     'flake8',
     'pytest',
-#    'vcrpy',
-#    'pytest-vcr'
+    'pytest-vcr'
 ]
 
 setup(

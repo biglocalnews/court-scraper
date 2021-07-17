@@ -1,22 +1,42 @@
 import requests
-from lxml import html
-from fake_useragent import UserAgent
 
-from court_scraper.base.request_base_page import RequestsBasePage
-from .url import OklahomaURLs
+from ..parsers.case_detail import CaseDetailParser
 
-class CaseDetails(RequestsPage):
-    
-    url = OklahomaURLs.case_details
-    
-    def _build_payload(self):
-        self.payload = {
-            'db' : self.county,
-            'number' : self.case_number,
-                       }
-    
-    def page_source(self, county, case_number):
-        self.county = county
+
+class CaseDetailPage:
+
+    def __init__(self, place_id, case_number, parser_kls=CaseDetailParser):
+        self.url = 'https://www.oscn.net/dockets/GetCaseInformation.aspx'
+        self.place_id = place_id
         self.case_number = case_number
-        self._build_payload()
-        self.output = self.get_html(self.url, payload = self.payload)
+        self.parser_kls = parser_kls
+
+    @property
+    def data(self):
+        payload = {
+            'number': self.case_number,
+            'html': self.html,
+        }
+        parser = self.parser_kls(self.html)
+        extra_data = parser.parse()
+        payload.update(extra_data)
+        return payload
+
+    @property
+    def html(self):
+        try:
+            return self._output
+        except AttributeError:
+            payload = {
+                'db': self._place,
+                'number': self.case_number,
+            }
+            response = requests.get(self.url, params=payload)
+            _html = response.text
+            self._output = _html
+            return _html
+
+    @property
+    def _place(self):
+        county_bits = self.place_id.split('_')[1:]
+        return "".join(county_bits).lower().strip()

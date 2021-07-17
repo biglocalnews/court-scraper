@@ -26,12 +26,7 @@ class CaseInfo:
 
     def __init__(self, data):
         self.data = data
-        for key, val in data.items():
-            try:
-                field = self._map[key]
-            except KeyError:
-                field = key
-            setattr(self, field, val)
+        self._set_attrs(data)
 
     @property
     def standard_data(self):
@@ -50,4 +45,16 @@ class CaseInfo:
             except AttributeError:
                 data[attr] = None
         return data
+
+    def merge(self, case_info):
+        self.data.update(case_info.data)
+        self._set_attrs(case_info.data)
+
+    def _set_attrs(self, data):
+        for key, val in data.items():
+            try:
+                field = self._map[key]
+            except KeyError:
+                field = key
+            setattr(self, field, val)
 

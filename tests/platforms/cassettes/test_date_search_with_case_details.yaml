@@ -1,0 +1,278 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.26.0
+    method: GET
+    uri: https://www.oscn.net/applications/oscn/report.asp?report=DailyFilings&errorcheck=true&database=&db=Roger+Mills&StartDate=07-09-21
+  response:
+    body:
+      string: "<!DOCTYPE html>\r\n<!--[if lt IE 7]>      <html lang=\"en-US\" class=\"no-js
+        lt-ie9 lt-ie8 lt-ie7\"> <![endif]-->\r\n<!--[if IE 7]>         <html lang=\"en-US\"
+        class=\"no-js lt-ie9 lt-ie8\"> <![endif]-->\r\n<!--[if IE 8]>         <html
+        lang=\"en-US\" class=\"no-js lt-ie9\"> <![endif]-->\r\n<!--[if gt IE 8]><!-->
+        <html lang=\"en-US\" class=\"no-js\"> <!--<![endif]-->\r\n    <head>\r\n\r\n
+        \       <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n\t\t<meta
+        charset=\"ISO-8859-1\">\r\n        <meta name=\"viewport\" content=\"width=device-width,
+        initial-scale=1\">\r\n\r\n        <link rel=\"stylesheet\" href=\"/assets/css/normalize.min.css\">\r\n
+        \       <link rel=\"stylesheet\" href=\"/assets/css/main.css\">\r\n        <link
+        rel=\"stylesheet\" href=\"/assets/css/bootstrap-2.3.2.min.css\">\r\n        <link
+        rel=\"stylesheet\" href=\"/assets/css/oscn-navigation.css\">\r\n        <link
+        rel=\"stylesheet\" href=\"/assets/css/oscn-footer.css\">\r\n\r\n        <script
+        src=\"/assets/js/modernizr-2.6.2.min.js\"></script>\r\n\t\t<!--[if lt IE 9]>\t\r\n\t\t<script
+        src=\"/assets/js/respond.min.js\"></script>\r\n\t\t<script>\r\n\t\twindow.onload
+        = function() {\r\n\t\t\tsetTimeout(function(){\t\t\t\t\r\n\t\t\t\tvar height
+        = $(\".footer\").outerHeight(true);\r\n\t\t\t\t$(\"#oscn-content\").css(\"padding-bottom\",
+        function(){\r\n\t\t\t\t\treturn height;\r\n\t\t\t\t});}, 2000);\r\n\t\t}\r\n\t\t</script>\r\n\t\t<![endif]-->\r\n
+        \       <script src=\"/assets/js/cookies.js\"></script>\t\r\n\t\t\r\n<style
+        type=\"text/css\">\r\nblockquote { border: 0 solid black; }\r\nhr { margin:
+        4px 0;}\r\n.clspg, table { line-height: 14px;}\r\n#oscn-content a { text-decoration:
+        underline; }\r\n</style>\r\n    \r\n<script>\r\n  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\r\n
+        \ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\r\n
+        \ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\r\n
+        \ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\r\n\r\n
+        \ ga('create', 'UA-54280338-1', {'sampleRate': 50} );\r\n  ga('send', 'pageview');\r\n\r\n</script>\r\n\t</head>\r\n
+        \   <body>\r\n\t<div class=\"wrapper\">\r\n\t<div class=\"header\">\r\n\t<div
+        class=\"accessibility\">\r\n\t\t<a href=\"#oscn-content\">Skip to Main Content</a>\r\n\t\t<a
+        href=\"/v4/accessibility/\">Accessibility Statement</a>\r\n\t</div>\r\n\t<div
+        class=\"navigation-tophat\">\r\n\t\t<div class=\"sized\">\r\n\t\t\t<div class=\"left\">\r\n\t\t\t\t<ul>\r\n\t\t\t\t\t<li><a
+        href=\"http://www.oscn.net/applications/oscn/SimpleHelp.asp?HelpContextID=\">Help</a></li>\r\n\t\t\t\t\t<li><a
+        href=\"http://www.oscn.net/applications/oscn/SimpleHelp.asp?HelpContextID=84\">Contact
+        Us</a></li>\r\n\t\t\t\t</ul>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"right\">\r\n\t\t\t\t<ul>\r\n\t\t\t\t\t<li><a
+        href=\"https://pay.oscn.net/epayments/\">e-payments</a></li>\r\n\t\t\t\t\t<li><a
+        href=\"/jobs/\">Careers</a></li>\r\n\t\t\t\t</ul>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div
+        class=\"navigation-spectacles sized\">\r\n\t\t<div class=\"navigation-utility\">\r\n\t\t\t<div
+        class=\"brand\"><a href=\"/\"><img id=\"logo\" class=\"screen-logo\" alt=\"OSCN\"
+        src=\"/assets/img/logo.jpg\" /><img class=\"print-logo\" alt=\"\" src=\"/assets/img/logo-bw.jpg\"
+        /></a></div>\r\n\t\t\t<div class=\"toggle\" style=\"display: none;\"><button
+        type=\"button\" data-toggle=\"navigation\"><span class=\"sr-only\">toggle
+        navigation</span></button></div>\r\n\t\t</div>\r\n\t\t<nav>\r\n\t\t\t<ol class=\"nav-menu\">\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"home\"><a href=\"/v4/\">Home</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"courts_menu\"><a href=\"/courts/\">Courts</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"decisions\"><a href=\"/decisions/\">Decisions</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"programs\"><a href=\"/v4/programs/\">Programs</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"news\"><a href=\"/news/\">News</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"legal-research\"><a href=\"/applications/oscn/start.asp?viewType=LIBRARY\">Legal
+        Research</a></li>\r\n\t\t\t\t<li class=\"nav-item\" id=\"court-records\"><a
+        href=\"/dockets/\">Court Records</a></li>\r\n\t\t\t\t<li class=\"nav-item\"
+        id=\"quick-links\"><a href=\"/v4/quicklinks/\">Quick Links</a></li>\r\n\t\t\t</ol>\r\n\t\t</nav>\r\n\t</div>\r\n</div>\t\t\t\r\n\t<div
+        id=\"oscn-content\">\r\n\t\t<div class=\"container-fluid sized\"><HTML><HEAD><TITLE>Daily
+        Filings</TITLE><STYLE MEDIA=all>P.clspg {page-break-after:always}</STYLE></HEAD>\r\n<BODY
+        TOPMARGIN=0 LEFTMARGIN=0 BGCOLOR=WHITE><!--Responding Server:OSCNL1WEB2502
+        -->\r\n  \r\n\r\n\r\n<FONT FACE=ARIAL SIZE=4>Daily Filings for Friday, July
+        9, 2021</FONT><HR>\r\n<FONT FACE=ARIAL SIZE=1>Report generated by the Oklahoma
+        Court Information System on 07/17/2021 at 03:31:55:790.</FONT><HR>\r\n<FONT
+        FACE=ARIAL SIZE=3><B>The following actions were filed in the District Court
+        of Roger Mills County:</FONT></B><HR>\r\n<FONT FACE=ARIAL SIZE=2><B>Civil
+        Misc. (CV)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=24817&db=Roger
+        Mills\">CV-2021-14</A></FONT></TD><TD><FONT FACE=ARIAL SIZE=2>DCP OPERATING
+        COMPANY LP v. ROGER MILLS COUNTY ASSESSOR</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n</BODY></HTML>\r\n<BR><!--End
+        Transmission--><HR><FONT FACE=ARIAL SIZE=1>End of transmission.</FONT></BODY></HTML>"
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '4961'
+      Content-Type:
+      - text/html
+      Date:
+      - Sat, 17 Jul 2021 08:31:53 GMT
+      Server:
+      - Microsoft-IIS/10.0
+      Set-Cookie:
+      - LastQuerydb=Roger+Mills; path=/applications/oscn
+      - OSCNVersion=3%2E4%2E1; path=/applications/oscn
+      - ASPSESSIONIDSQQTARQD=IIKOIBHBKEPLKOKHPEPICDMN; path=/
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.26.0
+    method: GET
+    uri: https://www.oscn.net/dockets/GetCaseInformation.aspx?db=rogermills&number=CV-2021-14
+  response:
+    body:
+      string: !!binary |
+        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
+        /w+98YmJTH8AAA==
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '8104'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Sat, 17 Jul 2021 08:31:53 GMT
+      Expires:
+      - '-1'
+      Pragma:
+      - no-cache
+      Server:
+      - Microsoft-IIS/10.0
+      Vary:
+      - Accept-Encoding
+    status:
+      code: 200
+      message: OK
+version: 1
