@@ -51,4 +51,39 @@ def test_search_by_case_id_multiple_results():
     results = site.search(search_terms=case_numbers)
     assert len(results) == 2
 
+@pytest.mark.vcr()
+def test_date_search_basic():
+    place_id = 'ok_roger_mills'
+    day = '2021-07-09'
+    case_number = 'CV-2021-14'
+    site = Oscn(place_id)
+    # Returns a SearchResults dict-like object
+    results = site.search_by_date(start_date=day, end_date=day, case_details=False)
+    # There should be a single entry for the searched date
+    assert results.count_of_days == 1
+    data = results[day]
+    # There should only be a single case on this day
+    assert len(data['cases']) == 1
+    # Raw html should be stored in the date's dict value (e.g. for caching)
+    assert 'html' in data
+    case = data['cases'][0]
+    # Check for presence of other expected data points
+    assert case.place_id == place_id
+    assert case.number == case_number
+    assert case.type_short == 'Civil Misc. (CV)'
+    assert case.parties_short == 'DCP OPERATING COMPANY LP v. ROGER MILLS COUNTY ASSESSOR'
+    # And the absence of case detail, since we didn't
+    # request case_detail page to be scraped
+    assert getattr(case, 'judge', None) is None
+
+@pytest.mark.vcr()
+def test_date_search_no_results():
+    place_id = 'ok_roger_mills'
+    day = '2021-07-15'
+    site = Oscn(place_id)
+    # Returns a SearchResults dict-like object
+    results = site.search_by_date(start_date=day, end_date=day, case_details=False)
+    # There should be no results for this date
+    assert results.count_of_days == 0
+
 
