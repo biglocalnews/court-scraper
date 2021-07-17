@@ -107,3 +107,35 @@ def test_date_search_defaults_to_current_day():
         # Check for presence of other expected data points
         assert case.place_id == place_id
 
+@pytest.mark.vcr()
+def test_date_search_many_results():
+    place_id = 'ok_tulsa'
+    day = '2021-07-15'
+    site = Oscn(place_id)
+    # Returns a SearchResults dict-like object
+    results = site.search_by_date(start_date=day, end_date=day, case_details=False)
+    # There should be a single entry for the searched date
+    assert results.count_of_days == 1
+    # There should be many cases on this day
+    assert len(results.cases) == 219
+    # Test case type section headers
+    expected_case_types = [
+        'Civil Misc. (CV)',
+        'Civil relief less than $10,000 (CS)',
+        'Civil relief more than $10,000 (CJ)',
+        'Criminal Felony (CF)',
+        'Criminal Miscellaneous (MI)',
+        'Criminal Misdemeanor (CM)',
+        'Family and Domestic (FD)',
+        'Marriage license (ML)',
+        "Minister's Credentials (MC)",
+        'Miscellaneous Receipts - Criminal (MRC)',
+        'Paternity (FP)',
+        'Probate (PB)',
+        'Protective Order (PO)',
+        'Small Claims (SC)'
+    ]
+    # Quite a few case types as well
+    assert results.case_types == expected_case_types
+
+

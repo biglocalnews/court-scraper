@@ -13,6 +13,21 @@ class SearchResults(dict):
         return self.__class__.__name__
 
     @property
+    def cases(self):
+        try:
+            return self._cases
+        except AttributeError:
+            cases = []
+            for date_key, data in self.items():
+                cases.extend(data['cases'])
+            self._cases = cases
+            return self._cases
+
+    @property
+    def case_types(self):
+        return sorted(list({case.type_short for case in self.cases}))
+
+    @property
     def count_of_days(self):
         return len(self.keys())
 
