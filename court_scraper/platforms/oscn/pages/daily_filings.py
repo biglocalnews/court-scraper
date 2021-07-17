@@ -13,6 +13,10 @@ class SearchResults(dict):
         return self.__class__.__name__
 
     @property
+    def dates(self):
+        return sorted([k for k in self.keys()])
+
+    @property
     def cases(self):
         try:
             return self._cases
@@ -32,13 +36,20 @@ class SearchResults(dict):
         return len(self.keys())
 
     def add_case_data(self, day, results):
-        self._setdefault(day, 'cases', results)
+        data = self._get_data_by_key(day)
+        data['cases'].extend(results)
 
     def add_html(self, day, html):
-        self._setdefault(day, 'html', html)
+        data = self._get_data_by_key(day)
+        data['html'] = html
 
-    def _setdefault(self, key, nested_key, content, default={}):
-        self.setdefault(key, default)[nested_key] = content
+    def _get_data_by_key(self, key):
+        try:
+            data = self[key]
+        except KeyError:
+            self[key] = {'html': None, 'cases': []}
+            data = self[key]
+        return data
 
 
 class DailyFilings:
@@ -64,8 +75,12 @@ class DailyFilings:
                 for basic_case in basic_case_data:
                     lookup = CaseNumberLookup(self.place_id)
                     # Get single CaseInfo class from CaseNumberLookup
-                    #case_info = lookup.search([basic_case.number])[0]
-                    # TODO: merge basic_case + more detailed case_info
+                    case_info = lookup.search([basic_case.number])[0]
+                    # Merge basic CaseInfo (from search results page)
+                    # with CaseInfo (from case detail page)
+                    basic_case.merge(case_info)
+                    # ...and add to search results, which expects a list
+                    search_results.add_case_data(date_key, [basic_case])
             else:
                 search_results.add_case_data(date_key, basic_case_data)
         return search_results

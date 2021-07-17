@@ -138,4 +138,72 @@ def test_date_search_many_results():
     # Quite a few case types as well
     assert results.case_types == expected_case_types
 
+@pytest.mark.vcr()
+def test_date_search_multiple_day_results():
+    place_id = 'ok_roger_mills'
+    start = '2021-07-08'
+    end = '2021-07-09'
+    site = Oscn(place_id)
+    # Returns a SearchResults dict-like object
+    results = site.search_by_date(start_date=start, end_date=end, case_details=False)
+    # There should be a single entry for the searched date
+    assert results.count_of_days == 2
+    # There should be many cases on this day
+    assert len(results.cases) == 2
+    assert results.dates == [start, end]
+    first = results[start]['cases'][0]
+    second = results[end]['cases'][0]
+    assert first.number == 'CV-2021-13'
+    assert second.number == 'CV-2021-14'
 
+
+@pytest.mark.vcr()
+def test_date_search_with_case_details():
+    place_id = 'ok_roger_mills'
+    day = '2021-07-09'
+    case_number = 'CV-2021-14'
+    site = Oscn(place_id)
+    # Returns a SearchResults dict-like object
+    # Here we set case_details to True to trigger detail page scraping
+    results = site.search_by_date(start_date=day, end_date=day, case_details=True)
+    # There should be a single entry for the searched date
+    assert results.count_of_days == 1
+    data = results[day]
+    # There should only be a single case on this day
+    assert len(data['cases']) == 1
+    # Raw html should be stored in the date's dict value (e.g. for caching)
+    assert 'html' in data
+    case = data['cases'][0]
+    # Check for presence of other expected data points
+    assert case.place_id == place_id
+    assert case.number == case_number
+    assert case.type_short == 'Civil Misc. (CV)'
+    assert case.parties_short == 'DCP OPERATING COMPANY LP v. ROGER MILLS COUNTY ASSESSOR'
+    # Case details should be available
+    assert case.judge == 'Weedon, Jill Carpenter'
+    assert case.close_date == None
+
+
+@pytest.mark.vcr()
+def test_date_search_multiple_cases():
+    place_id = 'ok_roger_mills'
+    day = '2021-07-12'
+    site = Oscn(place_id)
+    # Set case_details to True to trigger detail page scraping
+    results = site.search_by_date(start_date=day, end_date=day, case_details=True)
+    # There should be a single entry for the searched date
+    assert results.count_of_days == 1
+    data = results[day]
+    # There should two cases on this day
+    assert len(data['cases']) == 2
+    first, second = results.cases
+    # Check for presence of other expected data points
+    assert first.number == 'TR-2021-161'
+    assert second.number == 'TR-2021-162'
+    # Case details should be available
+    # Judge
+    assert first.judge == 'VerSteeg, F. Pat'
+    assert second.judge == 'VerSteeg, F. Pat'
+    # Closed date
+    assert first.close_date == None
+    assert second.close_date == '07/15/2021'
