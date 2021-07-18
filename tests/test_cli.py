@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+from unittest import mock
 from unittest.mock import patch
 
 import pytest
@@ -12,37 +13,26 @@ from .conftest import (
 )
 
 from court_scraper import cli
+from court_scraper.cli import _get_runner
+from court_scraper.platforms.odyssey_site.runner import Runner as OdysseyRunner
 from court_scraper.case_info import CaseInfo
 
 
-@pytest.mark.usefixtures('create_scraper_dir', 'create_config')
-def test_scraper_caching(court_scraper_dir, monkeypatch):
-    data = [
-        CaseInfo({
-            'number': '20A123',
-            'status': 'Open',
-            'page_source': '<html>foo</html>'
-        })
-    ]
-    # Need to monkeypatch because Configs class is instantiated
-    # in global scope of cli.py, and the import at top of this
-    # test file executes cli.py before this test runs (therefore
-    # standard patching doesn't work b/c it occurs too late)
-    monkeypatch.setattr(cli.configs, 'cache_dir', court_scraper_dir)
-    with patch('court_scraper.runner.Runner.search') as mock_method:
-        mock_method.return_value = data
-        runner = CliRunner()
-        runner.invoke(cli.cli, [
-            'search',
-            '-p', 'ga_dekalb',
-            '-s', '20A123'
-        ])
-        cache_file = Path(court_scraper_dir)\
-            .joinpath('cache/ga_dekalb/20A123.html')
-        expected = data[0].page_source
-        actual = file_contents(cache_file)
-        assert expected == actual
-
+@pytest.mark.slow
+@pytest.mark.webtest
+@pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
+def test_integration_odyssey(court_scraper_dir):
+    # Using a non-login and non-Captcha site
+    runner = CliRunner()
+    runner.invoke(cli.cli, [
+        'search',
+        '-p', 'ca_napa',
+        '-s', '20CV000402'
+    ])
+    cache_file = Path(court_scraper_dir)\
+        .joinpath('cache/ca_napa/20CV000402.html')
+    contents = file_contents(cache_file)
+    assert 'Mary Faase et al' in contents
 
 def test_list_scrapers(sites_csv_text):
     to_patch = 'court_scraper.cli.SitesMeta._get_sites_csv_text'
@@ -58,3 +48,9 @@ def test_list_scrapers(sites_csv_text):
                 "NOTE: Scraper IDs (in parentheses) should be used with the " +\
                 "search command's --place-id argument.\n"
         assert response.output == expected
+
+
+def test_get_runner():
+    runner_kls = _get_runner('ga_dekalb')
+    expected = 'court_scraper.platforms.odyssey_site.runner'
+    assert runner_kls.__module__ == expected

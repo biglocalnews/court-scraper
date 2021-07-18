@@ -1,3 +1,4 @@
+import importlib
 import logging
 import os
 import traceback
@@ -8,27 +9,7 @@ from click_option_group import optgroup, RequiredMutuallyExclusiveOptionGroup
 
 from court_scraper.configs import Configs
 from court_scraper.datastore import Datastore
-from court_scraper.runner import Runner
 from court_scraper.sites_meta import SitesMeta
-
-configs = Configs()
-cache_dir = Path(configs.cache_dir)
-cache_dir.mkdir(parents=True, exist_ok=True)
-log_file = str(cache_dir.joinpath('logfile.txt'))
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)-12s - %(message)s',
-    datefmt='%m-%d %H:%M',
-    filename=log_file,
-    filemode='a'
-)
-console = logging.StreamHandler()
-console.setLevel(logging.INFO)
-formatter = logging.Formatter('%(message)s')
-console.setFormatter(formatter)
-logging.getLogger('').addHandler(console)
-logger = logging.getLogger(__name__)
-
 
 
 @click.group()
@@ -68,7 +49,27 @@ def cli():
 )
 def search(place_id, search_term, search_terms_file, with_browser):
     """Search court site."""
-    runner = Runner(
+    # Config and logging setup
+    configs = Configs()
+    cache_dir = Path(configs.cache_dir)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    log_file = str(cache_dir.joinpath('logfile.txt'))
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)-12s - %(message)s',
+        datefmt='%m-%d %H:%M',
+        filename=log_file,
+        filemode='a'
+    )
+    console = logging.StreamHandler()
+    console.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(message)s')
+    console.setFormatter(formatter)
+    logging.getLogger('').addHandler(console)
+    logger = logging.getLogger(__name__)
+    # Get Runner and execute the search
+    RunnerKlass = _get_runner(place_id)
+    runner = RunnerKlass(
         configs.cache_dir,
         configs.config_file_path,
         place_id
@@ -114,3 +115,22 @@ def info():
         "used with the search command's --place-id argument."
     msg += end_note
     click.echo(msg)
+
+def _get_runner(place_id):
+    # Site types for one-off scrapers should live in the scrapers
+    # namespace in a module named by state and county, e.g. ny_westchester.
+    # Platform site classes should live in platforms namespace
+    # in a snake_case module (e.g. odyssey_site).
+    # In both cases, sites_meta.csv should specify the module name
+    # in the site_type field as a snake_case value (ny_westchester, odyssey_site).
+    meta = SitesMeta()
+    site_type = meta.get(place_id)['site_type']
+    if place_id == site_type:
+        parent_mod = 'scrapers'
+    else:
+        parent_mod = 'platforms'
+    target_module = 'court_scraper.{}.{}.runner'.format(parent_mod, site_type)
+    mod = importlib.import_module(target_module)
+    return getattr(mod, 'Runner')
+
+
