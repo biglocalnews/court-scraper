@@ -18,6 +18,22 @@ from court_scraper.platforms.odyssey_site.runner import Runner as OdysseyRunner
 from court_scraper.case_info import CaseInfo
 
 
+
+@pytest.mark.vcr()
+@pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
+def test_integration_oscn(court_scraper_dir):
+    # Using a non-login and non-Captcha site
+    runner = CliRunner()
+    runner.invoke(cli.cli, [
+        'search',
+        '-p', 'ok_tulsa',
+        '-s', 'CJ-2021-2045'
+    ])
+    cache_file = Path(court_scraper_dir)\
+        .joinpath('cache/ok_tulsa/CJ-2021-2045.html')
+    contents = file_contents(cache_file)
+    assert 'U S BANK NATIONAL ASSOCIATION' in contents
+
 @pytest.mark.slow
 @pytest.mark.webtest
 @pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')

@@ -49,10 +49,11 @@ class BaseRunner:
         Return value: None
         """
         for case in search_results:
+            # Gross. We should standardize to page_source or html
             try:
                 page_source = case.page_source
             except AttributeError:
-                continue
+                page_source = case.html
             outdir = Path(self.cache_dir)\
                 .joinpath('cache')\
                 .joinpath(self.place_id)
