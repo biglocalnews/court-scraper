@@ -1,7 +1,27 @@
 from datetime import date
+
 from .pages.case_number_lookup import CaseNumberLookup
 from .pages.daily_filings import DailyFilings
+from .pages.search import Search
 
+
+# These counties are supported by
+# DailyFilings by County search,
+DAILY_FILING_COUNTIES = [
+    'ok_adair',
+    'ok_canadian',
+    'ok_cleveland',
+    'ok_comanche',
+    'ok_ellis',
+    'ok_garfield',
+    'ok_logan',
+    'ok_oklahoma',
+    'ok_payne',
+    'ok_pushmataha',
+    'ok_roger_mills',
+    'ok_rogers',
+    'ok_tulsa',
+]
 
 
 class Site:
@@ -48,8 +68,13 @@ class Site:
             containing HTML and list of CaseInfo objects: {'html': '<etc>', 'cases': [CaseInfo, etc.]}
 
         """
-        df = DailyFilings(self.place_id)
+        # Use Daily Filings where available, and fall back to generic
+        # Search (latter supports all counties but truncates results at 500)
+        if self.place_id in DAILY_FILING_COUNTIES:
+            search_obj = DailyFilings(self.place_id)
+        else:
+            search_obj = Search(self.place_id)
         if not start_date:
             start_date, end_date = self.current_day, self.current_day
-        results = df.search(start_date, end_date, case_details=case_details)
+        results = search_obj.search(start_date, end_date, case_details=case_details)
         return results

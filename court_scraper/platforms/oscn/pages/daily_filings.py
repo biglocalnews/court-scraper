@@ -5,51 +5,7 @@ from court_scraper.utils import dates_for_range
 from .case_number_lookup import CaseNumberLookup
 
 from .daily_filings_results import DailyFilingsResultsPage
-
-
-class SearchResults(dict):
-
-    def __repr__(self):
-        return self.__class__.__name__
-
-    @property
-    def dates(self):
-        return sorted([k for k in self.keys()])
-
-    @property
-    def cases(self):
-        try:
-            return self._cases
-        except AttributeError:
-            cases = []
-            for date_key, data in self.items():
-                cases.extend(data['cases'])
-            self._cases = cases
-            return self._cases
-
-    @property
-    def case_types(self):
-        return sorted(list({case.type_short for case in self.cases}))
-
-    @property
-    def count_of_days(self):
-        return len(self.keys())
-
-    def add_case_data(self, day, results):
-        data = self._get_data_by_key(day)
-        data['cases'].extend(results)
-
-    def add_html(self, day, html):
-        data = self._get_data_by_key(day)
-        data['html'] = html
-
-    def _get_data_by_key(self, key):
-        try:
-            data = self[key]
-        except KeyError:
-            self[key] = {'html': None, 'cases': []}
-            data = self[key]
-        return data
+from ..search_results_wrapper import SearchResultsWrapper
 
 
 class DailyFilings:
@@ -61,7 +17,7 @@ class DailyFilings:
     def search(self, start_date, end_date, case_details=False):
         date_format = "%m-%d-%y"
         dates = dates_for_range(start_date, end_date, output_format=date_format)
-        search_results = SearchResults()
+        search_results = SearchResultsWrapper()
         for date_str in dates:
             # Convert date_str to standard YYYY-MM-DD for upstream usage
             date_key = self._standardize_date(date_str, date_format, "%Y-%m-%d")
