@@ -1,6 +1,5 @@
 import importlib
 import logging
-import traceback
 from pathlib import Path
 
 import yaml
@@ -10,14 +9,13 @@ except ImportError:
     from yaml import Loader
 
 
+from court_scraper.sites_meta import SitesMeta
+
+
 logger = logging.getLogger(__name__)
 
-from .sites_meta import SitesMeta
 
-class ScraperError(Exception): pass
-
-
-class Runner:
+class BaseRunner:
     """
     Facade class to simplify invocation and usage of scrapers.
 
@@ -35,34 +33,11 @@ class Runner:
         self.place_id = place_id
 
     def search(self, search_terms=[], headless=True):
+        """Should invoke Site.search
+
+        Override this on base runner classes.
         """
-        For a given scraper, executes the search, acquisition
-        and processing of case info.
-
-        Keyword arguments:
-
-        - search_terms - List of search terms
-        - headless - Whether or not to run headless (default: True)
-
-        Returns: List of dicts containing case metadata
-        """
-        SiteKls = self._get_site_class()
-        url = self.site_meta['home_url']
-        username, password = self._get_login_creds()
-        pos_args = [url]
-        site = SiteKls(
-            *pos_args,
-            self.cache_dir,
-            headless=headless
-        )
-        if username and password:
-            site.login(username, password)
-        logger.info(
-            "Executing search for {}".format(self.place_id)
-        )
-        data = site.search(search_terms=search_terms)
-        return data
-
+        raise NotImplementedError
 
     def cache_detail_pages(self, search_results):
         """
@@ -74,10 +49,11 @@ class Runner:
         Return value: None
         """
         for case in search_results:
+            # Gross. We should standardize to page_source or html
             try:
                 page_source = case.page_source
             except AttributeError:
-                continue
+                page_source = case.html
             outdir = Path(self.cache_dir)\
                 .joinpath('cache')\
                 .joinpath(self.place_id)
@@ -90,7 +66,7 @@ class Runner:
                 fh.write(page_source)
 
     def parse_html_pages(self, html_pages):
-        """ 
+        """
         Function should call a platform and place-specific parser;
         Base parser provides functionality for opening html and saving json;
 

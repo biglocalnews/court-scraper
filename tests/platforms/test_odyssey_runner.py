@@ -3,19 +3,19 @@ from unittest.mock import call, patch, MagicMock, Mock
 
 import pytest
 
-from .conftest import (
+from tests.conftest import (
     config_path,
     court_scraper_dir,
     file_contents
 )
 from court_scraper.case_info import CaseInfo
-from court_scraper.runner import Runner
+from court_scraper.platforms.odyssey_site.runner import Runner
 
 
 @pytest.mark.usefixtures('create_scraper_dir', 'create_config')
 def test_site_calls(court_scraper_dir, config_path):
     site_class = Mock(name='OdysseySite')
-    to_patch = 'court_scraper.runner.Runner._get_site_class'
+    to_patch = 'court_scraper.platforms.odyssey_site.runner.Runner._get_site_class'
     with patch(to_patch) as mock_method:
         mock_method.return_value = site_class
         r = Runner(
@@ -64,7 +64,7 @@ def test_page_source_caching(court_scraper_dir, config_path):
 def test_multiword_county(court_scraper_dir, config_path):
     "Multiword counties should not raise errors"
     site_class = Mock(name='OdysseySite')
-    to_patch = 'court_scraper.runner.Runner._get_site_class'
+    to_patch = 'court_scraper.platforms.odyssey_site.runner.Runner._get_site_class'
     with patch(to_patch) as mock_method:
         mock_method.return_value = site_class
         r = Runner(
