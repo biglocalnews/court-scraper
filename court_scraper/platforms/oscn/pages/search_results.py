@@ -11,6 +11,13 @@ class SearchResultsPage:
 
     @property
     def results(self):
+        """Data from Search Results page
+
+        Returns:
+
+            List of CaseInfo instances
+
+        """
         # Search results contain an entry for every party
         # to a case, so we need to deduplicate
         results = {}
