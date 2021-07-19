@@ -4,11 +4,21 @@ import requests
 from court_scraper.utils import dates_for_range
 from .case_number_lookup import CaseNumberLookup
 
+
+from .base_search import BaseSearch
 from .daily_filings_results import DailyFilingsResultsPage
 from ..search_results_wrapper import SearchResultsWrapper
 
 
-class DailyFilings:
+class DailyFilings(BaseSearch):
+    """Search daily filings by county for limited number of larger counties.
+
+    Supports searches by date only.
+
+    Args:
+        - place_id (str): Standard place id (e.g. ok_tulsa or ok_roger_mills)
+
+    """
 
     def __init__(self, place_id):
         self.url = 'https://www.oscn.net/applications/oscn/report.asp'
@@ -27,16 +37,7 @@ class DailyFilings:
                 continue
             search_results.add_html(date_key, html)
             if case_details:
-                # Loop through CaseInfo classes from DailyFiling search
-                for basic_case in basic_case_data:
-                    lookup = CaseNumberLookup(self.place_id)
-                    # Get single CaseInfo class from CaseNumberLookup
-                    case_info = lookup.search([basic_case.number])[0]
-                    # Merge basic CaseInfo (from search results page)
-                    # with CaseInfo (from case detail page)
-                    basic_case.merge(case_info)
-                    # ...and add to search results, which expects a list
-                    search_results.add_case_data(date_key, [basic_case])
+                self._scrape_case_details(date_key, search_results, basic_case_data)
             else:
                 search_results.add_case_data(date_key, basic_case_data)
         return search_results
@@ -53,11 +54,3 @@ class DailyFilings:
         html = response.text
         page = DailyFilingsResultsPage(self.place_id, response.text)
         return html, page.results
-
-    @property
-    def _place(self):
-        county_bits = self.place_id.replace('_', ' ').split(' ')[1:]
-        return " ".join(county_bits).title()
-
-    def _standardize_date(self, date_str, from_format, to_format):
-        return datetime.datetime.strptime(date_str, from_format).strftime(to_format)
