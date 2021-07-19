@@ -11,6 +11,13 @@ class DailyFilingsResultsPage:
 
     @property
     def results(self):
+        """Data from Daily Filings search results page
+
+        Returns:
+
+            List of CaseInfo instances
+
+        """
         results = []
         tables = self.soup.find_all('table')
         for table in tables:
