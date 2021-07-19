@@ -5,12 +5,13 @@ Tulsa is available via Daily Filings Search, whereas
 Alfalfa and dozens of other smaller counties are only
 available via general Search.
 """
-from pathlib import Path
+import logging
 from unittest import mock
 
 import pytest
 
 from court_scraper.platforms.oscn import Oscn
+from court_scraper.platforms.oscn.pages.search import Search
 
 
 @pytest.mark.vcr()
@@ -44,4 +45,21 @@ def test_small_counties_date_search_basic():
     # request case_detail page to be scraped
     assert getattr(first, 'judge', None) is None
 
+@pytest.mark.vcr()
+def test_small_counties_truncation_warning(caplog):
+    # To test truncation, we need to directly use Search
+    # rather than the higher-level Site class, because it's
+    # difficult finding individual days that exceed 500 results
+    # for smaller counties. So we'll use Tulsa here, although
+    # under normal circumstances, Tulsa will default to the DailyFilings search
+    caplog.set_level(logging.WARN)
+    place_id = 'ok_tulsa'
+    day = '2021-07-01'
+    search = Search(place_id)
+    results = search.search(start_date=day, end_date=day, case_details=False)
+    # Should provide a warning
+    expected_warning = "WARNING: Results were truncated for your search."
+    assert expected_warning in caplog.text
+    # But still return case info
+    assert len(results.cases) == 171
 
