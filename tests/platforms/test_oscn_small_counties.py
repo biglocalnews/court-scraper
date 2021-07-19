@@ -57,9 +57,58 @@ def test_small_counties_truncation_warning(caplog):
     day = '2021-07-01'
     search = Search(place_id)
     results = search.search(start_date=day, end_date=day, case_details=False)
-    # Should provide a warning
+    # Should warn user that results were truncated
     expected_warning = "WARNING: Results were truncated for your search."
     assert expected_warning in caplog.text
     # But still return case info
     assert len(results.cases) == 171
 
+@pytest.mark.vcr()
+def test_small_counties_no_results():
+    place_id = 'ok_alfalfa'
+    day = '2021-07-04'
+    site = Oscn(place_id)
+    results = site.search_by_date(start_date=day, end_date=day, case_details=False)
+    assert results.count_of_days == 0
+
+@pytest.mark.vcr()
+def test_small_counties_defaults_to_current_day():
+    from court_scraper.platforms.oscn.site import Site as Oscn
+    with mock.patch.object(Oscn, 'current_day', '2021-07-01'):
+        place_id = 'ok_alfalfa'
+        site = Oscn(place_id)
+        # Returns a SearchResults dict-like object
+        results = site.search_by_date(case_details=False)
+        assert results.count_of_days == 1
+        data = results['2021-07-01']
+        assert len(results.cases) == 4
+
+@pytest.mark.vcr()
+def test_small_counties_multiple_day_results():
+    place_id = 'ok_alfalfa'
+    start = '2021-07-01'
+    end = '2021-07-02'
+    site = Oscn(place_id)
+    results = site.search_by_date(start_date=start, end_date=end, case_details=False)
+    assert results.count_of_days == 2
+    assert results.dates == [start, end]
+    assert len(results.cases) == 10
+
+@pytest.mark.vcr()
+def test_small_counties_case_details():
+    place_id = 'ok_alfalfa'
+    day = '2021-07-01'
+    site = Oscn(place_id)
+    # Here we set case_details to True to trigger detail page scraping
+    results = site.search_by_date(start_date=day, end_date=day, case_details=True)
+    # There should be a single entry for the searched date
+    assert results.count_of_days == 1
+    first = sorted(results.cases, key=lambda case: case.number)[0]
+    # Check for presence of other expected data points
+    assert first.place_id == place_id
+    assert first.number == 'CJ-2021-00008'
+    assert first.filing_date == '07/01/2021'
+    # Case details should be available
+    assert first.type == 'Civil relief more than $10,000: MONEY JUDGMENT'
+    assert first.judge == 'ANGLE, LOREN E.'
+    assert first.close_date == None

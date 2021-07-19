@@ -64,7 +64,7 @@ class Search:
                 logger.warning(msg)
             search_results.add_html(date_key, html)
             if case_details:
-                self._scrape_case_details(search_results, basic_case_data)
+                self._scrape_case_details(date_key, search_results, basic_case_data)
             else:
                 search_results.add_case_data(date_key, basic_case_data)
         return search_results
@@ -80,7 +80,7 @@ class Search:
         page = SearchResultsPage(self.place_id, response.text)
         return html, page.results
 
-    def _scrape_case_details(self, search_results, basic_case_data):
+    def _scrape_case_details(self, date_key, search_results, basic_case_data):
         """Loop through CaseInfo classes from upstream search results,
         scrape case details, and merge data for CaseInfo from both sources
         """
