@@ -1,0 +1,133 @@
+interactions:
+- request:
+    body: '{"cachedData": {"counties": {}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '32'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.26.0
+    method: POST
+    uri: https://wcca.wicourts.gov/jsonPost
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEA2XWzXLbNhQF4FfxcJ1FiD8l3rVSnYkj1RorEy0yXVyTkIgxBaggOarq8bsXbjvh
+        PTfLOOeSAL9DiC9VQ03n2xWNVN2+VE2a4hj8UN1+f6lCW91WdfXuv79ef0/Vbf3jH3Ty5X9/aek0
+        VK/v/g8rCCsZHrqeYjvHNcS1iP9KOac4pw2kzU/p6yH4nl3dQt7KfE4XdnEHYSfD0+FAfZrXsoD4
+        4qd4jn4c5/gHiH8Q8SX108mz+EeIf5TxLpzP/kLz5ev3MFC/lxM95WcWF6YSdZnKep4CvwHC1lJ2
+        melySJk9/Bpta4m7oujZitC2lrir1B55HGlrabtKKbOLo20tcVdpOvbEWlyjbi15V1NkzakRt5a6
+        v9F0s+wpZL4BFK4l8V2fso8Nm1BIrCTxXYrtTTvdrKmZd64QWknou3KXgfVOIbOSzJ8yRR5HYyWN
+        P2Xv2YNSiKwk8r/xsoFnvm2UVlL6c+LvgUJpJaU/w3mikFlJ5ntqngd+ACmUVlL63h8OPuMIQisJ
+        fT9FT9MsppFZS+YvPqahY2+mRmItib+Ug6Lcgz1SjchaIq/pZpnTMPARhNYSek0HupYDj48gtpbY
+        a4rlpWv5BFJrSb0OsUk965NGbS21NxTDmC6JvRAaybUk31CmsePmGs21NC8T4e2s5xtBcy3Ny8if
+        E44s0GQhTTaF/VTuw+5isClGNmUT+iL/DCPYFSO7skkxJ34LXJWRq3poUhzZj6LBmhhZk4foQ8u6
+        a7AjRnbkYRrpSKfAl4QlMbIkD3/LPWNJjCzJ1p8D65TBghhZkG3wmR/LButhZD22qWc/vAabYWQz
+        timXHbPtWkS2EnmbA1+NRWArgR+pKSWaTxuLwFYCP4ZGfLFZJLaS+DE1bL8Wga0EfpwGnkYqK6l2
+        hZatHaWslNrR5erZV4BFKSuldh1dKLI2W8SyEmvX+ad0PRJrj8V2WtnO3fh2tIa/5l04BHYS+Ctd
+        y6cAy6Owk8Jfsz+dPfXwo+KQ2Unmbz5HfuY5RHYS+VuAzyWHyk4q76m/lGJ3bBf4nJx8Tnsauqcp
+        syfrsBtOduNtIsTjCNvAhjjZkP3bUQE/pg474mRHysSZGnaCOeyIkx0pA+UGmU0sEHwhwfchRv9E
+        R1bEBZovpPk+pfLh/cfr6z/p0bYSzQ0AAA==
+    headers:
+      Cache-Control:
+      - no-cache, private, no-store
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 20 Jul 2021 20:24:45 GMT
+      Expires:
+      - Tue, 20 Jul 2021 20:24:45 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - JSessionId_9401=4715897A8F67C5BC9539A3756D6161CC; Path=/; Secure; HttpOnly
+      Transfer-Encoding:
+      - chunked
+      X-Lift-Version:
+      - 3.3.0-ccap4
+      X-Robots-Tag:
+      - nofollow,noindex
+    status:
+      code: 200
+      message: ''
+- request:
+    body: '{"attyType": "partyAtty", "countyNo": 40, "filingDate": {"end": "07-01-2021",
+      "start": "07-01-2021"}, "includeMissingDob": true, "includeMissingMiddleName":
+      true, "caseType": "CV,OL"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '183'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.26.0
+    method: POST
+    uri: https://wcca.wicourts.gov/jsonPost/advancedCaseSearch
+  response:
+    body:
+      string: !!binary |
+        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
+        lUHXfRxxs1AmveZt+L2+/gsZ5Rb+XBcAAA==
+    headers:
+      Cache-Control:
+      - no-cache, private, no-store
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 20 Jul 2021 20:24:47 GMT
+      Expires:
+      - Tue, 20 Jul 2021 20:24:47 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - JSessionId_9401=B6141FB8A8C01F9279A4F005693AEEBD; Path=/; Secure; HttpOnly
+      Transfer-Encoding:
+      - chunked
+      X-Lift-Version:
+      - 3.3.0-ccap4
+      X-Robots-Tag:
+      - nofollow,noindex
+    status:
+      code: 200
+      message: ''
+version: 1
