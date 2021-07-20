@@ -1,5 +1,3 @@
-from operator import attrgetter, itemgetter
-
 from court_scraper.platforms.wicourts.search_api import SearchApi
 
 import pytest
