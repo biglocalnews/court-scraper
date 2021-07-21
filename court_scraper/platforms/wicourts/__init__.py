@@ -1,1 +1,1 @@
-from .site import WiscourtSite
+from .site import WicourtsSite
