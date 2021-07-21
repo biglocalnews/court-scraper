@@ -1,5 +1,5 @@
 from datetime import timedelta, datetime
-from pandas.tseries.holiday import USFederalHolidayCalendar
+#from pandas.tseries.holiday import USFederalHolidayCalendar
 
 class LastDate:
 
@@ -7,7 +7,7 @@ class LastDate:
         now = datetime.today()
         self.current_year = now.year
         self.current_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        self.cal = USFederalHolidayCalendar()
+        #self.cal = USFederalHolidayCalendar()
 
     def _most_recent_workday(self, last_day):
         #returns most recent workday, accounting for federal holidays and weekends
