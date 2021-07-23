@@ -15,11 +15,18 @@ class WicourtsSite(SeleniumSite):
 
     current_day = date.today().strftime("%Y-%m-%d")
 
-    def __init__(self, place_id):
+    def __init__(self, place_id, captcha_api_key=None):
+        self.captcha_api_key = captcha_api_key
         self.place_id = place_id
         self.url = "https://wcca.wicourts.gov/advanced.html"
 
-    def search_by_date(self, start_date=None, end_date=None, case_details=False, extra_params={}):
+    def search_by_date(self,
+            start_date=None,
+            end_date=None,
+            case_details=False,
+            download_dir=None,
+            extra_params={}
+        ):
         #if not start_date:
         #    start_date, end_date = self.current_day, self.current_day
         date_format = "%m-%d-%Y"
@@ -28,7 +35,7 @@ class WicourtsSite(SeleniumSite):
         for date_str in dates:
             api = SearchApi(self.place_id[3:]) # Clip the state prefix from place_id
             if case_details:
-                #TODO: invoke self.search?
+                #TODO: invoke self.search
                 pass
             else:
                 cases = api.search_by_date(date_str, date_str, extra_params=extra_params)
@@ -53,8 +60,7 @@ class WicourtsSite(SeleniumSite):
         try:
             self.download_dir = download_dir
             self.driver = self._init_chrome_driver(headless=headless)
-            self.driver.get(self.url)
-            search_page = SearchPage(self.driver)
+            search_page = SearchPage(self.driver, self.captcha_api_key)
             data = search_page.search_by_date(self.place_id[3:], start_date, end_date)
             results.extend(data)
         finally:
