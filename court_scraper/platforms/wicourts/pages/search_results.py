@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from court_scraper.case_info import CaseInfo
 from court_scraper.base.selenium_helpers import SeleniumHelpers
+from ..search_api import SearchApi
 
 
 class ResultsLocators:
@@ -22,7 +23,8 @@ class ResultsLocators:
 
 class ResultRow:
 
-    def __init__(self, cookies, row_obj, captcha_solution=None):
+    def __init__(self, county, cookies, row_obj, captcha_solution=None):
+        self.county = county
         self.cookies = cookies
         self.captcha_solution = captcha_solution
         self._set_attrs_from_row_obj(row_obj)
@@ -39,33 +41,25 @@ class ResultRow:
         try:
             return self._case_details
         except AttributeError:
-            data = self._get_case_details(use_captcha_solution=use_captcha_solution)
-            self._case_details = data
-            return data
-
-    def _get_case_details(self, use_captcha_solution=False):
-        # {"countyNo":40,"caseNo":"2021TW002317"}
-        payload = {
-            'countyNo': self.county_num,
-            'caseNo': self.case_num,
-        }
-        if use_captcha_solution:
-            payload['captcha'] = f'{{"hcaptcha":"{self.captcha_solution}"}}'
-        with requests.Session() as session:
-            response = session.post(
-                'https://wcca.wicourts.gov/jsonPost/caseDetail',
-                json=payload,
-                cookies=self.cookies
-            )
-        return response.json()
+            search_api = SearchApi(self.county)
+            kwargs = {
+                'county_num': self.county_num,
+                'cookies': self.cookies,
+            }
+            if use_captcha_solution:
+                kwargs['captcha_solution'] = self.captcha_solution
+            case_info = search_api.case_details(self.case_num, **kwargs)
+            self._case_details = case_info
+            return case_info
 
 
 class Results(SeleniumHelpers):
 
     locators = ResultsLocators
 
-    def __init__(self, driver, captcha_api_key, captcha_solution=None):
+    def __init__(self, driver, county, captcha_api_key, captcha_solution=None):
         self.driver = driver
+        self.county = county
         self.captcha_api_key = captcha_api_key
         self.captcha_solution = captcha_solution
 
@@ -78,53 +72,32 @@ class Results(SeleniumHelpers):
         # Maximize displayed results
         self.click(self.locators.SHOW_ALL_RESULTS)
         # Harvest links on page
-        cookies = {cookie['name']:cookie['value'] for cookie in self.driver.get_cookies()}
+        cookies = self.cookies_as_dict()
         rows = self._get_elements_by_locator(self.locators.RESULTS_TABLE_ROWS)
         # Use cookies and harvested Captcha key to make case_detail POST request
         # NOTE: Captcha key only appears to be required on the first request. Strange...
         results = []
-        CaseInfoMapped = self._get_case_info_mapped_class()
         for idx, row in enumerate(rows):
-            row_obj = ResultRow(cookies, row, self.captcha_solution)
+            row_obj = ResultRow(self.county, cookies, row, self.captcha_solution)
             # Only use captcha solution on first case in first daily search result page
             if idx == 0 and use_captcha_solution:
-                data = row_obj.case_details(use_captcha_solution=True)
+                case_info = row_obj.case_details(use_captcha_solution=True)
             else:
-                data = row_obj.case_details(use_captcha_solution=False)
-            case_info = CaseInfoMapped(data)
-            results.append(data['result'])
+                case_info = row_obj.case_details(use_captcha_solution=False)
+            results.append(case_info)
         return results
-
-
-    def _get_case_info_mapped_class(self):
-        mapping = {
-            'caseNo': 'number',
-            'civilJdgmts': 'civil_judgements',
-            'filingDate': 'filing_date',
-            'wcisClsCode': 'wcis_code',
-            'crossReferenced': 'cross_referenced',
-            'countyNo': 'county_num',
-            'countyName': 'county',
-            'isCriminal': 'is_criminal',
-            'isReopenedRemandedFromAppeal': 'is_reopened_remanded_from_appeal',
-            'classType': 'type',
-            'caseType': 'type_code',
-            'prosAgency': 'prosecuting_agency',
-            'defAttys': 'def_attys',
-        }
-        CaseInfo._map = mapping
-        return CaseInfo
 
 
 class SearchResultsPage(SeleniumHelpers):
 
     locators = ResultsLocators
 
-    def __init__(self, driver, captcha_api_key, captcha_solution):
+    def __init__(self, driver, county, captcha_api_key, captcha_solution):
         self.driver = driver
+        self.county = county
         self.captcha_api_key = captcha_api_key
         self.captcha_solution = captcha_solution
-        self.results = Results(driver, captcha_api_key, captcha_solution)
+        self.results = Results(driver, county, captcha_api_key, captcha_solution)
 
     def results_found(self):
         # TODO

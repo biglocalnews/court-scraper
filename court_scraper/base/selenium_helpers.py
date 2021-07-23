@@ -19,3 +19,6 @@ class SeleniumHelpers:
 
     def _get_elements_by_locator(self, locator_name):
         return self.driver.find_elements(*locator_name)
+
+    def cookies_as_dict(self):
+        return {cookie['name']:cookie['value'] for cookie in self.driver.get_cookies()}

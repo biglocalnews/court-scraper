@@ -6,7 +6,8 @@ from court_scraper.platforms.wicourts import WicourtsSite
 
 @pytest.fixture
 def captcha_api_key():
-    return "API KEY"
+    # TODO: Look up API using same strategy as captcha decorator
+    return 'YOUR API KEY'
 
 
 @pytest.mark.slow
@@ -20,7 +21,6 @@ def test_search_with_case_details(court_scraper_dir, captcha_api_key, headless):
     place_id = "wi_forest" #wi_milwaukee"
     site = WicourtsSite(place_id, captcha_api_key)
     kwargs = {
-        'case_details': True,
         'start_date': day,
         'end_date': day,
         'headless': headless,
@@ -41,7 +41,6 @@ def test_search_multiple_days_with_details(court_scraper_dir, captcha_api_key, h
     site = WicourtsSite(place_id)
     site = WicourtsSite(place_id, captcha_api_key)
     kwargs = {
-        'case_details': True,
         'start_date': start,
         'end_date': end,
         'headless': headless,
@@ -49,7 +48,17 @@ def test_search_multiple_days_with_details(court_scraper_dir, captcha_api_key, h
     results = site.search(court_scraper_dir, **kwargs)
     assert len(results) == 6
 
-# TODO: test single case number search
-# TODO: test case type support
-# TODO: test multiple case number search
+
+@pytest.mark.slow
+@pytest.mark.webtest
+def test_case_number_search(court_scraper_dir, captcha_api_key, headless):
+    case_numbers=['2021CV003851','2021CV003850']
+    place_id = 'wi_milwaukee'
+    site = WicourtsSite(place_id, captcha_api_key)
+    kwargs = {
+        'headless': headless,
+        'case_numbers': case_numbers,
+    }
+    results = site.search(court_scraper_dir, **kwargs)
+    assert len(results) == 2
 
