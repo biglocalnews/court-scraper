@@ -23,6 +23,20 @@ except ImportError:
 # vcr_log = logging.getLogger("vcr")
 # vcr_log.setLevel(logging.INFO)
 
+def get_live_configs():
+    try:
+        home = expanduser("~")
+        config_path = Path(home, '.court-scraper/config.yaml')
+    except KeyError:
+        return ''
+    with open(config_path,'r') as fh:
+        return yaml.load(fh, Loader=Loader)
+
+
+try:
+    CAPTCHA_API_KEY = get_live_configs()['captcha_service_api_key']
+except:
+    CAPTCHA_API_KEY = None
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -56,14 +70,7 @@ def headless(request):
 
 @pytest.fixture
 def live_configs():
-    try:
-        home = expanduser("~")
-        config_path = Path(home, '.court-scraper/config.yaml')
-    except KeyError:
-        return ''
-    with open(config_path,'r') as fh:
-        return yaml.load(fh, Loader=Loader)
-
+    return get_live_configs()
 
 @pytest.fixture
 def court_scraper_dir(tmp_path):

@@ -103,20 +103,21 @@ class WicourtsSite(SeleniumSite):
             List of CaseInfo instances
 
         """
+        if not case_numbers and not start_date:
+            raise SearchConfigurationError("You must provide case numbers or a date range!")
         self.download_dir = download_dir
         self.driver = self._init_chrome_driver(headless=headless)
         search_page = SearchPage(self.driver, self.captcha_api_key)
         results = []
         county = self.place_id[3:]
+
         try:
             if case_numbers:
                 # Always get case details
                 data = search_page.search_by_case_number(county, case_numbers)
-            elif start_date:
+            else:
                 # Otherwise, perform a date_based search for county
                 data = search_page.search_by_date(county, start_date, end_date)
-            else:
-                raise SearchConfigurationError("You must provide case numbers or a date range!")
             results.extend(data)
         finally:
             try:
