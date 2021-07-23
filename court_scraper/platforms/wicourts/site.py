@@ -27,9 +27,9 @@ class WicourtsSite(SeleniumSite):
             start_date=None,
             end_date=None,
             case_details=False,
+            case_types=[],
             download_dir=None,
-            headless=True,
-            extra_params={}
+            headless=True
         ):
         """
         Scrape case metadata and/or details by date ranges.
@@ -43,9 +43,9 @@ class WicourtsSite(SeleniumSite):
             start_date (str): start date in YYYY-MM-DD format (optional)
             end_date (str): end date in YYYY-MM-DD format (optional)
             case_details (boolean): Whether to scrape detailed case data. (optional; defaults to False)
+            case_types (list<str>): One or more case type codes (optional)
             download_dir (str): Path for Selenium download directory (Only required for case detail scraping)
             headless (boolean): Run Selenium in headless mode for case detail searches (defaults to True)
-            extra_params (dict): Extra query parameters for the Advanced Search, e.g. case types (optional)
 
         Returns:
             List of CaseInfo instances
@@ -61,7 +61,7 @@ class WicourtsSite(SeleniumSite):
                 download_dir,
                 start_date=start_date,
                 end_date=end_date,
-                extra_params=extra_params,
+                case_types=case_types,
                 headless=headless
             )
         else:
@@ -70,7 +70,11 @@ class WicourtsSite(SeleniumSite):
             dates = dates_for_range(start_date, end_date, output_format=date_format)
             for date_str in dates:
                 api = SearchApi(county)
-                cases = api.search_by_filing_date(date_str, date_str, extra_params=extra_params)
+                cases = api.search_by_filing_date(
+                    date_str,
+                    date_str,
+                    case_types=case_types,
+                )
             results.append(cases)
         return results
 
@@ -96,8 +100,8 @@ class WicourtsSite(SeleniumSite):
             case_numbers (list<str>): List of case numbers to search (optional)
             start_date (str): start date in YYYY-MM-DD format (optional)
             end_date (str): end date in YYYY-MM-DD format (optional)
+            case_types (list<str>): One or more case type codes for date-based searches (optional)
             headless (boolean): Run Selenium in headless mode for case detail searches (defaults to True)
-            extra_params (dict): Extra query parameters for the Advanced Search, e.g. case types (optional)
 
         Returns:
             List of CaseInfo instances
@@ -110,14 +114,12 @@ class WicourtsSite(SeleniumSite):
         search_page = SearchPage(self.driver, self.captcha_api_key)
         results = []
         county = self.place_id[3:]
-
         try:
             if case_numbers:
-                # Always get case details
                 data = search_page.search_by_case_number(county, case_numbers)
             else:
-                # Otherwise, perform a date_based search for county
-                data = search_page.search_by_date(county, start_date, end_date)
+                # Fall back to date-based search
+                data = search_page.search_by_date(county, start_date, end_date, case_types=case_types)
             results.extend(data)
         finally:
             try:

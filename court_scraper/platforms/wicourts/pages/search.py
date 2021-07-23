@@ -50,12 +50,12 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         self.captcha_api_key = captcha_api_key
         self.driver = driver
 
-    def search_by_case_number(self, county, case_numbers=[], case_type=None):
+    def search_by_case_number(self, county, case_numbers=[]):
         payload = []
         search_api = SearchApi(county)
         for idx, case_num in enumerate(case_numbers):
             self.go_to() # advanced search page
-            self._execute_case_search(county, case_num, case_type)
+            self._execute_case_search(county, case_num)
             # Solve and apply the captcha on the first search.
             # (using it on subsequent case detail API calls causes errors)
             kwargs = {
@@ -67,13 +67,13 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
             payload.append(case_info)
         return payload
 
-    def search_by_date(self, county, start_date, end_date, case_type=None):
+    def search_by_date(self, county, start_date, end_date, case_types=[]):
         date_format = "%m-%d-%Y"
         dates = dates_for_range(start_date, end_date, output_format=date_format)
         payload = []
         for idx, day in enumerate(dates):
             self.go_to() # advanced search page
-            self._execute_date_search(county, day, day, case_type)
+            self._execute_date_search(county, day, day, case_types)
             # Solve the captcha on the first search,
             # save the solution for re-use, and apply the solution
             # on the first case of the first day's search results
@@ -91,7 +91,7 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
             payload.extend(results)
         return payload
 
-    def _execute_case_search(self, county, case_number, case_type=None):
+    def _execute_case_search(self, county, case_number):
         WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located(
                 self.locators.COUNTY
@@ -99,12 +99,9 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         )
         self.fill_form_field(self.locators.COUNTY, county)
         self.fill_form_field(self.locators.CASE_NUMBER, case_number)
-        # TODO: support multiple case types
-        if case_type:
-            self.fill_form_field(self.locators.DATE_CASE_TYPE, case_type)
         self.click(self.locators.SEARCH_BUTTON)
 
-    def _execute_date_search(self, county, start_date, end_date, case_type=None):
+    def _execute_date_search(self, county, start_date, end_date, case_types=[]):
         WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located(
                 self.locators.COUNTY
@@ -113,10 +110,21 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         self.fill_form_field(self.locators.COUNTY, county)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_BEGIN, start_date)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_END, end_date)
-        # TODO: support multiple case types
-        if case_type:
-            self.fill_form_field(self.locators.DATE_CASE_TYPE, case_type)
+        if case_types:
+            self._select_case_types(case_types)
         self.click(self.locators.SEARCH_BUTTON)
+
+    def _select_case_types(self, case_types):
+        for case_type in case_types:
+                # Locate the case type menu by name
+                case_type_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'Case types')]")
+                # Expand the Case types menu
+                select_arrow = case_type_label_obj.find_element_by_css_selector('.Select-arrow-zone')
+                select_arrow.click()
+                # Find and click the selection menu option for the case type
+                option_divs = case_type_label_obj.find_element_by_css_selector('.Select-menu').find_elements_by_tag_name('div')
+                option = [opt for opt in option_divs if opt.text.endswith(f'({case_type})')][0]
+                option.click()
 
     def solve_captcha(self):
         # Solve the captcha

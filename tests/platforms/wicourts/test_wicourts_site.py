@@ -77,7 +77,39 @@ def test_misconfigured_search(court_scraper_dir, headless):
         }
         results = site.search(court_scraper_dir, **kwargs)
 
-# TODO: test search_by_date
-# TODO: test case type filtering
-# TODO: test multi-name county
+@pytest.mark.slow
+@pytest.mark.webtest
+@pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
+def test_search_with_multiple_case_types_multiple_results(court_scraper_dir, headless):
+    # Forest "2021-07-01" has 4 cases with 3 case types (TR, SC, FO)
+    day = "2021-07-01"
+    place_id = "wi_forest"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    kwargs = {
+        'start_date': day,
+        'end_date': day,
+        'case_types': ['SC', 'TR'],
+        'headless': headless,
+    }
+    results = site.search(court_scraper_dir, **kwargs)
+    assert len(results) == 3
+
+@pytest.mark.slow
+@pytest.mark.webtest
+@pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
+def test_search_with_single_case_type_multiple_results(court_scraper_dir, headless):
+    # Forest "2021-07-01" has 4 cases with 3 case types (TR, SC, FO)
+    # Two of them are TRs
+    day = "2021-07-01"
+    place_id = "wi_forest"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    kwargs = {
+        'start_date': day,
+        'end_date': day,
+        'case_types': ['TR'],
+        'headless': headless,
+    }
+    results = site.search(court_scraper_dir, **kwargs)
+    assert len(results) == 2
+
 
