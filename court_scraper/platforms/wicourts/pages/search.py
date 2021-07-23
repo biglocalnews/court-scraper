@@ -25,6 +25,7 @@ class SearchLocators:
     CASE_NUMBER_RANGE_TYPE = (By.XPATH, '//*[@id="react-select-4--value"]/div[2]/input')
     CASE_NUMBER_RANGE_BEGIN = (By.NAME, 'caseNoRange.start')
     CASE_NUMBER_RANGE_END = (By.NAME, 'caseNoRange.end')
+    CASE_RESULTS_TABLE = (By.CSS_SELECTOR, 'table#caseSearchResults')
     DATE_CASE_TYPE = (By.XPATH, '//*[@id="react-select-5--value"]/div[2]/input')
     DATE_CASE_STATUS = (By.XPATH, '//*[@id="react-select-6--value"]/div[2]/input')
     FILING_DATE_RANGE_BEGIN = (By.NAME, 'filingDate.start')
@@ -74,6 +75,8 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         for idx, day in enumerate(dates):
             self.go_to() # advanced search page
             self._execute_date_search(county, day, day, case_types)
+            if not self.search_has_results():
+                continue
             # Solve the captcha on the first search,
             # save the solution for re-use, and apply the solution
             # on the first case of the first day's search results
@@ -84,12 +87,42 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
             if idx == 0:
                 captcha_solution = self.solve_captcha()
                 result_kwargs['use_captcha_solution'] = True
-            results_page = SearchResultsPage(self.driver, county, self.captcha_api_key, captcha_solution)
-            results = results_page.results.get(**result_kwargs)
+            # Searches that yield a single result redirect automatically
+            # to case detail page rather than search results listing page.
+            # For these cases, immediately execute the case detail query
+            if 'caseDetail' in self.driver.current_url:
+                case_info = self._get_case_details(
+                    county,
+                    self.driver.current_url,
+                    captcha_solution,
+                    result_kwargs['use_captcha_solution']
+                )
+                results = [case_info]
+            else:
+                results_page = SearchResultsPage(self.driver, county, self.captcha_api_key, captcha_solution)
+                results = results_page.results.get(**result_kwargs)
             # TODO: if results_page.results_found():
             #    results_page.display_max_results()
             payload.extend(results)
         return payload
+
+    def _get_case_details(self, county, url, captcha_solution, use_captcha_solution):
+        # caseNo=2021SC000082&countyNo=2
+        query_str = url.split('?')[-1]
+        param_strs = query_str.split('&')
+        params = {}
+        for param_pair in param_strs:
+            key, val = param_pair.split('=')
+            params[key] = val
+        case_num = params['caseNo']
+        search_api = SearchApi(county)
+        kwargs = {
+            'cookies': self.cookies_as_dict(),
+            'county_num': int(params['countyNo'])
+        }
+        if use_captcha_solution:
+            kwargs['captcha_solution'] = captcha_solution
+        return search_api.case_details(case_num, **kwargs)
 
     def _execute_case_search(self, county, case_number):
         WebDriverWait(self.driver, 10).until(
@@ -97,7 +130,8 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
                 self.locators.COUNTY
             )
         )
-        self.fill_form_field(self.locators.COUNTY, county)
+        clean_county = self._county_titlecase(county)
+        self.fill_form_field(self.locators.COUNTY, clean_county)
         self.fill_form_field(self.locators.CASE_NUMBER, case_number)
         self.click(self.locators.SEARCH_BUTTON)
 
@@ -107,14 +141,19 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
                 self.locators.COUNTY
             )
         )
-        self.fill_form_field(self.locators.COUNTY, county)
+        clean_county = self._county_titlecase(county)
+        self.fill_form_field(self.locators.COUNTY, clean_county)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_BEGIN, start_date)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_END, end_date)
         if case_types:
             self._select_case_types(case_types)
         self.click(self.locators.SEARCH_BUTTON)
 
+    def _county_titlecase(self, county):
+        return county.replace('_', ' ').title()
+
     def _select_case_types(self, case_types):
+        # TODO: Refactor to use locators
         for case_type in case_types:
                 # Locate the case type menu by name
                 case_type_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'Case types')]")
@@ -143,3 +182,18 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         solver.set_website_key(site_key)
         g_response = solver.solve_and_return_solution()
         return g_response
+
+    def search_has_results(self):
+        # Return True if it's a single-result redirect to case detail page
+        if 'caseDetail' in self.driver.current_url:
+            return True
+        WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(
+                self.locators.CASE_RESULTS_TABLE
+            )
+        )
+        if 'No records found' in self.driver.page_source:
+            return False
+        else:
+            # Otherwise, assume there are results
+            return True

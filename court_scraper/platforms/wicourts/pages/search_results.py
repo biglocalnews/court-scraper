@@ -99,10 +99,6 @@ class SearchResultsPage(SeleniumHelpers):
         self.captcha_solution = captcha_solution
         self.results = Results(driver, county, captcha_api_key, captcha_solution)
 
-    def results_found(self):
-        # TODO
-        pass
-
     def display_max_results(self):
         # TODO
         pass

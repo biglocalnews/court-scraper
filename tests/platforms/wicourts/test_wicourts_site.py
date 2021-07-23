@@ -113,3 +113,72 @@ def test_search_with_single_case_type_multiple_results(court_scraper_dir, headle
     assert len(results) == 2
 
 
+@pytest.mark.slow
+@pytest.mark.webtest
+@pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
+def test_search_case_type_single_result(court_scraper_dir, headless):
+    # Forest "2021-07-01" has 4 cases with 3 case types (TR, SC, FO)
+    # One of them are is SC
+    # Searches with single results redirect straight to case detail page
+    day = "2021-07-01"
+    place_id = "wi_forest"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    kwargs = {
+        'start_date': day,
+        'end_date': day,
+        'case_types': ['SC'],
+        'headless': headless,
+    }
+    results = site.search(court_scraper_dir, **kwargs)
+    assert len(results) == 1
+
+
+@pytest.mark.webtest
+def test_search_no_results(court_scraper_dir, headless):
+    day = "2021-06-27" # Sunday
+    place_id = "wi_forest"
+    site = WicourtsSite(place_id, 'DUMMY_CAPTCHA_API_KEY')
+    kwargs = {
+        'start_date': day,
+        'end_date': day,
+        'headless': headless,
+    }
+    results = site.search(court_scraper_dir, **kwargs)
+    assert len(results) == 0
+
+
+@pytest.mark.slow
+@pytest.mark.webtest
+@pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
+def test_multiname_county_date_search(court_scraper_dir, headless):
+    day = "2021-06-22"
+    place_id = "wi_green_lake"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    kwargs = {
+        'start_date': day,
+        'end_date': day,
+        'headless': headless,
+    }
+    results = site.search(court_scraper_dir, **kwargs)
+    assert len(results) == 5
+
+
+@pytest.mark.slow
+@pytest.mark.webtest
+@pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
+def test_multiname_county_case_number(court_scraper_dir, headless):
+    place_id = "wi_green_lake"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    kwargs = {
+        'case_numbers': ['2021CV000055'],
+        'headless': headless,
+    }
+    results = site.search(court_scraper_dir, **kwargs)
+    assert len(results) == 1
+
+
+# TODO: test search_by_date
+# TODO: fix tests/platforms/wicourts/test_wicourts_site.py::test_search_multiple_days_with_details
+#   which is failing on full automation b/c second day is searching statewide (note that
+#   when test is run at slower speed, the county form field populates correctly, so this
+#   feels like a bug that requires a solution using WebDriverWait unitl expected condition)
