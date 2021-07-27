@@ -127,11 +127,3 @@ class WicourtsSite(SeleniumSite):
             except AttributeError:
                 pass
         return results
-
-    def _get_case_info_mapped_class(self):
-        mapping = {
-            'case_num': 'number',
-            'file_date': 'filing_date',
-        }
-        CaseInfo._map = mapping
-        return CaseInfo

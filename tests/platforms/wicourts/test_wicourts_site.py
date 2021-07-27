@@ -178,7 +178,3 @@ def test_multiname_county_case_number(court_scraper_dir, headless):
 
 
 # TODO: test search_by_date
-# TODO: fix tests/platforms/wicourts/test_wicourts_site.py::test_search_multiple_days_with_details
-#   which is failing on full automation b/c second day is searching statewide (note that
-#   when test is run at slower speed, the county form field populates correctly, so this
-#   feels like a bug that requires a solution using WebDriverWait unitl expected condition)
