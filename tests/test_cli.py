@@ -1,3 +1,4 @@
+import json
 import logging
 from pathlib import Path
 from unittest import mock
@@ -9,7 +10,8 @@ from click.testing import CliRunner
 from .conftest import (
     court_scraper_dir,
     file_contents,
-    sites_csv_text
+    sites_csv_text,
+    update_test_configs
 )
 
 from court_scraper import cli
@@ -18,6 +20,34 @@ from court_scraper.platforms.odyssey_site.runner import Runner as OdysseyRunner
 from court_scraper.case_info import CaseInfo
 
 
+@pytest.mark.slow
+@pytest.mark.webtest
+@pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
+def test_integration_wicourts(court_scraper_dir, config_path, headless):
+    # Add captcha key to test config file
+    from tests.conftest import CAPTCHA_API_KEY
+    update_test_configs(config_path, {
+        'captcha_service_api_key': CAPTCHA_API_KEY
+    })
+    # Run the test
+    runner = CliRunner()
+    args = [
+        'search',
+        '-p', 'wi_green_lake',
+        '-s', '2021CV000055',
+    ]
+    if not headless:
+        args.append('--with-browser')
+    runner.invoke(cli.cli, args)
+    cache_file = Path(court_scraper_dir)\
+        .joinpath('cache/wi_green_lake/2021CV000055.json')
+    with open(cache_file, 'r') as fh:
+        data = json.load(fh)
+    # Check for presence of some key data points
+    assert data['caseNo'] == '2021CV000055'
+    assert data['caseType'] == 'CV'
+    assert data['countyName'] == "Green Lake"
+    assert data['caption'] == "DISCOVER BANK c/o Discover Products Inc. vs. NOEL MCDOWELL"
 
 @pytest.mark.vcr()
 @pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
