@@ -5,9 +5,9 @@ from pathlib import Path
 import pytest
 import yaml
 try:
-    from yaml import CLoader as Loader
+    from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
-    from yaml import Loader
+    from yaml import Loader, Dumper
 
 
 # NOTE: To check if vcrpy/pytest-vcr
@@ -23,15 +23,17 @@ except ImportError:
 # vcr_log = logging.getLogger("vcr")
 # vcr_log.setLevel(logging.INFO)
 
-def get_live_configs():
+def get_live_configs(home=expanduser("~")):
     try:
-        home = expanduser("~")
         config_path = Path(home, '.court-scraper/config.yaml')
     except KeyError:
         return ''
     with open(config_path,'r') as fh:
         return yaml.load(fh, Loader=Loader)
 
+def load_yaml(path):
+    with open(path, 'r') as fh:
+        return yaml.load(fh, Loader=Loader)
 
 try:
     CAPTCHA_API_KEY = get_live_configs()['captcha_service_api_key']
@@ -104,6 +106,13 @@ def create_config(config_path):
         .parent\
         .joinpath('fixtures/config.yaml')
     shutil.copyfile(config_fixture, config_path)
+
+
+def update_test_configs(config_path, data):
+    configs = load_yaml(config_path)
+    configs.update(data)
+    with open(config_path,'w') as fh:
+        return yaml.dump(configs, fh, Dumper=Dumper)
 
 
 @pytest.fixture(autouse=True)
