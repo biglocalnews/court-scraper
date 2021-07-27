@@ -20,6 +20,7 @@ class SearchLocators:
     BIRTH_DATE = (By.NAME, 'dateOfBirth')
     BUSINESS_NAME = (By.NAME, 'businessName')
     COUNTY = (By.XPATH,'//*[@id="react-select-2--value"]/div[2]/input')
+    COUNTY_DROPDOWN_ARROW = (By.CSS_SELECTOR, '.Select-arrow-zone')
     CASE_NUMBER = (By.NAME, 'caseNo')
     CASE_NUMBER_RANGE_YEAR = (By.XPATH, '//*[@id="react-select-3--value"]/div[2]/input')
     CASE_NUMBER_RANGE_TYPE = (By.XPATH, '//*[@id="react-select-4--value"]/div[2]/input')
@@ -136,10 +137,14 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         self.click(self.locators.SEARCH_BUTTON)
 
     def _execute_date_search(self, county, start_date, end_date, case_types=[]):
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(
-                self.locators.COUNTY
+        # Wait until the county dropdown-menu arrow is clickable before filling the form field,
+        # in order to avoid overwriting of the field value by the "Statewide" option default
+        county_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'County')]")
+        WebDriverWait(county_label_obj, 10).until(
+            EC.element_to_be_clickable(
+                self.locators.COUNTY_DROPDOWN_ARROW
             )
+
         )
         clean_county = self._county_titlecase(county)
         self.fill_form_field(self.locators.COUNTY, clean_county)
