@@ -133,6 +133,7 @@ def test_search_case_type_single_result(court_scraper_dir, headless):
     assert len(results) == 1
 
 
+@pytest.mark.slow
 @pytest.mark.webtest
 def test_search_no_results(court_scraper_dir, headless):
     day = "2021-06-27" # Sunday
