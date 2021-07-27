@@ -54,10 +54,9 @@ class WicourtsSite(SeleniumSite):
         if not start_date:
             start_date, end_date = self.current_day, self.current_day
         results = []
-        county = self.placed_id[3:] # Clip the state prefix from place_id
-        # Detailed data requires Selenium-based scraping
+        county = self.place_id[3:] # Clip the state prefix from place_id
         if case_details:
-            self.search(
+            results = self.search(
                 download_dir,
                 start_date=start_date,
                 end_date=end_date,
@@ -70,12 +69,15 @@ class WicourtsSite(SeleniumSite):
             dates = dates_for_range(start_date, end_date, output_format=date_format)
             for date_str in dates:
                 api = SearchApi(county)
+                extra_params = {}
+                if case_types:
+                    extra_params['caseType'] = ','.join(case_types)
                 cases = api.search_by_filing_date(
                     date_str,
                     date_str,
-                    case_types=case_types,
+                    extra_params
                 )
-            results.append(cases)
+                results.extend(cases)
         return results
 
     def search(self,

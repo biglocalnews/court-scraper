@@ -178,4 +178,69 @@ def test_multiname_county_case_number(court_scraper_dir, headless):
     assert len(results) == 1
 
 
-# TODO: test search_by_date
+@pytest.mark.vcr()
+def test_date_search_basic():
+    "should provide metadata-only search that uses requests and provides more limited data points"
+    # There are 4 cases total, 2 of them TRaffic
+    day = "2021-07-01"
+    place_id = "wi_forest"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    # case_details defaults to False
+    kwargs = {
+        'start_date': day,
+        'end_date': day,
+        'case_types': ['TR'],
+    }
+    results = site.search_by_date(**kwargs)
+    assert len(results) == 2
+    for case in results:
+        assert case.filing_date == '2021-07-01'
+        assert case.county == 'Forest'
+        assert 'TR' in case.number
+
+
+@pytest.mark.slow()
+@pytest.mark.webtest()
+def test_date_search_with_details(court_scraper_dir, headless):
+    "should provide case details search that uses selenium"
+    # There are 4 cases total, 2 of them TRaffic
+    day = "2021-07-01"
+    place_id = "wi_forest"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    kwargs = {
+        'download_dir': court_scraper_dir,
+        'start_date': day,
+        'end_date': day,
+        'case_types': ['TR'],
+        'case_details': True,
+        'headless': headless
+    }
+    results = site.search_by_date(**kwargs)
+    assert len(results) == 2
+    for case in results:
+        assert case.filing_date == '2021-07-01'
+        assert case.county == 'Forest'
+        assert 'TR' in case.number
+        # Check for some data points that are only found in detailed data
+        assert case.type_code == 'TR'
+        assert hasattr(case, 'parties') == True
+
+
+@pytest.mark.slow()
+@pytest.mark.webtest()
+def test_date_search_details_multiday(court_scraper_dir, headless):
+    # Forest "2021-06-24" has 2 cases
+    # Forest "2021-06-23" has 4 cases
+    start = "2021-06-23"
+    end = "2021-06-24"
+    place_id = "wi_forest"
+    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    kwargs = {
+        'download_dir': court_scraper_dir,
+        'start_date': start,
+        'end_date': end,
+        'case_details': True,
+        'headless': headless
+    }
+    results = site.search_by_date(**kwargs)
+    assert len(results) == 6

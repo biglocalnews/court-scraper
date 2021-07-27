@@ -1,0 +1,115 @@
+interactions:
+- request:
+    body: '{"cachedData": {"counties": {}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '32'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.26.0
+    method: POST
+    uri: https://wcca.wicourts.gov/jsonPost
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEA2XWzXLbNhQF4FfxcJ1FiD8l3rVSnYkj1RorEy0yXVyTkIgxBaggOarq8bsXbjvh
+        PTfLOOeSAL9DiC9VQ03n2xWNVN2+VE2a4hj8UN1+f6lCW91WdfXuv79ef0/Vbf3jH3Ty5X9/aek0
+        VK/v/g8rCCsZHrqeYjvHNcS1iP9KOac4pw2kzU/p6yH4nl3dQt7KfE4XdnEHYSfD0+FAfZrXsoD4
+        4qd4jn4c5/gHiH8Q8SX108mz+EeIf5TxLpzP/kLz5ev3MFC/lxM95WcWF6YSdZnKep4CvwHC1lJ2
+        melySJk9/Bpta4m7oujZitC2lrir1B55HGlrabtKKbOLo20tcVdpOvbEWlyjbi15V1NkzakRt5a6
+        v9F0s+wpZL4BFK4l8V2fso8Nm1BIrCTxXYrtTTvdrKmZd64QWknou3KXgfVOIbOSzJ8yRR5HYyWN
+        P2Xv2YNSiKwk8r/xsoFnvm2UVlL6c+LvgUJpJaU/w3mikFlJ5ntqngd+ACmUVlL63h8OPuMIQisJ
+        fT9FT9MsppFZS+YvPqahY2+mRmItib+Ug6Lcgz1SjchaIq/pZpnTMPARhNYSek0HupYDj48gtpbY
+        a4rlpWv5BFJrSb0OsUk965NGbS21NxTDmC6JvRAaybUk31CmsePmGs21NC8T4e2s5xtBcy3Ny8if
+        E44s0GQhTTaF/VTuw+5isClGNmUT+iL/DCPYFSO7skkxJ34LXJWRq3poUhzZj6LBmhhZk4foQ8u6
+        a7AjRnbkYRrpSKfAl4QlMbIkD3/LPWNJjCzJ1p8D65TBghhZkG3wmR/LButhZD22qWc/vAabYWQz
+        timXHbPtWkS2EnmbA1+NRWArgR+pKSWaTxuLwFYCP4ZGfLFZJLaS+DE1bL8Wga0EfpwGnkYqK6l2
+        hZatHaWslNrR5erZV4BFKSuldh1dKLI2W8SyEmvX+ad0PRJrj8V2WtnO3fh2tIa/5l04BHYS+Ctd
+        y6cAy6Owk8Jfsz+dPfXwo+KQ2Unmbz5HfuY5RHYS+VuAzyWHyk4q76m/lGJ3bBf4nJx8Tnsauqcp
+        syfrsBtOduNtIsTjCNvAhjjZkP3bUQE/pg474mRHysSZGnaCOeyIkx0pA+UGmU0sEHwhwfchRv9E
+        R1bEBZovpPk+pfLh/cfr6z/p0bYSzQ0AAA==
+    headers:
+      Cache-Control:
+      - no-cache, private, no-store
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 27 Jul 2021 20:20:27 GMT
+      Expires:
+      - Tue, 27 Jul 2021 20:20:27 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - JSessionId_9401=F61C8C9C8008F7C20AFAFF05FB32BDA4; Path=/; Secure; HttpOnly
+      Transfer-Encoding:
+      - chunked
+      X-Lift-Version:
+      - 3.3.0-ccap4
+      X-Robots-Tag:
+      - nofollow,noindex
+    status:
+      code: 200
+      message: ''
+- request:
+    body: '{"attyType": "partyAtty", "countyNo": 21, "filingDate": {"end": "07-01-2021",
+      "start": "07-01-2021"}, "includeMissingDob": true, "includeMissingMiddleName":
+      true, "caseType": "TR"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '180'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.26.0
+    method: POST
+    uri: https://wcca.wicourts.gov/jsonPost/advancedCaseSearch
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEA5VSy07DMBD8FWvPCXJCC7S3CtRTW1DVG+Jg6k1lydiR7RSiKP/Oumn6PsDRntnd
+        mZ1twKGvdIBxA2vh0cP4vYFSuFAvxBfCGN7QCO8TNkNr2AwSWNvKHNCppfpAv9J+EjkbPQ1SnkUW
+        NVtY+sp5nq2WnPNhPjhWE5JnkVUGZQ3RukYJe951Z7ZgW3+3H8o6DVTtgwgVaYSp0ijZq9E1/RZK
+        K7N5ESHqjfNS/hhVtMm5lZkwcuNEkbCJxh96OMHmwik86uo8X7kaDVP+EFk3XN0fq//o6mI663VR
+        o38a/GgT2Cr87uNb2KUwG1pDQ4Aya11JnCvv43piQA1sha4ID65CotiiQOOxW911zVxJqbE7hMvS
+        /RmQ5QOSZ9RShFCv6jJq6Id19zQhgCI5S6sBNPKUuQsujRlGKm3D7U5zrxpOYcJjHJezVstYKZUv
+        rVfxuHpzbfsLkf8Qj+0CAAA=
+    headers:
+      Cache-Control:
+      - no-cache, private, no-store
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 27 Jul 2021 20:20:28 GMT
+      Expires:
+      - Tue, 27 Jul 2021 20:20:28 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - JSessionId_9401=54B151E17F7FB3EDBD4D1C8DF252AE3F; Path=/; Secure; HttpOnly
+      Transfer-Encoding:
+      - chunked
+      X-Lift-Version:
+      - 3.3.0-ccap4
+      X-Robots-Tag:
+      - nofollow,noindex
+    status:
+      code: 200
+      message: ''
+version: 1
