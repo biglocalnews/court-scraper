@@ -1,0 +1,8 @@
+anticaptchaofficial
+click
+click-option-group
+lxml
+my-fake-useragent
+pyyaml
+retrying
+selenium

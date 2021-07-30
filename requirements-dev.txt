@@ -7,10 +7,11 @@ coverage
 # Peg docutils until below bug is resolved
 # https://github.com/sphinx-doc/sphinx/issues/3212
 #docutils==0.12
-docutils
+# Docutils < 0.17 is required for sphinx_rtd_theme == 0.5.2
+docutils==0.16
 #Sphinx==1.4.8
 Sphinx
-sphinx_rtd_theme
+sphinx-rtd-theme
 pytest
 pytest-vcr
 vcrpy
