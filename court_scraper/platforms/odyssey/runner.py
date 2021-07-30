@@ -34,10 +34,11 @@ class Runner(BaseRunner):
         SiteKls = self._get_site_class()
         url = self.site_meta['home_url']
         username, password = self._get_login_creds()
-        pos_args = [url]
+        pos_args = [self.place_id]
         site = SiteKls(
             *pos_args,
-            self.cache_dir,
+            url=url,
+            download_dir=self.cache_dir,
             headless=headless
         )
         if username and password:
