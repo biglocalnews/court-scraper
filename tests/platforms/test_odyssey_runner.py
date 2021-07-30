@@ -16,21 +16,23 @@ from court_scraper.platforms.odyssey.runner import Runner
 def test_site_calls(court_scraper_dir, config_path):
     site_class = Mock(name='OdysseySite')
     to_patch = 'court_scraper.platforms.odyssey.runner.Runner._get_site_class'
+    place_id = 'ga_dekalb'
     with patch(to_patch) as mock_method:
         mock_method.return_value = site_class
         r = Runner(
             court_scraper_dir,
             config_path,
-            'ga_dekalb'
+            place_id
         )
         r.search(search_terms=['foo'])
         username = 'user1@example.com'
         password = 'SECRETPASS'
-        expected_args = (
-            'https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29',
-            court_scraper_dir,
-        )
-        expected_kwargs = {'headless': True}
+        expected_args = (place_id,)
+        expected_kwargs = {
+            'url': 'https://ody.dekalbcountyga.gov/portal/Home/Dashboard/29',
+            'download_dir': court_scraper_dir,
+            'headless': True
+        }
         # Get the args and kwargs (2nd and 3rd items) from the 
         # first call which is Site instantiation
         args, kwargs = site_class.mock_calls[0][1:]
