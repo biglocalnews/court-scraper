@@ -16,7 +16,7 @@ from .conftest import (
 
 from court_scraper import cli
 from court_scraper.cli import _get_runner
-from court_scraper.platforms.odyssey_site.runner import Runner as OdysseyRunner
+from court_scraper.platforms.odyssey.runner import Runner as OdysseyRunner
 from court_scraper.case_info import CaseInfo
 
 
@@ -98,5 +98,5 @@ def test_list_scrapers(sites_csv_text):
 
 def test_get_runner():
     runner_kls = _get_runner('ga_dekalb')
-    expected = 'court_scraper.platforms.odyssey_site.runner'
+    expected = 'court_scraper.platforms.odyssey.runner'
     assert runner_kls.__module__ == expected

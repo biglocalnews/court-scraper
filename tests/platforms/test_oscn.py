@@ -2,7 +2,7 @@ from unittest import mock
 
 import pytest
 
-from court_scraper.platforms.oscn import Oscn
+from court_scraper.platforms.oscn import Site as Oscn
 
 
 @pytest.mark.vcr()

@@ -14,7 +14,7 @@ from .search_api import SearchApi
 class SearchConfigurationError(Exception): pass
 
 
-class WicourtsSite(SeleniumSite):
+class Site(SeleniumSite):
 
     current_day = date.today().strftime("%Y-%m-%d")
 
@@ -22,6 +22,9 @@ class WicourtsSite(SeleniumSite):
         self.captcha_api_key = captcha_api_key
         self.place_id = place_id
         self.url = "https://wcca.wicourts.gov/advanced.html"
+
+    def __repr__(self):
+        return f'Wicourts ({self.place_id})'
 
     def search_by_date(self,
             start_date=None,

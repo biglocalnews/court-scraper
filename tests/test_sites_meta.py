@@ -32,4 +32,4 @@ def test_get_by_place_id(sites_csv_text):
         mock_method.return_value = sites_csv_text
         meta = SitesMeta()
         row = meta.get('ca_san_mateo')
-        assert row['site_type'] == 'odyssey_site'
+        assert row['site_type'] == 'odyssey'

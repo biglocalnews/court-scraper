@@ -8,13 +8,17 @@ from .pages.search import SearchPage
 from .pages.search_results import SearchResultsPage
 
 
-class OdysseySite(SeleniumSite):
+class Site(SeleniumSite):
 
-    def __init__(self, url, download_dir, timeout=60, headless=True):
+    def __init__(self, place_id, url=None, download_dir=None, timeout=60, headless=True):
+        self.place_id = place_id
         self.site_url = url
         self.download_dir = download_dir
         self.timeout = timeout
         self.driver = self._init_chrome_driver(headless=headless)
+
+    def __repr__(self):
+        return f'Odyssey ({self.place_id})'
 
     def login(self, username, password):
         self.username = username

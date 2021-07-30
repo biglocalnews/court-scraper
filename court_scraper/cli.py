@@ -120,9 +120,9 @@ def _get_runner(place_id):
     # Site types for one-off scrapers should live in the scrapers
     # namespace in a module named by state and county, e.g. ny_westchester.
     # Platform site classes should live in platforms namespace
-    # in a snake_case module (e.g. odyssey_site).
+    # in a snake_case module (e.g. odyssey).
     # In both cases, sites_meta.csv should specify the module name
-    # in the site_type field as a snake_case value (ny_westchester, odyssey_site).
+    # in the site_type field as a snake_case value (ny_westchester, odyssey).
     meta = SitesMeta()
     site_type = meta.get(place_id)['site_type']
     if place_id == site_type:

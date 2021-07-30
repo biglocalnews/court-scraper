@@ -3,7 +3,7 @@ from unittest.mock import call, patch
 import pytest
 from tests.conftest import CAPTCHA_API_KEY
 
-from court_scraper.platforms.wicourts import WicourtsSite
+from court_scraper.platforms.wicourts import Site as WicourtsSite
 from court_scraper.platforms.wicourts.site import SearchConfigurationError
 
 

@@ -4,7 +4,7 @@ from pathlib import Path
 
 from court_scraper.base.runner import BaseRunner
 from court_scraper.configs import Configs
-from .site import WicourtsSite as Site
+from .site import Site
 
 
 logger = logging.getLogger(__name__)

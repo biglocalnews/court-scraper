@@ -31,6 +31,9 @@ class Site:
     def __init__(self, place_id):
         self.place_id = place_id
 
+    def __repr__(self):
+        return f'Oscn ({self.place_id})'
+
     def search(self, search_terms=[], **kwargs):
         """Search one or more case IDs in a given county.
 
