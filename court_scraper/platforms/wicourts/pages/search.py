@@ -76,7 +76,7 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         for idx, day in enumerate(dates):
             self.go_to() # advanced search page
             self._execute_date_search(county, day, day, case_types)
-            if not self.search_has_results():
+            if not self.search_has_results(self.driver.current_url):
                 continue
             # Solve the captcha on the first search,
             # save the solution for re-use, and apply the solution
@@ -188,7 +188,10 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         g_response = solver.solve_and_return_solution()
         return g_response
 
-    def search_has_results(self):
+    def search_has_results(self, current_url):
+        WebDriverWait(self.driver, 10).until(
+            EC.url_changes(current_url)
+        )
         # Return True if it's a single-result redirect to case detail page
         if 'caseDetail' in self.driver.current_url:
             return True
