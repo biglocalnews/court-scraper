@@ -26,8 +26,9 @@ def test_search_with_case_details(court_scraper_dir, headless):
         'start_date': day,
         'end_date': day,
         'headless': headless,
+        'download_dir': court_scraper_dir,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 2
 
 
@@ -41,14 +42,14 @@ def test_search_multiple_days_with_details(court_scraper_dir, headless):
     end = "2021-06-24"
     # Test with a smaller county
     place_id = "wi_forest" #wi_milwaukee"
-    site = WicourtsSite(place_id)
     site = WicourtsSite(place_id, CAPTCHA_API_KEY)
     kwargs = {
         'start_date': start,
         'end_date': end,
         'headless': headless,
+        'download_dir': court_scraper_dir,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 6
 
 
@@ -62,8 +63,9 @@ def test_case_number_search(court_scraper_dir, headless):
     kwargs = {
         'headless': headless,
         'case_numbers': case_numbers,
+        'download_dir': court_scraper_dir,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 2
 
 
@@ -74,8 +76,9 @@ def test_misconfigured_search(court_scraper_dir, headless):
         site = WicourtsSite(place_id, 'DUMMY_CAPTCHA_API_KEY')
         kwargs = {
             'headless': headless,
+            'download_dir': court_scraper_dir,
         }
-        results = site.search(court_scraper_dir, **kwargs)
+        results = site.search(**kwargs)
 
 @pytest.mark.slow
 @pytest.mark.webtest
@@ -89,9 +92,10 @@ def test_search_with_multiple_case_types_multiple_results(court_scraper_dir, hea
         'start_date': day,
         'end_date': day,
         'case_types': ['SC', 'TR'],
+        'download_dir': court_scraper_dir,
         'headless': headless,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 3
 
 @pytest.mark.slow
@@ -107,9 +111,10 @@ def test_search_with_single_case_type_multiple_results(court_scraper_dir, headle
         'start_date': day,
         'end_date': day,
         'case_types': ['TR'],
+        'download_dir': court_scraper_dir,
         'headless': headless,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 2
 
 
@@ -127,9 +132,10 @@ def test_search_case_type_single_result(court_scraper_dir, headless):
         'start_date': day,
         'end_date': day,
         'case_types': ['SC'],
+        'download_dir': court_scraper_dir,
         'headless': headless,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 1
 
 
@@ -142,9 +148,10 @@ def test_search_no_results(court_scraper_dir, headless):
     kwargs = {
         'start_date': day,
         'end_date': day,
+        'download_dir': court_scraper_dir,
         'headless': headless,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 0
 
 
@@ -158,9 +165,10 @@ def test_multiname_county_date_search(court_scraper_dir, headless):
     kwargs = {
         'start_date': day,
         'end_date': day,
+        'download_dir': court_scraper_dir,
         'headless': headless,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 5
 
 
@@ -172,9 +180,10 @@ def test_multiname_county_case_number(court_scraper_dir, headless):
     site = WicourtsSite(place_id, CAPTCHA_API_KEY)
     kwargs = {
         'case_numbers': ['2021CV000055'],
+        'download_dir': court_scraper_dir,
         'headless': headless,
     }
-    results = site.search(court_scraper_dir, **kwargs)
+    results = site.search(**kwargs)
     assert len(results) == 1
 
 
@@ -208,11 +217,11 @@ def test_date_search_with_details(court_scraper_dir, headless):
     place_id = "wi_forest"
     site = WicourtsSite(place_id, CAPTCHA_API_KEY)
     kwargs = {
-        'download_dir': court_scraper_dir,
         'start_date': day,
         'end_date': day,
         'case_types': ['TR'],
         'case_details': True,
+        'download_dir': court_scraper_dir,
         'headless': headless
     }
     results = site.search_by_date(**kwargs)
@@ -236,10 +245,10 @@ def test_date_search_details_multiday(court_scraper_dir, headless):
     place_id = "wi_forest"
     site = WicourtsSite(place_id, CAPTCHA_API_KEY)
     kwargs = {
-        'download_dir': court_scraper_dir,
         'start_date': start,
         'end_date': end,
         'case_details': True,
+        'download_dir': court_scraper_dir,
         'headless': headless
     }
     results = site.search_by_date(**kwargs)

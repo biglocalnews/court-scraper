@@ -43,7 +43,7 @@ class Runner(BaseRunner):
         logger.info(
             "Executing search for {}".format(self.place_id)
         )
-        data = site.search(self.cache_dir, case_numbers=case_numbers, headless=headless)
+        data = site.search(case_numbers=case_numbers, headless=headless)
         return data
 
     def cache_detail_pages(self, search_results):

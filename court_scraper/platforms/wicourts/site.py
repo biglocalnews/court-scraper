@@ -4,8 +4,7 @@ import requests
 
 from court_scraper.base.selenium_site import SeleniumSite
 from court_scraper.case_info import CaseInfo
-from court_scraper.utils import dates_for_range
-#from .pages.case_detail import CaseDetails
+from court_scraper.utils import dates_for_range, get_captcha_service_api_key
 from .pages.search import SearchPage
 
 from .search_api import SearchApi
@@ -19,7 +18,7 @@ class Site(SeleniumSite):
     current_day = date.today().strftime("%Y-%m-%d")
 
     def __init__(self, place_id, captcha_api_key=None):
-        self.captcha_api_key = captcha_api_key
+        self.captcha_api_key = captcha_api_key or get_captcha_service_api_key()
         self.place_id = place_id
         self.url = "https://wcca.wicourts.gov/advanced.html"
 
@@ -47,7 +46,7 @@ class Site(SeleniumSite):
             end_date (str): end date in YYYY-MM-DD format (optional)
             case_details (boolean): Whether to scrape detailed case data. (optional; defaults to False)
             case_types (list<str>): One or more case type codes (optional)
-            download_dir (str): Path for Selenium download directory (Only required for case detail scraping)
+            download_dir (str): Override Selenium download directory (defaults to standard court-scraper)
             headless (boolean): Run Selenium in headless mode for case detail searches (defaults to True)
 
         Returns:
@@ -60,10 +59,10 @@ class Site(SeleniumSite):
         county = self.place_id[3:] # Clip the state prefix from place_id
         if case_details:
             results = self.search(
-                download_dir,
                 start_date=start_date,
                 end_date=end_date,
                 case_types=case_types,
+                download_dir=download_dir or self.get_download_dir(),
                 headless=headless
             )
         else:
@@ -84,11 +83,11 @@ class Site(SeleniumSite):
         return results
 
     def search(self,
-           download_dir,
            case_numbers=[],
            start_date=None,
            end_date=None,
            case_types=[],
+           download_dir=None,
            headless=True
         ):
         """
@@ -101,11 +100,11 @@ class Site(SeleniumSite):
 
         Args:
 
-            download_dir (str): Path for Selenium download directory
             case_numbers (list<str>): List of case numbers to search (optional)
             start_date (str): start date in YYYY-MM-DD format (optional)
             end_date (str): end date in YYYY-MM-DD format (optional)
             case_types (list<str>): One or more case type codes for date-based searches (optional)
+            download_dir (str): Override Selenium download directory (defaults to standard court-scraper)
             headless (boolean): Run Selenium in headless mode for case detail searches (defaults to True)
 
         Returns:
@@ -114,7 +113,7 @@ class Site(SeleniumSite):
         """
         if not case_numbers and not start_date:
             raise SearchConfigurationError("You must provide case numbers or a date range!")
-        self.download_dir = download_dir
+        self.download_dir = download_dir or self.get_download_dir()
         self.driver = self._init_chrome_driver(headless=headless)
         search_page = SearchPage(self.driver, self.captcha_api_key)
         results = []

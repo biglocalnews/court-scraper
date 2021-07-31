@@ -13,7 +13,7 @@ class Site(SeleniumSite):
     def __init__(self, place_id, url=None, download_dir=None, headless=True):
         self.place_id = place_id
         self.site_url = url
-        self.download_dir = download_dir
+        self.download_dir = download_dir or self.get_download_dir()
         self.driver = self._init_chrome_driver(headless=headless)
 
     def __repr__(self):
