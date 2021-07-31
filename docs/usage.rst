@@ -51,6 +51,22 @@ to our project for integration into our more general framework. We can provide a
 .. _Issue tracker: https://github.com/biglocalnews/court-scraper/issues
 
 
+.. _place id:
+
+Place IDs
+---------
+
+*court-scraper* requires searches to target courts/jurisdictions in specific counties. Every jurisdiction supported
+by the framework has a so-called `Place ID`. These unique identifiers are in "snake case" format
+(i.e. lower case with underscores): :code:`<state_postal>_<county_name`.
+
+For example, the `Place ID` for Tulsa, Oklahoma is :code:`ok_tulsa`.
+
+Whether working with the :ref:`CLI` or :ref:`Custom scripts`, you'll need to identify the `Place ID` for the
+target jurisdiction. You can use the command-line tool's :ref:`info sub-command <cli info>` to
+find the `Place ID` for your jurisdiction.
+
+
 .. _cli:
 
 Command line
@@ -88,14 +104,14 @@ The :code:`search` sub-command supports scraping case details by case number. It
 
 - :code:`--place-id` or :code:`-p` - A combination of state postal and county name in "snake case" (e.g. `ok_tulsa`). The :code:`place-id` can be obtained by using the :ref:`info sub-command <cli info>`.
 
-- :code:`--search-term` or :code:`-s` - A search term (i.e. a single case number).
+- :code:`--case-number` or :code:`-c` - A single case number to scrape.
 
 Here's an example search for Tulsa, Oklahoma::
 
   # Scrape case details by place ID and case number
-  court-scraper search --place-id ok_tulsa --search-term CJ-2021-2045
+  court-scraper search --place-id ok_tulsa --case-number CJ-2021-2045
 
-To search for more than one case at a time, use the :code:`--search-terms-file` (or :code:`-f`) flag
+To search for more than one case at a time, use the :code:`--case-numbers-file` (or :code:`-f`) flag
 with a text file containing case numbers on separate lines.
 
 For example, if you have a text file with these case numbers::
@@ -106,7 +122,7 @@ For example, if you have a text file with these case numbers::
 
 Search using the `case_numbers.txt` file::
 
-  court-scraper search --place-id ok_tulsa --search-terms-file case_numbers.txt
+  court-scraper search --place-id ok_tulsa --case-numbers-file case_numbers.txt
 
 
 Browser mode
@@ -117,7 +133,7 @@ by default run in "headless" mode (i.e. the browser will not run visibly). In or
 to run a Selenium-based scraper with the browser, which can be helpful for debugging, use
 the :code:`--with-browser` flag::
 
-  court-scraper search --with-browser --place-id ok_tulsa --search-term CJ-2021-2045
+  court-scraper search --with-browser --place-id ok_tulsa --case-number CJ-2021-2045
 
 
 File storage
@@ -161,132 +177,54 @@ added flexibility and more advanced scenarios:
    a given jurisdiction.
 
 
-Identify the site class
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Each court jurisdiction has a site class that serves as the main entry point for scraping.
-To determine which class.
-
-Scrape metadata
-~~~~~~~~~~~~~~~
+Scrape cases
+~~~~~~~~~~~~
 
 Once you :ref:`install <install>` *court-scraper* and
 :ref:`find a site to scrape <find a site>`, you're ready to begin
 using the ``court_scraper`` Python package.
 
-Create an instance of :code:`OdysseySite` by passing it the URL for an
-court's home page.  Then call the :code:`scrape` method::
+Create an instance of :code:`Site` by passing it the :ref:`Place ID <place id>` for
+the jurisdiction. Then call the :code:`search` method with one or more case numbers::
 
-  from court_scraper.platforms import CivicPlusSite
-  url = 'https://ca-eastpaloalto.civicplus.com/AgendaCenter'
-  site = CivicPlusSite(url)
-  assets_metadata = site.scrape()
+  from court_scraper import Site
+  site = Site('ok_tulsa')
+  case_numbers=['CJ-2021-1904', 'CJ-2021-1905']
+  results = site.search(case_numbers=case_numbers)
 
-.. note:: :code:`CivicPlusSite` is an alias for more convenient import of the actual Civic Plus class
-   located at :py:class:`court_scraper.platforms.court_plus.site.Site`.
+.. note:: :code:`Site` provides a generic interface to simplify import and configuration
+   of platform-specific Site classes, such as :py:class:`court_scraper.platforms.oscn.site.Site`.
+   Platform Site classes typically have varying options for initialization and search, so it's a good
+   idea to review their options when using this generic Site interface.
+   :py:meth:`oscn.Site.search <court_scraper.platforms.oscn.site.Site.search>`, for example, 
+   does FOO TK.
 
-:py:meth:`CivicPlusSite.scrape <court_scraper.platforms.court_plus.site.Site.scrape>` will automatically store 
-downloaded assets in the :ref:`default cache directory <default cache dir>`. 
-
-This location can be customized by :ref:`setting an environment variable <customize cache dir>` or by passing an
-instance of :py:class:`court_scraper.base.cache.Cache` to :py:class:`CivicPlusSite <court_scraper.platforms.court_plus.site.Site>`::
-  
-  from court_scraper.base.cache import Cache
-  from court_scraper.platforms import CivicPlusSite
-
-  url = 'https://ca-eastpaloalto.civicplus.com/AgendaCenter'
-
-  # Change output dir to /tmp
-  site = CivicPlusSite(url, cache=Cache('/tmp'))
-  assets_metadata = site.scrape()
-
-
-.. _export metadata script:
-
-Export metadata to CSV
-~~~~~~~~~~~~~~~~~~~~~~
-
-By default, :py:meth:`CivicPlusSite.scrape <court_scraper.platforms.court_plus.site.Site.scrape>` returns an :py:class:`~court_scraper.base.asset.AssetCollection` 
-containing :py:class:`~court_scraper.base.asset.Asset` instances. 
-
-The asset instances store metadata about specific meeting agendas and 
-minutes discovered on the site.
-
-To save a timestamped CSV containing metadata for available assets, 
-call :py:meth:`AssetCollection.to_csv() <court_scraper.base.asset.AssetCollection.to_csv>` with a target output directory::
-
-  # Save metadata CSV
-  assets_metadata.to_csv('/tmp/civic-scraper/metadata')
-
-.. _download assets script:
-
-Download assets
-~~~~~~~~~~~~~~~
-
-There are two primary ways to download file assets discovered by a scrape. 
-
-You can trigger downloads by passing :code:`download=True` to
-:py:meth:`CivicPlusSite.scrape <court_scraper.platforms.court_plus.site.Site.scrape>`::
-
-  site.scrape(download=True)
-
-Or you can loop over the :py:class:`Asset instances <court_scraper.base.asset.Asset>`
-in an :py:class:`~court_scraper.base.asset.AssetCollection` and 
-call :py:meth:`~court_scraper.base.asset.Asset.download` on each with a target output directory::
-
-  assets_metadata = site.scrape()
-  for asset in assets_metadata:
-      asset.download('/tmp/civic-scraper/assets')
 
 Scrape by date
 ~~~~~~~~~~~~~~
 
-By default, scraping checks the site for meetings on the current day (based on a
-user's local time).
+Some sites support date-based search. In such cases,
+you can use the platform's :code:`Site.search_by_date` method
+to scrape data for one or more days.
 
-Scraping can be modified to capture assets from different date ranges by
-supplying the optional :code:`start_date` and/or :code:`end_date` arguments
-to :py:meth:`CivicPlusSite.scrape <court_scraper.platforms.court_plus.site.Site.scrape>`. 
+The default is to search for cases on the current day::
+
+  from court_scraper import Site
+  site = Site('ok_tulsa')
+  results = site.search_by_date()
+
+
+Supplying the optional :code:`start_date` and/or :code:`end_date` arguments
+to :py:meth:`oscn.Site.search <court_scraper.platforms.oscn.site.Site.search>`.
 
 Their values must be strings of the form :code:`YYYY-MM-DD`::
 
-  # Scrape info from January 1-30, 2020
-  assets_metadata = site.scrape(start_date='2020-01-01', end_date='2020-01-30')
-
-.. note:: The above will *not* download the assets by default. See :ref:`download assets script` for details
-   on saving the discovered files locally.
-
-Advanced configuration
-~~~~~~~~~~~~~~~~~~~~~~
-
-You can exercise more fine-grained control over the size and type of files to download
-using the :code:`file_size` and :code:`asset_list` arguments to
-:py:meth:`CivicPlusSite.scrape <court_scraper.platforms.court_plus.site.Site.scrape>`::
+  from court_scraper import Site
+  site = Site('ok_tulsa')
+  results = site.scrape(start_date='2020-01-01', end_date='2020-01-30')
 
 
-  # Download only minutes that are 20MB or smaller
-  site.scrape(
-    download=True,
-    file_size=20,
-    asset_list=['minutes']
-  )
+TODO:
 
-Here are more details on the parameters mentioned above:
-
-* :code:`file_size` - Limit downloads to files with max file size in megabytes.
-* :code:`asset_list` -  Limit downloads to one or more `asset types`_ 
-  (described below in `Metadata CSV`_). The default is to download all document types.
-
-.. _metadata csv:
-
-
-.. _change download dir:
-
-Changing the download location
--------------------------------
-
-By default, *civic-scraper* will store downloaded agendas, minutes and 
-other files in a :ref:`default directory <default cache dir>`.
-
-You can :ref:`customize this location <customize cache dir>` by setting 
-the :code:`court_SCRAPER_DIR` environment variable.
+- scrape metadata only (i.e. case_details flag)
+- RTD on site classes to customize init, search and search_by_date kwargs
