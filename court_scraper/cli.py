@@ -27,27 +27,27 @@ def cli():
     help="A unique place ID made up of the state and county (e.g. ga_dekalb)"
 )
 @optgroup.group(
-    'Search term sources',
+    'Case number sources',
     cls=RequiredMutuallyExclusiveOptionGroup,
-    help='Search terms must be supplied on the command line or via text file.'
+    help='Case numbers must be supplied on the command line or via text file.'
 )
 @optgroup.option(
-    '-s',
-    '--search-term',
-    help="A search term."
+    '-c',
+    '--case-number',
+    help="A case number to search."
 )
 @optgroup.option(
     '-f',
-    '--search-terms-file',
+    '--case-numbers-file',
     type=click.File('r'),
-    help="Text file containing one or more search terms."
+    help="Text file containing one or more case numbers."
 )
 @click.option(
     '--with-browser',
     is_flag=True,
     help="Open graphical browser during Selenium-based scrapes. By default, runs headless."
 )
-def search(place_id, search_term, search_terms_file, with_browser):
+def search(place_id, case_number, case_numbers_file, with_browser):
     """Search court site."""
     # Config and logging setup
     configs = Configs()
@@ -74,12 +74,12 @@ def search(place_id, search_term, search_terms_file, with_browser):
         configs.config_file_path,
         place_id
     )
-    if search_term:
-        search_terms = [search_term]
+    if case_number:
+        case_numbers = [case_number]
     else:
-        search_terms = [t.strip() for t in search_terms_file]
+        case_numbers = [t.strip() for t in case_numbers_file]
     kwargs = {
-        'search_terms': search_terms,
+        'case_numbers': case_numbers,
         'headless': not with_browser,
     }
     # TODO: Restore catch-all try/except

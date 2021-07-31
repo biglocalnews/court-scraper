@@ -34,7 +34,7 @@ def test_integration_wicourts(court_scraper_dir, config_path, headless):
     args = [
         'search',
         '-p', 'wi_green_lake',
-        '-s', '2021CV000055',
+        '-c', '2021CV000055',
     ]
     if not headless:
         args.append('--with-browser')
@@ -57,7 +57,7 @@ def test_integration_oscn(court_scraper_dir):
     runner.invoke(cli.cli, [
         'search',
         '-p', 'ok_tulsa',
-        '-s', 'CJ-2021-2045'
+        '-c', 'CJ-2021-2045'
     ])
     cache_file = Path(court_scraper_dir)\
         .joinpath('cache/ok_tulsa/CJ-2021-2045.html')
@@ -73,7 +73,7 @@ def test_integration_odyssey(court_scraper_dir):
     runner.invoke(cli.cli, [
         'search',
         '-p', 'ca_napa',
-        '-s', '20CV000402'
+        '-c', '20CV000402'
     ])
     cache_file = Path(court_scraper_dir)\
         .joinpath('cache/ca_napa/20CV000402.html')

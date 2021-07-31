@@ -24,7 +24,7 @@ def test_site_calls(court_scraper_dir, config_path):
             config_path,
             place_id
         )
-        r.search(search_terms=['foo'])
+        r.search(case_numbers=['foo'])
         username = 'user1@example.com'
         password = 'SECRETPASS'
         expected_args = (place_id,)
@@ -40,7 +40,7 @@ def test_site_calls(court_scraper_dir, config_path):
         assert kwargs == expected_kwargs
         login_call, search_call = site_class.mock_calls[1:3]
         assert login_call == call().login(username, password)
-        assert search_call == call().search(search_terms=['foo'])
+        assert search_call == call().search(case_numbers=['foo'])
 
 
 @pytest.mark.usefixtures('create_scraper_dir', 'create_config')
@@ -74,8 +74,8 @@ def test_multiword_county(court_scraper_dir, config_path):
             config_path,
             'ca_san_mateo'
         )
-        r.search(search_terms=['foo'])
+        r.search(case_numbers=['foo'])
         search_call = site_class.mock_calls[-1]
-        expected_call = call().search(search_terms=['foo'])
+        expected_call = call().search(case_numbers=['foo'])
         assert search_call == expected_call
 

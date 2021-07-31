@@ -32,7 +32,7 @@ class BaseRunner:
         self.config_path = config_path
         self.place_id = place_id
 
-    def search(self, search_terms=[], headless=True):
+    def search(self, case_numbers=[], headless=True):
         """Should invoke Site.search
 
         Override this on base runner classes.

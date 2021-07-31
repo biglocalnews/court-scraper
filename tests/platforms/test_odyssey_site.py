@@ -47,7 +47,7 @@ def test_search(test_input, headless, live_configs, court_scraper_dir):
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
     site.login(username, password)
-    results = site.search(search_terms=case_ids)
+    results = site.search(case_numbers=case_ids)
     assert len(results) == 1
     # Scrapes Case Detail page HTML by default
     assert 'page_source' in results[0].data.keys()
@@ -68,7 +68,7 @@ def test_search(test_input, headless, live_configs, court_scraper_dir):
 def test_search_nologin_no_captcha(test_input, headless, court_scraper_dir):
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
-    results = site.search(search_terms=case_ids)
+    results = site.search(case_numbers=case_ids)
     assert len(results) == 1
     # Scrapes Case Detail page HTML by default
     assert 'page_source' in results[0].data.keys()
@@ -89,7 +89,7 @@ def test_search_nologin_no_captcha(test_input, headless, court_scraper_dir):
 def test_search_nologin_no_captcha_noresults(test_input, headless, court_scraper_dir):
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
-    results = site.search(search_terms=case_ids)
+    results = site.search(case_numbers=case_ids)
     assert len(results) == 0
 
 
@@ -113,7 +113,7 @@ def test_skip_case_details(test_input, headless, live_configs, court_scraper_dir
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
     site.login(username, password)
-    results = site.search(search_terms=case_ids, case_details=False)
+    results = site.search(case_numbers=case_ids, case_details=False)
     # Should *NOT* have case detail HTML stored on return object
     assert len(results) == 1
     assert 'page_source' not in results[0].data.keys()
@@ -135,7 +135,7 @@ def test_maximize_displayed_results(test_input, headless, court_scraper_dir):
     "should automatically maximize the number of results displayed on results page"
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
-    results = site.search(search_terms=case_ids, case_details=False)
+    results = site.search(case_numbers=case_ids, case_details=False)
     assert len(results) == 91
 
 
@@ -159,6 +159,6 @@ def test_malformed_result_listing(test_input, headless, live_configs, court_scra
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
     site.login(username, password)
-    results = site.search(search_terms=case_ids, case_details=False)
+    results = site.search(case_numbers=case_ids, case_details=False)
     assert len(results) == 1
     assert results[0].data['File Date'] == '10/02/2019'

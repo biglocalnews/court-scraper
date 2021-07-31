@@ -34,7 +34,7 @@ from court_scraper.platforms.oscn import Site as Oscn
 )
 def test_search_by_case_id(place_id, case_number, expected):
     site = Oscn(place_id)
-    results = site.search(search_terms=[case_number])
+    results = site.search(case_numbers=[case_number])
     assert site.place_id == place_id
     assert len(results) == 1
     case = results[0]
@@ -50,7 +50,7 @@ def test_search_by_case_id(place_id, case_number, expected):
 def test_search_by_case_id_multiple_results():
     site = Oscn('ok_tulsa')
     case_numbers = ['CJ-2021-2045', 'CJ-2018-2919']
-    results = site.search(search_terms=case_numbers)
+    results = site.search(case_numbers=case_numbers)
     assert len(results) == 2
 
 @pytest.mark.vcr()

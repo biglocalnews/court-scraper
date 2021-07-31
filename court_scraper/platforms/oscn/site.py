@@ -34,11 +34,11 @@ class Site:
     def __repr__(self):
         return f'Oscn ({self.place_id})'
 
-    def search(self, search_terms=[], **kwargs):
+    def search(self, case_numbers=[], **kwargs):
         """Search one or more case IDs in a given county.
 
         Args:
-            search_terms (list<case numbers>): One or more case numbers
+            case_numbers (list<case numbers>): One or more case numbers
 
         Returns:
 
@@ -49,7 +49,7 @@ class Site:
         # NOTE: place_id will be a county typically, but we could at some
         # point support a state-wide search
         lookup = CaseNumberLookup(self.place_id)
-        return lookup.search(case_numbers=search_terms)
+        return lookup.search(case_numbers=case_numbers)
 
     def search_by_date(self, start_date=None, end_date=None, case_details=False):
         """Search for cases by date range
