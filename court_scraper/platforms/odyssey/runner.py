@@ -19,25 +19,29 @@ class Runner(BaseRunner):
 
     """
 
-    def search(self, search_terms=[], headless=True):
+    def search(self, case_numbers=[], headless=True):
         """
         For a given scraper, executes the search, acquisition
         and processing of case info.
 
-        Keyword arguments:
+        Args:
 
-        - search_terms - List of search terms
-        - headless - Whether or not to run headless (default: True)
+            case_numbers (list<str>):  List of case numbers to search
+            headless (boolean): Whether or not to run headless (default: True)
 
-        Returns: List of dicts containing case metadata
+        Returns:
+
+            List of CaseInfo classes
+
         """
         SiteKls = self._get_site_class()
         url = self.site_meta['home_url']
         username, password = self._get_login_creds()
-        pos_args = [url]
+        pos_args = [self.place_id]
         site = SiteKls(
             *pos_args,
-            self.cache_dir,
+            url=url,
+            download_dir=self.cache_dir,
             headless=headless
         )
         if username and password:
@@ -45,5 +49,5 @@ class Runner(BaseRunner):
         logger.info(
             "Executing search for {}".format(self.place_id)
         )
-        data = site.search(search_terms=search_terms)
+        data = site.search(case_numbers=case_numbers)
         return data

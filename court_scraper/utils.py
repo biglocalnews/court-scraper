@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 
+from court_scraper.configs import Configs
+
 
 def dates_for_range(start_date, end_date, input_format="%Y-%m-%d", output_format=None):
     #[start + datetime.timedelta(n) for n in range(int ((today - start).days +1))]
@@ -14,3 +16,8 @@ def dates_for_range(start_date, end_date, input_format="%Y-%m-%d", output_format
         except TypeError:
             dates.append(dt)
     return dates
+
+
+def get_captcha_service_api_key():
+    configs = Configs()
+    return configs.captcha_service_api_key

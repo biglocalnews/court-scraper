@@ -19,14 +19,14 @@ class Runner(BaseRunner):
 
     """
 
-    def search(self, search_terms=[], **kwargs):
+    def search(self, case_numbers =[], **kwargs):
         """
         For a given scraper, executes the search, acquisition
         and processing of case info.
 
         Keyword arguments:
 
-        - search_terms - List of search terms
+        - case_numbers - List of case numbers
 
         Returns: List of dicts containing case metadata
         """
@@ -34,5 +34,5 @@ class Runner(BaseRunner):
         logger.info(
             "Executing search for {}".format(self.place_id)
         )
-        data = site.search(search_terms=search_terms)
+        data = site.search(case_numbers=case_numbers)
         return data

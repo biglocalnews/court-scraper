@@ -10,7 +10,7 @@ from unittest import mock
 
 import pytest
 
-from court_scraper.platforms.oscn import Oscn
+from court_scraper.platforms.oscn import Site as Oscn
 from court_scraper.platforms.oscn.pages.search import Search
 
 

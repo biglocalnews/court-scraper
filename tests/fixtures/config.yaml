@@ -1,3 +1,4 @@
+captcha_service_api_key: 'YOUR_API_KEY'
 plaftorms:
   odyssey_site: &ODYSSEY_SITE
       username: 'user1@example.com'

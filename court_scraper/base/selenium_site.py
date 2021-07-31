@@ -1,4 +1,6 @@
+import os
 import shutil
+from pathlib import Path
 
 from my_fake_useragent import UserAgent
 from selenium import webdriver
@@ -35,3 +37,10 @@ class SeleniumSite:
             randomua = ua.random()
             chrome_options.add_argument(f'user-agent={randomua}')
         return chrome_options
+
+    def get_download_dir(self):
+        try:
+            court_scraper_dir = os.environ['COURT_SCRAPER_DIR']
+        except KeyError:
+            court_scraper_dir = '/tmp/court-scraper'
+        return str(Path(court_scraper_dir, f'cache/{self.place_id}'))

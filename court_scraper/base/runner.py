@@ -32,7 +32,7 @@ class BaseRunner:
         self.config_path = config_path
         self.place_id = place_id
 
-    def search(self, search_terms=[], headless=True):
+    def search(self, case_numbers=[], headless=True):
         """Should invoke Site.search
 
         Override this on base runner classes.
@@ -76,18 +76,16 @@ class BaseRunner:
     def _get_site_class(self):
         # Site types for one-off scrapers should live in the scrapers
         # namespace in a module named by state and county, e.g. ny_westchester.
-        # Platform site classes should live in platforms namespace
-        # in a snake_case module (e.g. odyssey_site).
+        # Platform site classes should live in platforms namespace (e.g. odyssey).
         # In both cases, sites_meta.csv should specify the module name
-        # in the site_type field as a snake_case value (ny_westchester, odyssey_site).
+        # in the site_type field as a snake_case value (ny_westchester).
         if self.place_id == self.site_type:
             parent_mod = 'scrapers'
         else:
             parent_mod = 'platforms'
         target_module = 'court_scraper.{}.{}'.format(parent_mod, self.site_type)
         mod = importlib.import_module(target_module)
-        kls_name = self.site_type.title().replace('_','')
-        return getattr(mod, kls_name)
+        return getattr(mod, 'Site')
 
     @property
     def site_type(self):

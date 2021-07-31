@@ -4,7 +4,7 @@ from pathlib import Path
 
 from court_scraper.base.runner import BaseRunner
 from court_scraper.configs import Configs
-from .site import WicourtsSite as Site
+from .site import Site
 
 
 logger = logging.getLogger(__name__)
@@ -14,25 +14,28 @@ class Runner(BaseRunner):
     """
     Facade class to simplify invocation and usage of scrapers.
 
-    Arguments:
+    Args:
 
-    - cache_dir -- Path to cache directory for scraped file artifacts (default: {})
-    - config_path -- Path to location of config file
-    - place_id -- Scraper ID made up of state and county (e.g. ga_dekalb)
+        cache_dir (str): Path to cache directory for scraped file artifacts (default: {})
+        config_path (str): Path to location of config file
+        place_id (str): Scraper ID made up of state and county (e.g. ga_dekalb)
 
     """
 
-    def search(self, search_terms=[], headless=True, **kwargs):
+    def search(self, case_numbers=[], headless=True, **kwargs):
         """
         For a given scraper, executes the search, acquisition
         and processing of case info.
 
-        Keyword arguments:
+        Args:
 
-        - search_terms - List of search terms (case numbers)
-        - headless - Whether or not to run headless (default: True)
+            case_numbers (list<str>): List of case numbers to search
+            headless (boolean): Whether or not to run headless (default: True)
 
-        Returns: List of dicts containing case metadata
+        Returns:
+
+            List of CaseInfo instances
+
         """
         # Look up the catcha API key as env variable, then fall back to config file
         configs = Configs()
@@ -40,14 +43,15 @@ class Runner(BaseRunner):
         logger.info(
             "Executing search for {}".format(self.place_id)
         )
-        data = site.search(self.cache_dir, case_numbers=search_terms, headless=headless)
+        data = site.search(case_numbers=case_numbers, headless=headless)
         return data
 
     def cache_detail_pages(self, search_results):
         """
         Caches JSON from case detail pages
 
-        Arguments:
+        Args:
+
         - search_results (list of CaseInfo instances)
 
         Return value: None
