@@ -10,17 +10,19 @@ Install
 
    pip install court-scraper
 
-Upon installation, you should have access to the :code:`court-scraper` tool on the command line::
+Upon installation, you should have access to the :code:`court-scraper` tool on the command line. Use the
+:code:`--help` flag to view available sub-commands::
 
   court-scraper --help
 
 
-You should also be able to import the :code:`court_scraper` package from a Python script::
+You should also be able to import the :code:`court_scraper` package from a Python script.::
+
 
   import court_scraper
   print(court_scraper.__version__)
 
-.. note:: See :ref:`the usage docs <usage>` for details on using *court-scraper* on 
+.. note:: See :ref:`the usage docs <usage>` for details on using *court-scraper* on
   the command line and in custom scripts.
 
 
@@ -58,11 +60,11 @@ for a CAPTCHA service should be stored in a YAML configuration file called `conf
 This file is expected to live inside the :ref:`default storage location <default cache dir>`
 for scraped files, logs, etc.
 
-On Linux/Mac, the default location is `~/.court-scraper/config.yaml`.
+On Linux/Mac, the default location is :code:`~/.court-scraper/config.yaml`.
 
 This configuration file must contain credentials for each
 location based on a place ID, which is a `snake_case <https://en.wikipedia.org/wiki/Snake_case>`_
-combination of of state and county (e.g. `ga_dekalb` for Dekalb County, GA).
+combination of state and county (e.g. `ga_dekalb` for Dekalb County, GA).
 
 Courts with a common software platform that allow sharing
 of credentials can inherit credentials from a single entry.

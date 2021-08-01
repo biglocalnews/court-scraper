@@ -22,7 +22,7 @@ Overview
 The `court-scraper` package provides a Python library and command-line
 tool that help search for and download case information from local court system
 websites in the United States. This library primarily focuses on supporting the ability
-to search for county-level court data by case number and date range.
+to scrape county-level court data by case number and date range.
 
 * Documentation: http://court-scraper.readthedocs.io/en/latest/
 * GitHub: https://github.com/biglocalnews/court-scraper
@@ -51,7 +51,7 @@ Install court-scraper_::
 
 Scrape using the command line tool::
 
-   # Scrape data for a case from a court site
+   # Scrape data for a case in Tulsak, Oklahoma
    $ court-scraper search -p ok_tulsa -s CJ-2021-2045
 
 Or in a script::
@@ -60,12 +60,12 @@ Or in a script::
 
   # Scrape case details from Oklahoma State Courts Network (OSCN) platform
 
-  from court_scraper.platforms.oscn import Oscn
+  from court_scraper import Site
 
-  site = Oscn('ok_tulsa')
+  site = Site('ok_tulsa')
 
   # Scrape details for one or more case numbers
-  results = site.search(search_terms=['CJ-2021-2045'])
+  results = site.search(case_numbers=['CJ-2021-2045'])
 
   # Scrape details for cases in January 2021
   results = site.search_by_date(

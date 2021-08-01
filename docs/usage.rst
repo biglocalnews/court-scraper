@@ -140,7 +140,9 @@ File storage
 ~~~~~~~~~~~~~
 
 Files scraped by the :code:`search` sub-command are saved to a :ref:`standard <default cache dir>`  -- but :ref:`configurable <customize cache dir>` -- location 
-in the user's home directory (:code:`~/.court-scraper` on Linux/Mac).
+in the user's home directory, based on the court's :ref:`Place ID <place id>` (:code:`~/.court-scraper/cache/<place_id>` on Linux/Mac).
+
+For example, HTML files scraped for Tulsa, Oklahoma are stored in :code:`~/.court-scraper/cache/ok_tulsa`.
 
 Metadata db
 ~~~~~~~~~~~~
@@ -166,18 +168,15 @@ Custom scripts
 
 *court-scraper* provides an importable Python package for users who are comfortable creating their 
 own scripts. The Python package provides access to a wider variety of features for
-added flexibility and more advanced scenarios:
+added flexibility and more advanced scenarios such as searching by date and filtering by case type.
 
-- Searching by date
-- Filtering by case type
-- Scraping only case metadata (i.e. not gathering case details, which generally takes longer)
-
-.. note:: The above features are not supported by all court websites, so it's important to review
-   a given site and its related Site class in this library to get a sense of supported features.
+.. note:: Court websites offer different search functionality, so it's important to review
+   the site and its corresponding Site class (and search methods) in this library to get a sense 
+   of supported features.
 
 
-Scrape cases
-~~~~~~~~~~~~
+Scrape case details by number
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once you :ref:`install <install>` *court-scraper* and
 :ref:`find a site to scrape <find a site>`, you're ready to begin
@@ -196,28 +195,93 @@ the jurisdiction. Then call the :code:`search` method with one or more case numb
    Platform Site classes typically have varying options for initialization and search, so it's a good
    idea to review their options when using this generic Site class.
 
+.. _scrape by date:
+
 Scrape by date
 ~~~~~~~~~~~~~~
 
-Some sites support date-based search. In such cases, you can use the platform's :code:`Site.search_by_date` method 
+Some court sites support date-based search. In such cases, you can use the platform's :code:`Site.search_by_date` method 
 to scrape data for one or more days.
 
-The default is to search for cases on the current day::
+By default, :code:`search_by_date` only gathers case metadata (e.g. case numbers, filing dates, status, etc.) that 
+typically appear on a results page after performing a search.
+
+.. note:: See :ref:`below <scrape details>` for details on scraping case detail file artifacts (e.g. HTML, JSON, etc.).
+
+To scrape case metadata for the current day::
 
   from court_scraper import Site
   site = Site('ok_tulsa')
   results = site.search_by_date()
 
-
-You can search a range of dates by supplying :code:`start_date` and :code:`end_date` arguments.
-Their values must be strings of the form :code:`YYYY-MM-DD`::
+To search a range of dates, use the :code:`start_date` and :code:`end_date` arguments.
+Their values must be strings of the form :code:`YYYY-MM-DD`. The below code scrapes metadata
+for cases filed in Tulsa, Oklahoma during January 2021::
 
   from court_scraper import Site
   site = Site('ok_tulsa')
-  results = site.search_by_date(start_date='2020-01-01', end_date='2020-01-30')
+  results = site.search_by_date(start_date='2021-01-01', end_date='2021-01-31')
+
+.. _scrape details:
+
+Scrape case details
+~~~~~~~~~~~~~~~~~~~
+
+Court sites typically provide more detailed case information on separate pages devoted to a case.
+Depending on the site, these pages can include:
+
+- Case type
+- Case status
+- Litigant information (i.e. names and addresses)
+- Judge name(s)
+- Events related to the case (e.g. filings and decisions)
+
+Links to case detail pages are listed on a results page after conducting a search.
+These are typically HTML, but may be JSON or other file formats depending on the site.
+ 
+By default, :code:`search_by_date` only scrapes metadata from search results pages (as described in :ref:`Scrape by date`).
+
+To scrape case detail files, pass the :code:`case_details=True` keyword argument::
+
+  from court_scraper import Site
+  site = Site('ok_tulsa')
+  results = site.search_by_date(
+    start_date='2021-01-01',
+    end_date='2021-01-31',
+    case_details=True # Fetches case detail files
+  )
+
+  .. filter case type:
+
+Filter by case type
+~~~~~~~~~~~~~~~~~~~
+
+Some court sites support a variety of parameters for more targeted filtering of
+search results. These filters can be useful for more surgical scrapes, and in scenarios
+where a site truncates results. If a site limits search results to 500 records, for example, 
+scraping in a more targeted way with filters can help stay under that cap.
 
 
-TODO:
+To determine if a site supports case-type filtering, you should review the court's website
+and the corresponding :code:`Site` class in *court-scraper*.
 
-- RTD on site classes to customize init, search and search_by_date kwargs
-- scrape metadata only (i.e. case_details flag)
+For example, the Wisconsin court system's `Advanced Search`_ page
+offers a variety additional search parameters. In *court-scraper*, the site's
+corresponding :py:meth:`search_by_date <court_scraper.platforms.wicourts.site.Site.search_by_date>` method
+supports a :code:`case_types` argument that accepts a list of one or more case types.
+
+.. note:: For Wisconsin, these case types are two-letter, upper-case codes that can be found by 
+   examining the source code for the *Case types* select menu on the `Advanced Search`_ page.
+
+Here's a sample usage that searches for civil (CV) and small claims (SC) case
+on July 1, 2021 in Milwaukee, WI::
+
+  from court_scraper import Site
+  site = Site('wi_milwaukee')
+  results = site.search_by_date(
+    start_date='2021-07-01',
+    end_date='2021-07-01',
+    case_types=['CV', 'SC'] # Civil and Small Claims case types
+  )
+
+.. _Advanced Search: https://wcca.wicourts.gov/advanced.html
