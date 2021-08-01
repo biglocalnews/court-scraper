@@ -251,7 +251,7 @@ To scrape case detail files, pass the :code:`case_details=True` keyword argument
     case_details=True # Fetches case detail files
   )
 
-  .. filter case type:
+.. filter case type:
 
 Filter by case type
 ~~~~~~~~~~~~~~~~~~~
@@ -266,14 +266,14 @@ To determine if a site supports case-type filtering, you should review the court
 and the corresponding :code:`Site` class in *court-scraper*.
 
 For example, the Wisconsin court system's `Advanced Search`_ page
-offers a variety additional search parameters. In *court-scraper*, the site's
+offers a variety of additional search parameters. In *court-scraper*, the site's
 corresponding :py:meth:`search_by_date <court_scraper.platforms.wicourts.site.Site.search_by_date>` method
 supports a :code:`case_types` argument that accepts a list of one or more case types.
 
 .. note:: For Wisconsin, these case types are two-letter, upper-case codes that can be found by 
    examining the source code for the *Case types* select menu on the `Advanced Search`_ page.
 
-Here's a sample usage that searches for civil (CV) and small claims (SC) case
+Here's a sample usage that searches for civil (CV) and small claims (SC) cases
 on July 1, 2021 in Milwaukee, WI::
 
   from court_scraper import Site
