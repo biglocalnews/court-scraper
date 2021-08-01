@@ -246,9 +246,9 @@ To scrape case detail files, pass the :code:`case_details=True` keyword argument
   from court_scraper import Site
   site = Site('ok_tulsa')
   results = site.search_by_date(
-    start_date='2021-01-01',
-    end_date='2021-01-31',
-    case_details=True # Fetches case detail files
+      start_date='2021-01-01',
+      end_date='2021-01-31',
+      case_details=True # Fetches case detail files
   )
 
 .. filter case type:
@@ -279,9 +279,9 @@ on July 1, 2021 in Milwaukee, WI::
   from court_scraper import Site
   site = Site('wi_milwaukee')
   results = site.search_by_date(
-    start_date='2021-07-01',
-    end_date='2021-07-01',
-    case_types=['CV', 'SC'] # Civil and Small Claims case types
+      start_date='2021-07-01',
+      end_date='2021-07-01',
+      case_types=['CV', 'SC'] # Civil and Small Claims case types
   )
 
 .. _Advanced Search: https://wcca.wicourts.gov/advanced.html
