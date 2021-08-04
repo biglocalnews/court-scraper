@@ -47,6 +47,9 @@ To use an alternate cache directory, set the below environment variable
 
    export COURT_SCRAPER_DIR=/tmp/some_other_dir
 
+
+.. _configuration: 
+
 Configuration
 -------------
 
@@ -63,7 +66,7 @@ for scraped files, logs, etc.
 On Linux/Mac, the default location is :code:`~/.court-scraper/config.yaml`.
 
 This configuration file must contain credentials for each
-location based on a place ID, which is a `snake_case <https://en.wikipedia.org/wiki/Snake_case>`_
+location based on a :ref:`Place ID <place id>`, which is a `snake_case <https://en.wikipedia.org/wiki/Snake_case>`_
 combination of state and county (e.g. `ga_dekalb` for Dekalb County, GA).
 
 Courts with a common software platform that allow sharing

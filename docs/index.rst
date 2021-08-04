@@ -10,6 +10,8 @@ Documentation
    install
    usage
    contributing
+   writing_a_scraper
+   testing
    history
 
 Indices and tables

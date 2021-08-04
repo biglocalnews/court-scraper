@@ -12,6 +12,10 @@
         :target: https://court-scraper.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
+.. image:: https://badges.gitter.im/court-scraper/general.svg
+        :target: https://gitter.im/court-scraper/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+        :alt: Gitter
+
 =============
 Court Scraper
 =============

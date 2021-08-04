@@ -7,17 +7,33 @@ Contributing
 ============
 
 Contributions are welcome, and they are greatly appreciated! Every
-little bit helps, and credit will always be given.
+little bit helps, and credit will always be given. There are plenty of ways
+to get involved besides writing code. We've listed a few options below, so 
+take a gander and reach out on Gitter_ if you have questions.
 
-You can contribute in many ways:
+.. _Gitter: https://gitter.im/court-scraper/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+.. _reach out: https://gitter.im/court-scraper/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 
-Types of Contributions
-----------------------
+Ways to Contribute
+-------------------
+
+Write a scraper
+~~~~~~~~~~~~~~~
+
+Don't see a scraper for your state or county? We'd love to have you
+write a scraper to help us expand coverage! 
+
+Our :ref:`Writing a scraper <writing a scraper>` page is the best place to get started.
+It's also a good idea to file a new ticket for the work on our `Issue tracker`_, or claim
+the ticket if one already exists. We're happy to talk through strategies for scraping and 
+integration with the framework, so please do `reach out`_!
 
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/biglocalnews/court-scraper/issues.
+Report bugs on our `Issue tracker`_.
+
+.. _Issue tracker: https://github.com/biglocalnews/court-scraper/issues
 
 If you are reporting a bug, please include:
 
@@ -28,13 +44,7 @@ If you are reporting a bug, please include:
 Fix Bugs
 ~~~~~~~~
 
-Look through the GitHub issues for bugs. Anything tagged with "bug"
-and "help wanted" is open to whoever wants to implement it.
-
-Implement Features
-~~~~~~~~~~~~~~~~~~
-
-Look through the GitHub issues for features. Anything tagged with "enhancement"
+Look through the GitHub `Issue tracker`_ for bugs. Anything tagged with "bug"
 and "help wanted" is open to whoever wants to implement it.
 
 Do Research
@@ -58,7 +68,7 @@ Our `official docs`_ use restructuredText and Sphinx. To contribute documentatio
 * Create a virtual environment and perform the next steps inside an active venv
 * ``pip install -r requirements.txt`` and ``pip install -r requirements-dev.txt``
 * Create a branch for your doc updates and start writing!
-* Use `make docs` to build docs and/or use `make servedocs` commands to run a
+* Use :code:`make docs` to build docs and/or use :code:`make servedocs` commands to run a
   Sphinx server that displays doc pages and allows easier reloading of pages in browser
 * Create a GitHub Pull Request once you're ready to send us your changes
 
@@ -135,6 +145,6 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, please be sure to review the docs 
    and include necessary updates. For example, new classes, methods
    and functions should be documented.
-3. The pull request should work for Python version 3.6 or higher. Check
+3. The pull request should work for Python version 3.7 or higher. Check
    https://travis-ci.com/github/biglocalnews/court-scraper/pull_requests
    and make sure that the tests pass for all supported Python versions.
