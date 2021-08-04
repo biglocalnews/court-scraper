@@ -86,31 +86,28 @@ If you are proposing a feature:
 * Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
 
+
+.. _code contribution bootstrap:
+
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `court-scraper` for local development.
+Ready to contribute? 
+Check out our docs on :ref:`Writing a scraper` and :ref:`Testing`, and see
+below steps on setting up `court-scraper` for local development.
 
 1. Fork the `court-scraper` repo on GitHub.
 2. Clone your fork locally::
 
     $ git clone git@github.com:your_name_here/court-scraper.git
 
-3. Install developement dependencies and your local copy of the code 
-   into a virtualenv and set up your fork for local development.
-   There are numerous ways to create virtual environments in Python. 
-   Below uses the venv_ library built into recent Python versions::
+3. Set up a local virtual environment and install dev dependencies 
+   for local development with Pipenv_::
     
-    # Create a virtual env alongside the court-scraper git repo
-    python -m venv court-scraper-env
-    
-    # Activate the virtual env
-    source court-scraper-env/bin/activate
-
-    # Install dev requirements and the Python package into the venv
+    # Install dependencies and activate the virtual env
     cd court-scraper/
-    pip install -r requirements-dev.txt
-    python setup.py develop
+    pipenv install --dev
+    pipenv shell
 
 4. Create a branch for local development::
 
@@ -120,11 +117,13 @@ Ready to contribute? Here's how to set up `court-scraper` for local development.
 
 5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox::
 
-    $ flake8 court_scraper tests
-    $ py.test
-    $ tox
+    # Lint and test for current Python version
+    pytest
+    flake8 court_scraper
 
-   To get flake8 and tox, just pip install them into your virtualenv.
+    # Run tests for all Python versions
+    # (requires setting up and installing all supported Python versions)
+    $ tox
 
 6. Commit your changes and push your branch to GitHub::
 
@@ -134,7 +133,7 @@ Ready to contribute? Here's how to set up `court-scraper` for local development.
 
 7. Submit a pull request through the GitHub website.
 
-.. _venv: https://docs.python.org/3/library/venv.html
+.. _Pipenv: https://pipenv.pypa.io/en/latest/
 
 Pull Request Guidelines
 -----------------------
@@ -145,6 +144,6 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, please be sure to review the docs 
    and include necessary updates. For example, new classes, methods
    and functions should be documented.
-3. The pull request should work for Python version 3.7 or higher. Check
+3. The pull request should work for Python version 3.6 or higher. Check
    https://travis-ci.com/github/biglocalnews/court-scraper/pull_requests
    and make sure that the tests pass for all supported Python versions.

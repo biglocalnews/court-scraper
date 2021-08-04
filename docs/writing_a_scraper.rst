@@ -53,6 +53,9 @@ Code a scraper
 Add a Site class
 ~~~~~~~~~~~~~~~~
 
+.. note:: Check out the docs for :ref:`getting started on code contributions <code contribution bootstrap>`
+  for details on setting up a fork for local development. 
+
 The main task involved in contributing a scraper is creating a :code:`Site` class that 
 provides a :code:`search` method capable of scraping one or more case numbers.
 

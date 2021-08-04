@@ -7,7 +7,7 @@ Overview
 --------
 
 *court-scraper* is developed primarily on Python 3.7 and uses the pytest_ library for unit testing.
-We use pytest-vcr for scrapers that use the `requests` library 
+We use pytest-vcr_ for scrapers that use the `requests` library 
 (e.g. :py:class:`oscn.Site <court_scraper.platforms.oscn.site.Site>`). Scrapers that
 use Selenium should include a minimal set of :ref:`live webtests <live tests>` to ensure
 correct functionality and guard against regressions.
@@ -16,10 +16,13 @@ correct functionality and guard against regressions.
     to enable optional running of these tests.
 
 .. _pytest: https://docs.pytest.org/en/latest/contents.html
+.. _pytest-vcr: https://github.com/ktosiek/pytest-vcr
+
+Install and run tests
+----------------------
 
 Assuming you've cloned this repo locally and installed test and application dependencies, 
 you can run tests by executing pytest in an active virtual environment::
-
 
     cd court-scraper/
     pipenv install --dev
