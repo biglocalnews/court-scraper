@@ -193,7 +193,7 @@ def test_date_search_basic():
     # There are 4 cases total, 2 of them TRaffic
     day = "2021-07-01"
     place_id = "wi_forest"
-    site = WicourtsSite(place_id, CAPTCHA_API_KEY)
+    site = WicourtsSite(place_id, 'DUMMY_CAPTCHA_API_KEY')
     # case_details defaults to False
     kwargs = {
         'start_date': day,
