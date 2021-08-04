@@ -1,7 +1,7 @@
 class CaseInfo:
     """
     Encapsulates data from web scraping search results,
-    and provides the ability to map fields to 
+    and provides the ability to map fields to
     standardized names.
 
     USAGE:
@@ -57,4 +57,3 @@ class CaseInfo:
             except KeyError:
                 field = key
             setattr(self, field, val)
-

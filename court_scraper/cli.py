@@ -1,7 +1,5 @@
 import importlib
 import logging
-import os
-import traceback
 from pathlib import Path
 
 import click
@@ -95,9 +93,6 @@ def search(place_id, case_number, case_numbers_file, with_browser):
         result.place_id = place_id
         to_db.append(result.standard_data)
     dstore.upsert(to_db)
-    #traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-    #logger.error("ERROR: A fatal error occurred while running scraper!!!")
-    #logger.error(traceback_str)
 
 
 @cli.command(help="Get info about available scrapers")
@@ -116,6 +111,7 @@ def info():
     msg += end_note
     click.echo(msg)
 
+
 def _get_runner(place_id):
     # Site types for one-off scrapers should live in the scrapers
     # namespace in a module named by state and county, e.g. ny_westchester.
@@ -132,5 +128,3 @@ def _get_runner(place_id):
     target_module = 'court_scraper.{}.{}.runner'.format(parent_mod, site_type)
     mod = importlib.import_module(target_module)
     return getattr(mod, 'Runner')
-
-

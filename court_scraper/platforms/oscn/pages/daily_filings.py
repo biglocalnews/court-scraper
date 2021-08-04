@@ -1,10 +1,5 @@
-import datetime
 import requests
-
 from court_scraper.utils import dates_for_range
-from .case_number_lookup import CaseNumberLookup
-
-
 from .base_search import BaseSearch
 from .daily_filings_results import DailyFilingsResultsPage
 from ..search_results_wrapper import SearchResultsWrapper

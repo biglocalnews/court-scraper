@@ -1,4 +1,5 @@
-from anticaptchaofficial.recaptchav2proxyless import *
+from anticaptchaofficial.recaptchav2proxyless import recaptchaV2Proxyless
+
 
 class Recaptcha:
 

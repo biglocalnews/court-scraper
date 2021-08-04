@@ -13,7 +13,7 @@ class CaseNumberLookup:
             page = CaseDetailPage(self.place_id, case_number)
             # Prepare CaseInfo class instances
             # for any valid case detail pages
-            data = { 'place_id': self.place_id }
+            data = {'place_id': self.place_id}
             data.update(page.data)
             case = CaseInfo(data)
             results.append(case)

@@ -1,12 +1,9 @@
 import time
-
-from anticaptchaofficial.recaptchav2proxyless import *
-
 from .recaptcha import Recaptcha
+from anticaptchaofficial.recaptchav2proxyless import InjectionError
 
 
 class InvisibleRecaptchaV2(Recaptcha):
-
 
     def solve(self, driver, sitekey, apikey, captcha_test_xpath, callback_function):
         """Main entry point"""
@@ -43,7 +40,7 @@ class InvisibleRecaptchaV2(Recaptcha):
         while self.result is False:
             try:
                 self.result = self.captcha_solver()
-            except:
+            except Exception:
                 raise InjectionError('An error occured while trying to inject captcha solution into webpage.')
 
     def test(self, driver, captcha_test_xpath):
@@ -53,7 +50,9 @@ class InvisibleRecaptchaV2(Recaptcha):
         """
         self.driver = driver
         self.captcha_test_xpath = captcha_test_xpath
-        self.captcha_test = self.driver.find_element_by_xpath(self.captcha_test_xpath).get_attribute('style')[12:19]
+        self.captcha_test = self.driver.find_element_by_xpath(
+            self.captcha_test_xpath
+        ).get_attribute('style')[12:19]
         if self.captcha_test == 'visible':
             return True
         else:

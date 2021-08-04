@@ -1,5 +1,3 @@
-import re
-
 from retrying import retry
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
@@ -31,7 +29,7 @@ class SearchResultsPageLocators:
     )
     SMART_SEARCH_TAB = (
          By.XPATH,
-        "//p[@class='step-label' and contains(text(), 'Smart Search')]/.."
+         "//p[@class='step-label' and contains(text(), 'Smart Search')]/.."
     )
 
 
@@ -137,7 +135,7 @@ class SearchResultsPage(BasePage):
             no_results_el = ''
         if 'no results found' in self.driver.page_source.lower():
             return False
-        if results_el and found == True:
+        if results_el and found is True:
             return True
         elif 'No cases match' in no_results_el.get_attribute('innerText'):
             return False
@@ -176,7 +174,6 @@ class SearchResultsPage(BasePage):
 
     def _locate(self, locator):
         return self.driver.find_element(*locator)
-
 
     def _locate_and_click(self, locator):
         self._locate(locator).click()

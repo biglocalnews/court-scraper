@@ -10,11 +10,13 @@ from sqlalchemy import (
     UniqueConstraint
 )
 
+
 # Source for timestamp mixin cribbed from
 # https://sqlalchemy-utils.readthedocs.io/en/latest/_modules/sqlalchemy_utils/models.html#Timestamp
 class TimestampMixin:
     created = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated = Column(DateTime, default=datetime.utcnow, nullable=False)
+
 
 @event.listens_for(TimestampMixin, 'before_update', propagate=True)
 def timestamp_before_update(mapper, connection, target):
@@ -22,6 +24,7 @@ def timestamp_before_update(mapper, connection, target):
 
 
 Base = declarative_base()
+
 
 class Case(Base, TimestampMixin):
     __tablename__ = 'cases'

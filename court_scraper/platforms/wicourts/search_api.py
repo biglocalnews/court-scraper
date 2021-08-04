@@ -48,11 +48,11 @@ class SearchApi:
         return {
             "attyType": "partyAtty",
             "countyNo": None,
-            "filingDate":{
-                "end": '', #MM-DD-YYYY
-                "start": '', #MM-DD-YYYY
+            "filingDate": {
+                "end": '',  # MM-DD-YYYY
+                "start": '',  # MM-DD-YYYY
             },
-            "includeMissingDob":True,
+            "includeMissingDob": True,
             "includeMissingMiddleName": True,
         }
 
@@ -71,13 +71,13 @@ class SearchApi:
         try:
             return self._county_num_lookup[county]['countyNo']
         except AttributeError:
-            params = {"cachedData":{"counties":{}}}
+            params = {"cachedData": {"counties": {}}}
             response = requests.post(
                 'https://wcca.wicourts.gov/jsonPost',
                 json=params
             )
             lookup = {
-                cty['countyName'].lower().replace(' ', '_'):cty
+                cty['countyName'].lower().replace(' ', '_'): cty
                 for cty in response.json()['cachedData']['counties']
             }
             self._county_num_lookup = lookup

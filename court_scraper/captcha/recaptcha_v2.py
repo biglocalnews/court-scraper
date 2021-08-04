@@ -1,12 +1,16 @@
-from anticaptchaofficial.recaptchav2proxyless import *
-
+from anticaptchaofficial.recaptchav2proxyless import (
+    AntiCaptchaError,
+    InjectionError,
+    SubmitError,
+    SubmitException
+)
 from .recaptcha import Recaptcha
 
 
 class RecaptchaV2(Recaptcha):
 
     def solve(self, driver, sitekey, apikey, script_submit=None, xpath_submit=None):
-    # this function is the entry point
+        # this function is the entry point
         self.driver = driver
         self.sitekey = sitekey
         self.apikey = apikey
@@ -17,24 +21,26 @@ class RecaptchaV2(Recaptcha):
     def _solve(self):
         try:
             self._recaptcha_V2_solver()
-        except:
+        except Exception:
             raise AntiCaptchaError('AntiCaptcha returned an error')
         try:
             self._inject_response()
-        except:
+        except Exception:
             raise InjectionError('cannot find g-recaptcha-response ID')
         try:
             self._submit()
-        except:
+        except Exception:
             raise SubmitError('provided submit option is not working')
 
     def _inject_response(self):
-        self.driver.execute_script(f'document.getElementById("g-recaptcha-response").innerHTML = "{self.g_response}"')
+        self.driver.execute_script(
+            f'document.getElementById("g-recaptcha-response").innerHTML = "{self.g_response}"'
+        )
 
     def _submit(self):
-        if self.script_submit != None:
+        if self.script_submit is not None:
             self.driver.execute_script(self.script_submit)
-        elif self.xpath_submit != None:
+        elif self.xpath_submit is not None:
             self.driver.find_element_by_xpath(self.xpath_submit).click()
         else:
             raise SubmitException('no way to submit provided')

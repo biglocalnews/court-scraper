@@ -5,7 +5,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-
 from court_scraper.base.selenium_helpers import SeleniumHelpers
 from court_scraper.utils import dates_for_range
 from .search_results import SearchResultsPage
@@ -19,7 +18,7 @@ class SearchLocators:
     MIDDLE_NAME = (By.NAME, 'middleName')
     BIRTH_DATE = (By.NAME, 'dateOfBirth')
     BUSINESS_NAME = (By.NAME, 'businessName')
-    COUNTY = (By.XPATH,'//*[@id="react-select-2--value"]/div[2]/input')
+    COUNTY = (By.XPATH, '//*[@id="react-select-2--value"]/div[2]/input')
     COUNTY_DROPDOWN_ARROW = (By.CSS_SELECTOR, '.Select-arrow-zone')
     CASE_NUMBER = (By.NAME, 'caseNo')
     CASE_NUMBER_RANGE_YEAR = (By.XPATH, '//*[@id="react-select-3--value"]/div[2]/input')
@@ -56,7 +55,7 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         payload = []
         search_api = SearchApi(county)
         for idx, case_num in enumerate(case_numbers):
-            self.go_to() # advanced search page
+            self.go_to()  # advanced search page
             self._execute_case_search(county, case_num)
             # Solve and apply the captcha on the first search.
             # (using it on subsequent case detail API calls causes errors)
@@ -74,7 +73,7 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
         dates = dates_for_range(start_date, end_date, output_format=date_format)
         payload = []
         for idx, day in enumerate(dates):
-            self.go_to() # advanced search page
+            self.go_to()  # advanced search page
             self._execute_date_search(county, day, day, case_types)
             if not self.search_has_results(self.driver.current_url):
                 continue
@@ -160,15 +159,19 @@ class SearchPage(CaptchaHelpers, SeleniumHelpers):
     def _select_case_types(self, case_types):
         # TODO: Refactor to use locators
         for case_type in case_types:
-                # Locate the case type menu by name
-                case_type_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'Case types')]")
-                # Expand the Case types menu
-                select_arrow = case_type_label_obj.find_element_by_css_selector('.Select-arrow-zone')
-                select_arrow.click()
-                # Find and click the selection menu option for the case type
-                option_divs = case_type_label_obj.find_element_by_css_selector('.Select-menu').find_elements_by_tag_name('div')
-                option = [opt for opt in option_divs if opt.text.endswith(f'({case_type})')][0]
-                option.click()
+            # Locate the case type menu by name
+            case_type_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'Case types')]")
+            # Expand the Case types menu
+            select_arrow = case_type_label_obj.find_element_by_css_selector('.Select-arrow-zone')
+            select_arrow.click()
+            # Find and click the selection menu option for the case type
+            option_divs = (
+                case_type_label_obj
+                .find_element_by_css_selector('.Select-menu')
+                .find_elements_by_tag_name('div')
+            )
+            option = [opt for opt in option_divs if opt.text.endswith(f'({case_type})')][0]
+            option.click()
 
     def solve_captcha(self):
         # Solve the captcha
