@@ -6,7 +6,14 @@ Testing
 Overview
 --------
 
-*court-scraper* is developed on Python 3.7 and uses the pytest_ library for unit testing.
+*court-scraper* is developed primarily on Python 3.7 and uses the pytest_ library for unit testing.
+We use pytest-vcr for scrapers that use the `requests` library 
+(e.g. :py:class:`oscn.Site <court_scraper.platforms.oscn.site.Site>`). Scrapers that
+use Selenium should include a minimal set of :ref:`live webtests <live tests>` to ensure
+correct functionality and guard against regressions.
+
+.. note:: Selenium and other long-running tests should be marked as :ref:`slow <slow tests>` 
+    to enable optional running of these tests.
 
 .. _pytest: https://docs.pytest.org/en/latest/contents.html
 
@@ -18,9 +25,9 @@ you can run tests by executing pytest in an active virtual environment::
     pipenv install --dev
 
     # Execute tests
-    pipenv shell
-    pytest
+    pipenv run pytest
 
+.. _slow tests:
 
 Slow tests
 ----------
@@ -59,7 +66,7 @@ In many cases, tests that hit live websites should be marked as both `webtest` a
     def test_that_hits_live_website():
         ...
 
-    # On the command line, use both flags target long-running webtests
+    # On the command line, use both flags to target long-running webtests
     pytest --runslow -m webtest
 
 Live web tests of Selenium-based scrapers will open a web browser by default. 

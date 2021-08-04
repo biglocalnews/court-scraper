@@ -38,7 +38,7 @@ to scrape county-level court data by case number and date range.
 Pre-reqs
 ========
 
-* Python >= 3.7
+* Python >= 3.6
 * Scrapers that rely on Selenium require:
 
   * `Google Chrome <https://www.google.com/chrome/>`_ web browser
