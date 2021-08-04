@@ -13,7 +13,8 @@ requirements = [
     'pyyaml',
     'retrying',
     'selenium',
-    'sqlalchemy'
+    'sqlalchemy',
+    'typing-extensions'
 ]
 
 test_requirements = [

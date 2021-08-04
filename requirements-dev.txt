@@ -12,6 +12,7 @@ docutils==0.16
 #Sphinx==1.4.8
 Sphinx
 sphinx-rtd-theme
+pylint
 pytest
 pytest-vcr
 vcrpy

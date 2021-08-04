@@ -1,4 +1,5 @@
 anticaptchaofficial
+bs4
 click
 click-option-group
 lxml
@@ -7,3 +8,4 @@ pyyaml
 retrying
 selenium
 sqlalchemy
+typing-extensions
