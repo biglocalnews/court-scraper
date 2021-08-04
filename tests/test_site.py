@@ -10,6 +10,7 @@ from .conftest import CAPTCHA_API_KEY, update_test_configs
     ("ok_tulsa", "Site"),
     ("wi_milwaukee", "Site"),
 ])
+@pytest.mark.slow
 @pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
 def test_site(place_id, site_class):
     site = Site(place_id)
