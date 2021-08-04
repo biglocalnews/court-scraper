@@ -74,7 +74,7 @@ servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 check-release: ## check release for potential errors
-	python setup.py check -r -s
+	twine check dist/*
 
 test-release: clean dist ## release distros to test.pypi.org
 	twine upload -r testpypi dist/*
