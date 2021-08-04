@@ -36,7 +36,8 @@ class Site:
         Site classes for one-off scrapers should live in the *scrapers*
         namespace in a module named by state and county, e.g. *court_scraper.scrapers.ny_westchester*.
 
-        Platform site classes should live in the *platforms* namespace (e.g. *court_scraper.platforms.odyssey*).
+        Platform site classes should live in the *platforms* namespace
+        (e.g. *court_scraper.platforms.odyssey*).
 
         In both cases, *sites_meta.csv* should specify the package name
         in the :code:`site_type` field as a snake_case value (e.g. *odyssey* or *wicourts*).

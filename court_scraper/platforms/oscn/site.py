@@ -69,7 +69,8 @@ class Site:
             case_details (boolean): Scrape data from case detail pages. Default: False
 
         Returns:
-            A dict-like :py:class:`SearchResultsWrapper <court_scraper.platforms.oscn.search_results_wrapper.SearchResultsWrapper>` 
+            A dict-like :py:class:`SearchResultsWrapper
+            <court_scraper.platforms.oscn.search_results_wrapper.SearchResultsWrapper>`
             instance with date-based keys (YYYY-MM-DD) and dict values
             containing `html` and `cases` as keys. The latter contains a list of
             :py:class:`CaseInfo <court_scraper.case_info.CaseInfo>` instances.
