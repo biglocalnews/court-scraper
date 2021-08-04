@@ -1,14 +1,42 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
+"""
+.. image:: https://img.shields.io/pypi/v/court-scraper.svg
+        :target: https://pypi.python.org/pypi/court-scraper
+
+.. image:: https://img.shields.io/pypi/pyversions/court-scraper.svg
+        :target: https://pypi.python.org/pypi/court-scraper
+
+.. image:: https://img.shields.io/travis/biglocalnews/court-scraper.svg
+        :target: https://travis-ci.com/biglocalnews/court-scraper
+
+.. image:: https://readthedocs.org/projects/court-scraper/badge/?version=latest
+        :target: https://court-scraper.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+.. image:: https://badges.gitter.im/court-scraper/general.svg
+        :target: https://gitter.im/court-scraper/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+        :alt: Gitter
+
+Court Scraper
+-------------
+
+The `court-scraper` package provides a Python library and command-line
+tool that help search for and download case information from local court system
+websites in the United States. This library primarily focuses on supporting the ability
+to scrape county-level court data by case number and date range.
+
+* Documentation: http://court-scraper.readthedocs.io/en/latest/
+* GitHub: https://github.com/biglocalnews/court-scraper
+* PyPI: https://pypi.python.org/pypi/court-scraper
+* Gitter: https://gitter.im/court-scraper/general
+* Free and open source software: `Apache license`_
+
+.. _Apache license: https://github.com/biglocalnews/court-scraper/blob/master/LICENSE
+
+"""
 from setuptools import setup, find_packages
 
-
-def read(file_name):
-    this_dir = os.path.dirname(__file__)
-    file_path = os.path.join(this_dir, file_name)
-    with open(file_path) as f:
-        return f.read()
 
 
 requirements = [
@@ -37,8 +65,8 @@ setup(
     name='court-scraper',
     version='0.1.0',
     description="Command-line tool for scraping data from U.S. county courts",
-    long_description=read('README.md'),
-    long_description_content_type='text/markdown',
+    long_description=__doc__,
+    long_description_content_type='text/x-rst',
     author="Serdar Tumgoren",
     author_email='zstumgoren@gmail.com',
     url='https://github.com/biglocalnews/court-scraper',
