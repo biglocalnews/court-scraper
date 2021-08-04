@@ -1,10 +1,8 @@
 from datetime import datetime, timedelta
-
 from court_scraper.configs import Configs
 
 
 def dates_for_range(start_date, end_date, input_format="%Y-%m-%d", output_format=None):
-    #[start + datetime.timedelta(n) for n in range(int ((today - start).days +1))]
     start = datetime.strptime(start_date, input_format)
     end = datetime.strptime(end_date, input_format)
     dates = []

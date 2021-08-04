@@ -1,10 +1,10 @@
 import selenium
 from anticaptchaofficial.recaptchav2proxyless import recaptchaV2Proxyless
-
 from court_scraper.configs import Configs
 
 
-class CaptchaError(Exception): pass
+class CaptchaError(Exception):
+    pass
 
 
 def resolve_recaptcha_v2(method):
@@ -22,7 +22,7 @@ def resolve_recaptcha_v2(method):
                 configs = Configs()
                 anticaptcha_api_key = configs.captcha_service_api_key
             except KeyError:
-                msg = f'CAPTCHA-protected sites require an Anticaptcha.com API key to be set in {configs.config_file_path}'
+                msg = f'CAPTCHA sites require Anticaptcha.com API key set in {configs.config_file_path}'
                 raise CaptchaError(msg)
         except selenium.common.exceptions.NoSuchElementException:
             site_key = None
@@ -38,4 +38,3 @@ def resolve_recaptcha_v2(method):
             driver.execute_script(to_inject)
         return method(*args, **kwargs)
     return wrapped
-

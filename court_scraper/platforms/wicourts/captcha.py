@@ -1,5 +1,5 @@
+import pickle
 from selenium.webdriver.common.by import By
-
 from court_scraper.captcha.invisible_recaptcha_v2 import InvisibleRecaptchaV2
 
 
@@ -31,6 +31,4 @@ class CaptchaHelpers():
     def load_cookies(self):
         cookies = pickle.load(open(f'{cache_dir}/cookies.pkl', 'rb'))
         for cookie in cookies:
-                self.driver.add_cookie(cookie)
-
-
+            self.driver.add_cookie(cookie)

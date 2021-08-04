@@ -1,5 +1,6 @@
 from selenium.webdriver.common.keys import Keys
 
+
 class SeleniumHelpers:
 
     def go_to(self, url=None):
@@ -21,4 +22,4 @@ class SeleniumHelpers:
         return self.driver.find_elements(*locator_name)
 
     def cookies_as_dict(self):
-        return {cookie['name']:cookie['value'] for cookie in self.driver.get_cookies()}
+        return {cookie['name']: cookie['value'] for cookie in self.driver.get_cookies()}

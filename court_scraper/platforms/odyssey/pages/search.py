@@ -53,4 +53,3 @@ class SearchPage(BasePage):
         self.driver.find_element(
             *SearchPageLocators.SEARCH_SUBMIT_BUTTON
         ).click()
-

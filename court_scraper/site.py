@@ -1,7 +1,4 @@
 import importlib
-import os
-from pathlib import Path
-
 from court_scraper.sites_meta import SitesMeta
 
 

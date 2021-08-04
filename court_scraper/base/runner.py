@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yaml
 try:
-    from yaml import CLoader as Loader, CDumper as Dumper
+    from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
 
@@ -105,7 +105,7 @@ class BaseRunner:
             return self._site_meta
 
     def _get_login_creds(self):
-        with open(self.config_path,'r') as fh:
+        with open(self.config_path, 'r') as fh:
             username = None
             password = None
             configs = yaml.load(fh, Loader=Loader)
@@ -114,7 +114,5 @@ class BaseRunner:
                 username = config['username']
                 password = config['password']
             except KeyError:
-                    pass
+                pass
             return (username, password)
-
-

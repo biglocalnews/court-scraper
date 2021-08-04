@@ -1,10 +1,8 @@
 import re
-
 from bs4 import BeautifulSoup
 
 
 class CaseDetailParser:
-
 
     def __init__(self, html):
         self.html = html
@@ -12,7 +10,6 @@ class CaseDetailParser:
     def parse(self):
         soup = BeautifulSoup(self.html, 'html.parser')
         payload = {
-            #'title': self._title,
             'filing_date': self._filing_date(soup),
             'close_date': self._close_date(soup),
             'judge': self._judge(soup),
@@ -37,7 +34,7 @@ class CaseDetailParser:
         return self._regextract(r'Judge: (.+)', second_cell.text.strip())
 
     def _type(self, soup):
-        #Civil relief more than $10,000: FORECLOSURE
+        # Civil relief more than $10,000: FORECLOSURE
         second_cell = self._get_top_row_second_cell(soup)
         return second_cell.find('strong').text.strip().split('(')[-1].rstrip(')')
 

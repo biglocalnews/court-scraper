@@ -45,7 +45,6 @@ class Site:
             List of CaseInfo classes
 
         """
-        results = []
         # NOTE: place_id will be a county typically, but we could at some
         # point support a state-wide search
         lookup = CaseNumberLookup(self.place_id)

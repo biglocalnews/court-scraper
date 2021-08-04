@@ -28,7 +28,7 @@ class PortalPage(BasePage):
     def _click_port_button(self, name):
         images = self.driver.find_elements(*self.locators.IMAGES)
         img_names = {
-            'hearings' : 'Icon_SearchHearing.svg',
+            'hearings': 'Icon_SearchHearing.svg',
             'smart_search': 'Icon_SmartSearch.svg'
         }
         image_name = img_names['smart_search']
@@ -40,5 +40,3 @@ class PortalPage(BasePage):
                 button = img.find_element_by_xpath('..')
                 break
         button.click()
-
-

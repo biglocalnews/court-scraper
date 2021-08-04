@@ -17,12 +17,11 @@ class Search(BaseSearch):
     Supports searches by date, case type and a variety of other
     parameters. Large searches are truncated, so searches using
     this class should be targeted narrowly (e.g. a single day
-    for smaller counties). For larger counties such as Tulsa, 
+    for smaller counties). For larger counties such as Tulsa,
     use DailyFilings search class.
 
     Args:
         - place_id (str): Standard place id (e.g. ok_alfalfa)
-
     """
 
     def __init__(self, place_id):
@@ -39,8 +38,8 @@ class Search(BaseSearch):
             # Always limit query to a single filing date, to minimize
             # chances of truncate results
             search_params = {
-                'FiledDateL': date_str, # start filing date - MM/DD/YYYY
-                'FiledDateH': date_str, # end filing date - MM/DD/YYYY
+                'FiledDateL': date_str,  # start filing date - MM/DD/YYYY
+                'FiledDateH': date_str,  # end filing date - MM/DD/YYYY
             }
             # Merge any additional query parameters
             search_params.update(extra_params)
@@ -77,7 +76,7 @@ class Search(BaseSearch):
     @property
     def _default_params(self):
         return {
-            'db': '', # county court name (lowercase, no spaces , e.g. rogermills)
+            'db': '',  # county court name (lowercase, no spaces , e.g. rogermills)
             'number': '',
             'lname': '',
             'fname': '',
@@ -87,8 +86,8 @@ class Search(BaseSearch):
             'partytype': '',
             'apct': '',
             'dcct': '',
-            'FiledDateL': '', #  start filing date - MM/DD/YYYY
-            'FiledDateH': '', # end filing date - MM/DD/YYYY
+            'FiledDateL': '',  # start filing date - MM/DD/YYYY
+            'FiledDateH': '',  # end filing date - MM/DD/YYYY
             'ClosedDateL': '',
             'ClosedDateH': '',
             'iLC': '',

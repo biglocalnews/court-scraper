@@ -1,5 +1,5 @@
 from datetime import timedelta, datetime
-#from pandas.tseries.holiday import USFederalHolidayCalendar
+
 
 class LastDate:
 
@@ -7,15 +7,16 @@ class LastDate:
         now = datetime.today()
         self.current_year = now.year
         self.current_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        #self.cal = USFederalHolidayCalendar()
 
     def _most_recent_workday(self, last_day):
-        #returns most recent workday, accounting for federal holidays and weekends
-        self.holidays = self.cal.holidays(datetime(self.input_year, 1, 1), datetime(self.input_year, 12, 31)).to_pydatetime()
+        self.holidays = self.cal.holidays(
+            datetime(self.input_year, 1, 1),
+            datetime(self.input_year, 12, 31)
+        ).to_pydatetime()
         if self.search_date.weekday() < 5 and self.search_date not in self.holidays:
             pass
         elif self.search_date.weekday() < 5 and self.search_date in self.holidays:
-            self.search_date = (self.search_date - timedelta(days = 1))
+            self.search_date = (self.search_date - timedelta(days=1))
             if self.search_date.weekday() < 5:
                 pass
             else:
@@ -27,7 +28,7 @@ class LastDate:
         return self.search_date
 
     # function returns most recent weekday with an option to manually override
-    def date_to_search(self, year, subtract_days = 1):
+    def date_to_search(self, year, subtract_days=1):
         if len(str(year)) != 4:
             return Exception('year format must conform to XXXX')
         else:

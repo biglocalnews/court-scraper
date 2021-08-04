@@ -1,11 +1,9 @@
 from urllib.parse import parse_qs
 
-import requests
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from court_scraper.case_info import CaseInfo
 from court_scraper.base.selenium_helpers import SeleniumHelpers
 from ..search_api import SearchApi
 
