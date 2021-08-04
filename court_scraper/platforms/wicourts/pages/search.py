@@ -8,7 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from court_scraper.base.selenium_helpers import SeleniumHelpers
 from court_scraper.utils import dates_for_range
 from .search_results import SearchResultsPage
-from ..captcha import CaptchaHelpers
 from ..search_api import SearchApi
 
 
@@ -42,7 +41,7 @@ class SearchLocators:
     RESET_BUTTON = (By.XPATH, '//*[@id="home-container"]/main/div/form/div[11]/div/button[2]')
 
 
-class SearchPage(CaptchaHelpers, SeleniumHelpers):
+class SearchPage(SeleniumHelpers):
 
     locators = SearchLocators
 
