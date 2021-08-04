@@ -1,24 +1,31 @@
 class CaseInfo:
     """
     Encapsulates data from web scraping search results,
-    and provides the ability to map fields to
-    standardized names.
+    and provides the ability to map fields to standardized names.
 
-    USAGE:
+    Args:
+        data (dict): Dict used to create instance attributes
 
-        from court_scraper.case_info import CaseInfo
-        # Provide  a mapping of raw field -> standard field
-        CaseInfo._map = { 'case_num': 'number' }
+    Usage:
+        Configure CaseInfo class with a dictionary that maps
+        raw field name (key) to standardized field name (value):
 
-        # Supply data to class
-        data = { 'foo': 'bar', 'case_num': 1 }
-        ci = CaseInfo(data)
+        >>> from court_scraper.case_info import CaseInfo
+        >>> CaseInfo._map = { 'case_num': 'number' }
 
-        # Mapped fields will appear under standard name
-        assert ci.number = 1
+        Instantiate the class with data:
 
-        # Unmapped fields will appear under raw field name
-        assert ci.foo == bar
+        >>> data = { 'case_num': 1, 'foo': 'bar' }
+        >>> case_info = CaseInfo(data)
+
+        Mapped fields will be accessible via dotted-attribute notation
+        using the standardized name:
+
+        >>> assert case_info.number = 1
+
+        Unmapped fields will be accessible using raw field name:
+
+        >>> assert case_info.foo == bar
 
     """
 

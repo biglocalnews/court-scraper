@@ -33,13 +33,14 @@ class Site:
     def get_site_class(cls, place_id, site_type):
         """Look up Site class by place ID and site type.
 
-        Site types for one-off scrapers should live in the 'scrapers'
-        namespace in a module named by state and county, e.g. ny_westchester.
+        Site classes for one-off scrapers should live in the *scrapers*
+        namespace in a module named by state and county, e.g. *court_scraper.scrapers.ny_westchester*.
 
-        Platform site classes should live in platforms namespace (e.g. odyssey).
+        Platform site classes should live in the *platforms* namespace
+        (e.g. *court_scraper.platforms.odyssey*).
 
-        In both cases, sites_meta.csv should specify the module name
-        in the site_type field as a snake_case value (ny_westchester).
+        In both cases, *sites_meta.csv* should specify the package name
+        in the :code:`site_type` field as a snake_case value (e.g. *odyssey* or *wicourts*).
 
         """
         if place_id == site_type:

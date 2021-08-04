@@ -21,7 +21,8 @@ class Search(BaseSearch):
     use DailyFilings search class.
 
     Args:
-        - place_id (str): Standard place id (e.g. ok_alfalfa)
+        place_id (str): Standard place id (e.g. ok_alfalfa)
+
     """
 
     def __init__(self, place_id):
