@@ -1,5 +1,7 @@
 # court-scraper
 
+[![Join the chat at https://gitter.im/court-scraper/general](https://badges.gitter.im/court-scraper/general.svg)](https://gitter.im/court-scraper/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 - [Overview](#overview)
 - [Setup](#setup)
   - [Pre-reqs](#pre-reqs)
