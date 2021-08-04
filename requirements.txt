@@ -6,3 +6,4 @@ my-fake-useragent
 pyyaml
 retrying
 selenium
+sqlalchemy

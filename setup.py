@@ -5,6 +5,7 @@ from setuptools import setup, find_packages
 
 requirements = [
     'anticaptchaofficial',
+    'bs4',
     'click',
     'click-option-group',
     'lxml',

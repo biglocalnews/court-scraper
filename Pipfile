@@ -10,6 +10,7 @@ pylint = "*"
 pytest-vcr = "*"
 
 [packages]
+bs4 = "*"
 selenium = "*"
 my-fake-useragent = "*"
 retrying = "*"
@@ -21,5 +22,3 @@ sqlalchemy = "*"
 anticaptchaofficial = "*"
 bs4 = "*"
 
-[requires]
-python_version = "3.7"
