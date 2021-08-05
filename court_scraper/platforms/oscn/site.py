@@ -2,7 +2,6 @@ from datetime import date
 from typing import List
 
 from court_scraper.case_info import CaseInfo
-from .search_results_wrapper import SearchResultsWrapper
 from .pages.case_number_lookup import CaseNumberLookup
 from .pages.daily_filings import DailyFilings
 from .pages.search import Search
@@ -53,7 +52,7 @@ class Site:
         lookup = CaseNumberLookup(self.place_id)
         return lookup.search(case_numbers=case_numbers)
 
-    def search_by_date(self, start_date=None, end_date=None, case_details=False) -> SearchResultsWrapper:
+    def search_by_date(self, start_date=None, end_date=None, case_details=False) -> List[CaseInfo]:
         """Search for cases by date range
 
         Searches current day by default. Optionally scrapes case detail pages.
@@ -69,11 +68,7 @@ class Site:
             case_details (boolean): Scrape data from case detail pages. Default: False
 
         Returns:
-            A dict-like :py:class:`SearchResultsWrapper
-            <court_scraper.platforms.oscn.search_results_wrapper.SearchResultsWrapper>`
-            instance with date-based keys (YYYY-MM-DD) and dict values
-            containing `html` and `cases` as keys. The latter contains a list of
-            :py:class:`CaseInfo <court_scraper.case_info.CaseInfo>` instances.
+            A list of :py:class:`CaseInfo <court_scraper.case_info.CaseInfo>` instances.
 
         """
         # Use Daily Filings where available, and fall back to generic
