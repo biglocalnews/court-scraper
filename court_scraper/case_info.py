@@ -53,7 +53,15 @@ class CaseInfo:
                 data[attr] = None
         return data
 
-    def merge(self, case_info):
+    def update(self, to_merge: dict) -> None:
+        """Merge a dictionary of values into the CaseInfo instance
+        """
+        self.data.update(to_merge)
+        self._set_attrs(to_merge)
+
+    def merge(self, case_info) -> None:
+        """Merge data from another CaseInfo instance into current instance
+        """
         self.data.update(case_info.data)
         self._set_attrs(case_info.data)
 

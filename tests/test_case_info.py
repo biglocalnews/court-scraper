@@ -11,6 +11,14 @@ def test_merge():
     assert case_info.foo == 'bar'
     assert case_info.baz == 'bang'
 
+def test_update():
+    data =  {'foo': 'bar',  'case_num': 1}
+    data2 = {'baz': 'bang'}
+    case_info = CaseInfo(data)
+    case_info.update(data2)
+    assert case_info.data['baz'] == 'bang'
+    assert case_info.baz == 'bang'
+
 def test_attribute_mapping():
     mapping = { 'case_num': 'number', }
     data = { 'foo': 'bar', 'case_num': '1' }
