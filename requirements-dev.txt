@@ -1,5 +1,4 @@
 bumpversion
-cryptography
 wheel
 watchdog
 flake8
