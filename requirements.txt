@@ -1,5 +1,4 @@
 anticaptchaofficial
-cryptography
 bs4
 click
 click-option-group
