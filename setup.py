@@ -3,12 +3,15 @@
 """
 .. image:: https://img.shields.io/pypi/v/court-scraper.svg
         :target: https://pypi.python.org/pypi/court-scraper
+        :alt: PyPI version badge
 
 .. image:: https://img.shields.io/pypi/pyversions/court-scraper.svg
         :target: https://pypi.python.org/pypi/court-scraper
+        :alt: Python versions badge
 
-.. image:: https://img.shields.io/travis/biglocalnews/court-scraper.svg
-        :target: https://travis-ci.com/biglocalnews/court-scraper
+.. image:: https://github.com/biglocalnews/court-scraper/actions/workflows/tests.yaml/badge.svg?branch=master
+        :target: https://github.com/biglocalnews/court-scraper/actions/workflows/tests.yaml
+        :alt: GitHub Actions build status badge
 
 .. image:: https://readthedocs.org/projects/court-scraper/badge/?version=latest
         :target: https://court-scraper.readthedocs.io/en/latest/?badge=latest
@@ -16,7 +19,8 @@
 
 .. image:: https://badges.gitter.im/court-scraper/general.svg
         :target: https://gitter.im/court-scraper/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-        :alt: Gitter
+        :alt: Gitter badge
+
 
 Court Scraper
 -------------
