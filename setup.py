@@ -67,7 +67,7 @@ test_requirements = [
 
 setup(
     name='court-scraper',
-    version='0.1.0',
+    version='0.1.1',
     description="Command-line tool for scraping data from U.S. county courts",
     long_description=__doc__,
     long_description_content_type='text/x-rst',

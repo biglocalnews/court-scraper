@@ -5,7 +5,6 @@ from court_scraper.utils import dates_for_range
 
 from .base_search import BaseSearch
 from .search_results import SearchResultsPage
-from ..search_results_wrapper import SearchResultsWrapper
 
 
 logger = logging.getLogger(__name__)
@@ -32,7 +31,7 @@ class Search(BaseSearch):
     def search(self, start_date, end_date, extra_params={}, case_details=False):
         date_format = "%m/%d/%Y"
         dates = dates_for_range(start_date, end_date, output_format=date_format)
-        search_results = SearchResultsWrapper()
+        search_results = []
         for date_str in dates:
             # Convert date_str to standard YYYY-MM-DD for upstream usage
             date_key = self._standardize_date(date_str, date_format, "%Y-%m-%d")
@@ -56,11 +55,15 @@ class Search(BaseSearch):
                     " to avoid losing records."
                 )
                 logger.warning(msg)
-            search_results.add_html(date_key, html)
             if case_details:
-                self._scrape_case_details(date_key, search_results, basic_case_data)
+                results = self._scrape_case_details(date_key, basic_case_data)
+                search_results.extend(results)
             else:
-                search_results.add_case_data(date_key, basic_case_data)
+                # Add the filing date to CaseInfo instances if it's only a metadata search
+                # since it's not listed on results page
+                for case in basic_case_data:
+                    case.update({'filing_date': date_key})
+                    search_results.append(case)
         return search_results
 
     def _run_search(self, search_params):
@@ -71,7 +74,7 @@ class Search(BaseSearch):
         params.update(search_params)
         response = requests.get(self.url, params=params)
         html = response.text
-        page = SearchResultsPage(self.place_id, response.text)
+        page = SearchResultsPage(self.place_id, html)
         return html, page.results
 
     @property

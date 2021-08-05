@@ -59,17 +59,20 @@ def test_date_search_basic():
     day = '2021-07-09'
     case_number = 'CV-2021-14'
     site = Oscn(place_id)
-    # Returns a SearchResults dict-like object
-    results = site.search_by_date(start_date=day, end_date=day, case_details=False)
+    # Returns list of CaseInfo instances
+    results = site.search_by_date(
+        start_date=day,
+        end_date=day,
+        case_details=False
+    )
     # There should be a single entry for the searched date
-    assert results.count_of_days == 1
-    data = results[day]
-    # There should only be a single case on this day
-    assert len(data['cases']) == 1
-    # Raw html should be stored in the date's dict value (e.g. for caching)
-    assert 'html' in data
-    case = data['cases'][0]
+    dates = set([case.filing_date for case in results])
+    assert len(dates) == 1
+    # There shoud be a single case on this day
+    assert len(results) == 1
     # Check for presence of other expected data points
+    case = results[0]
+    assert case.filing_date == day
     assert case.place_id == place_id
     assert case.number == case_number
     assert case.type_short == 'Civil Misc. (CV)'
@@ -83,10 +86,9 @@ def test_date_search_no_results():
     place_id = 'ok_roger_mills'
     day = '2021-07-15'
     site = Oscn(place_id)
-    # Returns a SearchResults dict-like object
     results = site.search_by_date(start_date=day, end_date=day, case_details=False)
     # There should be no results for this date
-    assert results.count_of_days == 0
+    assert len(results) == 0
 
 
 @pytest.mark.vcr()
@@ -96,30 +98,28 @@ def test_date_search_defaults_to_current_day():
         place_id = 'ok_roger_mills'
         case_number = 'CV-2021-14'
         site = Oscn(place_id)
-        # Returns a SearchResults dict-like object
         results = site.search_by_date(case_details=False)
         # There should be a single entry for the searched date
-        assert results.count_of_days == 1
-        # Raw html should be stored in the date's dict value (e.g. for caching)
-        data = results['2021-07-09']
-        assert 'html' in data
-        case = data['cases'][0]
+        dates = set([case.filing_date for case in results])
+        assert len(dates) == 1
+        case = results[0]
         # Check for presence of other expected data points
         assert case.place_id == place_id
+        assert case.filing_date == '2021-07-09'
 
 @pytest.mark.vcr()
 def test_date_search_many_results():
     place_id = 'ok_tulsa'
     day = '2021-07-15'
     site = Oscn(place_id)
-    # Returns a SearchResults dict-like object
     results = site.search_by_date(start_date=day, end_date=day, case_details=False)
     # There should be a single entry for the searched date
-    assert results.count_of_days == 1
+    dates = set([case.filing_date for case in results])
+    assert len(dates) == 1
     # There should be many cases on this day
-    assert len(results.cases) == 219
+    assert len(results) == 219
     # Test case type section headers
-    expected_case_types = [
+    expected_case_types = set([
         'Civil Misc. (CV)',
         'Civil relief less than $10,000 (CS)',
         'Civil relief more than $10,000 (CJ)',
@@ -134,9 +134,10 @@ def test_date_search_many_results():
         'Probate (PB)',
         'Protective Order (PO)',
         'Small Claims (SC)'
-    ]
+    ])
     # Quite a few case types as well
-    assert results.case_types == expected_case_types
+    case_types = set([case.type_short for case in results])
+    assert case_types == expected_case_types
 
 @pytest.mark.vcr()
 def test_date_search_multiple_day_results():
@@ -144,15 +145,19 @@ def test_date_search_multiple_day_results():
     start = '2021-07-08'
     end = '2021-07-09'
     site = Oscn(place_id)
-    # Returns a SearchResults dict-like object
-    results = site.search_by_date(start_date=start, end_date=end, case_details=False)
-    # There should be a single entry for the searched date
-    assert results.count_of_days == 2
+    results = site.search_by_date(
+        start_date=start,
+        end_date=end,
+        case_details=False
+    )
+    # Cases should span multiple days
+    dates = set([case.filing_date for case in results])
+    assert len(dates) == 2
+    assert dates == set([start, end])
     # There should be many cases on this day
-    assert len(results.cases) == 2
-    assert results.dates == [start, end]
-    first = results[start]['cases'][0]
-    second = results[end]['cases'][0]
+    assert len(results) == 2
+    first = results[0]
+    second = results[1]
     assert first.number == 'CV-2021-13'
     assert second.number == 'CV-2021-14'
 
@@ -163,18 +168,19 @@ def test_date_search_with_case_details():
     day = '2021-07-09'
     case_number = 'CV-2021-14'
     site = Oscn(place_id)
-    # Returns a SearchResults dict-like object
     # Here we set case_details to True to trigger detail page scraping
-    results = site.search_by_date(start_date=day, end_date=day, case_details=True)
-    # There should be a single entry for the searched date
-    assert results.count_of_days == 1
-    data = results[day]
+    results = site.search_by_date(
+        start_date=day,
+        end_date=day, case_details=True
+    )
+    # There should be a single date
+    dates = set([case.filing_date for case in results])
+    assert len(dates) == 1
     # There should only be a single case on this day
-    assert len(data['cases']) == 1
-    # Raw html should be stored in the date's dict value (e.g. for caching)
-    assert 'html' in data
-    case = data['cases'][0]
+    assert len(results) == 1
+    case = results[0]
     # Check for presence of other expected data points
+    assert case.filing_date == day
     assert case.place_id == place_id
     assert case.number == case_number
     assert case.type_short == 'Civil Misc. (CV)'
@@ -190,14 +196,18 @@ def test_date_search_multiple_cases():
     day = '2021-07-12'
     site = Oscn(place_id)
     # Set case_details to True to trigger detail page scraping
-    results = site.search_by_date(start_date=day, end_date=day, case_details=True)
-    # There should be a single entry for the searched date
-    assert results.count_of_days == 1
-    data = results[day]
+    results = site.search_by_date(
+        start_date=day,
+        end_date=day,
+        case_details=True
+    )
+    # There should be a single date
+    dates = set([case.filing_date for case in results])
+    assert len(dates) == 1
     # There should two cases on this day
-    assert len(data['cases']) == 2
-    first, second = results.cases
+    assert len(results) == 2
     # Check for presence of other expected data points
+    first, second = results
     assert first.number == 'TR-2021-161'
     assert second.number == 'TR-2021-162'
     # Case details should be available
@@ -207,3 +217,6 @@ def test_date_search_multiple_cases():
     # Closed date
     assert first.close_date == None
     assert second.close_date == '07/15/2021'
+    # filing date should be standardized
+    assert first.filing_date == day
+    assert second.filing_date == day
