@@ -9,8 +9,9 @@ class CaseDetailPageLocators:
 
     SIDENAV_CASE_INFO_LINK = (
         By.XPATH,
-       '//a[text()="Case Information"]'
+        '//a[text()="Case Information"]'
     )
+
 
 class CaseDetailPage(BasePage):
 
@@ -53,4 +54,3 @@ class CaseDetailPage(BasePage):
         self.driver.find_elements_by_xpath('//h1[text()="Documents"]')
         """
         return self.driver.page_source
-

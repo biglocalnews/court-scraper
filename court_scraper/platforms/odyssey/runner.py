@@ -1,10 +1,6 @@
 import logging
-
 from court_scraper.base.runner import BaseRunner
-
-
 logger = logging.getLogger(__name__)
-
 
 
 class Runner(BaseRunner):

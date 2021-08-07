@@ -16,10 +16,8 @@ class Runner(BaseRunner):
     - cache_dir -- Path to cache directory for scraped file artifacts (default: {})
     - config_path -- Path to location of config file
     - place_id -- Scraper ID made up of state and county (e.g. ga_dekalb)
-
     """
-
-    def search(self, case_numbers =[], **kwargs):
+    def search(self, case_numbers=[], **kwargs):
         """
         For a given scraper, executes the search, acquisition
         and processing of case info.

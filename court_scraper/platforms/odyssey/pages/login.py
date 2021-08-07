@@ -9,6 +9,7 @@ class LoginPageLocators:
     PASSWORD = (By.ID, 'Password')
     SIGN_IN_BUTTON = (By.CSS_SELECTOR, '.btn.btn-primary')
 
+
 # TODO: Refactor to use FormFieldElement or UsernameField
 # and PasswordField (sted of fill_form_field), to
 # match the page element strategy used for SearchBox field
@@ -32,4 +33,3 @@ class LoginPage(BasePage):
         self.fill_form_field('USERNAME', self.username)
         self.fill_form_field('PASSWORD', self.password)
         self.click('SIGN_IN_BUTTON')
-

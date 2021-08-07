@@ -16,12 +16,10 @@ class SearchResultsPage:
         Returns:
 
             List of CaseInfo instances
-
         """
         # Search results contain an entry for every party
         # to a case, so we need to deduplicate
         results = {}
-        table = self.soup.find('table')
         # Only grab result rows (i.e. skip header)
         for row in self.soup.table.find_all('tr', class_='resultTableRow'):
             case_id_cell, filing_date, case_name, found_party = row.find_all('td')

@@ -34,7 +34,7 @@ class Site(SeleniumSite):
     def go_to_home(self):
         self.driver.get(self.site_url)
 
-    def search(self, case_numbers=[], case_details=True, timeout=60):
+    def search(self, case_numbers=[], case_details=False, timeout=60):
         """Search for cases by number.
 
         Supports search by precise case number or wild-card case number searches.

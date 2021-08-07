@@ -1,0 +1,11 @@
+anticaptchaofficial
+bs4
+click
+click-option-group
+lxml
+my-fake-useragent
+pyyaml
+retrying
+selenium
+sqlalchemy
+typing-extensions

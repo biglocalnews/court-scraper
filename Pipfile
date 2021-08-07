@@ -4,12 +4,23 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+argh = "*"
+bumpversion = "*"
+coverage = "*"
+docutils = "0.16"
 flake8 = "*"
 pytest = "*"
 pylint = "*"
 pytest-vcr = "*"
+Sphinx = "*"
+sphinx-rtd-theme = "*"
+tox = "*"
+twine = "*"
+watchdog = "*"
+wheel = "*"
 
 [packages]
+bs4 = "*"
 selenium = "*"
 my-fake-useragent = "*"
 retrying = "*"
@@ -19,6 +30,4 @@ pyyaml = "*"
 click-option-group = "*"
 sqlalchemy = "*"
 anticaptchaofficial = "*"
-
-[requires]
-python_version = "3.7"
+typing-extensions = "*"

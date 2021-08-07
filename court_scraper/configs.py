@@ -3,12 +3,14 @@ import yaml
 from pathlib import Path
 
 try:
-    from yaml import CLoader as Loader, CDumper as Dumper
+    from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
 
 
-class ConfigurationError(Exception): pass
+class ConfigurationError(Exception):
+    pass
+
 
 class Configs:
 
@@ -17,21 +19,21 @@ class Configs:
             self.cache_dir = os.environ['COURT_SCRAPER_DIR']
         except KeyError:
             self.cache_dir = str(
-                Path(os.path.expanduser('~'))\
+                Path(os.path.expanduser('~'))
                 .joinpath('.court-scraper')
             )
         self.config_file_path = str(
-            Path(self.cache_dir)\
+            Path(self.cache_dir)
             .joinpath('config.yaml')
         )
         self.db_path = str(
-            Path(self.cache_dir)\
+            Path(self.cache_dir)
             .joinpath('cases.db')
         )
 
     @property
     def captcha_service_api_key(self):
-        with open(self.config_file_path,'r') as fh:
+        with open(self.config_file_path, 'r') as fh:
             configs = yaml.load(fh, Loader=Loader)
             try:
                 return configs['captcha_service_api_key']

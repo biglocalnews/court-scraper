@@ -4,3 +4,7 @@ __pycache__/
 config.json
 .python-version
 .vscode/settings.json
+.tox
+build/
+dist/
+docs/_build/

@@ -14,4 +14,3 @@ class BasePage:
     def _get_element_by_locator(self, locator_name):
         locator = getattr(self.locators, locator_name)
         return self.driver.find_element(*locator)
-

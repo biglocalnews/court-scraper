@@ -1,16 +1,14 @@
 from datetime import date
 
-import requests
-
 from court_scraper.base.selenium_site import SeleniumSite
-from court_scraper.case_info import CaseInfo
 from court_scraper.utils import dates_for_range, get_captcha_service_api_key
 from .pages.search import SearchPage
 
 from .search_api import SearchApi
 
 
-class SearchConfigurationError(Exception): pass
+class SearchConfigurationError(Exception):
+    pass
 
 
 class Site(SeleniumSite):
@@ -25,14 +23,15 @@ class Site(SeleniumSite):
     def __repr__(self):
         return f'Wicourts ({self.place_id})'
 
-    def search_by_date(self,
-            start_date=None,
-            end_date=None,
-            case_details=False,
-            case_types=[],
-            download_dir=None,
-            headless=True
-        ):
+    def search_by_date(
+        self,
+        start_date=None,
+        end_date=None,
+        case_details=False,
+        case_types=[],
+        download_dir=None,
+        headless=True
+    ):
         """
         Scrape case metadata and/or details by date ranges.
 
@@ -56,7 +55,7 @@ class Site(SeleniumSite):
         if not start_date:
             start_date, end_date = self.current_day, self.current_day
         results = []
-        county = self.place_id[3:] # Clip the state prefix from place_id
+        county = self.place_id[3:]  # Clip the state prefix from place_id
         if case_details:
             results = self.search(
                 start_date=start_date,
@@ -82,14 +81,15 @@ class Site(SeleniumSite):
                 results.extend(cases)
         return results
 
-    def search(self,
-           case_numbers=[],
-           start_date=None,
-           end_date=None,
-           case_types=[],
-           download_dir=None,
-           headless=True
-        ):
+    def search(
+        self,
+        case_numbers=[],
+        start_date=None,
+        end_date=None,
+        case_types=[],
+        download_dir=None,
+        headless=True
+    ):
         """
         Scrape detailed case information by case numbers or date range.
 
