@@ -144,6 +144,5 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, please be sure to review the docs 
    and include necessary updates. For example, new classes, methods
    and functions should be documented.
-3. The pull request should work for Python version 3.6 or higher. Check
-   https://travis-ci.com/github/biglocalnews/court-scraper/pull_requests
+3. The pull request should work for Python version 3.6 or higher. Check the Actions tab on GitHub
    and make sure that the tests pass for all supported Python versions.
