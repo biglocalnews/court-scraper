@@ -8,3 +8,5 @@ config.json
 build/
 dist/
 docs/_build/
+.coverage
+htmlcov
