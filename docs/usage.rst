@@ -133,7 +133,7 @@ by default run in "headless" mode (i.e. the browser will not run visibly). In or
 to run a Selenium-based scraper with the browser, which can be helpful for debugging, use
 the :code:`--with-browser` flag::
 
-  court-scraper search --with-browser --place-id ok_tulsa --case-number CJ-2021-2045
+  court-scraper search --with-browser --place-id wi_green_lake --case-number 2021CV000055
 
 
 File storage
