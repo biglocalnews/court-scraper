@@ -1,4 +1,6 @@
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class SeleniumHelpers:
@@ -23,3 +25,27 @@ class SeleniumHelpers:
 
     def cookies_as_dict(self):
         return {cookie['name']: cookie['value'] for cookie in self.driver.get_cookies()}
+
+    def wait_until_clickable(self, locator_name, timeout=10, driver=None):
+        """
+        Pause until the provided locator is clickable to continue.
+        """
+        if driver:
+            d = driver
+        else:
+            d = self.driver
+        WebDriverWait(d, timeout).until(
+            EC.element_to_be_clickable(locator_name)
+        )
+
+    def wait_until_visible(self, locator_name, timeout=10, driver=None):
+        """
+        Pause until the provided locator is visible to continue.
+        """
+        if driver:
+            d = driver
+        else:
+            d = self.driver
+        WebDriverWait(d, timeout).until(
+            EC.visibility_of_element_located(locator_name)
+        )

@@ -124,11 +124,7 @@ class SearchPage(SeleniumHelpers):
         return search_api.case_details(case_num, **kwargs)
 
     def _execute_case_search(self, county, case_number):
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(
-                self.locators.COUNTY
-            )
-        )
+        self.wait_until_visible(self.locators.COUNTY)
         clean_county = self._county_titlecase(county)
         self.fill_form_field(self.locators.COUNTY, clean_county)
         self.fill_form_field(self.locators.CASE_NUMBER, case_number)
@@ -138,12 +134,7 @@ class SearchPage(SeleniumHelpers):
         # Wait until the county dropdown-menu arrow is clickable before filling the form field,
         # in order to avoid overwriting of the field value by the "Statewide" option default
         county_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'County')]")
-        WebDriverWait(county_label_obj, 10).until(
-            EC.element_to_be_clickable(
-                self.locators.COUNTY_DROPDOWN_ARROW
-            )
-
-        )
+        self.wait_until_clickable(self.locators.COUNTY_DROPDOWN_ARROW, driver=county_label_obj)
         clean_county = self._county_titlecase(county)
         self.fill_form_field(self.locators.COUNTY, clean_county)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_BEGIN, start_date)
