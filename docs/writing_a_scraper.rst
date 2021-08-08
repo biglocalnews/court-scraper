@@ -124,7 +124,7 @@ Add tests
 New site classes should include test coverage for the :code:`search` and :code:`search_by_date` methods. 
 
 Check out our :ref:`Testing docs <testing>` and review test modules for the Odyssey, Oklahoma (oscn) or Wisconsin (wicourts) 
-site clasess for examples that can help you get started.
+site classes for examples that can help you get started.
 
 Update *court_scraper.site.Site*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
