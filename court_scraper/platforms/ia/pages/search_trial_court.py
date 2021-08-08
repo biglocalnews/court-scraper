@@ -1,7 +1,3 @@
-# Logging
-import logging
-logger = logging.getLogger(__name__)
-
 # Scraping tools
 from selenium.webdriver.common.by import By
 from court_scraper.captcha import resolve_recaptcha_v2
@@ -9,15 +5,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from court_scraper.base.selenium_helpers import SeleniumHelpers
 from selenium.webdriver.support import expected_conditions as EC
 
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
 
 class SearchTrialCourtPageLocators:
     """
-    Identifiers for important elements on the search selection page.
+    Identifiers for important elements on the trial court search page.
     """
     # <FRAME name="main" src='/ESAWebApp/TrialCourtStateWide' scrolling="auto">
     FORM_FRAME = (By.XPATH, "//frame[@src='/ESAWebApp/TrialCourtStateWide']")
 
-    # <a href="#caseidSearch" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Case ID Search</a>
+    # <a href="#caseidSearch" class="ui-tabs-anchor" role="presentation" ...
     CASE_ID_TAB = (By.XPATH, "//a[@href='#caseidSearch']")
 
     # <select name="caseid1sel" title="caseid1sel" onchange="countysel(this.form)" tabindex="200">
@@ -29,13 +29,13 @@ class SearchTrialCourtPageLocators:
     # <input type="Text" name="caseid4" size="8" tabindex="204">
     CASE_ID_INPUT = (By.XPATH, "//input[@name='caseid4']")
 
-    # <input type="Submit" name="search" value="Search" onclick="return stateWideSearch(this, event);" tabindex="500">
+    # <input type="Submit" name="search" value="Search" onclick="...
     SEARCH_BUTTON = (By.XPATH, "//input[@name='search']")
 
 
 class SearchTrialCourtPage(SeleniumHelpers):
     """
-    Interface for interacting with the search selection page.
+    Interface for interacting with the trail court search page.
     """
     locators = SearchTrialCourtPageLocators
     url = "https://www.iowacourts.state.ia.us/ESAWebApp/TrialSimpFrame"
@@ -92,6 +92,7 @@ class SearchTrialCourtPage(SeleniumHelpers):
         element.send_keys(case_id)
 
         # Once it's ready, hit the submit button
+        logger.debug("Hitting the submit button")
         WebDriverWait(self.driver, self.timeout).until(
             EC.element_to_be_clickable(
                 self.locators.SEARCH_BUTTON,
@@ -99,3 +100,6 @@ class SearchTrialCourtPage(SeleniumHelpers):
         )
         self.click(self.locators.SEARCH_BUTTON)
 
+        # Switch to the search results tab
+        logger.debug("Switch to the results tab")
+        self.driver.switch_to.window(self.driver.window_handles[-1])

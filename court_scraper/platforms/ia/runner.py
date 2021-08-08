@@ -1,10 +1,10 @@
-# Logging
-import logging
-logger = logging.getLogger(__name__)
-
 # Scraping
 from .site import Site
 from court_scraper.base.runner import BaseRunner
+
+# Logging
+import logging
+logger = logging.getLogger(__name__)
 
 
 class Runner(BaseRunner):

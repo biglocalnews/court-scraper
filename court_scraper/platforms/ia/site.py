@@ -1,11 +1,7 @@
-import time
-
-# Logging
-import logging
-logger = logging.getLogger(__name__)
-
 # Pages
 from .pages.home import HomePage
+from .pages.case_detail import CaseDetailPage
+from .pages.search_results import SearchResultsPage
 from .pages.search_selection import SearchSelectionPage
 from .pages.search_trial_court import SearchTrialCourtPage
 
@@ -17,6 +13,10 @@ from typing import List
 from court_scraper.case_info import CaseInfo
 from court_scraper.base.selenium_site import SeleniumSite
 from court_scraper.utils import get_captcha_service_api_key
+
+# Logging
+import logging
+logger = logging.getLogger(__name__)
 
 
 class Site(SeleniumSite):
@@ -54,13 +54,20 @@ class Site(SeleniumSite):
             case_list.append(case)
 
         # Close the browser
-        pass
+        logger.debug("Closing browser")
+        self.driver.quit()
 
         # Return the master list
         logger.debug(f"Returning {len(case_list)} CaseInfo objects")
         return case_list
 
-    def search_by_date(self, start_date=None, end_date=None, case_details=False, case_types=[]) -> List[CaseInfo]:
+    def search_by_date(
+        self,
+        start_date=None,
+        end_date=None,
+        case_details=False,
+        case_types=[]
+    ) -> List[CaseInfo]:
         raise NotImplementedError
 
     def login(self, username, password):
@@ -95,19 +102,27 @@ class Site(SeleniumSite):
         county_dict = parsers.counties.parse(self.place_id)
 
         # Search for the case
-        search_results_page = search_trial_court_page.search_for_case_by_number(
+        search_trial_court_page.search_for_case_by_number(
             county_dict['id'],
             case_dict['type_id'],
             case_dict['id']
         )
 
-        time.sleep(10)
-
         # Open the case detail page
-        pass
+        search_results_page = SearchResultsPage(self.driver)
+        search_results_page.open_case_detail_page(case_number)
 
         # Parse the case detail page
-        pass
+        case_detail_page = CaseDetailPage(self.driver)
+        case_detail_page.open()
+
+        # Parse the case detail page
+        obj = CaseInfo({
+            'place_id': self.place_id,
+            'number': case_number,
+            'page_source': self.driver.page_source,
+            'url': case_detail_page.url
+        })
 
         # Return the result
-        return
+        return obj

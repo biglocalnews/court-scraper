@@ -1,12 +1,12 @@
-# Logging
-import logging
-logger = logging.getLogger(__name__)
-
 # Scraping tools
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from court_scraper.base.selenium_helpers import SeleniumHelpers
 from selenium.webdriver.support import expected_conditions as EC
+
+# Logging
+import logging
+logger = logging.getLogger(__name__)
 
 
 class SearchSelectionPageLocators:
