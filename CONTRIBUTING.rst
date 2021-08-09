@@ -92,8 +92,7 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? 
-Check out our docs on :ref:`Writing a scraper` and :ref:`Testing`, and see
+Ready to contribute? Check out our docs on :ref:`Writing a scraper` and :ref:`Testing`, and see
 below steps on setting up `court-scraper` for local development.
 
 1. Fork the `court-scraper` repo on GitHub.
@@ -104,10 +103,8 @@ below steps on setting up `court-scraper` for local development.
 3. Set up a local virtual environment and install dev dependencies 
    for local development with Pipenv_::
     
-    # Install dependencies and activate the virtual env
     cd court-scraper/
     pipenv install --dev
-    pipenv shell
 
 4. Create a branch for local development::
 
@@ -118,8 +115,8 @@ below steps on setting up `court-scraper` for local development.
 5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox::
 
     # Lint and test for current Python version
-    pytest
-    flake8 court_scraper
+    make test
+    make lint
 
     # Run tests for all Python versions
     # (requires setting up and installing all supported Python versions)
