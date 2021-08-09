@@ -1,4 +1,5 @@
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 
 
 class SeleniumHelpers:
@@ -10,6 +11,11 @@ class SeleniumHelpers:
     def fill_form_field(self, locator_name, value):
         element = self._get_element_by_locator(locator_name)
         element.send_keys(value + Keys.RETURN)
+
+    def select_form_field(self, locator_name, value):
+        element = self._get_element_by_locator(locator_name)
+        select = Select(element)
+        select.select_by_value(value)
 
     def click(self, locator_name):
         element = self._get_element_by_locator(locator_name)

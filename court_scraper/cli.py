@@ -53,7 +53,7 @@ def search(place_id, case_number, case_numbers_file, with_browser):
     cache_dir.mkdir(parents=True, exist_ok=True)
     log_file = str(cache_dir.joinpath('logfile.txt'))
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format='%(asctime)s - %(name)-12s - %(message)s',
         datefmt='%m-%d %H:%M',
         filename=log_file,
