@@ -16,7 +16,7 @@ def resolve_recaptcha_v2(method):
         driver = args[0].driver
         try:
             captcha_div = driver.find_element_by_css_selector('.g-recaptcha')
-            site_key = captcha_div.get_attribute('data-sitekey')
+            site_key = captcha_div.get_attribute('data-sitekey').strip()
             print(f're-captcha site-key: {site_key}')
             try:
                 configs = Configs()
