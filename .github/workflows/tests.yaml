@@ -79,4 +79,8 @@ jobs:
 
       - id: tests
         name: Tests
-        run: pipenv run pytest
+        run: pipenv run coverage run --source court_scraper -m pytest
+
+      - id: coverage
+        name: Coverage
+        run: pipenv run coverage report -m
