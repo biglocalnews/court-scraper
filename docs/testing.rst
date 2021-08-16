@@ -45,7 +45,7 @@ Slow-running tests should be marked_ as such::
 Slow tests are skipped by default. To run them, pass the :code:`--runslow` flag
 when invoking pytest::
 
-    pytest --runslow
+    pipenv run pytest --runslow
 
 
 .. _live tests:
@@ -60,7 +60,7 @@ Tests that hit live web sites should be marked_ as `webtest`, allowing them to b
         ...
 
     # On the command line, run only tests marked as "webtest"
-    pytest -m webtest
+    pipenv run pytest -m webtest
 
 In many cases, tests that hit live websites should be marked as both `webtest` and `slow`::
 
@@ -70,7 +70,7 @@ In many cases, tests that hit live websites should be marked as both `webtest` a
         ...
 
     # On the command line, use both flags to target long-running webtests
-    pytest --runslow -m webtest
+    pipenv run pytest --runslow -m webtest
 
 Live web tests of Selenium-based scrapers will open a web browser by default. 
 All tests of Selenium scrapers should use the :code:`headless` fixture in order to provide
@@ -84,7 +84,7 @@ These tests should typically be marked as `slow` and `webtest` as well.::
 
 You can activate headless mode when running pytest by using the :code:`--headless` flag::
 
-    pytest --headless --runslow
+    pipenv run pytest --headless --runslow
 
 
 Test login credentials

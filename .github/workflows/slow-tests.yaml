@@ -1,7 +1,12 @@
-name: Tests
+name: Slow tests
 on:
-  push:
+  # Run automatically for pull requests
+  pull_request:
+  # Allow for manual trigger
   workflow_dispatch:
+  # Schedule a run once per week
+  schedule:
+    - cron:  '0 0 * * 0'
 
 jobs:
   lint:
@@ -44,9 +49,6 @@ jobs:
   tests:
     name: "Tests"
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python: [3.6, 3.7, 3.8, 3.9]
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v2
@@ -54,7 +56,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python }}
+          python-version: 3.7
 
       - id: install-pipenv
         name: Install pipenv
@@ -74,13 +76,13 @@ jobs:
 
       - id: sync-pipfile
         name: Sync pipfile
-        run: pipenv sync --dev --python=${{ matrix.python }}
+        run: pipenv sync --dev
         shell: bash
 
-      - id: tests
-        name: Tests
-        run: pipenv run coverage run --source court_scraper -m pytest
+      - id: slow-tests
+        name: Slow tests
+        run: make test-slow
 
-      - id: coverage
-        name: Coverage
-        run: pipenv run coverage report -m
+      - id: web-tests
+        name: Web tests
+        run: make test-web
