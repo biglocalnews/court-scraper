@@ -2,7 +2,7 @@ from court_scraper.case_info import CaseInfo
 
 
 def test_merge():
-    data =  {'foo': 'bar',  'case_num': 1}
+    data = {'foo': 'bar', 'case_num': 1}
     data2 = {'baz': 'bang', 'case_num': 1}
     case_info = CaseInfo(data)
     case_info2 = CaseInfo(data2)
@@ -11,20 +11,22 @@ def test_merge():
     assert case_info.foo == 'bar'
     assert case_info.baz == 'bang'
 
+
 def test_update():
-    data =  {'foo': 'bar',  'case_num': 1}
+    data = {'foo': 'bar',  'case_num': 1}
     data2 = {'baz': 'bang'}
     case_info = CaseInfo(data)
     case_info.update(data2)
     assert case_info.data['baz'] == 'bang'
     assert case_info.baz == 'bang'
 
+
 def test_attribute_mapping():
-    mapping = { 'case_num': 'number', }
-    data = { 'foo': 'bar', 'case_num': '1' }
+    mapping = {'case_num': 'number'}
+    data = {'foo': 'bar', 'case_num': '1'}
     CaseInfo._map = mapping
     ci = CaseInfo(data)
-    assert hasattr(ci, 'case_num') == False
+    assert hasattr(ci, 'case_num') is False
     assert ci.number == '1'
     assert ci.foo == 'bar'
 
@@ -50,4 +52,3 @@ def test_standardized_data():
     CaseInfo._map = mapping
     ci = CaseInfo(data)
     assert ci.standard_data == expected
-

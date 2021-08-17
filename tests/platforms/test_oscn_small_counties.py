@@ -48,6 +48,7 @@ def test_small_counties_date_search_basic():
     # request case_detail page to be scraped
     assert getattr(first, 'judge', None) is None
 
+
 @pytest.mark.vcr()
 def test_small_counties_truncation_warning(caplog):
     # To test truncation, we need to directly use Search
@@ -70,6 +71,7 @@ def test_small_counties_truncation_warning(caplog):
     # But still return case info
     assert len(results) == 171
 
+
 @pytest.mark.vcr()
 def test_small_counties_no_results():
     place_id = 'ok_alfalfa'
@@ -82,6 +84,7 @@ def test_small_counties_no_results():
     )
     assert len(results) == 0
 
+
 @pytest.mark.vcr()
 def test_small_counties_defaults_to_current_day():
     from court_scraper.platforms.oscn.site import Site as Oscn
@@ -92,6 +95,7 @@ def test_small_counties_defaults_to_current_day():
         dates = set([case.filing_date for case in results])
         assert len(dates) == 1
         assert len(results) == 4
+
 
 @pytest.mark.vcr()
 def test_small_counties_multiple_day_results():
@@ -107,6 +111,7 @@ def test_small_counties_multiple_day_results():
     dates = set([case.filing_date for case in results])
     assert dates == set([start, end])
     assert len(results) == 10
+
 
 @pytest.mark.vcr()
 def test_small_counties_case_details():
@@ -130,4 +135,4 @@ def test_small_counties_case_details():
     # Case details should be available
     assert first.type == 'Civil relief more than $10,000: MONEY JUDGMENT'
     assert first.judge == 'ANGLE, LOREN E.'
-    assert first.close_date == None
+    assert first.close_date is None
