@@ -1,13 +1,7 @@
-from pathlib import Path
-from unittest.mock import call, patch, MagicMock, Mock
-
 import pytest
-
-from tests.conftest import (
-    config_path,
-    court_scraper_dir,
-    file_contents
-)
+from pathlib import Path
+from tests.conftest import file_contents
+from unittest.mock import call, patch, Mock
 from court_scraper.case_info import CaseInfo
 from court_scraper.platforms.odyssey.runner import Runner
 
@@ -33,7 +27,7 @@ def test_site_calls(court_scraper_dir, config_path):
             'download_dir': court_scraper_dir,
             'headless': True
         }
-        # Get the args and kwargs (2nd and 3rd items) from the 
+        # Get the args and kwargs (2nd and 3rd items) from the
         # first call which is Site instantiation
         args, kwargs = site_class.mock_calls[0][1:]
         assert args == expected_args
@@ -78,4 +72,3 @@ def test_multiword_county(court_scraper_dir, config_path):
         search_call = site_class.mock_calls[-1]
         expected_call = call().search(case_numbers=['foo'])
         assert search_call == expected_call
-

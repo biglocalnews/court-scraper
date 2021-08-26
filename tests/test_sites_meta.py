@@ -1,8 +1,4 @@
 from unittest.mock import patch
-
-import pytest
-
-from .conftest import read_fixture, sites_csv_text
 from court_scraper.sites_meta import SitesMeta
 
 

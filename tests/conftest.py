@@ -1,7 +1,6 @@
 from os.path import expanduser
 import shutil
 from pathlib import Path
-
 import pytest
 import yaml
 try:
@@ -28,17 +27,20 @@ def get_live_configs(home=expanduser("~")):
         config_path = Path(home, '.court-scraper/config.yaml')
     except KeyError:
         return ''
-    with open(config_path,'r') as fh:
+    with open(config_path, 'r') as fh:
         return yaml.load(fh, Loader=Loader)
+
 
 def load_yaml(path):
     with open(path, 'r') as fh:
         return yaml.load(fh, Loader=Loader)
 
+
 try:
     CAPTCHA_API_KEY = get_live_configs()['captcha_service_api_key']
-except:
+except Exception:
     CAPTCHA_API_KEY = None
+
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -73,6 +75,7 @@ def headless(request):
 @pytest.fixture
 def live_configs():
     return get_live_configs()
+
 
 @pytest.fixture
 def court_scraper_dir(tmp_path):
@@ -111,7 +114,7 @@ def create_config(config_path):
 def update_test_configs(config_path, data):
     configs = load_yaml(config_path)
     configs.update(data)
-    with open(config_path,'w') as fh:
+    with open(config_path, 'w') as fh:
         return yaml.dump(configs, fh, Dumper=Dumper)
 
 
@@ -125,10 +128,7 @@ def set_env(court_scraper_dir, monkeypatch):
 
 def read_fixture(file_name):
     path = str(
-        Path(__file__)\
-            .parent\
-            .joinpath('fixtures')\
-            .joinpath(file_name)
+        Path(__file__).parent.joinpath('fixtures').joinpath(file_name)
     )
     return file_contents(path)
 
@@ -178,6 +178,7 @@ def required_case_data():
             'status': 'Closed',
         }
     ]
+
 
 @pytest.fixture
 def sites_csv_text():

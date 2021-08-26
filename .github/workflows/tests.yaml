@@ -39,7 +39,7 @@ jobs:
 
       - id: flake8
         name: Flake8
-        run: pipenv run flake8 court_scraper
+        run: make lint
 
   tests:
     name: "Tests"

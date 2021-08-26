@@ -1,11 +1,7 @@
-from datetime import datetime
-from pathlib import Path
 import pytest
-
+from datetime import datetime
 from court_scraper.datastore import Datastore, Session
 from court_scraper.db import Case
-
-from .conftest import db_path, required_case_data
 
 
 @pytest.mark.usefixtures('create_scraper_dir')

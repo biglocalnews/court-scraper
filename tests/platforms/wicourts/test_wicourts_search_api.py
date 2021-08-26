@@ -27,7 +27,7 @@ def test_api_search_with_case_type():
     county = 'milwaukee'
     start, end = ['07-01-2021'] * 2
     params = {
-        'caseType': 'CV,OL' # Civil and Other Liens
+        'caseType': 'CV,OL'  # Civil and Other Liens
     }
     api = SearchApi(county)
     cases = api.search_by_filing_date(start, end, extra_params=params)
