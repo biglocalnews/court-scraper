@@ -59,7 +59,7 @@ Install court-scraper_::
 Scrape using the command line tool::
 
    # Scrape data for a case in Tulsa, Oklahoma
-   court-scraper search -p ok_tulsa -s CJ-2021-2045
+   court-scraper search -p ok_tulsa -c CJ-2021-2045
 
 Or in a script::
 
