@@ -79,10 +79,10 @@ jobs:
         run: pipenv sync --dev
         shell: bash
 
+      - id: quick-tests
+        name: Quick tests
+        run: make test
+
       - id: slow-tests
         name: Slow tests
-        run: make test-slow
-
-      - id: web-tests
-        name: Web tests
-        run: make test-web
+        run: make test-slow-nocaptcha
