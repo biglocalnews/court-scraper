@@ -24,6 +24,7 @@ BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
 PIPENV := pipenv run
 PYTHON := $(PYTHON) python -W ignore
+PYTEST := $(PIPENV) py.test
 
 define python
     @echo "🐍🤖 $(OBJ_COLOR)Executing Python script $(1)$(NO_COLOR)\r";
@@ -85,12 +86,24 @@ lint: ## check style with flake8
 	@$(PIPENV) flake8 court_scraper tests
 
 
-test: ## run tests quickly with the default Python
-	@$(PIPENV) py.test
+test: ## run all quick tests with the default Python
+	@$(PYTEST)
 
 
-test-all: ## run tests on every Python version with tox
-	@$(PIPENV) tox -p auto
+test-tox: ## run all quick tests on all Python versions
+	@$(PYTEST) tox -p auto
+
+
+test-slow: ## run all slow tests
+	@$(PYTEST) --runslow
+
+
+test-slow-nocaptcha: ## run only slow tests that do not require captcha
+	@$(PYTEST) --runslow -m nocaptcha
+
+
+test-slow-captcha: ## run only slow tests that do not require captcha
+	@$(PYTEST) --runslow -m captcha
 
 
 coverage: ## check code coverage quickly with the default Python
@@ -148,9 +161,22 @@ install: clean ## install the package to the active Python's site-packages
 
 
 # Mark all the commands that don't have a target
-.PHONY: clean \
+.PHONY: help \
+        clean \
         clean-test \
         clean-pyc \
         clean-build \
+        lint \
+        test \
+        test-tox \
+        test-slow \
+        test-slow-nocaptcha \
+        test-slow-captcha \
+        coverage \
         docs \
-        help
+        servedocs \
+        check-release \
+        test-release \
+        release \
+        dist \
+        install
