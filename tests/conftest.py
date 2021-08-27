@@ -56,6 +56,7 @@ def pytest_configure(config):
     config.addinivalue_line("markers", "slow: mark test as slow to run")
     config.addinivalue_line("markers", "webtest: mark test as hitting live websites")
     config.addinivalue_line("markers", "captcha: mark test as requiring captcha")
+    config.addinivalue_line("markers", "nocaptcha: mark test as not requiring captcha")
 
 
 def pytest_collection_modifyitems(config, items):
