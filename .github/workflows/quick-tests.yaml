@@ -1,4 +1,4 @@
-name: Fast tests
+name: Quick tests
 on:
   push:
   workflow_dispatch:
@@ -77,10 +77,6 @@ jobs:
         run: pipenv sync --dev --python=${{ matrix.python }}
         shell: bash
 
-      - id: tests
-        name: Tests
-        run: pipenv run coverage run --source court_scraper -m pytest
-
-      - id: coverage
-        name: Coverage
-        run: pipenv run coverage report -m
+      - id: quick-tests
+        name: Quick tests
+        run: make test
