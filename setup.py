@@ -48,6 +48,7 @@ requirements = [
     'bs4',
     'click',
     'click-option-group',
+    'cssselect',
     'lxml',
     'my-fake-useragent',
     'pyyaml',
