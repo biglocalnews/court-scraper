@@ -89,14 +89,6 @@ test: ## run tests quickly with the default Python
 	@$(PIPENV) pytest
 
 
-test-slow: ## run both fast and slow tests
-	@$(PIPENV) pytest --runslow --headless
-
-
-test-web: ## run web tests
-	@$(PIPENV) pytest --runslow --headless -m webtest
-
-
 test-all: ## run tests on every Python version with tox
 	@$(PIPENV) tox -p auto
 
