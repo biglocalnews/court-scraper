@@ -40,6 +40,7 @@ def test_login(webdriver_mock, login_page_mock):
 )
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.nocaptcha
 def test_search(test_input, headless, live_configs, court_scraper_dir):
     auth = live_configs['ga_dekalb']
     username = auth['username']
@@ -65,6 +66,7 @@ def test_search(test_input, headless, live_configs, court_scraper_dir):
 )
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.nocaptcha
 def test_search_nologin_no_captcha(test_input, headless, court_scraper_dir):
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
@@ -84,6 +86,7 @@ def test_search_nologin_no_captcha(test_input, headless, court_scraper_dir):
 )
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.nocaptcha
 def test_search_nologin_no_captcha_noresults(test_input, headless, court_scraper_dir):
     place_id, url, case_ids = test_input
     site = OdysseySite(place_id, url=url, download_dir=court_scraper_dir, headless=headless)
@@ -103,6 +106,7 @@ def test_search_nologin_no_captcha_noresults(test_input, headless, court_scraper
 )
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.nocaptcha
 def test_scrape_case_details(test_input, headless, live_configs, court_scraper_dir):
     "should support optional scraping of case details"
     auth = live_configs['ga_dekalb']
@@ -129,6 +133,7 @@ def test_scrape_case_details(test_input, headless, live_configs, court_scraper_d
 )
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.nocaptcha
 def test_maximize_displayed_results(test_input, headless, court_scraper_dir):
     "should automatically maximize the number of results displayed on results page"
     place_id, url, case_ids = test_input
@@ -149,6 +154,7 @@ def test_maximize_displayed_results(test_input, headless, court_scraper_dir):
 )
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.nocaptcha
 def test_malformed_result_listing(test_input, headless, live_configs, court_scraper_dir):
     "should handle result listings that have an extra leading blank cell"
     auth = live_configs['ga_dekalb']

@@ -19,6 +19,7 @@ def test_site(place_id, site_class):
 
 @pytest.mark.webtest
 @pytest.mark.slow
+@pytest.mark.nocaptcha
 @pytest.mark.usefixtures('create_scraper_dir', 'create_config')
 def test_site_odyssey(headless):
     site = Site('ca_napa', headless=headless)
@@ -29,6 +30,7 @@ def test_site_odyssey(headless):
 
 @pytest.mark.webtest
 @pytest.mark.slow
+@pytest.mark.captcha
 @pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
 def test_site_wicourts(config_path, headless):
     # Add captcha key to test config file in order to
