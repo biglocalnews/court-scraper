@@ -50,7 +50,7 @@ class Site(SeleniumSite):
         Args:
 
             case_numbers (list<str>): List of case numbers
-            case_details (boolean): Whether to scrape case details (default: True)
+            case_details (boolean): Whether to scrape case details (default: False)
             timeout (int): Seconds before scraper times out (default: 60)
 
         Returns:

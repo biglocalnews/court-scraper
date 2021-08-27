@@ -1,9 +1,6 @@
 from datetime import datetime
-
 import pytest
-
 from court_scraper.utils import dates_for_range
-
 
 
 @pytest.mark.parametrize(
