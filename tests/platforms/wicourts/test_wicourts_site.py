@@ -1,11 +1,7 @@
-from unittest.mock import call, patch
-
 import pytest
 from tests.conftest import CAPTCHA_API_KEY
-
 from court_scraper.platforms.wicourts import Site as WicourtsSite
 from court_scraper.platforms.wicourts.site import SearchConfigurationError
-
 
 
 skip_test_reason = "You must configure captcha_service_api_key in ~/.court-scraper/config.yaml"
@@ -13,6 +9,7 @@ skip_test_reason = "You must configure captcha_service_api_key in ~/.court-scrap
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_search_with_case_details(court_scraper_dir, headless):
     # Forest "2021-06-30" has 2 cases
@@ -20,7 +17,7 @@ def test_search_with_case_details(court_scraper_dir, headless):
     # Milwaukee "2021-07-31" has 346 cases!
     day = "2021-06-30"
     # Test with a smaller county
-    place_id = "wi_forest" #wi_milwaukee"
+    place_id = "wi_forest"  # wi_milwaukee"
     site = WicourtsSite(place_id, CAPTCHA_API_KEY)
     kwargs = {
         'start_date': day,
@@ -34,6 +31,7 @@ def test_search_with_case_details(court_scraper_dir, headless):
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_search_multiple_days_with_details(court_scraper_dir, headless):
     # Forest "2021-06-24" has 2 cases
@@ -41,7 +39,7 @@ def test_search_multiple_days_with_details(court_scraper_dir, headless):
     start = "2021-06-23"
     end = "2021-06-24"
     # Test with a smaller county
-    place_id = "wi_forest" #wi_milwaukee"
+    place_id = "wi_forest"  # wi_milwaukee"
     site = WicourtsSite(place_id, CAPTCHA_API_KEY)
     kwargs = {
         'start_date': start,
@@ -55,9 +53,10 @@ def test_search_multiple_days_with_details(court_scraper_dir, headless):
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_case_number_search(court_scraper_dir, headless):
-    case_numbers=['2021CV003851','2021CV003850']
+    case_numbers = ['2021CV003851', '2021CV003850']
     place_id = 'wi_milwaukee'
     site = WicourtsSite(place_id, CAPTCHA_API_KEY)
     kwargs = {
@@ -71,17 +70,18 @@ def test_case_number_search(court_scraper_dir, headless):
 
 def test_misconfigured_search(court_scraper_dir, headless):
     with pytest.raises(SearchConfigurationError):
-        case_numbers=['2021CV003851','2021CV003850']
         place_id = 'wi_milwaukee'
         site = WicourtsSite(place_id, 'DUMMY_CAPTCHA_API_KEY')
         kwargs = {
             'headless': headless,
             'download_dir': court_scraper_dir,
         }
-        results = site.search(**kwargs)
+        site.search(**kwargs)
+
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_search_with_multiple_case_types_multiple_results(court_scraper_dir, headless):
     # Forest "2021-07-01" has 4 cases with 3 case types (TR, SC, FO)
@@ -98,8 +98,10 @@ def test_search_with_multiple_case_types_multiple_results(court_scraper_dir, hea
     results = site.search(**kwargs)
     assert len(results) == 3
 
+
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_search_with_single_case_type_multiple_results(court_scraper_dir, headless):
     # Forest "2021-07-01" has 4 cases with 3 case types (TR, SC, FO)
@@ -120,6 +122,7 @@ def test_search_with_single_case_type_multiple_results(court_scraper_dir, headle
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_search_case_type_single_result(court_scraper_dir, headless):
     # Forest "2021-07-01" has 4 cases with 3 case types (TR, SC, FO)
@@ -141,8 +144,9 @@ def test_search_case_type_single_result(court_scraper_dir, headless):
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 def test_search_no_results(court_scraper_dir, headless):
-    day = "2021-06-27" # Sunday
+    day = "2021-06-27"  # Sunday
     place_id = "wi_forest"
     site = WicourtsSite(place_id, 'DUMMY_CAPTCHA_API_KEY')
     kwargs = {
@@ -157,6 +161,7 @@ def test_search_no_results(court_scraper_dir, headless):
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_multiname_county_date_search(court_scraper_dir, headless):
     day = "2021-06-22"
@@ -174,6 +179,7 @@ def test_multiname_county_date_search(court_scraper_dir, headless):
 
 @pytest.mark.slow
 @pytest.mark.webtest
+@pytest.mark.captcha
 @pytest.mark.skipif(CAPTCHA_API_KEY is None, reason=skip_test_reason)
 def test_multiname_county_case_number(court_scraper_dir, headless):
     place_id = "wi_green_lake"
@@ -210,6 +216,7 @@ def test_date_search_basic():
 
 @pytest.mark.slow()
 @pytest.mark.webtest()
+@pytest.mark.captcha()
 def test_date_search_with_details(court_scraper_dir, headless):
     "should provide case details search that uses selenium"
     # There are 4 cases total, 2 of them TRaffic
@@ -232,11 +239,12 @@ def test_date_search_with_details(court_scraper_dir, headless):
         assert 'TR' in case.number
         # Check for some data points that are only found in detailed data
         assert case.type_code == 'TR'
-        assert hasattr(case, 'parties') == True
+        assert hasattr(case, 'parties') is True
 
 
 @pytest.mark.slow()
 @pytest.mark.webtest()
+@pytest.mark.captcha()
 def test_date_search_details_multiday(court_scraper_dir, headless):
     # Forest "2021-06-24" has 2 cases
     # Forest "2021-06-23" has 4 cases

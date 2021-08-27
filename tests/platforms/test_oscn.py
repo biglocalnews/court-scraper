@@ -1,7 +1,5 @@
-from unittest import mock
-
 import pytest
-
+from unittest import mock
 from court_scraper.platforms.oscn import Site as Oscn
 
 
@@ -46,12 +44,14 @@ def test_search_by_case_id(place_id, case_number, expected):
     assert case.type == expected['type']
     assert case.judge == expected['judge']
 
+
 @pytest.mark.vcr()
 def test_search_by_case_id_multiple_results():
     site = Oscn('ok_tulsa')
     case_numbers = ['CJ-2021-2045', 'CJ-2018-2919']
     results = site.search(case_numbers=case_numbers)
     assert len(results) == 2
+
 
 @pytest.mark.vcr()
 def test_date_search_basic():
@@ -81,6 +81,7 @@ def test_date_search_basic():
     # request case_detail page to be scraped
     assert getattr(case, 'judge', None) is None
 
+
 @pytest.mark.vcr()
 def test_date_search_no_results():
     place_id = 'ok_roger_mills'
@@ -96,7 +97,6 @@ def test_date_search_defaults_to_current_day():
     from court_scraper.platforms.oscn.site import Site as Oscn
     with mock.patch.object(Oscn, 'current_day', '2021-07-09'):
         place_id = 'ok_roger_mills'
-        case_number = 'CV-2021-14'
         site = Oscn(place_id)
         results = site.search_by_date(case_details=False)
         # There should be a single entry for the searched date
@@ -106,6 +106,7 @@ def test_date_search_defaults_to_current_day():
         # Check for presence of other expected data points
         assert case.place_id == place_id
         assert case.filing_date == '2021-07-09'
+
 
 @pytest.mark.vcr()
 def test_date_search_many_results():
@@ -138,6 +139,7 @@ def test_date_search_many_results():
     # Quite a few case types as well
     case_types = set([case.type_short for case in results])
     assert case_types == expected_case_types
+
 
 @pytest.mark.vcr()
 def test_date_search_multiple_day_results():
@@ -187,7 +189,7 @@ def test_date_search_with_case_details():
     assert case.parties_short == 'DCP OPERATING COMPANY LP v. ROGER MILLS COUNTY ASSESSOR'
     # Case details should be available
     assert case.judge == 'Weedon, Jill Carpenter'
-    assert case.close_date == None
+    assert case.close_date is None
 
 
 @pytest.mark.vcr()
@@ -215,7 +217,7 @@ def test_date_search_multiple_cases():
     assert first.judge == 'VerSteeg, F. Pat'
     assert second.judge == 'VerSteeg, F. Pat'
     # Closed date
-    assert first.close_date == None
+    assert first.close_date is None
     assert second.close_date == '07/15/2021'
     # filing date should be standardized
     assert first.filing_date == day
