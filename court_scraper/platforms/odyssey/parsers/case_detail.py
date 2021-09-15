@@ -17,8 +17,14 @@ class CaseDetailParser:
     @property
     def plaintiffs(self):
         party_div = self._get_party_div()
-        breakpoint()
         # TODO: Need to extract plaintiffs
+        plaintiff = party_div.xpath('//*[@id="divPartyInformation_body"]/div[1]/div[1]/p[1]/text()')[1].strip()
+        plaintiff_street = party_div.xpath('//*[@id="divPartyInformation_body"]/div[1]/div[1]/p[2]/text()')[0].strip()
+        plaintiff_city = party_div.xpath('//*[@id="divPartyInformation_body"]/div[1]/div[1]/p[2]/text()')[1].strip()
+        defendant = party_div.xpath('//*[@id="divPartyInformation_body"]/div[3]/div[1]/p[1]/text()')[1].strip()
+        defendant_street = party_div.xpath('//*[@id="divPartyInformation_body"]/div[3]/div[1]/p[2]/text()')[0].strip()
+        defendant_city = party_div.xpath('//*[@id="divPartyInformation_body"]/div[3]/div[1]/p[2]/text()')[1].strip()
+        breakpoint()
         return None
 
     @property
