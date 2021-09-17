@@ -24,7 +24,7 @@ class CaseDetailParser:
         defendant = party_div.xpath('//*[@id="divPartyInformation_body"]/div[3]/div[1]/p[1]/text()')[1].strip()
         defendant_street = party_div.xpath('//*[@id="divPartyInformation_body"]/div[3]/div[1]/p[2]/text()')[0].strip()
         defendant_city = party_div.xpath('//*[@id="divPartyInformation_body"]/div[3]/div[1]/p[2]/text()')[1].strip()
-        breakpoint()
+        #breakpoint()
         return None
 
     @property
