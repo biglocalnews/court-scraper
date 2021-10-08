@@ -9,3 +9,4 @@ retrying
 selenium
 sqlalchemy
 typing-extensions
+fake_useragent
