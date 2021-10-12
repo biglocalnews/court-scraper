@@ -1,10 +1,9 @@
 from retrying import retry
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-
 from selenium.webdriver.support.ui import WebDriverWait
 
-from .base import BasePage
+from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 
 # Locators
@@ -108,7 +107,7 @@ class ResultRow:
         )
 
 
-class SearchResultsPage(BasePage):
+class SearchResultsPage(SeleniumHelpers):
 
     results = SearchResults()
 
