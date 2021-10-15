@@ -1,16 +1,19 @@
 import logging
 import requests
+from fake_useragent import UserAgent
 
 from court_scraper.utils import dates_for_range
-
 from .base_search import BaseSearch
 from .search_results import SearchResultsPage
 
 
 logger = logging.getLogger(__name__)
-
+ua = UserAgent()
 
 class Search(BaseSearch):
+
+
+
     """General search page for all OK counties.
 
     Supports searches by date, case type and a variety of other
@@ -70,9 +73,10 @@ class Search(BaseSearch):
         params = self._default_params
         # Always add place to search
         params['db'] = self._place
+        headers = {'User-Agent': ua.random}
         # Add any extra params (typically will include filing date)
         params.update(search_params)
-        response = requests.get(self.url, params=params)
+        response = requests.get(self.url, params=params, headers=headers)
         html = response.text
         page = SearchResultsPage(self.place_id, html)
         return html, page.results
