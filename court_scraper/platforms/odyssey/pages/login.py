@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from .base import BasePage
+from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 
 class LoginPageLocators:
@@ -14,7 +14,7 @@ class LoginPageLocators:
 # and PasswordField (sted of fill_form_field), to
 # match the page element strategy used for SearchBox field
 # on SearchPage
-class LoginPage(BasePage):
+class LoginPage(SeleniumHelpers):
 
     locators = LoginPageLocators
 

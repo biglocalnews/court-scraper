@@ -88,8 +88,7 @@ class SearchTrialCourtPage(SeleniumHelpers):
 
         # Enter the case_id into the form
         logger.debug(f"Entering case id: {case_id}")
-        element = self._get_element_by_locator(self.locators.CASE_ID_INPUT)
-        element.send_keys(case_id)
+        self.fill_form_field(self.locators.CASE_ID_INPUT, case_id)
 
         # Once it's ready, hit the submit button
         logger.debug("Hitting the submit button")

@@ -127,7 +127,9 @@ class SearchPage(SeleniumHelpers):
         self.wait_until_visible(self.locators.COUNTY)
         clean_county = self._county_titlecase(county)
         self.fill_form_field(self.locators.COUNTY, clean_county)
+        self.enter(self.locators.COUNTY)
         self.fill_form_field(self.locators.CASE_NUMBER, case_number)
+        self.enter(self.locators.CASE_NUMBER)
         self.click(self.locators.SEARCH_BUTTON)
 
     def _execute_date_search(self, county, start_date, end_date, case_types=[]):
@@ -137,8 +139,11 @@ class SearchPage(SeleniumHelpers):
         self.wait_until_clickable(self.locators.COUNTY_DROPDOWN_ARROW, driver=county_label_obj)
         clean_county = self._county_titlecase(county)
         self.fill_form_field(self.locators.COUNTY, clean_county)
+        self.enter(self.locators.COUNTY)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_BEGIN, start_date)
+        self.enter(self.locators.FILING_DATE_RANGE_BEGIN)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_END, end_date)
+        self.enter(self.locators.FILING_DATE_RANGE_END)
         if case_types:
             self._select_case_types(case_types)
         self.click(self.locators.SEARCH_BUTTON)

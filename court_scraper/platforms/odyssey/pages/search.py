@@ -2,8 +2,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from .base import BasePage
 from court_scraper.captcha import resolve_recaptcha_v2
+from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 
 # Locators
@@ -39,7 +39,7 @@ class SearchBox:
         return element.get_attribute("value")
 
 
-class SearchPage(BasePage):
+class SearchPage(SeleniumHelpers):
 
     search_box = SearchBox()
 

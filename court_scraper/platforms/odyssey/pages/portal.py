@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from .base import BasePage
+from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 
 class PortalPageLocators:
@@ -9,7 +9,7 @@ class PortalPageLocators:
     IMAGES = (By.TAG_NAME, 'img')
 
 
-class PortalPage(BasePage):
+class PortalPage(SeleniumHelpers):
 
     locators = PortalPageLocators
 

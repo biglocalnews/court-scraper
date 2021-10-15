@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from .base import BasePage
+from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 
 class CaseDetailPageLocators:
@@ -13,7 +13,7 @@ class CaseDetailPageLocators:
     )
 
 
-class CaseDetailPage(BasePage):
+class CaseDetailPage(SeleniumHelpers):
 
     sidenav_case_info_locator = CaseDetailPageLocators.SIDENAV_CASE_INFO_LINK
 
