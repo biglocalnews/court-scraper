@@ -5,9 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class SeleniumHelpers:
 
-    def __init__(self, driver):
-        self.driver = driver
-
     def go_to(self, url=None):
         """
         Go to the provided URL.
