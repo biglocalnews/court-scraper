@@ -1,0 +1,688 @@
+
+<script src="/portal/Scripts/portlets/portlet.roa.js"></script>
+<script src="/portal/Scripts/portlets/plugin.portlet.workspacemode.js"></script>
+
+<style type="text/css" media="print" id="roa-print-style">
+  @page {
+    size: portrait;
+  }
+</style>
+
+<script type="text/javascript">
+  //Force the document to the top on load.
+  //This was not happening automatically in Safari.
+  $(document).scrollTop(0);
+
+  $(function () {
+    RoaPage.init(
+      '/portal/Alerts/ViewAll/SubscriptionPartial',
+      '/portal/Alerts/ViewAll/ModifySubscription',
+      '/portal/Alerts/ViewAll/ModifyAllSubscriptions',
+      '/portal/MyPortal/MyPortal/BookmarkCase',
+      '/portal/Case/CaseDetail/LoadFinancialInformation?caseId=3765793'
+    );
+
+    $(".document-download").each(function(i, e) {
+      var $e = $(e);
+      var newParams = {
+        caseNum: "21D06499",
+        locationId: "2201",
+        caseId: "4XC1LTu2ddqnBtFlKqw_kg2"
+      };
+      var docType = $e.data('doc-doctype');
+      var docName = $e.data('doc-docname');
+      var eventName = $e.closest('.portal-case-event').data('event-description');
+
+      // Each of these are added separately to keep the URL shorter if they have no value
+      if (docType) {
+        newParams.docType = docType;
+      }
+      if (docName) {
+        newParams.docName = docName;
+      }
+      if (eventName) {
+        newParams.eventName = eventName;
+      }
+
+      $e.attr('href', addQueryStringParams($e.attr("href"), newParams));
+    });
+
+    pluginWorkspaceMode.init();
+
+    TabControl.TabRenderComplete($("#PortletSummaryROA"), true);
+    // TODO: Possible 'System.NullReferenceException'        ^^^^^
+
+    /**
+     * This updates the url parameters in a URL with the given parameters
+     */
+    function addQueryStringParams(url, newParams) {
+      url = url || '';
+      var encParams = $.param(newParams);
+      if (encParams.length === 0){
+        return url;
+      }
+      var hparts = url.split('#');
+      var qparts = hparts[0].split('?');
+      if (qparts.length > 1) {
+        qparts[1] = qparts[1] + "&" + encParams;
+      } else {
+        qparts.push(encParams);
+      }
+      hparts[0] = qparts.join('?');
+      return hparts.join("#");
+    }
+  });
+</script>
+
+
+
+<div class="row" id="PortletSummaryROA"> 
+  <div class="col-md-9">
+
+<form action="/portal/Case/CaseDetail" class="register-of-actions expand-collapse-group" method="post">        <div class="noprint hidden-lg hidden-md">
+          <div class="">
+            <div class="portlet-summary portlet-summary-chrome" id="PortletSummaryROA"> 
+              <div class="row">
+                <div class="col-md-12 hidden-lg hidden-md">
+                  <div class="tyler-toggle-controller noprint ">
+                    <button class="btn btn-default pull-right" type="button"
+                            onclick="document.getElementById('PrintMenuToggle').click()">
+                      <span>
+                        Print
+                      </span>
+                    </button>
+                  </div>
+                    <span class="pull-right">&nbsp;</span>
+                    <span class="pull-right">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+                    </span>
+                </div>
+              </div>
+              <div class="tyler-toggle-controller noprint">
+                <a id="PrintMenuToggle" class="pseudoToggle"></a>
+              </div>
+              <div class="tyler-toggle-container tyler-hide noprint row-space">
+                <div class="hidden-lg hidden-md">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <br />
+                        <div id="PrintDiv896702087" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx896702087" type="checkbox" checked="checked" aria-label="Select All"/>
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv896702087_Print" type="checkbox" checked="checked" aria-label="Select Case Information"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection896702087_Print" type="checkbox" checked="checked" aria-label="Select Party"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection896702087_Print" type="checkbox" checked="checked" aria-label="Select Events and Hearings"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="FinancialInfoPrintSection896702087_Print" type="checkbox" checked="checked" aria-label="Select Financial"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Financial</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" id="SectionPrintButton896702087" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  $("#SelectAllSectionsChkBx896702087").click(function () {
+    if ($("#SelectAllSectionsChkBx896702087").prop("checked")) {
+      $("#PrintDiv896702087 input:checkbox").prop("checked", true);
+    }
+    else {
+      $("#PrintDiv896702087 input:checkbox").prop("checked", false);
+    }
+  });
+
+  $("#SectionPrintButton896702087").click(function () {
+    $("#PrintDiv896702087 :checkbox").each(function () {
+      try {
+        var section = '#' + this.id.replace('896702087_Print', '');
+        if ($(this).prop('checked')) {
+          if ($(section).hasClass("noprint")) {
+            $(section).removeClass("noprint");
+          }
+        }
+        else {
+          if (!$(section).hasClass("noprint")) {
+            $(section).addClass("noprint");
+          }
+        }
+      }
+      catch (err) {
+      }
+    });
+    window.print();
+  });
+
+</script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portlet-summary-actions row-space">
+                <ul class="list-unstyled">
+                  <li>
+                    <div id="SubscribeContainerToggle" class="tyler-toggle-controller"></div>
+                    <div class="tyler-toggle-container tyler-shadow-outer tyler-rounded-0-0-5-5 tyler-hide panel panel-default">
+                      <div id="ajax-loader">
+                        <div class="tt-busy-indicator ng-isolate-scope">
+                          <div class="icon">
+                            <div class="rect rect1"></div>
+                            <div class="rect rect2"></div>
+                            <div class="rect rect3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body" id="case-subscribe-container" data-user-id="1" data-case-id="3765793">
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="anchor" id="CaseInformation"></a>
+        <div id="caseInformationDiv" class="section">
+          <div class="panel panel-default">
+            <div id="divCaseInformation_body" class="panel-body">
+              <div class="row" id="divCaseInformation_header">
+                <div class="col-md-12">
+                  <h1>Case Information</h1>
+                  <br />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-primary">
+                    21D06499 | owner: VSPATL c/o SYLVAN HOMES LLC VS UNAUTHORIZED OCCUPANTS
+                    <br />
+                    <br />
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Number</span><br />
+                      21D06499
+                    </p>
+                </div>
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">Court</span><br />
+                    Division 0
+                  </p>
+                </div>
+                  <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Judicial Officer</span><br />
+                      Anderson, Berryl A
+                    </p>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">File Date</span><br />
+                    05/12/2021
+                  </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Type</span><br />
+                      Magistrate Dispossessory  - Tenant Holding Over
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Status</span><br />
+                      Open
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          <div id="CasePartiesPrintSection" class="section">
+            <a class="anchor" id="PartyInformation"></a>
+            
+
+<div class="panel panel-default">
+  <div id="partyInformationDiv" class="panel-body">
+    <div class="row" id="divPartyInformation_header">
+      <div class="col-md-12">
+        <h1>Party</h1>
+      </div>
+    </div>
+    <div id="divPartyInformation_body">
+
+            <div class="row row-buff tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Respondant
+ (Participant)                       <br />
+                    </span>
+                    BRANTLEY, CHEKASHA
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1431 COBB BRANCH DR<br />
+
+
+
+
+DECATUR GA 30032</p>
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Plaintiff
+                      <br />
+                    </span>
+                    owner: VSPATL c/o SYLVAN HOMES LLC
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+3495 PIEDMONT ROAD, BDLG 11, SUTIE 302<br />
+
+
+
+
+
+
+
+
+ATLANTA GA 30305</p>
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div>
+      <div>
+        <span class="text-muted">Lead Attorney</span>
+
+          <div>
+            <div>
+              
+                Wilson, Lynn M.
+            </div>
+          </div>
+      </div>
+        <p>Retained</p>
+
+
+
+
+    </div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br />
+                    </span>
+                    OCCUPANTS, UNAUTHORIZED
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+1431 COVV BRANCH DR<br />
+
+
+
+
+
+
+
+
+DECATUR GA 30032</p>
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+
+    </div>
+  </div>
+</div>
+
+          </div>
+          <div id="OtherEventsPrintSection" class="section">
+            <a class="anchor" id="OtherEvents"></a>
+            
+
+<div class="panel panel-default">
+  <div id="eventsInformationDiv" class="panel-body">
+    <div class="row" id="divEventsInformation_header">
+      <div class="col-md-12">
+        <h1>Events and Hearings</h1><br />
+      </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Dispossessory Warrant">
+    <div>
+      <p class="text-primary">
+        05/12/2021   Dispossessory Warrant
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Answer and Counterclaim">
+    <div>
+      <p class="text-primary">
+        05/26/2021   Answer and Counterclaim
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Affidavit of Service">
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        05/28/2021   Affidavit of Service
+        
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      ANS BY 5/27/2021
+    </p>
+
+    </div>
+</div>
+
+        </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+          <div id="FinancialInfoPrintSection" class="section">
+            <a class="anchor" id="FinancialInfo"></a>
+            <div id="financialInformationDiv" class="roa party-information tyler-rounded-5 tyler-shadow-outer-below">
+              <div id="divFinancialInformation_header" data-loaded="false">
+              </div>
+              <div id="divFinancialInformation_body" class="panel panel-default">
+                <div class="row row-buff">
+                  <div class="text-center loadingmessagediv"><div class="tt-busy-indicator ng-isolate-scope"><div class="icon"><div class="rect rect1"></div>  <div class="rect rect2"></div>  <div class="rect rect3"></div></div></div></div><p></p><div class="text-center">Loading financial, please wait...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+</form>      <p class="noprint" style="height:750px;"></p>
+
+    <div style="display: none;" id="SmartSearch3rdTab"></div>
+
+  </div>
+
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <div class="sidebar affix" style="top: auto;">
+      <p>
+        <div class="tyler-toggle-controller noprint row">
+          <div class="col-md-12">
+            <button class="btn btn-default btn-block" type="button"
+                    onclick="toggleElementVisible('PrintMask'); toggleElementVisible('PrintNav');">
+              <span>
+                Print
+              </span>
+            </button>
+          </div>
+        </div>
+      </p>
+      <div id="PrintNav" class="tyler-hide row noprint">
+        <div class="col-md-12">
+          <div class="panel panel-default print-dialog">
+            <div class="panel-body">
+              <br />
+
+                <div id="PrintDiv896702087" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx896702087" type="checkbox" checked="checked" aria-label="Select All"/>
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv896702087_Print" type="checkbox" checked="checked" aria-label="Select Case Information"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection896702087_Print" type="checkbox" checked="checked" aria-label="Select Party"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection896702087_Print" type="checkbox" checked="checked" aria-label="Select Events and Hearings"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="FinancialInfoPrintSection896702087_Print" type="checkbox" checked="checked" aria-label="Select Financial"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Financial</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" id="SectionPrintButton896702087" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  $("#SelectAllSectionsChkBx896702087").click(function () {
+    if ($("#SelectAllSectionsChkBx896702087").prop("checked")) {
+      $("#PrintDiv896702087 input:checkbox").prop("checked", true);
+    }
+    else {
+      $("#PrintDiv896702087 input:checkbox").prop("checked", false);
+    }
+  });
+
+  $("#SectionPrintButton896702087").click(function () {
+    $("#PrintDiv896702087 :checkbox").each(function () {
+      try {
+        var section = '#' + this.id.replace('896702087_Print', '');
+        if ($(this).prop('checked')) {
+          if ($(section).hasClass("noprint")) {
+            $(section).removeClass("noprint");
+          }
+        }
+        else {
+          if (!$(section).hasClass("noprint")) {
+            $(section).addClass("noprint");
+          }
+        }
+      }
+      catch (err) {
+      }
+    });
+    window.print();
+  });
+
+</script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="PrintMask">
+                  <p>
+            <div class="row">
+              <div class="col-md-12">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+              </div>
+            </div>
+          </p>
+        <div class="row">
+          <div class="col-md-12">
+            
+    <nav id="mysidebar" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+      <div>
+        <ul class="nav bs-docs-sidenav">
+            <li><a href="#CaseInformation">Case Information</a></li>
+            <li><a href="#PartyInformation">Party</a></li>
+            <li><a href="#OtherEvents">Events and Hearings</a></li>
+            <li><a href="#FinancialInfo">Financial</a></li>
+        </ul>
+        <a id="BackToTop" class="back-to-top" href="#top">Back to top</a>
+      </div>
+    </nav>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#divFinancialInformation_header").click();
+  });
+
+  function toggleElementVisible (id){
+    if($("#"+id).hasClass("tyler-hide"))
+    {
+      $("#"+id).removeClass("tyler-hide");
+    }
+    else
+    {
+      $("#"+id).addClass("tyler-hide");
+    }
+  }
+</script>
