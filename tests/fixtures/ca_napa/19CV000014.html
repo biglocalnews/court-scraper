@@ -1,0 +1,1007 @@
+
+<script src="/Secure/Scripts/portlets/portlet.roa.js"></script>
+<script src="/Secure/Scripts/portlets/plugin.portlet.workspacemode.js"></script>
+
+<style type="text/css" media="print" id="roa-print-style">
+  @page {
+    size: portrait;
+  }
+</style>
+<script>
+  //Force the document to the top on load.
+  //This was not happening automatically in Safari. 
+  $(document).scrollTop(0);
+
+  $(function () {
+    RoaPage.init(
+      '/Secure/Alerts/ViewAll/SubscriptionPartial',
+      '/Secure/Alerts/ViewAll/ModifySubscription',
+      '/Secure/Alerts/ViewAll/ModifyAllSubscriptions',
+      '/Secure/MyPortal/MyPortal/BookmarkCase',
+      '/Secure/Case/CaseDetail/LoadFinancialInformation?caseId=480907'
+    );
+
+    $.Enumerable.From($(".document-download")).ForEach( function(e){
+      var ele = $(e);
+      ele.attr("href", ele.attr("href")
+        + "&caseNum=19CV000014"
+        + "&locationId=11220"
+        +"&caseId=tm7H4OMPUGaOago6x16sDw2" );
+    });
+
+    pluginWorkspaceMode.init();
+
+    TabControl.TabRenderComplete($("#PortletSummaryROA"), true);
+  });
+</script>
+
+
+
+<div class="row" id="PortletSummaryROA">
+  <div class="col-md-9">
+
+<form action="/Secure/Case/CaseDetail" class="register-of-actions expand-collapse-group" method="post">        <div class="noprint hidden-lg hidden-md">
+          <div class="">
+            <div class="portlet-summary portlet-summary-chrome" id="PortletSummaryROA">
+              <div class="row">
+                <div class="col-md-12 hidden-lg hidden-md">
+                  <div class="tyler-toggle-controller noprint ">
+                    <button class="btn btn-default pull-right" type="button"
+                            onclick="document.getElementById('PrintMenuToggle').click()">
+                      <span>
+                        Print
+                      </span>
+                    </button>
+                  </div>
+                    <span class="pull-right">&nbsp;</span>
+                    <span class="pull-right">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+                    </span>
+                </div>
+              </div>
+              <div class="tyler-toggle-controller noprint">
+                <a id="PrintMenuToggle" class="pseudoToggle"></a>
+              </div>
+              <div class="tyler-toggle-container tyler-hide noprint row-space">
+                <div class="hidden-lg hidden-md">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <br />
+                        <div id="PrintDiv7" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx7" type="checkbox" checked="checked" />
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="DispositionEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Disposition Events</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" onclick="event.preventDefault()" id="SectionPrintButton7" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#SectionPrintButton7").click(function () {
+      $("#PrintDiv7 :checkbox").each(function (index, element) {
+
+        try {
+          var section = '#' + this.id.replace('_Print', '');
+          if ($(this).prop('checked')) {
+            if ($(section).hasClass("noprint")) {
+              $(section).removeClass("noprint");
+            }
+          }
+          else {
+            if (!$(section).hasClass("noprint")) {
+              $(section).addClass("noprint");
+            }
+          }
+        }
+        catch (err) {
+
+        }
+      });
+      window.print();
+    });
+
+    $("#SelectAllSectionsChkBx7").click(function () {
+      if ($("#SelectAllSectionsChkBx7").prop("checked")) {
+        $("#PrintDiv7 input:checkbox").prop("checked", true);
+      }
+      else {
+        $("#PrintDiv7 input:checkbox").prop("checked", false);
+      }
+    });
+  });
+
+</script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portlet-summary-actions row-space">
+                <ul class="list-unstyled">
+                  <li>
+                    <div id="SubscribeContainerToggle" class="tyler-toggle-controller"></div>
+                    <div class="tyler-toggle-container tyler-shadow-outer tyler-rounded-0-0-5-5 tyler-hide panel panel-default">
+                      <div id="ajax-loader">
+                        <div class="tt-busy-indicator ng-isolate-scope">
+                          <div class="icon">
+                            <div class="rect rect1"></div>
+                            <div class="rect rect2"></div>
+                            <div class="rect rect3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body" id="case-subscribe-container" data-user-id="1" data-case-id="480907">
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="anchor" id="CaseInformation"></a>
+        <div id="caseInformationDiv" class="section">
+          <div class="panel panel-default">
+            <div id="divCaseInformation_body" class="panel-body">
+              <div class="row" id="divCaseInformation_header">
+                <div class="col-md-12">
+                  <h1>Case Information</h1>
+                  <br />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-primary">
+                    19CV000014 | Cryrag, Inc. vs Ricardo Lemus et al
+                    <br />
+                    <br />
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Number</span><br />
+                      19CV000014
+                    </p>
+                </div>
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">Court</span><br />
+                    Superior Court of Napa - Civil
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">File Date</span><br />
+                    01/03/2019
+                  </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Type</span><br />
+                      Unlawful Detainer Residential Limited (32) - under 10,000
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Status</span><br />
+                      Inactive
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          <div id="CasePartiesPrintSection" class="section">
+            <a class="anchor" id="PartyInformation"></a>
+            
+
+<div class="panel panel-default">
+  <div id="partyInformationDiv" class="panel-body">
+    <div class="row" id="divPartyInformation_header">
+      <div class="col-md-12">
+        <h1>Party</h1>
+      </div>
+    </div>
+    <div id="divPartyInformation_body">
+
+            <div class="row row-buff tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Plaintiff
+                      <br />
+                    </span>
+                    Cryrag, Inc.
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div>
+      <div>
+        <span class="text-muted">Lead Attorney</span>
+
+          <div>
+            <div>
+              
+                Myers, Alexander James
+            </div>
+          </div>
+      </div>
+        <p>Retained</p>
+
+
+
+        <p>
+          <span class="text-muted">Work Phone</span><br />
+          707-257-1185
+        </p>
+
+    </div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br />
+                    </span>
+                    Lemus, Ricardo
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+39 Coombs ST<br />
+
+
+
+
+Napa CA 94559</p>
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div style="padding-left:10px" class=tyler-bold>Pro Se</div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br />
+                    </span>
+                    Patsias, Athanasia
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+39 Coombs ST<br />
+
+
+
+
+Napa CA 94559</p>
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div style="padding-left:10px" class=tyler-bold>Pro Se</div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+
+    </div>
+  </div>
+</div>
+
+          </div>
+          <div id="DispositionEventsPrintSection" class="section">
+            <a class="anchor" id="DispositionEvents"></a>
+            
+
+
+<div class="panel panel-default">
+  <div id="dispositionInformationDiv" class="panel-body">
+    <div class="row" id="divDispositionInformation_header">
+      <div class="col-md-12">
+        <h1>Disposition Events</h1>
+      </div>
+    </div>
+    <div class="row-buff">
+
+<div class="row-buff">
+  <div class="tyler-toggle-controller open"><p class="text-primary">02/08/2019   <text>Judgment</text><span class="caret"> </span></p></div>
+  <div class="tyler-toggle-container row-buff" style="display: block;">
+
+    <hr />
+
+
+      <p>
+        <span>Judgment Type</span><br />
+        Judgment - Court Finding
+      </p>
+
+    <hr />
+
+            <div class="JudgmentEvent">
+                  <table width="100%" style="table-layout: fixed;" cellspacing="0" cellpadding="0">
+        <colgroup>
+            <col width="20">
+            <col width="*">
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="ssMenuText ssSmallText" colspan="2">
+                  <p class="text-primary">
+                    Party
+                  </p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="ssMenuText ssSmallText">
+                    
+                    
+
+
+                    <p>
+                        <span class="tyler-color-muted">Names:</span>
+
+                        
+                        
+                                    <span>Cryrag, Inc.</span>
+                                    <div style="padding-left: 20px">
+                                        <p>Lemus, Ricardo</p>
+                                    </div>
+                                    <div style="padding-left: 20px">
+                                        <p>Patsias, Athanasia</p>
+                                    </div>
+                    </p>
+
+                    
+
+                </td>
+            </tr>
+    </table>
+    <hr />
+
+
+
+
+
+            </div>
+          <br />
+        <hr />
+
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+          </div>
+          <div id="OtherEventsPrintSection" class="section">
+            <a class="anchor" id="OtherEvents"></a>
+            
+
+<div class="panel panel-default">
+  <div id="eventsInformationDiv" class="panel-body">
+    <div class="row" id="divEventsInformation_header">
+      <div class="col-md-12">
+        <h1>Events and Hearings</h1><br />
+      </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/03/2019   Civil Case Cover Sheet
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/03/2019   Complaint-Unlawful Detainer (Limited): Up to $10K
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/03/2019   Summons: Issued and Filed
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/03/2019   Unlawful Detainer - Defendant&#39;s Notice
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/03/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/03/2019   UD: Complaint Filed
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/08/2019   Answer (Limited): Up to $10K
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/09/2019   Fee Waiver Granted
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/09/2019   Fee Waiver Granted
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/23/2019   Proof of Service
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/23/2019   Proof of Service
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/23/2019   Proof of Service
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        01/23/2019   Request
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      to Set Case for Trial
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/23/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/08/2019
+        Court Trial: Short Cause
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Langhorne, Monique
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        9:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      TE: 30 Minutes
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/08/2019   Judgment
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/08/2019   UD: Judgment Against All Def Within 60 Days
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/11/2019   Writ (Issued)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/11/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/11/2019   Writ (Filed)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/11/2019   Writ (Issued)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      POSSESSION ONLY Napa County
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/25/2019   Writ (Filed)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      County of Napa
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/01/2019
+        OSC: Court&#39;s Motion to Dismiss
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Cancel Reason</span><br />
+        Vacated
+      </p>
+
+    </div>
+</div>
+
+        </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+</form>      <p class="noprint" style="height:750px;"></p>
+
+    <div style="display: none;" id="SmartSearch3rdTab"></div>
+
+  </div>
+
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <div class="sidebar affix" style="top: auto;">
+      <p>
+        <div class="tyler-toggle-controller noprint row">
+          <div class="col-md-12">
+            <button class="btn btn-default btn-block" type="button"
+                    onclick="toggleElementVisible('PrintMask'); toggleElementVisible('PrintNav');">
+              <span>
+                Print
+              </span>
+            </button>
+          </div>
+        </div>
+      </p>
+      <div id="PrintNav" class="tyler-hide row noprint">
+        <div class="col-md-12">
+          <div class="panel panel-default print-dialog">
+            <div class="panel-body">
+              <br />
+
+                <div id="PrintDiv7" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx7" type="checkbox" checked="checked" />
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="DispositionEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Disposition Events</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" onclick="event.preventDefault()" id="SectionPrintButton7" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#SectionPrintButton7").click(function () {
+      $("#PrintDiv7 :checkbox").each(function (index, element) {
+
+        try {
+          var section = '#' + this.id.replace('_Print', '');
+          if ($(this).prop('checked')) {
+            if ($(section).hasClass("noprint")) {
+              $(section).removeClass("noprint");
+            }
+          }
+          else {
+            if (!$(section).hasClass("noprint")) {
+              $(section).addClass("noprint");
+            }
+          }
+        }
+        catch (err) {
+
+        }
+      });
+      window.print();
+    });
+
+    $("#SelectAllSectionsChkBx7").click(function () {
+      if ($("#SelectAllSectionsChkBx7").prop("checked")) {
+        $("#PrintDiv7 input:checkbox").prop("checked", true);
+      }
+      else {
+        $("#PrintDiv7 input:checkbox").prop("checked", false);
+      }
+    });
+  });
+
+</script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="PrintMask">
+                  <p>
+            <div class="row">
+              <div class="col-md-12">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+              </div>
+            </div>
+          </p>
+        <div class="row">
+          <div class="col-md-12">
+            
+    <nav id="mysidebar" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+      <div>
+        <ul class="nav bs-docs-sidenav">
+            <li><a href="#CaseInformation" css=&quot;hidden-lg hidden-md&quot;>Case Information</a></li>
+            <li><a href="#PartyInformation" >Party</a></li>
+            <li><a href="#DispositionEvents" >Disposition Events</a></li>
+            <li><a href="#OtherEvents" >Events and Hearings</a></li>
+        </ul>
+        <a id="BackToTop" class="back-to-top" href="#top">Back to top</a>
+      </div>
+    </nav>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#divFinancialInformation_header").click();
+  });
+
+  function toggleElementVisible (id){
+    if($("#"+id).hasClass("tyler-hide"))
+    {
+      $("#"+id).removeClass("tyler-hide");
+    }
+    else
+    {
+      $("#"+id).addClass("tyler-hide");
+    }
+  }
+</script>
