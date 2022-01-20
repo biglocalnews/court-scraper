@@ -1,0 +1,734 @@
+
+<!-- saved from url=(0104)https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail?eid=3uxht_DvUfS52t37HAP95w2&amp;tabIndex=3 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./17-2-01460-31_files/portlet.roa.js"></script>
+<script src="./17-2-01460-31_files/plugin.portlet.workspacemode.js"></script>
+
+<style type="text/css" media="print" id="roa-print-style">
+  @page {
+    size: portrait;
+  }
+</style>
+
+<script type="text/javascript">
+  //Force the document to the top on load.
+  //This was not happening automatically in Safari.
+  $(document).scrollTop(0);
+
+  $(function () {
+    RoaPage.init(
+      '/ODYPORTAL/Alerts/ViewAll/SubscriptionPartial',
+      '/ODYPORTAL/Alerts/ViewAll/ModifySubscription',
+      '/ODYPORTAL/Alerts/ViewAll/ModifyAllSubscriptions',
+      '/ODYPORTAL/MyPortal/MyPortal/BookmarkCase',
+      '/ODYPORTAL/Case/CaseDetail/LoadFinancialInformation?caseId=2245047'
+    );
+
+    $(".document-download").each(function(i, e) {
+      var $e = $(e);
+      var newParams = {
+        caseNum: "17-2-01460-31",
+        locationId: "410",
+        caseId: "3uxht_DvUfS52t37HAP95w2"
+      };
+      var docType = $e.data('doc-doctype');
+      var docName = $e.data('doc-docname');
+      var eventName = $e.closest('.portal-case-event').data('event-description');
+
+      // Each of these are added separately to keep the URL shorter if they have no value
+      if (docType) {
+        newParams.docType = docType;
+      }
+      if (docName) {
+        newParams.docName = docName;
+      }
+      if (eventName) {
+        newParams.eventName = eventName;
+      }
+
+      $e.attr('href', addQueryStringParams($e.attr("href"), newParams));
+    });
+
+    pluginWorkspaceMode.init();
+
+    TabControl.TabRenderComplete($("#PortletSummaryROA"), true);
+    // TODO: Possible 'System.NullReferenceException'        ^^^^^
+
+    /**
+     * This updates the url parameters in a URL with the given parameters
+     */
+    function addQueryStringParams(url, newParams) {
+      url = url || '';
+      var encParams = $.param(newParams);
+      if (encParams.length === 0){
+        return url;
+      }
+      var hparts = url.split('#');
+      var qparts = hparts[0].split('?');
+      if (qparts.length > 1) {
+        qparts[1] = qparts[1] + "&" + encParams;
+      } else {
+        qparts.push(encParams);
+      }
+      hparts[0] = qparts.join('?');
+      return hparts.join("#");
+    }
+  });
+</script>
+
+
+
+</head><body><div class="row" id="PortletSummaryROA"> 
+  <div class="col-md-9">
+
+<form action="https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail" class="register-of-actions expand-collapse-group" method="post">        <div class="noprint hidden-lg hidden-md">
+          <div class="">
+            <div class="portlet-summary portlet-summary-chrome" id="PortletSummaryROA"> 
+              <div class="row">
+                <div class="col-md-12 hidden-lg hidden-md">
+                  <div class="tyler-toggle-controller noprint ">
+                    <button class="btn btn-default pull-right" type="button" onclick="document.getElementById(&#39;PrintMenuToggle&#39;).click()">
+                      <span>
+                        Print
+                      </span>
+                    </button>
+                  </div>
+                    <span class="pull-right">&nbsp;</span>
+                    <span class="pull-right">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+                    </span>
+                </div>
+              </div>
+              <div class="tyler-toggle-controller noprint">
+                <a id="PrintMenuToggle" class="pseudoToggle"></a>
+              </div>
+              <div class="tyler-toggle-container tyler-hide noprint row-space">
+                <div class="hidden-lg hidden-md">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <br>
+                        <div id="PrintDiv475856594" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx475856594" type="checkbox" checked="checked" aria-label="Select All">
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv475856594_Print" type="checkbox" checked="checked" aria-label="Select Case Information">
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection475856594_Print" type="checkbox" checked="checked" aria-label="Select Party">
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection475856594_Print" type="checkbox" checked="checked" aria-label="Select Events and Hearings">
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail?eid=3uxht_DvUfS52t37HAP95w2&amp;amp;tabIndex=3#" id="SectionPrintButton475856594" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  $("#SelectAllSectionsChkBx475856594").click(function () {
+    if ($("#SelectAllSectionsChkBx475856594").prop("checked")) {
+      $("#PrintDiv475856594 input:checkbox").prop("checked", true);
+    }
+    else {
+      $("#PrintDiv475856594 input:checkbox").prop("checked", false);
+    }
+  });
+
+  $("#SectionPrintButton475856594").click(function () {
+    $("#PrintDiv475856594 :checkbox").each(function () {
+      try {
+        var section = '#' + this.id.replace('475856594_Print', '');
+        if ($(this).prop('checked')) {
+          if ($(section).hasClass("noprint")) {
+            $(section).removeClass("noprint");
+          }
+        }
+        else {
+          if (!$(section).hasClass("noprint")) {
+            $(section).addClass("noprint");
+          }
+        }
+      }
+      catch (err) {
+      }
+    });
+    window.print();
+  });
+
+</script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portlet-summary-actions row-space">
+                <ul class="list-unstyled">
+                  <li>
+                    <div id="SubscribeContainerToggle" class="tyler-toggle-controller"></div>
+                    <div class="tyler-toggle-container tyler-shadow-outer tyler-rounded-0-0-5-5 tyler-hide panel panel-default">
+                      <div id="ajax-loader">
+                        <div class="tt-busy-indicator ng-isolate-scope">
+                          <div class="icon">
+                            <div class="rect rect1"></div>
+                            <div class="rect rect2"></div>
+                            <div class="rect rect3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body" id="case-subscribe-container" data-user-id="1" data-case-id="2245047">
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="anchor" id="CaseInformation"></a>
+        <div id="caseInformationDiv" class="section">
+          <div class="panel panel-default">
+            <div id="divCaseInformation_body" class="panel-body">
+              <div class="row" id="divCaseInformation_header">
+                <div class="col-md-12">
+                  <h1>Case Information</h1>
+                  <br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-primary">
+                    17-2-01460-31 | Griffis Group Residential vs Brandon Thompson **DISMISSED**
+                    <br>
+                    <br>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Number</span><br>
+                      17-2-01460-31
+                    </p>
+                </div>
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">Court</span><br>
+                    Snohomish
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">File Date</span><br>
+                    02/17/2017
+                  </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Type</span><br>
+                      UND Residential Unlawful Detainer
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Status</span><br>
+                      Completed/Re-Completed
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          <div id="CasePartiesPrintSection" class="section">
+            <a class="anchor" id="PartyInformation"></a>
+            
+
+<div class="panel panel-default">
+  <div id="partyInformationDiv" class="panel-body">
+    <div class="row" id="divPartyInformation_header">
+      <div class="col-md-12">
+        <h1>Party</h1>
+      </div>
+    </div>
+    <div id="divPartyInformation_body">
+
+            <div class="row row-buff tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Plaintiff
+                      <br>
+                    </span>
+                    Griffis Group Residential
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div>
+      <div>
+        <span class="text-muted">Lead Attorney</span>
+
+          <div>
+            <div>
+              
+                NOVACK, LAUREN LESLIE
+            </div>
+          </div>
+      </div>
+        <p>Retained</p>
+
+
+
+
+    </div>
+  <div>
+    <hr>
+  </div>
+
+    <div>
+      <div>
+        <span class="text-muted"> Attorney</span>
+
+            <div>REDFORD, RANDALL W</div>
+      </div>
+        <p>Retained</p>
+
+
+
+
+    </div>
+  <div>
+    <hr>
+  </div>
+
+    <div>
+      <div>
+        <span class="text-muted"> Attorney</span>
+
+            <div>WALSH, MICHAEL SEAN</div>
+      </div>
+        <p>Retained</p>
+
+
+
+
+    </div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br>
+                    </span>
+                    Thompson, Brandon
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+
+    </div>
+  </div>
+</div>
+
+          </div>
+          <div id="OtherEventsPrintSection" class="section">
+            <a class="anchor" id="OtherEvents"></a>
+            
+
+<div class="panel panel-default">
+  <div id="eventsInformationDiv" class="panel-body">
+    <div class="row" id="divEventsInformation_header">
+      <div class="col-md-12">
+        <h1>Events and Hearings</h1><br>
+      </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Summons">
+    <div>
+      <p class="text-primary">
+        02/17/2017   Summons
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Complaint">
+    <div>
+      <p class="text-primary">
+        02/17/2017   Complaint
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Case Information Cover Sheet">
+    <div>
+      <p class="text-primary">
+        02/17/2017   Case Information Cover Sheet
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Statement">
+    <div>
+      <p class="text-primary">
+        02/17/2017   Statement
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Motion and Affidavit Declaration">
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/17/2017   Motion and Affidavit Declaration
+        
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br>
+      Re Alternative Service
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Order Re Service">
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/17/2017   Order Re Service
+        
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-3 col-md-3">
+      <span class="text-muted">Judicial Officer</span><br>
+      Gaer, Susan C
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Ex Parte Action With Order">
+    <div>
+      <p class="text-primary">
+        02/17/2017   Ex Parte Action With Order
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Clerks Notice for Dismissal for Want of Prosecution">
+    <div>
+      <p class="text-primary">
+        02/13/2019   Clerks Notice for Dismissal for Want of Prosecution
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Clerks Order of Dismissal">
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        04/03/2019   Clerks Order of Dismissal
+        
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-3 col-md-3">
+      <span class="text-muted">Judicial Officer</span><br>
+      Tinney, Lee B
+    </p>
+    <p class="col-sm-9 col-md-9">
+      <span class="text-muted">Comment</span><br>
+      ****************************************
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Ex Parte Action With Order">
+    <div>
+      <p class="text-primary">
+        04/03/2019   Ex Parte Action With Order
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Case Resolution Dismissal Closure by Clerk">
+    <div>
+      <p class="text-primary">
+        04/03/2019   Case Resolution Dismissal Closure by Clerk
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+</form>      <p class="noprint" style="height:750px;"></p>
+
+    <div style="display: none;" id="SmartSearch3rdTab"></div>
+
+  </div>
+
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <div class="sidebar affix" style="top: auto;">
+      <p>
+        </p><div class="tyler-toggle-controller noprint row">
+          <div class="col-md-12">
+            <button class="btn btn-default btn-block" type="button" onclick="toggleElementVisible(&#39;PrintMask&#39;); toggleElementVisible(&#39;PrintNav&#39;);">
+              <span>
+                Print
+              </span>
+            </button>
+          </div>
+        </div>
+      <p></p>
+      <div id="PrintNav" class="tyler-hide row noprint">
+        <div class="col-md-12">
+          <div class="panel panel-default print-dialog">
+            <div class="panel-body">
+              <br>
+
+                <div id="PrintDiv475856594" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx475856594" type="checkbox" checked="checked" aria-label="Select All">
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv475856594_Print" type="checkbox" checked="checked" aria-label="Select Case Information">
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection475856594_Print" type="checkbox" checked="checked" aria-label="Select Party">
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection475856594_Print" type="checkbox" checked="checked" aria-label="Select Events and Hearings">
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail?eid=3uxht_DvUfS52t37HAP95w2&amp;amp;tabIndex=3#" id="SectionPrintButton475856594" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  $("#SelectAllSectionsChkBx475856594").click(function () {
+    if ($("#SelectAllSectionsChkBx475856594").prop("checked")) {
+      $("#PrintDiv475856594 input:checkbox").prop("checked", true);
+    }
+    else {
+      $("#PrintDiv475856594 input:checkbox").prop("checked", false);
+    }
+  });
+
+  $("#SectionPrintButton475856594").click(function () {
+    $("#PrintDiv475856594 :checkbox").each(function () {
+      try {
+        var section = '#' + this.id.replace('475856594_Print', '');
+        if ($(this).prop('checked')) {
+          if ($(section).hasClass("noprint")) {
+            $(section).removeClass("noprint");
+          }
+        }
+        else {
+          if (!$(section).hasClass("noprint")) {
+            $(section).addClass("noprint");
+          }
+        }
+      }
+      catch (err) {
+      }
+    });
+    window.print();
+  });
+
+</script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="PrintMask">
+                  <p>
+            </p><div class="row">
+              <div class="col-md-12">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+              </div>
+            </div>
+          <p></p>
+        <div class="row">
+          <div class="col-md-12">
+            
+    <nav id="mysidebar" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+      <div>
+        <ul class="nav bs-docs-sidenav">
+            <li><a href="https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail?eid=3uxht_DvUfS52t37HAP95w2&amp;amp;tabIndex=3#CaseInformation">Case Information</a></li>
+            <li><a href="https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail?eid=3uxht_DvUfS52t37HAP95w2&amp;amp;tabIndex=3#PartyInformation">Party</a></li>
+            <li><a href="https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail?eid=3uxht_DvUfS52t37HAP95w2&amp;amp;tabIndex=3#OtherEvents">Events and Hearings</a></li>
+        </ul>
+        <a id="BackToTop" class="back-to-top" href="https://odysseyportal.courts.wa.gov/ODYPORTAL/Case/CaseDetail?eid=3uxht_DvUfS52t37HAP95w2&amp;amp;tabIndex=3#top">Back to top</a>
+      </div>
+    </nav>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#divFinancialInformation_header").click();
+  });
+
+  function toggleElementVisible (id){
+    if($("#"+id).hasClass("tyler-hide"))
+    {
+      $("#"+id).removeClass("tyler-hide");
+    }
+    else
+    {
+      $("#"+id).addClass("tyler-hide");
+    }
+  }
+</script>
+</body></html>

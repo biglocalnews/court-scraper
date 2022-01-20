@@ -1,0 +1,739 @@
+
+<script src="/Portal/Scripts/portlets/portlet.roa.js"></script>
+<script src="/Portal/Scripts/portlets/plugin.portlet.workspacemode.js"></script>
+
+<style type="text/css" media="print" id="roa-print-style">
+  @page {
+    size: portrait;
+  }
+</style>
+
+<script type="text/javascript">
+  //Force the document to the top on load.
+  //This was not happening automatically in Safari.
+  $(document).scrollTop(0);
+
+  $(function () {
+    RoaPage.init(
+      '/Portal/Alerts/ViewAll/SubscriptionPartial',
+      '/Portal/Alerts/ViewAll/ModifySubscription',
+      '/Portal/Alerts/ViewAll/ModifyAllSubscriptions',
+      '/Portal/MyPortal/MyPortal/BookmarkCase',
+      '/Portal/Case/CaseDetail/LoadFinancialInformation?caseId=2760472'
+    );
+
+    $(".document-download").each(function(i, e) {
+      var $e = $(e);
+      var newParams = {
+        caseNum: "MGCV17-11099",
+        locationId: "3300",
+        caseId: "4VAjdxv-BTxuCup6yua-Nw2"
+      };
+      var docType = $e.data('doc-doctype');
+      var docName = $e.data('doc-docname');
+      var eventName = $e.closest('.portal-case-event').data('event-description');
+
+      // Each of these are added separately to keep the URL shorter if they have no value
+      if (docType) {
+        newParams.docType = docType;
+      }
+      if (docName) {
+        newParams.docName = docName;
+      }
+      if (eventName) {
+        newParams.eventName = eventName;
+      }
+
+      $e.attr('href', addQueryStringParams($e.attr("href"), newParams));
+    });
+
+    pluginWorkspaceMode.init();
+
+    TabControl.TabRenderComplete($("#PortletSummaryROA"), true);
+    // TODO: Possible 'System.NullReferenceException'        ^^^^^
+
+    /**
+     * This updates the url parameters in a URL with the given parameters
+     */
+    function addQueryStringParams(url, newParams) {
+      url = url || '';
+      var encParams = $.param(newParams);
+      if (encParams.length === 0){
+        return url;
+      }
+      var hparts = url.split('#');
+      var qparts = hparts[0].split('?');
+      if (qparts.length > 1) {
+        qparts[1] = qparts[1] + "&" + encParams;
+      } else {
+        qparts.push(encParams);
+      }
+      hparts[0] = qparts.join('?');
+      return hparts.join("#");
+    }
+  });
+</script>
+
+
+
+<div class="row" id="PortletSummaryROA"> 
+  <div class="col-md-9">
+
+<form action="/Portal/Case/CaseDetail" class="register-of-actions expand-collapse-group" method="post">        <div class="noprint hidden-lg hidden-md">
+          <div class="">
+            <div class="portlet-summary portlet-summary-chrome" id="PortletSummaryROA"> 
+              <div class="row">
+                <div class="col-md-12 hidden-lg hidden-md">
+                  <div class="tyler-toggle-controller noprint ">
+                    <button class="btn btn-default pull-right" type="button"
+                            onclick="document.getElementById('PrintMenuToggle').click()">
+                      <span>
+                        Print
+                      </span>
+                    </button>
+                  </div>
+                    <span class="pull-right">&nbsp;</span>
+                    <span class="pull-right">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+                    </span>
+                </div>
+              </div>
+              <div class="tyler-toggle-controller noprint">
+                <a id="PrintMenuToggle" class="pseudoToggle"></a>
+              </div>
+              <div class="tyler-toggle-container tyler-hide noprint row-space">
+                <div class="hidden-lg hidden-md">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <br />
+                        <div id="PrintDiv1344297805" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx1344297805" type="checkbox" checked="checked" aria-label="Select All"/>
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv1344297805_Print" type="checkbox" checked="checked" aria-label="Select Case Information"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection1344297805_Print" type="checkbox" checked="checked" aria-label="Select Party"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CauseInformationPrintSection1344297805_Print" type="checkbox" checked="checked" aria-label="Select Causes"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Causes</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection1344297805_Print" type="checkbox" checked="checked" aria-label="Select Events and Hearings"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" id="SectionPrintButton1344297805" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  $("#SelectAllSectionsChkBx1344297805").click(function () {
+    if ($("#SelectAllSectionsChkBx1344297805").prop("checked")) {
+      $("#PrintDiv1344297805 input:checkbox").prop("checked", true);
+    }
+    else {
+      $("#PrintDiv1344297805 input:checkbox").prop("checked", false);
+    }
+  });
+
+  $("#SectionPrintButton1344297805").click(function () {
+    $("#PrintDiv1344297805 :checkbox").each(function () {
+      try {
+        var section = '#' + this.id.replace('1344297805_Print', '');
+        if ($(this).prop('checked')) {
+          if ($(section).hasClass("noprint")) {
+            $(section).removeClass("noprint");
+          }
+        }
+        else {
+          if (!$(section).hasClass("noprint")) {
+            $(section).addClass("noprint");
+          }
+        }
+      }
+      catch (err) {
+      }
+    });
+    window.print();
+  });
+
+</script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portlet-summary-actions row-space">
+                <ul class="list-unstyled">
+                  <li>
+                    <div id="SubscribeContainerToggle" class="tyler-toggle-controller"></div>
+                    <div class="tyler-toggle-container tyler-shadow-outer tyler-rounded-0-0-5-5 tyler-hide panel panel-default">
+                      <div id="ajax-loader">
+                        <div class="tt-busy-indicator ng-isolate-scope">
+                          <div class="icon">
+                            <div class="rect rect1"></div>
+                            <div class="rect rect2"></div>
+                            <div class="rect rect3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body" id="case-subscribe-container" data-user-id="1" data-case-id="2760472">
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="anchor" id="CaseInformation"></a>
+        <div id="caseInformationDiv" class="section">
+          <div class="panel panel-default">
+            <div id="divCaseInformation_body" class="panel-body">
+              <div class="row" id="divCaseInformation_header">
+                <div class="col-md-12">
+                  <h1>Case Information</h1>
+                  <br />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-primary">
+                    MGCV17-11099 | TD Bank USA, N.A. vs Henry C. Monteith
+                    <br />
+                    <br />
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Number</span><br />
+                      MGCV17-11099
+                    </p>
+                </div>
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">Court</span><br />
+                    Magistrate Civil
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">File Date</span><br />
+                    08/14/2017
+                  </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Type</span><br />
+                      General Civil Other
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Status</span><br />
+                      Closed
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          <div id="CasePartiesPrintSection" class="section">
+            <a class="anchor" id="PartyInformation"></a>
+            
+
+<div class="panel panel-default">
+  <div id="partyInformationDiv" class="panel-body">
+    <div class="row" id="divPartyInformation_header">
+      <div class="col-md-12">
+        <h1>Party</h1>
+      </div>
+    </div>
+    <div id="divPartyInformation_body">
+
+            <div class="row row-buff tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Plaintiff
+                      <br />
+                    </span>
+                    TD Bank USA, N.A.
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div>
+      <div>
+        <span class="text-muted">Lead Attorney</span>
+
+          <div>
+            <div>
+              
+                Woolaston, Dorian
+            </div>
+          </div>
+      </div>
+        <p>Retained</p>
+
+
+
+
+    </div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br />
+                    </span>
+                    Monteith, Henry C.
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div style="padding-left:10px" class=tyler-bold>Pro Se</div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+
+    </div>
+  </div>
+</div>
+
+          </div>
+          <div id="CauseInformationPrintSection" class="section">
+            <a class="anchor" id="CauseInformation"></a>
+            
+<script type="text/javascript">
+  var CauseGridDataBound = function () {
+    $('.k-plus').parent().css('vertical-align', 'top');
+    
+    var dataSource = this.dataSource;
+    this.element.find('tr.k-master-row').each(function () {
+      var row = $(this);
+      var data = dataSource.getByUid(row.data('uid'));
+      if (data.get('CauseDescription') == null && data.get('Remedys').length == 0) {
+        row.find('.k-hierarchy-cell a').hide();
+      }
+    });
+  };
+  
+  var PartyNameList = [];
+  var PartyIdList = [];
+      
+        PartyNameList.push('TD Bank USA, N.A.');
+        PartyIdList.push(1201732);
+      
+      
+        PartyNameList.push('Woolaston, Dorian');
+        PartyIdList.push(1683836);
+      
+      
+        PartyNameList.push('Monteith, Henry C.');
+        PartyIdList.push(4417519);
+      
+
+</script>
+
+<div class="panel panel-default">
+  <div id="causeInformationDiv" class="panel-body">
+    <div class="row" id="divCauseInformation_header">
+      <div class="col-md-12">
+        <h1>Cause of Action</h1>
+      </div>
+    </div>
+    <div id="divCauseInformation_body" class="row row-buff">
+      <div class="col-md-12">
+        <div class="k-widget k-grid table-layout-fixed" id="CauseGrid"><table cellspacing="0"><colgroup><col /><col /><col /><col /><col /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-field="FiledDate" data-title="File Date" scope="col"><span class="k-link">File Date</span></th><th class="k-header" data-field="CauseOfActionCodeId.Description" data-title="Cause of Action" scope="col"><span class="k-link">Cause of Action</span></th><th class="k-header" data-field="CauseOfActionTypeId.Description" data-title="Type" scope="col"><span class="k-link">Type</span></th><th class="k-header" data-field="FiledBy" data-title="Filed By" scope="col"><span class="k-link">Filed By</span></th><th class="k-header" data-field="FiledAgainst" data-title="Filed Against" scope="col"><span class="k-link">Filed Against</span></th></tr></thead><tbody><tr><td style="vertical-align:top">08/14/2017</td><td style="vertical-align:top">Account</td><td style="vertical-align:top">Action</td><td style="vertical-align:top">767</td><td style="vertical-align:top">767</td></tr></tbody></table></div><script>
+	jQuery(function(){jQuery("#CauseGrid").kendoGrid({"dataBound":CauseGridDataBound,"columns":[{"title":"File Date","attributes":{"style":"vertical-align:top"},"field":"FiledDate","encoded":true},{"title":"Cause of Action","attributes":{"style":"vertical-align:top"},"field":"CauseOfActionCodeId.Description","encoded":true},{"title":"Type","attributes":{"style":"vertical-align:top"},"field":"CauseOfActionTypeId.Description","encoded":true},{"title":"Filed By","attributes":{"style":"vertical-align:top"},"template":"# for( var i = 0; i \u003c FiledBy.length; i++ ) { ## var partyMatch = PartyIdList.indexOf(FiledBy[i].PartyID); ## if( partyMatch != -1 ) { #\u003cspan title=\u0027#=PartyNameList[partyMatch]#\u0027\u003e#=PartyNameList[partyMatch]#\u003c/span\u003e\u003cbr /\u003e# } ## } #","field":"FiledBy","encoded":true},{"title":"Filed Against","attributes":{"style":"vertical-align:top"},"template":"# for( var i = 0; i \u003c FiledAgainst.length; i++ ) { ## var partyMatch = PartyIdList.indexOf(FiledAgainst[i].PartyID); ## if( partyMatch != -1 ) { #\u003cspan title=\u0027#=PartyNameList[partyMatch]#\u0027\u003e#=PartyNameList[partyMatch]#\u003c/span\u003e\u003cbr /\u003e# } ## } #","field":"FiledAgainst","encoded":true}],"scrollable":false,"dataSource":{"transport":{"read":{"url":""}},"type":"aspnetmvc-ajax","schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"CauseOfActionId":{"type":"number"},"CaseId":{"type":"number"},"CauseOfActionTypeId":{"type":"object"},"CauseOfActionCodeId":{"type":"object"},"FiledByExtConnId":{"type":"number"},"FiledByExtConnCode":{"type":"object"},"FiledAgainstExtConnId":{"type":"number"},"FiledAgainstExtConnCode":{"type":"object"},"FiledDate":{"type":"string"},"CauseDescription":{"type":"string"},"ParcelNumber":{"type":"string"},"TimestampCreate":{"type":"string"},"TimestampChange":{"type":"string"},"UserIDCreate":{"type":"number"},"UserIDChange":{"type":"number"},"Remedys":{"type":"object"},"FiledAgainst":{"type":"object"},"FiledBy":{"type":"object"},"EventDate":{"type":"string"},"IsDeleted":{"type":"boolean"},"EventDateTime":{"editable":false,"type":"date"}}}},"data":{"Data":[{"CauseOfActionId":767,"CaseId":2760472,"CauseOfActionTypeId":{"Word":"1","Description":"Action","HasValue":true},"CauseOfActionCodeId":{"Word":"ACC","Description":"Account","HasValue":true},"FiledByExtConnId":7338,"FiledByExtConnCode":null,"FiledAgainstExtConnId":7311,"FiledAgainstExtConnCode":null,"FiledDate":"08/14/2017","CauseDescription":null,"ParcelNumber":null,"TimestampCreate":"08/14/2017 14:08:11:910","TimestampChange":"08/14/2017 14:08:11","UserIDCreate":4175,"UserIDChange":4175,"Remedys":[{"CauseOfActionId":767,"RemedyID":755,"RemedySoughtID":{"Word":"AMT","Description":"Amount","HasValue":true},"RemedyAmount":5538.12,"RemedyComment":null}],"FiledAgainst":[{"CauseOfActionId":767,"PartyID":4417519}],"FiledBy":[{"CauseOfActionId":767,"PartyID":1201732}],"EventDate":"08/14/2017","IsDeleted":false,"EventDateTime":"\/Date(1502683200000)\/"}],"Total":1}},"detailTemplate":kendo.template($('#CauseGridTemplate').html())});});
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+<script id="CauseGridTemplate" type="text/kendo-tmpl">
+  <div class="causeDetail tyler-rounded-5 tyler-shadow-outer tyler-padding-10">
+    # if( CauseDescription ) { #
+      <span>Description: #=CauseDescription#</span><br />
+    # } #
+    # for( var i = 0; i < Remedys.length; i++ ) { #
+      <span>Remedy: #=Remedys[i].RemedySoughtID.Description#</span><br />
+      <span style='padding-left:20px'>Amount: #=kendo.toString(Remedys[i].RemedyAmount, "c")#</span><br />
+      # if( Remedys[i].RemedyComment ) { #
+        <span style='padding-left:20px'>Comment: #=Remedys[i].RemedyComment#</span><br />
+      # } #
+    # } #
+  </div>
+</script>
+          </div>
+          <div id="OtherEventsPrintSection" class="section">
+            <a class="anchor" id="OtherEvents"></a>
+            
+
+<div class="panel panel-default">
+  <div id="eventsInformationDiv" class="panel-body">
+    <div class="row" id="divEventsInformation_header">
+      <div class="col-md-12">
+        <h1>Events and Hearings</h1><br />
+      </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Complaint - Filed">
+    <div>
+      <p class="text-primary">
+        08/14/2017   Complaint - Filed
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        08/14/2017
+        <text>Cause Of Action</text>
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-md-3 col-sm-3">
+      Action <br />
+      Account
+    </p>
+    <p class="col-md-3 col-sm-3">
+      <span class="tyler-color-muted">File Date</span><br />
+      08/14/2017
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Service - Sent To Sheriff&#39;s Department">
+    <div>
+      <p class="text-primary">
+        08/16/2017   Service - Sent To Sheriff&#39;s Department
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+<div>
+  <div class="tyler-toggle-controller open"><p class="text-primary">08/16/2017   Summons<span class="caret"> </span></p></div>
+  <div class="tyler-toggle-container row-buff" style="display: block;">
+
+          <p>
+            <span class="text-muted">Requested By</span><br />
+            TD Bank USA, N.A.
+          </p>
+
+                <p>
+                    <span class="text-muted">Served</span><br />
+                    08/24/2017
+                </p>
+
+  </div>
+</div>        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Personal Service">
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        08/24/2017   Personal Service
+        
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      CPL G WILLIAMS/724
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Consent Judgment Filed">
+    <div>
+      <p class="text-primary">
+        12/08/2017   Consent Judgment Filed
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div class="portal-case-event" data-event-description="Consent - Judgment">
+    <div>
+      <p class="text-primary">
+        12/12/2017   Consent - Judgment
+        
+      </p>
+    </div>
+</div>
+
+        </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+</form>      <p class="noprint" style="height:750px;"></p>
+
+    <div style="display: none;" id="SmartSearch3rdTab"></div>
+
+  </div>
+
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <div class="sidebar affix" style="top: auto;">
+      <p>
+        <div class="tyler-toggle-controller noprint row">
+          <div class="col-md-12">
+            <button class="btn btn-default btn-block" type="button"
+                    onclick="toggleElementVisible('PrintMask'); toggleElementVisible('PrintNav');">
+              <span>
+                Print
+              </span>
+            </button>
+          </div>
+        </div>
+      </p>
+      <div id="PrintNav" class="tyler-hide row noprint">
+        <div class="col-md-12">
+          <div class="panel panel-default print-dialog">
+            <div class="panel-body">
+              <br />
+
+                <div id="PrintDiv1344297805" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx1344297805" type="checkbox" checked="checked" aria-label="Select All"/>
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv1344297805_Print" type="checkbox" checked="checked" aria-label="Select Case Information"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection1344297805_Print" type="checkbox" checked="checked" aria-label="Select Party"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CauseInformationPrintSection1344297805_Print" type="checkbox" checked="checked" aria-label="Select Causes"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Causes</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection1344297805_Print" type="checkbox" checked="checked" aria-label="Select Events and Hearings"/>
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" id="SectionPrintButton1344297805" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  $("#SelectAllSectionsChkBx1344297805").click(function () {
+    if ($("#SelectAllSectionsChkBx1344297805").prop("checked")) {
+      $("#PrintDiv1344297805 input:checkbox").prop("checked", true);
+    }
+    else {
+      $("#PrintDiv1344297805 input:checkbox").prop("checked", false);
+    }
+  });
+
+  $("#SectionPrintButton1344297805").click(function () {
+    $("#PrintDiv1344297805 :checkbox").each(function () {
+      try {
+        var section = '#' + this.id.replace('1344297805_Print', '');
+        if ($(this).prop('checked')) {
+          if ($(section).hasClass("noprint")) {
+            $(section).removeClass("noprint");
+          }
+        }
+        else {
+          if (!$(section).hasClass("noprint")) {
+            $(section).addClass("noprint");
+          }
+        }
+      }
+      catch (err) {
+      }
+    });
+    window.print();
+  });
+
+</script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="PrintMask">
+                  <p>
+            <div class="row">
+              <div class="col-md-12">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+              </div>
+            </div>
+          </p>
+        <div class="row">
+          <div class="col-md-12">
+            
+    <nav id="mysidebar" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+      <div>
+        <ul class="nav bs-docs-sidenav">
+            <li><a href="#CaseInformation">Case Information</a></li>
+            <li><a href="#PartyInformation">Party</a></li>
+            <li><a href="#CauseInformation">Causes</a></li>
+            <li><a href="#OtherEvents">Events and Hearings</a></li>
+        </ul>
+        <a id="BackToTop" class="back-to-top" href="#top">Back to top</a>
+      </div>
+    </nav>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#divFinancialInformation_header").click();
+  });
+
+  function toggleElementVisible (id){
+    if($("#"+id).hasClass("tyler-hide"))
+    {
+      $("#"+id).removeClass("tyler-hide");
+    }
+    else
+    {
+      $("#"+id).addClass("tyler-hide");
+    }
+  }
+</script>
