@@ -137,7 +137,7 @@ def test_missing_dynamic_attribute(case_detail_html):
         assert cdp.case_status == "Closed"
         # BUT...in Chatham and other places judicial officer is not present
         # This should raise a custom error
-        assert cdp.judicial_officer == None
+        assert cdp.judicial_officer is None
 
 
 def test_parties_chatham(case_detail_html):

@@ -23,7 +23,7 @@ class CaseDetailParser:
             titlecase_name = name.replace("_", " ").title()
             try:
                 return self._get_text_from_p_tag(titlecase_name)
-            except IndexError as e:
+            except IndexError:
                 # elements that are not found raise an IndexError
                 # e.g. judicial officer is not present in Chatham and other places
                 raise MissingMetadataException(
@@ -73,21 +73,27 @@ class CaseDetailParser:
     @property
     def disposition(self):
         try:
-            judgment_date = self.tree.xpath(
-                "//div[@id='dispositionInformationDiv']//text[text() = 'Judgment']/../text()"
+            date_xpath = (
+                "//div[@id='dispositionInformationDiv']"
+                "//text[text() = 'Judgment']/../text()"
             )
+            judgment_date = self.tree.xpath(date_xpath)
         except:
             judgment_date = None
         try:
-            judgment = self.tree.xpath(
-                "//div[@id='dispositionInformationDiv']//span[contains(text(), 'Judgment Type')]/../text()[last()]"
+            judgment_xpath = (
+                "//div[@id='dispositionInformationDiv']"
+                "//span[contains(text(), 'Judgment Type')]/../text()[last()]"
             )
+            judgment = self.tree.xpath(judgment_xpath)
         except:
             judgment = None
         try:
-            judgment_for = self.tree.xpath(
-                "//div[@id='dispositionInformationDiv']//span[contains(text(), 'Judgment For')]/following-sibling::span/text()"
+            judge_for_xpath = (
+                "//div[@id='dispositionInformationDiv']"
+                "//span[contains(text(), 'Judgment For')]/following-sibling::span/text()"
             )
+            judgment_for = self.tree.xpath(judge_for_xpath)
         except:
             judgment_for = None
         disposition_output = []
