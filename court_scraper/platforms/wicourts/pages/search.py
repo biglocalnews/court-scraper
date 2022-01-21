@@ -12,33 +12,36 @@ from ..search_api import SearchApi
 
 
 class SearchLocators:
-    LAST_NAME = (By.NAME, 'lastName')
-    FIRST_NAME = (By.NAME, 'firstName')
-    MIDDLE_NAME = (By.NAME, 'middleName')
-    BIRTH_DATE = (By.NAME, 'dateOfBirth')
-    BUSINESS_NAME = (By.NAME, 'businessName')
+    LAST_NAME = (By.NAME, "lastName")
+    FIRST_NAME = (By.NAME, "firstName")
+    MIDDLE_NAME = (By.NAME, "middleName")
+    BIRTH_DATE = (By.NAME, "dateOfBirth")
+    BUSINESS_NAME = (By.NAME, "businessName")
     COUNTY = (By.XPATH, '//*[@id="react-select-2--value"]/div[2]/input')
-    COUNTY_DROPDOWN_ARROW = (By.CSS_SELECTOR, '.Select-arrow-zone')
-    CASE_NUMBER = (By.NAME, 'caseNo')
+    COUNTY_DROPDOWN_ARROW = (By.CSS_SELECTOR, ".Select-arrow-zone")
+    CASE_NUMBER = (By.NAME, "caseNo")
     CASE_NUMBER_RANGE_YEAR = (By.XPATH, '//*[@id="react-select-3--value"]/div[2]/input')
     CASE_NUMBER_RANGE_TYPE = (By.XPATH, '//*[@id="react-select-4--value"]/div[2]/input')
-    CASE_NUMBER_RANGE_BEGIN = (By.NAME, 'caseNoRange.start')
-    CASE_NUMBER_RANGE_END = (By.NAME, 'caseNoRange.end')
-    CASE_RESULTS_TABLE = (By.CSS_SELECTOR, 'table#caseSearchResults')
+    CASE_NUMBER_RANGE_BEGIN = (By.NAME, "caseNoRange.start")
+    CASE_NUMBER_RANGE_END = (By.NAME, "caseNoRange.end")
+    CASE_RESULTS_TABLE = (By.CSS_SELECTOR, "table#caseSearchResults")
     DATE_CASE_TYPE = (By.XPATH, '//*[@id="react-select-5--value"]/div[2]/input')
     DATE_CASE_STATUS = (By.XPATH, '//*[@id="react-select-6--value"]/div[2]/input')
-    FILING_DATE_RANGE_BEGIN = (By.NAME, 'filingDate.start')
-    FILING_DATE_RANGE_END = (By.NAME, 'filingDate.end')
-    DISPOSITION_DATE_RANGE_BEGIN = (By.NAME, 'dispositionDate.start')
-    DISPOSITION_DATE_RANGE_END = (By.NAME, 'dispositionDate.end')
-    STATE_BAR_ID = (By.NAME, 'attyNo')
-    CITATION_NUMBER = (By.NAME, 'citnNo')
-    DA_CASE_NUMBER = (By.NAME, 'daCaseNo')
+    FILING_DATE_RANGE_BEGIN = (By.NAME, "filingDate.start")
+    FILING_DATE_RANGE_END = (By.NAME, "filingDate.end")
+    DISPOSITION_DATE_RANGE_BEGIN = (By.NAME, "dispositionDate.start")
+    DISPOSITION_DATE_RANGE_END = (By.NAME, "dispositionDate.end")
+    STATE_BAR_ID = (By.NAME, "attyNo")
+    CITATION_NUMBER = (By.NAME, "citnNo")
+    DA_CASE_NUMBER = (By.NAME, "daCaseNo")
     ISSUING_AGENCY = (By.XPATH, '//*[@id="react-select-8--value"]/div[2]/input')
-    OFFENSE_DATE_BEGIN = (By.NAME, 'offenseDate.start')
-    OFFENSE_DATE_END = (By.NAME, 'offenseDate.end')
-    SEARCH_BUTTON = (By.NAME, 'search')
-    RESET_BUTTON = (By.XPATH, '//*[@id="home-container"]/main/div/form/div[11]/div/button[2]')
+    OFFENSE_DATE_BEGIN = (By.NAME, "offenseDate.start")
+    OFFENSE_DATE_END = (By.NAME, "offenseDate.end")
+    SEARCH_BUTTON = (By.NAME, "search")
+    RESET_BUTTON = (
+        By.XPATH,
+        '//*[@id="home-container"]/main/div/form/div[11]/div/button[2]',
+    )
 
 
 class SearchPage(SeleniumHelpers):
@@ -59,10 +62,10 @@ class SearchPage(SeleniumHelpers):
             # Solve and apply the captcha on the first search.
             # (using it on subsequent case detail API calls causes errors)
             kwargs = {
-                'cookies': self.cookies_as_dict(),
+                "cookies": self.cookies_as_dict(),
             }
             if idx == 0:
-                kwargs['captcha_solution'] = self.solve_captcha()
+                kwargs["captcha_solution"] = self.solve_captcha()
             case_info = search_api.case_details(case_num, **kwargs)
             payload.append(case_info)
         return payload
@@ -80,25 +83,25 @@ class SearchPage(SeleniumHelpers):
             # save the solution for re-use, and apply the solution
             # on the first case of the first day's search results
             # (using it on subsequent case detail API calls causes errors)
-            result_kwargs = {
-                'use_captcha_solution': False
-            }
+            result_kwargs = {"use_captcha_solution": False}
             if idx == 0:
                 captcha_solution = self.solve_captcha()
-                result_kwargs['use_captcha_solution'] = True
+                result_kwargs["use_captcha_solution"] = True
             # Searches that yield a single result redirect automatically
             # to case detail page rather than search results listing page.
             # For these cases, immediately execute the case detail query
-            if 'caseDetail' in self.driver.current_url:
+            if "caseDetail" in self.driver.current_url:
                 case_info = self._get_case_details(
                     county,
                     self.driver.current_url,
                     captcha_solution,
-                    result_kwargs['use_captcha_solution']
+                    result_kwargs["use_captcha_solution"],
                 )
                 results = [case_info]
             else:
-                results_page = SearchResultsPage(self.driver, county, self.captcha_api_key, captcha_solution)
+                results_page = SearchResultsPage(
+                    self.driver, county, self.captcha_api_key, captcha_solution
+                )
                 results = results_page.results.get(**result_kwargs)
             # TODO: if results_page.results_found():
             #    results_page.display_max_results()
@@ -107,20 +110,20 @@ class SearchPage(SeleniumHelpers):
 
     def _get_case_details(self, county, url, captcha_solution, use_captcha_solution):
         # caseNo=2021SC000082&countyNo=2
-        query_str = url.split('?')[-1]
-        param_strs = query_str.split('&')
+        query_str = url.split("?")[-1]
+        param_strs = query_str.split("&")
         params = {}
         for param_pair in param_strs:
-            key, val = param_pair.split('=')
+            key, val = param_pair.split("=")
             params[key] = val
-        case_num = params['caseNo']
+        case_num = params["caseNo"]
         search_api = SearchApi(county)
         kwargs = {
-            'cookies': self.cookies_as_dict(),
-            'county_num': int(params['countyNo'])
+            "cookies": self.cookies_as_dict(),
+            "county_num": int(params["countyNo"]),
         }
         if use_captcha_solution:
-            kwargs['captcha_solution'] = captcha_solution
+            kwargs["captcha_solution"] = captcha_solution
         return search_api.case_details(case_num, **kwargs)
 
     def _execute_case_search(self, county, case_number):
@@ -133,8 +136,12 @@ class SearchPage(SeleniumHelpers):
     def _execute_date_search(self, county, start_date, end_date, case_types=[]):
         # Wait until the county dropdown-menu arrow is clickable before filling the form field,
         # in order to avoid overwriting of the field value by the "Statewide" option default
-        county_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'County')]")
-        self.wait_until_clickable(self.locators.COUNTY_DROPDOWN_ARROW, driver=county_label_obj)
+        county_label_obj = self.driver.find_element_by_xpath(
+            "//label[contains(text(), 'County')]"
+        )
+        self.wait_until_clickable(
+            self.locators.COUNTY_DROPDOWN_ARROW, driver=county_label_obj
+        )
         clean_county = self._county_titlecase(county)
         self.fill_form_field(self.locators.COUNTY, clean_county)
         self.fill_form_field(self.locators.FILING_DATE_RANGE_BEGIN, start_date)
@@ -144,35 +151,39 @@ class SearchPage(SeleniumHelpers):
         self.click(self.locators.SEARCH_BUTTON)
 
     def _county_titlecase(self, county):
-        return county.replace('_', ' ').title()
+        return county.replace("_", " ").title()
 
     def _select_case_types(self, case_types):
         # TODO: Refactor to use locators
         for case_type in case_types:
             # Locate the case type menu by name
-            case_type_label_obj = self.driver.find_element_by_xpath("//label[contains(text(), 'Case types')]")
+            case_type_label_obj = self.driver.find_element_by_xpath(
+                "//label[contains(text(), 'Case types')]"
+            )
             # Expand the Case types menu
-            select_arrow = case_type_label_obj.find_element_by_css_selector('.Select-arrow-zone')
+            select_arrow = case_type_label_obj.find_element_by_css_selector(
+                ".Select-arrow-zone"
+            )
             select_arrow.click()
             # Find and click the selection menu option for the case type
-            option_divs = (
-                case_type_label_obj
-                .find_element_by_css_selector('.Select-menu')
-                .find_elements_by_tag_name('div')
-            )
-            option = [opt for opt in option_divs if opt.text.endswith(f'({case_type})')][0]
+            option_divs = case_type_label_obj.find_element_by_css_selector(
+                ".Select-menu"
+            ).find_elements_by_tag_name("div")
+            option = [
+                opt for opt in option_divs if opt.text.endswith(f"({case_type})")
+            ][0]
             option.click()
 
     def solve_captcha(self):
         # Solve the captcha
         iframe = None
-        for frame in self.driver.find_elements_by_tag_name('iframe'):
-            if 'challenge' in frame.get_attribute('src'):
+        for frame in self.driver.find_elements_by_tag_name("iframe"):
+            if "challenge" in frame.get_attribute("src"):
                 iframe = frame
                 break
-        iframe_url = iframe.get_attribute('src')
-        query_str = iframe_url.split('#')[-1]
-        site_key = parse_qs(query_str)['sitekey'][0]
+        iframe_url = iframe.get_attribute("src")
+        query_str = iframe_url.split("#")[-1]
+        site_key = parse_qs(query_str)["sitekey"][0]
         solver = hCaptchaProxyless()
         solver.set_verbose(1)
         solver.set_key(self.captcha_api_key)
@@ -182,18 +193,14 @@ class SearchPage(SeleniumHelpers):
         return g_response
 
     def search_has_results(self, current_url):
-        WebDriverWait(self.driver, 10).until(
-            EC.url_changes(current_url)
-        )
+        WebDriverWait(self.driver, 10).until(EC.url_changes(current_url))
         # Return True if it's a single-result redirect to case detail page
-        if 'caseDetail' in self.driver.current_url:
+        if "caseDetail" in self.driver.current_url:
             return True
         WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(
-                self.locators.CASE_RESULTS_TABLE
-            )
+            EC.visibility_of_element_located(self.locators.CASE_RESULTS_TABLE)
         )
-        if 'No records found' in self.driver.page_source:
+        if "No records found" in self.driver.page_source:
             return False
         else:
             # Otherwise, assume there are results

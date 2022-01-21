@@ -21,7 +21,7 @@ class Site(SeleniumSite):
         self.url = "https://wcca.wicourts.gov/advanced.html"
 
     def __repr__(self):
-        return f'Wicourts ({self.place_id})'
+        return f"Wicourts ({self.place_id})"
 
     def search_by_date(
         self,
@@ -30,7 +30,7 @@ class Site(SeleniumSite):
         case_details=False,
         case_types=[],
         download_dir=None,
-        headless=True
+        headless=True,
     ):
         """
         Scrape case metadata and/or details by date ranges.
@@ -62,7 +62,7 @@ class Site(SeleniumSite):
                 end_date=end_date,
                 case_types=case_types,
                 download_dir=download_dir or self.get_download_dir(),
-                headless=headless
+                headless=headless,
             )
         else:
             # Case metadata can be gathered using just Requests
@@ -72,12 +72,8 @@ class Site(SeleniumSite):
                 api = SearchApi(county)
                 extra_params = {}
                 if case_types:
-                    extra_params['caseType'] = ','.join(case_types)
-                cases = api.search_by_filing_date(
-                    date_str,
-                    date_str,
-                    extra_params
-                )
+                    extra_params["caseType"] = ",".join(case_types)
+                cases = api.search_by_filing_date(date_str, date_str, extra_params)
                 results.extend(cases)
         return results
 
@@ -88,7 +84,7 @@ class Site(SeleniumSite):
         end_date=None,
         case_types=[],
         download_dir=None,
-        headless=True
+        headless=True,
     ):
         """
         Scrape detailed case information by case numbers or date range.
@@ -112,7 +108,9 @@ class Site(SeleniumSite):
 
         """
         if not case_numbers and not start_date:
-            raise SearchConfigurationError("You must provide case numbers or a date range!")
+            raise SearchConfigurationError(
+                "You must provide case numbers or a date range!"
+            )
         self.download_dir = download_dir or self.get_download_dir()
         self.driver = self._init_chrome_driver(headless=headless)
         search_page = SearchPage(self.driver, self.captcha_api_key)
@@ -123,7 +121,9 @@ class Site(SeleniumSite):
                 data = search_page.search_by_case_number(county, case_numbers)
             else:
                 # Fall back to date-based search
-                data = search_page.search_by_date(county, start_date, end_date, case_types=case_types)
+                data = search_page.search_by_date(
+                    county, start_date, end_date, case_types=case_types
+                )
             results.extend(data)
         finally:
             try:

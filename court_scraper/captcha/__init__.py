@@ -12,17 +12,18 @@ def resolve_recaptcha_v2(method):
 
     Assumes a Site class with a 'driver' attribute available on the instance
     """
+
     def wrapped(*args, **kwargs):
         driver = args[0].driver
         try:
-            captcha_div = driver.find_element_by_css_selector('.g-recaptcha')
-            site_key = captcha_div.get_attribute('data-sitekey').strip()
-            print(f're-captcha site-key: {site_key}')
+            captcha_div = driver.find_element_by_css_selector(".g-recaptcha")
+            site_key = captcha_div.get_attribute("data-sitekey").strip()
+            print(f"re-captcha site-key: {site_key}")
             try:
                 configs = Configs()
                 anticaptcha_api_key = configs.captcha_service_api_key
             except KeyError:
-                msg = f'CAPTCHA sites require Anticaptcha.com API key set in {configs.config_file_path}'
+                msg = f"CAPTCHA sites require Anticaptcha.com API key set in {configs.config_file_path}"
                 raise CaptchaError(msg)
         except selenium.common.exceptions.NoSuchElementException:
             site_key = None
@@ -37,4 +38,5 @@ def resolve_recaptcha_v2(method):
             to_inject = f'document.querySelector(".g-recaptcha-response").innerHTML = "{g_response}";'
             driver.execute_script(to_inject)
         return method(*args, **kwargs)
+
     return wrapped

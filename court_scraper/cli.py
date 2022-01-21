@@ -15,35 +15,29 @@ def cli():
     pass
 
 
-@cli.command(
-    help="Search and scrape case info from county court site."
-)
+@cli.command(help="Search and scrape case info from county court site.")
 @click.option(
-    '-p',
-    '--place-id',
+    "-p",
+    "--place-id",
     required=True,
-    help="A unique place ID made up of the state and county (e.g. ga_dekalb)"
+    help="A unique place ID made up of the state and county (e.g. ga_dekalb)",
 )
 @optgroup.group(
-    'Case number sources',
+    "Case number sources",
     cls=RequiredMutuallyExclusiveOptionGroup,
-    help='Case numbers must be supplied on the command line or via text file.'
+    help="Case numbers must be supplied on the command line or via text file.",
 )
+@optgroup.option("-c", "--case-number", help="A case number to search.")
 @optgroup.option(
-    '-c',
-    '--case-number',
-    help="A case number to search."
-)
-@optgroup.option(
-    '-f',
-    '--case-numbers-file',
-    type=click.File('r'),
-    help="Text file containing one or more case numbers."
+    "-f",
+    "--case-numbers-file",
+    type=click.File("r"),
+    help="Text file containing one or more case numbers.",
 )
 @click.option(
-    '--with-browser',
+    "--with-browser",
     is_flag=True,
-    help="Open graphical browser during Selenium-based scrapes. By default, runs headless."
+    help="Open graphical browser during Selenium-based scrapes. By default, runs headless.",
 )
 def search(place_id, case_number, case_numbers_file, with_browser):
     """Search court site."""
@@ -51,42 +45,36 @@ def search(place_id, case_number, case_numbers_file, with_browser):
     configs = Configs()
     cache_dir = Path(configs.cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
-    log_file = str(cache_dir.joinpath('logfile.txt'))
+    log_file = str(cache_dir.joinpath("logfile.txt"))
     logging.basicConfig(
         level=logging.DEBUG,
-        format='%(asctime)s - %(name)-12s - %(message)s',
-        datefmt='%m-%d %H:%M',
+        format="%(asctime)s - %(name)-12s - %(message)s",
+        datefmt="%m-%d %H:%M",
         filename=log_file,
-        filemode='a'
+        filemode="a",
     )
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(message)s')
+    formatter = logging.Formatter("%(message)s")
     console.setFormatter(formatter)
-    logging.getLogger('').addHandler(console)
+    logging.getLogger("").addHandler(console)
     logger = logging.getLogger(__name__)
     # Get Runner and execute the search
     RunnerKlass = _get_runner(place_id)
-    runner = RunnerKlass(
-        configs.cache_dir,
-        configs.config_file_path,
-        place_id
-    )
+    runner = RunnerKlass(configs.cache_dir, configs.config_file_path, place_id)
     if case_number:
         case_numbers = [case_number]
     else:
         case_numbers = [t.strip() for t in case_numbers_file]
     kwargs = {
-        'case_numbers': case_numbers,
-        'headless': not with_browser,
+        "case_numbers": case_numbers,
+        "headless": not with_browser,
     }
     # TODO: Restore catch-all try/except
     results = runner.search(**kwargs)
     runner.cache_detail_pages(results)
     dstore = Datastore(configs.db_path)
-    logger.info(
-        "Adding {} results to {}".format(len(results), configs.db_path)
-    )
+    logger.info("Adding {} results to {}".format(len(results), configs.db_path))
     to_db = []
     for result in results:
         # Place ID is required Case db table
@@ -101,13 +89,13 @@ def info():
     meta = SitesMeta()
     for state, county in meta.data.keys():
         entry = " * {} - {} ({})\n".format(
-            state.upper(),
-            county.title(),
-            '_'.join((state, county.replace(' ', '_')))
+            state.upper(), county.title(), "_".join((state, county.replace(" ", "_")))
         )
         msg += entry
-    end_note = "\nNOTE: Scraper IDs (in parentheses) should be " +\
-        "used with the search command's --place-id argument."
+    end_note = (
+        "\nNOTE: Scraper IDs (in parentheses) should be "
+        + "used with the search command's --place-id argument."
+    )
     msg += end_note
     click.echo(msg)
 
@@ -120,11 +108,11 @@ def _get_runner(place_id):
     # In both cases, sites_meta.csv should specify the module name
     # in the site_type field as a snake_case value (ny_westchester, odyssey).
     meta = SitesMeta()
-    site_type = meta.get(place_id)['site_type']
+    site_type = meta.get(place_id)["site_type"]
     if place_id == site_type:
-        parent_mod = 'scrapers'
+        parent_mod = "scrapers"
     else:
-        parent_mod = 'platforms'
-    target_module = 'court_scraper.{}.{}.runner'.format(parent_mod, site_type)
+        parent_mod = "platforms"
+    target_module = "court_scraper.{}.{}.runner".format(parent_mod, site_type)
     mod = importlib.import_module(target_module)
-    return getattr(mod, 'Runner')
+    return getattr(mod, "Runner")

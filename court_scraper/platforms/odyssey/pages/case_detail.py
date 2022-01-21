@@ -7,10 +7,7 @@ from .base import BasePage
 
 class CaseDetailPageLocators:
 
-    SIDENAV_CASE_INFO_LINK = (
-        By.XPATH,
-        '//a[text()="Case Information"]'
-    )
+    SIDENAV_CASE_INFO_LINK = (By.XPATH, '//a[text()="Case Information"]')
 
 
 class CaseDetailPage(BasePage):

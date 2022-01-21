@@ -17,6 +17,7 @@ class Runner(BaseRunner):
     - config_path -- Path to location of config file
     - place_id -- Scraper ID made up of state and county (e.g. ga_dekalb)
     """
+
     def search(self, case_numbers=[], **kwargs):
         """
         For a given scraper, executes the search, acquisition
@@ -29,8 +30,6 @@ class Runner(BaseRunner):
         Returns: List of dicts containing case metadata
         """
         site = Site(self.place_id)
-        logger.info(
-            "Executing search for {}".format(self.place_id)
-        )
+        logger.info("Executing search for {}".format(self.place_id))
         data = site.search(case_numbers=case_numbers)
         return data

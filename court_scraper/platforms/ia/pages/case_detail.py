@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -13,6 +14,7 @@ class CaseDetailPageLocators:
     """
     Identifiers for important elements on the case detail page.
     """
+
     # <FRAME name="main" src="/ESAWebApp/TViewCaseCivil?caseid=06571++OWCR074169&screen=T" scrolling="auto">
     MAIN_FRAME = (By.XPATH, "//frame[@name='main']")
 
@@ -21,6 +23,7 @@ class CaseDetailPage(SeleniumHelpers):
     """
     Interface for interacting with the search results page.
     """
+
     locators = CaseDetailPageLocators
 
     def __init__(self, driver):
@@ -36,7 +39,7 @@ class CaseDetailPage(SeleniumHelpers):
         # Grab the URL from the frame
         logger.debug("Open the action frame")
         frame = self._get_element_by_locator(self.locators.MAIN_FRAME)
-        self.url = frame.get_attribute('src').strip()
+        self.url = frame.get_attribute("src").strip()
 
         # Go there
         self.driver.get(self.url)

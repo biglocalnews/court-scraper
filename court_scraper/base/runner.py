@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 
 import yaml
+
 try:
     from yaml import CLoader as Loader
 except ImportError:
@@ -54,15 +55,11 @@ class BaseRunner:
                 page_source = case.page_source
             except AttributeError:
                 page_source = case.html
-            outdir = Path(self.cache_dir)\
-                .joinpath('cache')\
-                .joinpath(self.place_id)
+            outdir = Path(self.cache_dir).joinpath("cache").joinpath(self.place_id)
             outdir.mkdir(parents=True, exist_ok=True)
-            outfile = str(
-                outdir.joinpath('{}.html'.format(case.number))
-            )
-            logger.info('Caching file: {}'.format(outfile))
-            with open(outfile, 'w') as fh:
+            outfile = str(outdir.joinpath("{}.html".format(case.number)))
+            logger.info("Caching file: {}".format(outfile))
+            with open(outfile, "w") as fh:
                 fh.write(page_source)
 
     def parse_html_pages(self, html_pages):
@@ -80,16 +77,16 @@ class BaseRunner:
         # In both cases, sites_meta.csv should specify the module name
         # in the site_type field as a snake_case value (ny_westchester).
         if self.place_id == self.site_type:
-            parent_mod = 'scrapers'
+            parent_mod = "scrapers"
         else:
-            parent_mod = 'platforms'
-        target_module = 'court_scraper.{}.{}'.format(parent_mod, self.site_type)
+            parent_mod = "platforms"
+        target_module = "court_scraper.{}.{}".format(parent_mod, self.site_type)
         mod = importlib.import_module(target_module)
-        return getattr(mod, 'Site')
+        return getattr(mod, "Site")
 
     @property
     def site_type(self):
-        return self.site_meta['site_type']
+        return self.site_meta["site_type"]
 
     @property
     def site_meta(self):
@@ -98,21 +95,21 @@ class BaseRunner:
         except AttributeError:
             sm = SitesMeta()
             state = self.place_id[0:2]
-            county = self.place_id[3:].replace('_', ' ').strip()
+            county = self.place_id[3:].replace("_", " ").strip()
             key = (state, county)
             site_info = sm.data[key]
             self._site_meta = site_info
             return self._site_meta
 
     def _get_login_creds(self):
-        with open(self.config_path, 'r') as fh:
+        with open(self.config_path, "r") as fh:
             username = None
             password = None
             configs = yaml.load(fh, Loader=Loader)
             try:
                 config = configs[self.place_id]
-                username = config['username']
-                password = config['password']
+                username = config["username"]
+                password = config["password"]
             except KeyError:
                 pass
             return (username, password)

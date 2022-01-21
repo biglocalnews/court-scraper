@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -14,6 +15,7 @@ class SearchTrialCourtPageLocators:
     """
     Identifiers for important elements on the trial court search page.
     """
+
     # <FRAME name="main" src='/ESAWebApp/TrialCourtStateWide' scrolling="auto">
     FORM_FRAME = (By.XPATH, "//frame[@src='/ESAWebApp/TrialCourtStateWide']")
 
@@ -37,6 +39,7 @@ class SearchTrialCourtPage(SeleniumHelpers):
     """
     Interface for interacting with the trail court search page.
     """
+
     locators = SearchTrialCourtPageLocators
     url = "https://www.iowacourts.state.ia.us/ESAWebApp/TrialSimpFrame"
 

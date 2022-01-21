@@ -9,8 +9,8 @@ from court_scraper.captcha import resolve_recaptcha_v2
 # Locators
 class SearchPageLocators:
 
-    GO_BUTTON = (By.ID, 'submit')
-    SEARCH_BOX = (By.CSS_SELECTOR, '#SearchCriteriaContainer input')
+    GO_BUTTON = (By.ID, "submit")
+    SEARCH_BOX = (By.CSS_SELECTOR, "#SearchCriteriaContainer input")
     SEARCH_SUBMIT_BUTTON = (By.XPATH, '//*[@id="btnSSSubmit"]')
 
 
@@ -46,10 +46,6 @@ class SearchPage(BasePage):
     @resolve_recaptcha_v2
     def submit_search(self, timeout=30):
         WebDriverWait(self.driver, timeout).until(
-            EC.element_to_be_clickable(
-                SearchPageLocators.SEARCH_SUBMIT_BUTTON
-            )
+            EC.element_to_be_clickable(SearchPageLocators.SEARCH_SUBMIT_BUTTON)
         )
-        self.driver.find_element(
-            *SearchPageLocators.SEARCH_SUBMIT_BUTTON
-        ).click()
+        self.driver.find_element(*SearchPageLocators.SEARCH_SUBMIT_BUTTON).click()
