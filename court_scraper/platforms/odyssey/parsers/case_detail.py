@@ -72,30 +72,23 @@ class CaseDetailParser:
 
     @property
     def disposition(self):
-        try:
-            date_xpath = (
-                "//div[@id='dispositionInformationDiv']"
-                "//text[text() = 'Judgment']/../text()"
-            )
-            judgment_date = self.tree.xpath(date_xpath)
-        except:
-            judgment_date = None
-        try:
-            judgment_xpath = (
-                "//div[@id='dispositionInformationDiv']"
-                "//span[contains(text(), 'Judgment Type')]/../text()[last()]"
-            )
-            judgment = self.tree.xpath(judgment_xpath)
-        except:
-            judgment = None
-        try:
-            judge_for_xpath = (
-                "//div[@id='dispositionInformationDiv']"
-                "//span[contains(text(), 'Judgment For')]/following-sibling::span/text()"
-            )
-            judgment_for = self.tree.xpath(judge_for_xpath)
-        except:
-            judgment_for = None
+        date_xpath = (
+            "//div[@id='dispositionInformationDiv']"
+            "//text[text() = 'Judgment']/../text()"
+        )
+        judgment_date = self.tree.xpath(date_xpath)
+
+        judgment_xpath = (
+            "//div[@id='dispositionInformationDiv']"
+            "//span[contains(text(), 'Judgment Type')]/../text()[last()]"
+        )
+        judgment = self.tree.xpath(judgment_xpath)
+
+        judge_for_xpath = (
+            "//div[@id='dispositionInformationDiv']"
+            "//span[contains(text(), 'Judgment For')]/following-sibling::span/text()"
+        )
+        judgment_for = self.tree.xpath(judge_for_xpath)
         disposition_output = []
         for i in range(len(judgment_date)):
             disposition_dict = {}
