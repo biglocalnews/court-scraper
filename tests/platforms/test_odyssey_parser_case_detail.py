@@ -1,6 +1,7 @@
 import pytest
 
-from court_scraper.platforms.odyssey.parsers.case_detail import CaseDetailParser
+
+from court_scraper.platforms.odyssey.parsers.case_detail import CaseDetailParser, MissingMetadataException
 from tests.conftest import read_fixture
 
 
@@ -139,18 +140,24 @@ def test_disposition_judgment_for(case_detail_html):
     ]
     assert cdp.disposition == expected
 
-def test_dynamic_attributes_chatham(case_detail_html):
-    "should extract basic metadata dynamically"
+def test_missing_dynamic_attribute(case_detail_html):
+    "should propagate an error on dynamic attributes missing from the page"
     html = read_fixture(
         'ga_chatham/MGCV17-11099.html'
     )
     cdp = CaseDetailParser(html)
-    assert cdp.case_number == 'MGCV17-11099'
-    assert cdp.court == 'Magistrate Civil'
-    #assert cdp.judicial_officer == ''
-    assert cdp.file_date == '08/14/2017'
-    assert cdp.case_type == 'General Civil Other'
-    assert cdp.case_status == 'Closed'
+    expected_err_msg = 'HTML page has no Judicial Officer element'
+    with pytest.raises(MissingMetadataException, match=expected_err_msg):
+        # All these dynamic attributes are typically present
+        assert cdp.case_number == 'MGCV17-11099'
+        assert cdp.court == 'Magistrate Civil'
+        assert cdp.file_date == '08/14/2017'
+        assert cdp.case_type == 'General Civil Other'
+        assert cdp.case_status == 'Closed'
+        # BUT...in Chatham and other places judicial officer is not present
+        # This should raise a custom error
+        assert cdp.judicial_officer ==  None
+      
 
 def test_parties_chatham(case_detail_html):
     "should extract parties"
