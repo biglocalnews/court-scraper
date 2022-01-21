@@ -4,6 +4,10 @@ from lxml import html
 from bs4 import BeautifulSoup
 
 
+class MissingMetadataException(Exception): 
+    pass
+
+
 class CaseDetailParser:
 
     def __init__(self, page_source):
@@ -16,7 +20,12 @@ class CaseDetailParser:
             return object.__getattribute__(self, name) # e.g. case_number or court or file_date
         except AttributeError:
             titlecase_name = name.replace('_', ' ').title()
-            return self._get_text_from_p_tag(titlecase_name)
+            try:
+                return self._get_text_from_p_tag(titlecase_name)
+            except IndexError as e:
+                # elements that are not found raise an IndexError
+                # e.g. judicial officer is not present in Chatham and other places
+                raise MissingMetadataException(f"HTML page has no {titlecase_name} element")
 
     @property
     def parties(self):
