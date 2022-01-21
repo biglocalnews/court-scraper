@@ -8,7 +8,7 @@ def parse(case_number):
     id_ = case_number[2:]
     type_ = case_number[:2]
     return {
-        'type_id': type_,
-        'type_name': case_types.LOOKUP_BY_ID.get(type_),
-        'id': id_
+        "type_id": type_,
+        "type_name": case_types.LOOKUP_BY_ID.get(type_),
+        "id": id_,
     }

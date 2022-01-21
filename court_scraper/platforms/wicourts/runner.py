@@ -40,9 +40,7 @@ class Runner(BaseRunner):
         # Look up the catcha API key as env variable, then fall back to config file
         configs = Configs()
         site = Site(self.place_id, captcha_api_key=configs.captcha_service_api_key)
-        logger.info(
-            "Executing search for {}".format(self.place_id)
-        )
+        logger.info("Executing search for {}".format(self.place_id))
         data = site.search(case_numbers=case_numbers, headless=headless)
         return data
 
@@ -57,9 +55,9 @@ class Runner(BaseRunner):
         Return value: None
         """
         for case in search_results:
-            outdir = Path(self.cache_dir).joinpath('cache').joinpath(self.place_id)
+            outdir = Path(self.cache_dir).joinpath("cache").joinpath(self.place_id)
             outdir.mkdir(parents=True, exist_ok=True)
-            outfile = str(outdir.joinpath(f'{case.number}.json'))
-            logger.info(f'Caching file: {outfile}')
-            with open(outfile, 'w') as fh:
+            outfile = str(outdir.joinpath(f"{case.number}.json"))
+            logger.info(f"Caching file: {outfile}")
+            with open(outfile, "w") as fh:
                 json.dump(case.data, fh)

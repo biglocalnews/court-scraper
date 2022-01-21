@@ -16,19 +16,21 @@ from court_scraper.utils import get_captcha_service_api_key
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
 class Site(SeleniumSite):
-
     def __init__(self, place_id):
         self.captcha_api_key = get_captcha_service_api_key()
         self.place_id = place_id
 
     def __repr__(self):
-        return 'Iowa'
+        return "Iowa"
 
-    def search(self, case_numbers=[], download_dir=None, headless=True) -> List[CaseInfo]:
+    def search(
+        self, case_numbers=[], download_dir=None, headless=True
+    ) -> List[CaseInfo]:
         """
         Conducts a search for each of the provided case numbers.
 
@@ -62,11 +64,7 @@ class Site(SeleniumSite):
         return case_list
 
     def search_by_date(
-        self,
-        start_date=None,
-        end_date=None,
-        case_details=False,
-        case_types=[]
+        self, start_date=None, end_date=None, case_details=False, case_types=[]
     ) -> List[CaseInfo]:
         raise NotImplementedError
 
@@ -103,9 +101,7 @@ class Site(SeleniumSite):
 
         # Search for the case
         search_trial_court_page.search_for_case_by_number(
-            county_dict['id'],
-            case_dict['type_id'],
-            case_dict['id']
+            county_dict["id"], case_dict["type_id"], case_dict["id"]
         )
 
         # Open the case detail page
@@ -117,12 +113,14 @@ class Site(SeleniumSite):
         case_detail_page.open()
 
         # Parse the case detail page
-        obj = CaseInfo({
-            'place_id': self.place_id,
-            'number': case_number,
-            'page_source': self.driver.page_source,
-            'url': case_detail_page.url
-        })
+        obj = CaseInfo(
+            {
+                "place_id": self.place_id,
+                "number": case_number,
+                "page_source": self.driver.page_source,
+                "url": case_detail_page.url,
+            }
+        )
 
         # Return the result
         return obj

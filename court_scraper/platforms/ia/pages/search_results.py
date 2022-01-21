@@ -4,6 +4,7 @@ from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -11,13 +12,15 @@ class SearchResultsPageLocators:
     """
     Identifiers for important elements on the search results page.
     """
-    LINK_LIST = (By.XPATH, '//a')
+
+    LINK_LIST = (By.XPATH, "//a")
 
 
 class SearchResultsPage(SeleniumHelpers):
     """
     Interface for interacting with the search results page.
     """
+
     locators = SearchResultsPageLocators
     url = "https://www.iowacourts.state.ia.us/ESAWebApp/TrialCaseSearchResultServlet"
 

@@ -7,10 +7,7 @@ from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 class CaseDetailPageLocators:
 
-    SIDENAV_CASE_INFO_LINK = (
-        By.XPATH,
-        '//a[text()="Case Information"]'
-    )
+    SIDENAV_CASE_INFO_LINK = (By.XPATH, '//a[text()="Case Information"]')
 
 
 class CaseDetailPage(SeleniumHelpers):

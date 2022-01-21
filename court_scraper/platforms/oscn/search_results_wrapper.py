@@ -1,6 +1,4 @@
-
 class SearchResultsWrapper(dict):
-
     def __repr__(self):
         return self.__class__.__name__
 
@@ -15,7 +13,7 @@ class SearchResultsWrapper(dict):
         except AttributeError:
             cases = []
             for date_key, data in self.items():
-                cases.extend(data['cases'])
+                cases.extend(data["cases"])
             self._cases = cases
             return self._cases
 
@@ -29,16 +27,16 @@ class SearchResultsWrapper(dict):
 
     def add_case_data(self, day, results):
         data = self._get_data_by_key(day)
-        data['cases'].extend(results)
+        data["cases"].extend(results)
 
     def add_html(self, day, html):
         data = self._get_data_by_key(day)
-        data['html'] = html
+        data["html"] = html
 
     def _get_data_by_key(self, key):
         try:
             data = self[key]
         except KeyError:
-            self[key] = {'html': None, 'cases': []}
+            self[key] = {"html": None, "cases": []}
             data = self[key]
         return data

@@ -10,19 +10,19 @@ from .pages.search import Search
 # These counties are supported by
 # DailyFilings by County search,
 DAILY_FILING_COUNTIES = [
-    'ok_adair',
-    'ok_canadian',
-    'ok_cleveland',
-    'ok_comanche',
-    'ok_ellis',
-    'ok_garfield',
-    'ok_logan',
-    'ok_oklahoma',
-    'ok_payne',
-    'ok_pushmataha',
-    'ok_roger_mills',
-    'ok_rogers',
-    'ok_tulsa',
+    "ok_adair",
+    "ok_canadian",
+    "ok_cleveland",
+    "ok_comanche",
+    "ok_ellis",
+    "ok_garfield",
+    "ok_logan",
+    "ok_oklahoma",
+    "ok_payne",
+    "ok_pushmataha",
+    "ok_roger_mills",
+    "ok_rogers",
+    "ok_tulsa",
 ]
 
 
@@ -34,7 +34,7 @@ class Site:
         self.place_id = place_id
 
     def __repr__(self):
-        return f'Oscn ({self.place_id})'
+        return f"Oscn ({self.place_id})"
 
     def search(self, case_numbers=[], **kwargs) -> List[CaseInfo]:
         """Search one or more case IDs in a given county.
@@ -52,7 +52,9 @@ class Site:
         lookup = CaseNumberLookup(self.place_id)
         return lookup.search(case_numbers=case_numbers)
 
-    def search_by_date(self, start_date=None, end_date=None, case_details=False) -> List[CaseInfo]:
+    def search_by_date(
+        self, start_date=None, end_date=None, case_details=False
+    ) -> List[CaseInfo]:
         """Search for cases by date range
 
         Searches current day by default. Optionally scrapes case detail pages.

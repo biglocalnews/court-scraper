@@ -98,7 +98,7 @@ LOOKUP_BY_ID = {
     "01961": "WINNESHIEK",
     "03971": "WOODBURY",
     "02981": "WORTH",
-    "02991": "WRIGHT"
+    "02991": "WRIGHT",
 }
 
 LOOKUP_BY_NAME = {v.replace(" ", "_"): k for k, v in LOOKUP_BY_ID.items()}
@@ -111,6 +111,6 @@ def parse(place_id):
     place_name = place_id[3:].upper()
     place_id = LOOKUP_BY_NAME[place_name]
     return {
-        'name': place_name,
-        'id': place_id,
+        "name": place_name,
+        "id": place_id,
     }

@@ -4,6 +4,7 @@ from court_scraper.base.runner import BaseRunner
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -17,6 +18,7 @@ class Runner(BaseRunner):
     - config_path -- Path to location of config file
     - place_id -- Scraper ID made up of state and county (e.g. ga_dekalb)
     """
+
     def search(self, case_numbers=[], **kwargs):
         """
         Search the provided case numbers in the Iowa courts site.

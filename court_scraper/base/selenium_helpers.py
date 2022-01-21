@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class SeleniumHelpers:
-
     def go_to(self, url=None):
         """
         Go to the provided URL.
@@ -54,7 +53,7 @@ class SeleniumHelpers:
         return self.driver.find_elements(*locator_name)
 
     def cookies_as_dict(self):
-        return {cookie['name']: cookie['value'] for cookie in self.driver.get_cookies()}
+        return {cookie["name"]: cookie["value"] for cookie in self.driver.get_cookies()}
 
     def wait_until_clickable(self, locator_name, timeout=10, driver=None):
         """
@@ -64,9 +63,7 @@ class SeleniumHelpers:
             d = driver
         else:
             d = self.driver
-        WebDriverWait(d, timeout).until(
-            EC.element_to_be_clickable(locator_name)
-        )
+        WebDriverWait(d, timeout).until(EC.element_to_be_clickable(locator_name))
 
     def wait_until_visible(self, locator_name, timeout=10, driver=None):
         """
@@ -76,6 +73,4 @@ class SeleniumHelpers:
             d = driver
         else:
             d = self.driver
-        WebDriverWait(d, timeout).until(
-            EC.visibility_of_element_located(locator_name)
-        )
+        WebDriverWait(d, timeout).until(EC.visibility_of_element_located(locator_name))

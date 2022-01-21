@@ -25,7 +25,7 @@ class Search(BaseSearch):
     """
 
     def __init__(self, place_id):
-        self.url = 'https://www.oscn.net/dockets/Results.aspx'
+        self.url = "https://www.oscn.net/dockets/Results.aspx"
         self.place_id = place_id
 
     def search(self, start_date, end_date, extra_params={}, case_details=False):
@@ -38,8 +38,8 @@ class Search(BaseSearch):
             # Always limit query to a single filing date, to minimize
             # chances of truncate results
             search_params = {
-                'FiledDateL': date_str,  # start filing date - MM/DD/YYYY
-                'FiledDateH': date_str,  # end filing date - MM/DD/YYYY
+                "FiledDateL": date_str,  # start filing date - MM/DD/YYYY
+                "FiledDateH": date_str,  # end filing date - MM/DD/YYYY
             }
             # Merge any additional query parameters
             search_params.update(extra_params)
@@ -48,7 +48,7 @@ class Search(BaseSearch):
             if not basic_case_data:
                 continue
             # Warn if results were truncated
-            if 'results are limited to 500' in html:
+            if "results are limited to 500" in html:
                 msg = (
                     "WARNING: Results were truncated for your search."
                     " Try using a more targeted query, e.g. with a case type, "
@@ -62,14 +62,14 @@ class Search(BaseSearch):
                 # Add the filing date to CaseInfo instances if it's only a metadata search
                 # since it's not listed on results page
                 for case in basic_case_data:
-                    case.update({'filing_date': date_key})
+                    case.update({"filing_date": date_key})
                     search_results.append(case)
         return search_results
 
     def _run_search(self, search_params):
         params = self._default_params
         # Always add place to search
-        params['db'] = self._place
+        params["db"] = self._place
         # Add any extra params (typically will include filing date)
         params.update(search_params)
         response = requests.get(self.url, params=params)
@@ -80,23 +80,23 @@ class Search(BaseSearch):
     @property
     def _default_params(self):
         return {
-            'db': '',  # county court name (lowercase, no spaces , e.g. rogermills)
-            'number': '',
-            'lname': '',
-            'fname': '',
-            'mname': '',
-            'DoBMin': '',
-            'DoBMax': '',
-            'partytype': '',
-            'apct': '',
-            'dcct': '',
-            'FiledDateL': '',  # start filing date - MM/DD/YYYY
-            'FiledDateH': '',  # end filing date - MM/DD/YYYY
-            'ClosedDateL': '',
-            'ClosedDateH': '',
-            'iLC': '',
-            'iLCType': '',
-            'iYear': '',
-            'iNumber': '',
-            'citation': '',
+            "db": "",  # county court name (lowercase, no spaces , e.g. rogermills)
+            "number": "",
+            "lname": "",
+            "fname": "",
+            "mname": "",
+            "DoBMin": "",
+            "DoBMax": "",
+            "partytype": "",
+            "apct": "",
+            "dcct": "",
+            "FiledDateL": "",  # start filing date - MM/DD/YYYY
+            "FiledDateH": "",  # end filing date - MM/DD/YYYY
+            "ClosedDateL": "",
+            "ClosedDateH": "",
+            "iLC": "",
+            "iLCType": "",
+            "iYear": "",
+            "iNumber": "",
+            "citation": "",
         }
