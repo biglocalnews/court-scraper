@@ -140,27 +140,9 @@ def test_missing_dynamic_attribute(case_detail_html):
         assert cdp.judicial_officer is None
 
 
-def test_parties_chatham(case_detail_html):
-    "should extract parties"
-    html = read_fixture("ga_chatham/MGCV17-11099.html")
-    cdp = CaseDetailParser(html)
-    expected = [
-        {
-            "party_type": "Plaintiff",
-            "party_name": "TD Bank USA, N.A.",
-            "attorney": "Woolaston, Dorian",
-        },
-        {
-            "party_type": "Defendant",
-            "party_name": "Monteith, Henry C.",
-            "attorney": "Pro Se",
-        },
-    ]
-    assert cdp.parties == expected
-
-
-def test_multiple_parties_chatham(case_detail_html):
-    "should extract multiple parties"
+def test_extra_party_info(case_detail_html):
+    "should extract only party name and attorney"
+    # Some cases in Chatham have extra demographic info we ignore
     html = read_fixture("ga_chatham/MGCV20-10699.html")
     cdp = CaseDetailParser(html)
     expected = [
@@ -183,80 +165,44 @@ def test_multiple_parties_chatham(case_detail_html):
     assert cdp.parties == expected
 
 
-def test_disposition_chatham(case_detail_html):
-    "should extract disposition"
-    html = read_fixture("ga_chatham/MGCV20-10699.html")
-    cdp = CaseDetailParser(html)
-    expected = [
-        {
-            "judgment_date": "01/07/2021",
-            "judgment": "Judgment",
-            "judgment_for": "Plaintiff",
-        }
-    ]
-    assert cdp.disposition == expected
-
-
-def test_dynamic_attributes_napa(case_detail_html):
-    "should extract basic metadata dynamically"
-    html = read_fixture("ca_napa/19CV000014.html")
-    cdp = CaseDetailParser(html)
-    assert cdp.case_number == "19CV000014"
-    assert cdp.court == "Superior Court of Napa - Civil"
-    # assert cdp.judicial_officer == ''
-    assert cdp.file_date == "01/03/2019"
-    assert cdp.case_type == "Unlawful Detainer Residential Limited (32) - under 10,000"
-    assert cdp.case_status == "Inactive"
-
-
-def test_parties_napa(case_detail_html):
+def test_party_claimant(case_detail_html):
     "should extract parties"
-    html = read_fixture("ca_napa/19CV000014.html")
+    # Some Napa cases listed claimants and defendants
+    # We are ignoring the claimants
+    html = read_fixture("ca_napa/18CV001704.html")
     cdp = CaseDetailParser(html)
     expected = [
         {
-            "party_type": "Plaintiff",
-            "party_name": "Cryrag, Inc.",
-            "attorney": "Myers, Alexander James",
+            'party_type': 'Plaintiff',
+            'party_name': 'Loving Life Real Estate, LLC',
+            'attorney': 'Myers, Alexander James',
         },
         {
-            "party_type": "Defendant",
-            "party_name": "Lemus, Ricardo",
-            "address": "39 Coombs ST Napa CA 94559",
-            "attorney": "Pro Se",
+            'party_type': 'Defendant',
+            'party_name': 'Saldana, Jose',
+            'address': '1413 Spring ST St Helena CA 94574',
+            'attorney': 'Pro Se',
         },
         {
-            "party_type": "Defendant",
-            "party_name": "Patsias, Athanasia",
-            "address": "39 Coombs ST Napa CA 94559",
-            "attorney": "Pro Se",
+            'party_type': 'Defendant',
+            'party_name': 'Saldana, Amelia',
+            'address': '1461 Main ST UNIT 631 St Helena CA 94574-7427',
+            'attorney': 'Pro Se',
+        },
+        {
+            'party_type': 'Defendant',
+            'party_name': 'Botto, Jorge',
+            'address': '1413 Springs ST St Helena CA 94574',
+            'attorney': 'Pro Se Attorney Imperiale, James Thomas Work Phone 6196309615',
         },
     ]
     assert cdp.parties == expected
 
 
-def test_disposition_napa(case_detail_html):
-    "should extract disposition"
-    html = read_fixture("ca_napa/19CV000014.html")
-    cdp = CaseDetailParser(html)
-    expected = [{"judgment_date": "02/08/2019", "judgment": "Judgment - Court Finding"}]
-    assert cdp.disposition == expected
-
-
-def test_dynamic_attributes_snohomish(case_detail_html):
-    "should extract basic metadata dynamically"
-    html = read_fixture("wa_snohomish/17-2-01460-31.html")
-    cdp = CaseDetailParser(html)
-    assert cdp.case_number == "17-2-01460-31"
-    assert cdp.court == "Snohomish"
-    # assert cdp.judicial_officer == ''
-    assert cdp.file_date == "02/17/2017"
-    assert cdp.case_type == "UND Residential Unlawful Detainer"
-    assert cdp.case_status == "Completed/Re-Completed"
-
-
-def test_parties_snohomish(case_detail_html):
-    "should extract parties"
+def test_multiple_attorneys(case_detail_html):
+    "should extract parties and lead attorney"
+    # Some cases in Snohomish have multipe attornies listed
+    # We are only capturing the lead attorney
     html = read_fixture("wa_snohomish/17-2-01460-31.html")
     cdp = CaseDetailParser(html)
     expected = [

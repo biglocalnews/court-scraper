@@ -1,0 +1,3347 @@
+
+<script src="/Secure/Scripts/portlets/portlet.roa.js"></script>
+<script src="/Secure/Scripts/portlets/plugin.portlet.workspacemode.js"></script>
+
+<style type="text/css" media="print" id="roa-print-style">
+  @page {
+    size: portrait;
+  }
+</style>
+<script>
+  //Force the document to the top on load.
+  //This was not happening automatically in Safari. 
+  $(document).scrollTop(0);
+
+  $(function () {
+    RoaPage.init(
+      '/Secure/Alerts/ViewAll/SubscriptionPartial',
+      '/Secure/Alerts/ViewAll/ModifySubscription',
+      '/Secure/Alerts/ViewAll/ModifyAllSubscriptions',
+      '/Secure/MyPortal/MyPortal/BookmarkCase',
+      '/Secure/Case/CaseDetail/LoadFinancialInformation?caseId=480035'
+    );
+
+    $.Enumerable.From($(".document-download")).ForEach( function(e){
+      var ele = $(e);
+      ele.attr("href", ele.attr("href")
+        + "&caseNum=18CV001704"
+        + "&locationId=11220"
+        +"&caseId=4ruM4VdljTTcPS9R1gLWYQ2" );
+    });
+
+    pluginWorkspaceMode.init();
+
+    TabControl.TabRenderComplete($("#PortletSummaryROA"), true);
+  });
+</script>
+
+
+
+<div class="row" id="PortletSummaryROA">
+  <div class="col-md-9">
+
+<form action="/Secure/Case/CaseDetail" class="register-of-actions expand-collapse-group" method="post">        <div class="noprint hidden-lg hidden-md">
+          <div class="">
+            <div class="portlet-summary portlet-summary-chrome" id="PortletSummaryROA">
+              <div class="row">
+                <div class="col-md-12 hidden-lg hidden-md">
+                  <div class="tyler-toggle-controller noprint ">
+                    <button class="btn btn-default pull-right" type="button"
+                            onclick="document.getElementById('PrintMenuToggle').click()">
+                      <span>
+                        Print
+                      </span>
+                    </button>
+                  </div>
+                    <span class="pull-right">&nbsp;</span>
+                    <span class="pull-right">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+                    </span>
+                </div>
+              </div>
+              <div class="tyler-toggle-controller noprint">
+                <a id="PrintMenuToggle" class="pseudoToggle"></a>
+              </div>
+              <div class="tyler-toggle-container tyler-hide noprint row-space">
+                <div class="hidden-lg hidden-md">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <br />
+                        <div id="PrintDiv6" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx6" type="checkbox" checked="checked" />
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="DispositionEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Disposition Events</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" onclick="event.preventDefault()" id="SectionPrintButton6" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#SectionPrintButton6").click(function () {
+      $("#PrintDiv6 :checkbox").each(function (index, element) {
+
+        try {
+          var section = '#' + this.id.replace('_Print', '');
+          if ($(this).prop('checked')) {
+            if ($(section).hasClass("noprint")) {
+              $(section).removeClass("noprint");
+            }
+          }
+          else {
+            if (!$(section).hasClass("noprint")) {
+              $(section).addClass("noprint");
+            }
+          }
+        }
+        catch (err) {
+
+        }
+      });
+      window.print();
+    });
+
+    $("#SelectAllSectionsChkBx6").click(function () {
+      if ($("#SelectAllSectionsChkBx6").prop("checked")) {
+        $("#PrintDiv6 input:checkbox").prop("checked", true);
+      }
+      else {
+        $("#PrintDiv6 input:checkbox").prop("checked", false);
+      }
+    });
+  });
+
+</script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portlet-summary-actions row-space">
+                <ul class="list-unstyled">
+                  <li>
+                    <div id="SubscribeContainerToggle" class="tyler-toggle-controller"></div>
+                    <div class="tyler-toggle-container tyler-shadow-outer tyler-rounded-0-0-5-5 tyler-hide panel panel-default">
+                      <div id="ajax-loader">
+                        <div class="tt-busy-indicator ng-isolate-scope">
+                          <div class="icon">
+                            <div class="rect rect1"></div>
+                            <div class="rect rect2"></div>
+                            <div class="rect rect3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body" id="case-subscribe-container" data-user-id="1" data-case-id="480035">
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="anchor" id="CaseInformation"></a>
+        <div id="caseInformationDiv" class="section">
+          <div class="panel panel-default">
+            <div id="divCaseInformation_body" class="panel-body">
+              <div class="row" id="divCaseInformation_header">
+                <div class="col-md-12">
+                  <h1>Case Information</h1>
+                  <br />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-primary">
+                    18CV001704 | Loving Life Real Estate, LLC vs Jose Saldana et al
+                    <br />
+                    <br />
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Number</span><br />
+                      18CV001704
+                    </p>
+                </div>
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">Court</span><br />
+                    Superior Court of Napa - Civil
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>
+                    <span class="text-muted">File Date</span><br />
+                    12/17/2018
+                  </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Type</span><br />
+                      Unlawful Detainer Residential Limited (32) - under 10,000
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                      <span class="text-muted">Case Status</span><br />
+                      Inactive
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          <div id="CasePartiesPrintSection" class="section">
+            <a class="anchor" id="PartyInformation"></a>
+            
+
+<div class="panel panel-default">
+  <div id="partyInformationDiv" class="panel-body">
+    <div class="row" id="divPartyInformation_header">
+      <div class="col-md-12">
+        <h1>Party</h1>
+      </div>
+    </div>
+    <div id="divPartyInformation_body">
+
+            <div class="row row-buff tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Plaintiff
+                      <br />
+                    </span>
+                    Loving Life Real Estate, LLC
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div>
+      <div>
+        <span class="text-muted">Lead Attorney</span>
+
+          <div>
+            <div>
+              
+                Myers, Alexander James
+            </div>
+          </div>
+      </div>
+        <p>Retained</p>
+
+
+
+        <p>
+          <span class="text-muted">Work Phone</span><br />
+          707-257-1185
+        </p>
+
+    </div>
+  <div>
+    <hr>
+  </div>
+
+    <div>
+      <div>
+        <span class="text-muted"> Attorney</span>
+
+            <div>LaPorte, Donna Lyn</div>
+      </div>
+        <p>Retained</p>
+
+
+
+        <p>
+          <span class="text-muted">Work Phone</span><br />
+          9499554356
+        </p>
+
+    </div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br />
+                    </span>
+                    Saldana, Jose
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1413 Spring ST<br />
+
+
+
+
+St Helena CA 94574</p>
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div style="padding-left:10px" class=tyler-bold>Pro Se</div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br />
+                    </span>
+                    Saldana, Amelia
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1461 Main ST<br />
+
+UNIT 631<br />
+
+
+
+St Helena CA 94574-7427</p>
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div style="padding-left:10px" class=tyler-bold>Pro Se</div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-2">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Defendant
+                      <br />
+                    </span>
+                    Botto, Jorge
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1413 Springs ST<br />
+
+
+
+
+St Helena CA 94574</p>
+
+
+
+                  &nbsp;
+                </div>
+
+                  <div class="col-md-4">
+                      <div class="tyler-toggle-controller open"><p class="text-primary">Active Attorneys<span class="caret"> </span><br /></p></div>
+                      <div class="tyler-toggle-container" style="display: block;">
+
+    <div style="padding-left:10px" class=tyler-bold>Pro Se</div>
+  <div>
+    <hr>
+  </div>
+
+    <div>
+      <div>
+        <span class="text-muted"> Attorney</span>
+
+            <div>Imperiale, James Thomas</div>
+      </div>
+        <p>Retained</p>
+
+
+
+        <p>
+          <span class="text-muted">Work Phone</span><br />
+          6196309615
+        </p>
+
+    </div>
+  <div>
+    <hr>
+  </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Claimant
+                      <br />
+                    </span>
+                    Olivera, Manuel
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1413 Spring ST<br />
+
+
+
+
+St Helena CA 94574</p>
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Claimant
+ (Participant)                       <br />
+                    </span>
+                    Aguayo, Lorenzo
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1413 Spring ST<br />
+
+
+
+
+St Helena CA 94574</p>
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Claimant
+ (Participant)                       <br />
+                    </span>
+                    Garcia, Cristian Martin
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1413 Spring ST<br />
+
+
+
+
+St Helena CA 94574</p>
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Claimant
+ (Participant)                       <br />
+                    </span>
+                    Arias Ramirez, Abelardo Javier
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1413 Spring ST<br />
+
+
+
+
+St Helena CA 94574</p>
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            <div class="row  tyler-span-3">
+              <div class="col-md-8">
+                  <p>
+                    <span class="text-primary">
+                      Claimant
+ (Participant)                       <br />
+                    </span>
+                    Saldana, J. Manuel
+                  </p>
+                <div style="padding-left: 10px">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                      <span class="text-muted">Address</span>
+
+<p>
+
+
+
+
+1413 Spring ST<br />
+
+
+
+
+St Helena CA 94574</p>
+
+
+
+                  &nbsp;
+                </div>
+
+              </div>
+
+    </div>
+  </div>
+</div>
+
+          </div>
+          <div id="DispositionEventsPrintSection" class="section">
+            <a class="anchor" id="DispositionEvents"></a>
+            
+
+
+<div class="panel panel-default">
+  <div id="dispositionInformationDiv" class="panel-body">
+    <div class="row" id="divDispositionInformation_header">
+      <div class="col-md-12">
+        <h1>Disposition Events</h1>
+      </div>
+    </div>
+    <div class="row-buff">
+
+<div class="row-buff">
+  <div class="tyler-toggle-controller open"><p class="text-primary">02/08/2019   <text>Judgment</text><span class="caret"> </span></p></div>
+  <div class="tyler-toggle-container row-buff" style="display: block;">
+
+    <hr />
+
+
+      <p>
+        <span>Judgment Type</span><br />
+        Judgment - Court Finding
+      </p>
+
+    <hr />
+
+            <div class="JudgmentEvent">
+                  <table width="100%" style="table-layout: fixed;" cellspacing="0" cellpadding="0">
+        <colgroup>
+            <col width="20">
+            <col width="*">
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="ssMenuText ssSmallText" colspan="2">
+                  <p class="text-primary">
+                    Party
+                  </p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="ssMenuText ssSmallText">
+                    
+                    
+
+
+                    <p>
+                        <span class="tyler-color-muted">Names:</span>
+
+                        
+                        
+                                    <span>Loving Life Real Estate, LLC</span>
+                                    <div style="padding-left: 20px">
+                                        <p>Saldana, Jose</p>
+                                    </div>
+                                    <div style="padding-left: 20px">
+                                        <p>Saldana, Amelia</p>
+                                    </div>
+                    </p>
+
+                    
+
+                </td>
+            </tr>
+    </table>
+    <hr />
+
+
+
+
+
+            </div>
+          <br />
+        <hr />
+
+  </div>
+</div>
+
+<div class="row-buff">
+  <div class="tyler-toggle-controller open"><p class="text-primary">02/28/2019   <text>Judgment</text><span class="caret"> </span></p></div>
+  <div class="tyler-toggle-container row-buff" style="display: block;">
+
+    <hr />
+
+
+      <p>
+        <span>Judgment Type</span><br />
+        Dismissal - No ADR
+      </p>
+
+    <hr />
+
+            <div class="JudgmentEvent">
+                  <table width="100%" style="table-layout: fixed;" cellspacing="0" cellpadding="0">
+        <colgroup>
+            <col width="20">
+            <col width="*">
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="ssMenuText ssSmallText" colspan="2">
+                  <p class="text-primary">
+                    Party
+                  </p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="ssMenuText ssSmallText">
+                    
+                    
+
+
+                    <p>
+                        <span class="tyler-color-muted">Name:</span>
+
+                        
+                        
+                                    <span>Olivera, Manuel</span>
+                    </p>
+
+                    
+
+                </td>
+            </tr>
+    </table>
+    <hr />
+
+
+
+
+
+            </div>
+          <br />
+        <hr />
+
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+          </div>
+          <div id="OtherEventsPrintSection" class="section">
+            <a class="anchor" id="OtherEvents"></a>
+            
+
+<div class="panel panel-default">
+  <div id="eventsInformationDiv" class="panel-body">
+    <div class="row" id="divEventsInformation_header">
+      <div class="col-md-12">
+        <h1>Events and Hearings</h1><br />
+      </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        12/17/2018   Civil Case Cover Sheet
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        12/17/2018   Complaint-Unlawful Detainer (Limited): Up to $10K
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        12/17/2018   Summons: Issued and Filed
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        12/17/2018   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        12/17/2018   Unlawful Detainer - Defendant&#39;s Notice
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        12/28/2018   Motion
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      NOTICE OF MOTION T0 STRIKE AND MOTION T0 STRIKE COMPLAINT; MEMORANDUM OF POINTS AND AUTHORITIES
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/03/2019   Complaint: Amended
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        01/18/2019
+        Motion to Strike
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        01/18/2019   Answer (Limited): Up to $10K
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Answer/Response/Denial/Demurrer - First Appearance
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/18/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/23/2019   Proof of Service
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        01/23/2019   Request
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      to Set Case for Trial
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        01/23/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/08/2019
+        Court Trial: Short Cause
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/08/2019   Judgment
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/08/2019   UD: Judgment Against All Def Within 60 Days
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/08/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/11/2019   Writ (Issued)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/15/2019
+        OSC: Court&#39;s Motion to Dismiss
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Cancel Reason</span><br />
+        Vacated
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/21/2019
+        Exparte Application
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        11:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Cancel Reason</span><br />
+        Vacated
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/25/2019   Claim of Right to Possession
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/25/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/27/2019
+        Exparte Application
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        11:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/27/2019   Application: Ex Parte (Fee Applies)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Ex Parte Application for Order Shortening Time to Advance Hearing on Claim of Right to Possession; Memorandum of Points and Authorities; Declaration of Alexander Myers
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/27/2019   Declaration
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Declaration Re: Notice for Ex Parte Hearing
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/27/2019   Order
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Order After Hearing
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/27/2019   Claim of Right to Possession
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/27/2019   Notice of Hearing
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        02/27/2019   Motion: Peremptory Challenge CCP 170.6
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-3 col-md-3">
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+    <p class="col-sm-9 col-md-9">
+      <span class="text-muted">Comment</span><br />
+      DENIED BY VW
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/27/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/27/2019   Minute Order: Amended
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/28/2019   Fee Waiver Granted
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        02/28/2019   Request: Dismissal
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/01/2019
+        Other Hearing
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Cancel Reason</span><br />
+        Vacated
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      CLAIM OF RIGHT TO POSSESSION (Manuel Olivera)
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/04/2019
+        Exparte Application
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        11:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Defendant&#39;s Application for Motion to Vacate Judgment
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/04/2019
+        Other Hearing
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        1:30 PM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      CLAIM OF RIGHT TO POSSESSION (Jorge Botto)
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/04/2019   Substitution: Attorney
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/04/2019   Application: Ex Parte (Fee Applies)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      DEFENDANT&#39;S EX PARTE APPLICATION AND MOTION T0 SET ASIDE, VACATE VOID JUDGMENT ON FEBRUARY 8, 2019; VACATE AND 0R RECALL THE WRIT; MEMORANDUM OF POINTS AND AUTHORITIES AND DECLARATION
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/04/2019   Declaration
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      DEFENDANT&#39;S DECLARATION IN SUPPORT OF HER EX PARTE APPLICATION TO VACATE VOID JUDGMENT
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/04/2019   Substitution: Attorney
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/04/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      LIMITED SCOPE
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/04/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/06/2019   Exhibit List (Court)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/06/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/15/2019
+        Court Trial: Short Cause
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      to be heard at 9:30am TE: 1 hour
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/15/2019   Substitution: Attorney
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/15/2019   Notice: Stay of Proceedings
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/15/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/15/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        03/22/2019
+        Court Trial: Short Cause
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Review stay--to be heard at 9:00 a.m.
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        03/22/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        04/15/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of Association of Counsel
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        05/07/2019   Order
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Order Adopting Report and Reccommendation to Remand Case to State Court
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        05/07/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        05/07/2019   Request
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Request to Set Case for Trial
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        05/07/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        05/17/2019   Request
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Request to Set Case for Trial
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        05/21/2019   Returned or Undeliverable Mail
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        05/21/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        05/23/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of Limited Scope Representation
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        05/24/2019
+        Court Trial: Short Cause
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        05/24/2019   Advance Jury Fee (Nonrefundable)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        05/24/2019   Exhibit List (Court)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        05/24/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        05/28/2019   Judgment
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      After Court for Possession Only
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/04/2019   Judgment
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Amended Judgment (main house)
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/04/2019   Judgment
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Amended Judgment (rear unit)
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/06/2019   Writ (Issued)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      County of Napa (Main House)
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/06/2019   Writ (Issued)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      County of Napa (Rear Unit)
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/07/2019   Proof of Service
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      of Ex parte hearing
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/07/2019   Application: Ex Parte (Fee Applies)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Defendant Jorge Botto&#39;s ex parte application and motion to set aside Judgment; Memorandum of poin and authorities to set aside judgment in the limited unlawful detainer proceedings
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/07/2019   Declaration
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      od Cynthia Brown; in support of defendant Jorge Botto&#39;s request for new trial
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/07/2019   Declaration
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Jose Botto declaration in support
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/07/2019   Declaration
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Jose Saldana&#39;s Jr.&#39;s declaration in support
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/07/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      defendants request for judicial notice
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/10/2019
+        Exparte Application
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        11:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/10/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of Limited Scope Representation
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/10/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/12/2019   Claim of Right to Possession
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Post-Judgment
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/12/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/12/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/17/2019   Claim of Right to Possession
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/17/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019
+        Exparte Application
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        11:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Continued Court&#39;s Motion: Hearing
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Plaintiff&#39;s Application
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019
+        Exparte Application
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        11:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Continued Party&#39;s Motion: Hearing
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Defendant Amelia Saldana&#39;s Application
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/18/2019   Application: Ex Parte (Fee Applies)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Declaration
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      in support of Ex parte motion for order shortening time
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Declaration
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Re: Notice for ex parte hearing
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Application: Ex Parte (Fee Applies)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      EMERGENCY EX PARTE APPLICATION MOTION FOR STAY REQUESTED; IMMEDIATE RELIEF REQUESTED STAYING OF EXECUTION OF THE WRIT OF POSSESSION DURING PENDENCY OF THE APPEAL
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Request
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      DEFENDANT&#39;S EX PARTE APPLICATION FOR JUDICIAL NOTICE IN SUPPORT OF STAY
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      LIMITED SCOPE REPRESENTATION
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Pleading: Amended
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Defendant&#39;s Amended Ex Parte Application for Judicial Notice in Support of Stay
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Notice of Hearing Court
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Lorenzo Aguayo
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/18/2019   Notice of Hearing Court
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Cristian Martin Garcia
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/18/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/21/2019
+        OSC/Status DLR
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Cancel Reason</span><br />
+        Vacated
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/24/2019   Opposition or Objections
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      PLAINTIFF&#39;S MEMORANDUM IN OPPOSITION TO DEFENDANT&#39;S AMENDED &quot;EMERGENCY EX PARTE APPLICATION MOTION FOR STAY REQUESTED; IMMEDIATE RELIEF REQUESTED STAYING OF EXECUTION OF THE WRIT OF POSSESSION DURING PENDENCY OF THE APPEAL&quot;
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/27/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of limited scope representation
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/28/2019
+        Other Hearing
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      CLAIM OF RIGHT TO POSSESSION: Lorenzo Aguayo
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/28/2019
+        Other Hearing
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Claim of Right to Possession: Cristian Martin Garcia
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/28/2019
+        Motion
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Cancel Reason</span><br />
+        Vacated
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/28/2019
+        Motion
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Stay of Execution: Amelia Saldana
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/28/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      notice of limited scope representation
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/28/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of limited scope representation
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        06/28/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of limited scope representation AMENDED
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        06/28/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/02/2019   Claim of Right to Possession
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/02/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/03/2019   Claim of Right to Possession
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/03/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/03/2019   Fee Waiver Denied
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/03/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        07/05/2019   Request
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Request for Hearing Date Change
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/08/2019   Notice of Hearing Court
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        07/09/2019
+        Other Hearing
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Claim of Right to Possession As to: Abelardo Javier Arias Ramirez
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        07/09/2019
+        Fee Waiver Hearing
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Abelardo Javier Arias Ramirez
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/09/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        07/10/2019   Order
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Order on Court Fee Waiver After Hearing
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        07/17/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of limited scope representation
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        07/18/2019
+        Other Hearing
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Result</span><br />
+        Heard
+      </p>
+    <p>
+      <span class="text-muted">Comment</span><br />
+      Claim of Right to Possession As to: J Manuel Saldana
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        07/18/2019   Minute Order
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        07/18/2019   Notice
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Notice of Stay of Proceedings
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        08/05/2019   CSB: Referral
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Abelardo Javier Arias Ramirez
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        08/08/2019   Writ (Filed)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Rear Unit
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        08/08/2019   Writ (Filed)
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p class="col-sm-12 col-md-12">
+      <span class="text-muted">Comment</span><br />
+      Main House
+    </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        08/08/2019   Writ (Filed)
+      </p>
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+﻿
+
+<div>
+    <div class="tyler-toggle-controller open">
+      <p class="text-primary">
+        09/17/2019
+        OSC/Status DLR
+        <span class="caret"> </span>
+      </p>
+    </div>
+    <div class="tyler-toggle-container row-buff" style="display:block;overflow:hidden">
+          <p>
+      <span class="text-muted">Judicial Officer</span><br />
+      Wood, Victoria
+    </p>
+      <p>
+        <span class="text-muted">Hearing Time</span><br />
+        8:30 AM
+      </p>
+      <p>
+        <span class="text-muted">Cancel Reason</span><br />
+        Vacated
+      </p>
+
+    </div>
+</div>
+
+        </li>
+        <li class="list-group-item">
+
+<div>
+    <div>
+      <p class="text-primary">
+        12/17/2019   Proof of Service
+      </p>
+    </div>
+</div>
+
+        </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+</form>      <p class="noprint" style="height:750px;"></p>
+
+    <div style="display: none;" id="SmartSearch3rdTab"></div>
+
+  </div>
+
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <div class="sidebar affix" style="top: auto;">
+      <p>
+        <div class="tyler-toggle-controller noprint row">
+          <div class="col-md-12">
+            <button class="btn btn-default btn-block" type="button"
+                    onclick="toggleElementVisible('PrintMask'); toggleElementVisible('PrintNav');">
+              <span>
+                Print
+              </span>
+            </button>
+          </div>
+        </div>
+      </p>
+      <div id="PrintNav" class="tyler-hide row noprint">
+        <div class="col-md-12">
+          <div class="panel panel-default print-dialog">
+            <div class="panel-body">
+              <br />
+
+                <div id="PrintDiv9" class="noprint print-sections">
+    <h4>Please select the sections that you would like to print</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check-box pull-left">
+              <input id="SelectAllSectionsChkBx9" type="checkbox" checked="checked" />
+            <span class="ClickThroughIE"></span>
+            <label class="ClickThroughIE">
+                Select All
+            </label>
+        </div>
+      </div>
+    </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="caseInformationDiv_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Case Information</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="CasePartiesPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Party</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="DispositionEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Disposition Events</label>
+      </div>
+      <div class="form-check-box col-md-12 container">
+        <input id="OtherEventsPrintSection_Print" type="checkbox" checked="checked" />
+          <span class="ClickThroughIE"></span>
+          <label class="ClickThroughIE">Events and Hearings</label>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" onclick="event.preventDefault()" id="SectionPrintButton9" class="row-buff btn btn-primary pull-right" role="button" style="color:white;">Print</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#SectionPrintButton9").click(function () {
+      $("#PrintDiv9 :checkbox").each(function (index, element) {
+
+        try {
+          var section = '#' + this.id.replace('_Print', '');
+          if ($(this).prop('checked')) {
+            if ($(section).hasClass("noprint")) {
+              $(section).removeClass("noprint");
+            }
+          }
+          else {
+            if (!$(section).hasClass("noprint")) {
+              $(section).addClass("noprint");
+            }
+          }
+        }
+        catch (err) {
+
+        }
+      });
+      window.print();
+    });
+
+    $("#SelectAllSectionsChkBx9").click(function () {
+      if ($("#SelectAllSectionsChkBx9").prop("checked")) {
+        $("#PrintDiv9 input:checkbox").prop("checked", true);
+      }
+      else {
+        $("#PrintDiv9 input:checkbox").prop("checked", false);
+      }
+    });
+  });
+
+</script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="PrintMask">
+                  <p>
+            <div class="row">
+              <div class="col-md-12">
+
+
+<div class="portlet-summary-actions">
+
+  
+</div>
+              </div>
+            </div>
+          </p>
+        <div class="row">
+          <div class="col-md-12">
+            
+    <nav id="mysidebar" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+      <div>
+        <ul class="nav bs-docs-sidenav">
+            <li><a href="#CaseInformation" css=&quot;hidden-lg hidden-md&quot;>Case Information</a></li>
+            <li><a href="#PartyInformation" >Party</a></li>
+            <li><a href="#DispositionEvents" >Disposition Events</a></li>
+            <li><a href="#OtherEvents" >Events and Hearings</a></li>
+        </ul>
+        <a id="BackToTop" class="back-to-top" href="#top">Back to top</a>
+      </div>
+    </nav>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#divFinancialInformation_header").click();
+  });
+
+  function toggleElementVisible (id){
+    if($("#"+id).hasClass("tyler-hide"))
+    {
+      $("#"+id).removeClass("tyler-hide");
+    }
+    else
+    {
+      $("#"+id).addClass("tyler-hide");
+    }
+  }
+</script>
