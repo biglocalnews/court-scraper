@@ -95,7 +95,10 @@ class CaseDetailParser:
             disposition_dict["judgment_date"] = judgment_date[i].strip()
             disposition_dict["judgment"] = judgment[i].strip()
             if judgment_for:
-                disposition_dict["judgment_for"] = judgment_for[i].strip()
+                try:
+                    disposition_dict["judgment_for"] = judgment_for[i].strip()
+                except IndexError:
+                    pass
             disposition_output.append(disposition_dict)
         return disposition_output
 
