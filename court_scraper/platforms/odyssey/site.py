@@ -9,7 +9,6 @@ from .pages.search_results import SearchResultsPage
 
 
 class Site(SeleniumSite):
-
     def __init__(self, place_id, url=None, download_dir=None, headless=True):
         self.place_id = place_id
         self.site_url = url
@@ -17,17 +16,12 @@ class Site(SeleniumSite):
         self.driver = self._init_chrome_driver(headless=headless)
 
     def __repr__(self):
-        return f'Odyssey ({self.place_id})'
+        return f"Odyssey ({self.place_id})"
 
     def login(self, username, password):
         self.username = username
         self.password = password
-        login_page = LoginPage(
-            self.driver,
-            self.site_url,
-            self.username,
-            self.password
-        )
+        login_page = LoginPage(self.driver, self.site_url, self.username, self.password)
         login_page.go_to()
         login_page.login()
 
@@ -79,7 +73,7 @@ class Site(SeleniumSite):
                         if case_details:
                             case_row.detail_page_link.click()
                             detail_page = CaseDetailPage(self.driver)
-                            row_data['page_source'] = detail_page.page_source
+                            row_data["page_source"] = detail_page.page_source
                             results_page.back_to_search_results()
                         ci = CaseInfoKls(row_data)
                         results.append(ci)
@@ -90,13 +84,13 @@ class Site(SeleniumSite):
 
     def _get_case_info_mapped_class(self):
         mapping = {
-            'Case Number': 'number',
-            'Style / Defendant': 'defendant',
-            'File Date': 'filing_date',
-            'Party Name': 'party',
-            'Status': 'status',
-            'Type': 'type',
-            'Location': 'location',
+            "Case Number": "number",
+            "Style / Defendant": "defendant",
+            "File Date": "filing_date",
+            "Party Name": "party",
+            "Status": "status",
+            "Type": "type",
+            "Location": "location",
         }
         CaseInfo._map = mapping
         return CaseInfo

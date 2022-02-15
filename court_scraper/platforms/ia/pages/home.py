@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -13,13 +14,15 @@ class HomePageLocators:
     """
     Identifiers for important elements on the home page.
     """
-    LINK = (By.XPATH, '//a')
+
+    LINK = (By.XPATH, "//a")
 
 
 class HomePage(SeleniumHelpers):
     """
     Interface for interacting with the home page.
     """
+
     locators = HomePageLocators
     url = "https://www.iowacourts.state.ia.us/ESAWebApp/DefaultFrame?in=1"
 

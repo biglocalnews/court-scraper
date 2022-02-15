@@ -10,17 +10,19 @@ from ..search_api import SearchApi
 
 class ResultsLocators:
 
-    SHOW_ALL_RESULTS = (By.XPATH, '//*[@id="caseSearchResults_length"]/label/select/option[5]')
+    SHOW_ALL_RESULTS = (
+        By.XPATH,
+        '//*[@id="caseSearchResults_length"]/label/select/option[5]',
+    )
     RESULTS_TABLE_ROWS = (By.XPATH, '//*[@id="caseSearchResults"]/tbody/tr')
     RESULTS_TABLE = (By.XPATH, '//*[@id="caseSearchResults"]')
     YEAR_FILTER = (By.XPATH, '//*[@id="caseSearchResults"]/thead/tr[2]/td[1]/input')
     SINGLE_CASE_RETURN = (By.XPATH, '//*[@id="case-header-info"]/h4')
-    EMPTY_RETURN = 'No'
+    EMPTY_RETURN = "No"
     SORT = (By.XPATH, '//*[@id="caseSearchResults"]/thead/tr[1]/th[1]')
 
 
 class ResultRow:
-
     def __init__(self, county, cookies, row_obj, captcha_solution=None):
         self.county = county
         self.cookies = cookies
@@ -28,12 +30,12 @@ class ResultRow:
         self._set_attrs_from_row_obj(row_obj)
 
     def _set_attrs_from_row_obj(self, row_obj):
-        anchor = row_obj.find_element_by_tag_name('a')
-        case_detail_url = anchor.get_attribute('href')
-        base_url, query_string = case_detail_url.split('?')
+        anchor = row_obj.find_element_by_tag_name("a")
+        case_detail_url = anchor.get_attribute("href")
+        base_url, query_string = case_detail_url.split("?")
         qs = parse_qs(query_string)
         self.case_num = anchor.text
-        self.county_num = int(qs['countyNo'][0])
+        self.county_num = int(qs["countyNo"][0])
 
     def case_details(self, use_captcha_solution=False):
         try:
@@ -41,11 +43,11 @@ class ResultRow:
         except AttributeError:
             search_api = SearchApi(self.county)
             kwargs = {
-                'county_num': self.county_num,
-                'cookies': self.cookies,
+                "county_num": self.county_num,
+                "cookies": self.cookies,
             }
             if use_captcha_solution:
-                kwargs['captcha_solution'] = self.captcha_solution
+                kwargs["captcha_solution"] = self.captcha_solution
             case_info = search_api.case_details(self.case_num, **kwargs)
             self._case_details = case_info
             return case_info
@@ -64,8 +66,7 @@ class Results(SeleniumHelpers):
     def get(self, use_captcha_solution=False):
         """Get case detail data"""
         WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(
-                self.locators.RESULTS_TABLE)
+            EC.element_to_be_clickable(self.locators.RESULTS_TABLE)
         )
         # Maximize displayed results
         self.click(self.locators.SHOW_ALL_RESULTS)

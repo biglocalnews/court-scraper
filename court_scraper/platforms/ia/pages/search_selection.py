@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -13,6 +14,7 @@ class SearchSelectionPageLocators:
     """
     Identifiers for important elements on the search selection page.
     """
+
     # <frame name="main" src="/ESAWebApp/SelectAction" scrolling="auto">
     ACTION_FRAME = (By.XPATH, "//frame[@src='/ESAWebApp/SelectAction']")
 
@@ -24,6 +26,7 @@ class SearchSelectionPage(SeleniumHelpers):
     """
     Interface for interacting with the search selection page.
     """
+
     locators = SearchSelectionPageLocators
     url = "https://www.iowacourts.state.ia.us/ESAWebApp/SelectFrame"
 

@@ -3,19 +3,18 @@ from court_scraper.sites_meta import SitesMeta
 
 
 class Site:
-
     def __new__(cls, *args, **kwargs):
         place_id = args[0]
         meta = cls.get_site_meta(cls, place_id)
-        site_type = meta['site_type']
+        site_type = meta["site_type"]
         site_class = cls.get_site_class(cls, place_id, site_type)
         # Odyssey is super non-standard
-        if site_type == 'odyssey':
+        if site_type == "odyssey":
             # Set defaults for omitted kwargs
-            if 'url' not in kwargs:
-                kwargs['url'] = meta['home_url']
-            if 'headless' not in kwargs:
-                kwargs['headless'] = True
+            if "url" not in kwargs:
+                kwargs["url"] = meta["home_url"]
+            if "headless" not in kwargs:
+                kwargs["headless"] = True
             final_args = [place_id]
         else:
             final_args = args
@@ -24,7 +23,7 @@ class Site:
     def get_site_meta(cls, place_id):
         sm = SitesMeta()
         state = place_id[0:2]
-        county = place_id[3:].replace('_', ' ').strip()
+        county = place_id[3:].replace("_", " ").strip()
         key = (state, county)
         site_info = sm.data[key]
         cls._site_meta = site_info
@@ -44,9 +43,9 @@ class Site:
 
         """
         if place_id == site_type:
-            parent_mod = 'scrapers'
+            parent_mod = "scrapers"
         else:
-            parent_mod = 'platforms'
-        target_module = 'court_scraper.{}.{}'.format(parent_mod, site_type)
+            parent_mod = "platforms"
+        target_module = "court_scraper.{}.{}".format(parent_mod, site_type)
         mod = importlib.import_module(target_module)
-        return getattr(mod, 'Site')
+        return getattr(mod, "Site")

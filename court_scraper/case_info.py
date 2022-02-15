@@ -42,11 +42,11 @@ class CaseInfo:
         to Case table columns.
         """
         data = {
-            'place_id': self.place_id,
-            'number': self.number,
+            "place_id": self.place_id,
+            "number": self.number,
         }
         # Strongly encouraged, not always available
-        for attr in ['filing_date', 'status']:
+        for attr in ["filing_date", "status"]:
             try:
                 data[attr] = getattr(self, attr)
             except AttributeError:
@@ -54,14 +54,12 @@ class CaseInfo:
         return data
 
     def update(self, to_merge: dict) -> None:
-        """Merge a dictionary of values into the CaseInfo instance
-        """
+        """Merge a dictionary of values into the CaseInfo instance"""
         self.data.update(to_merge)
         self._set_attrs(to_merge)
 
     def merge(self, case_info) -> None:
-        """Merge data from another CaseInfo instance into current instance
-        """
+        """Merge data from another CaseInfo instance into current instance"""
         self.data.update(case_info.data)
         self._set_attrs(case_info.data)
 

@@ -4,7 +4,7 @@ from . import counties
 
 
 __all__ = (
-    'case_numbers',
-    'case_types',
-    'counties',
+    "case_numbers",
+    "case_types",
+    "counties",
 )

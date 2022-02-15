@@ -15,7 +15,7 @@ class DailyFilings(BaseSearch):
     """
 
     def __init__(self, place_id):
-        self.url = 'https://www.oscn.net/applications/oscn/report.asp'
+        self.url = "https://www.oscn.net/applications/oscn/report.asp"
         self.place_id = place_id
 
     def search(self, start_date, end_date, case_details=False):
@@ -36,17 +36,17 @@ class DailyFilings(BaseSearch):
                 # Add the filing date to CaseInfo instances if it's only a metadata search
                 # since it's not listed on results page
                 for case in basic_case_data:
-                    case.update({'filing_date': date_key})
+                    case.update({"filing_date": date_key})
                     search_results.append(case)
         return search_results
 
     def _run_search_for_day(self, day):
         payload = {
-            'report': 'DailyFilings',
-            'errorcheck': 'true',
-            'database': '',
-            'db': self._place,
-            'StartDate': day
+            "report": "DailyFilings",
+            "errorcheck": "true",
+            "database": "",
+            "db": self._place,
+            "StartDate": day,
         }
         response = requests.get(self.url, params=payload)
         html = response.text

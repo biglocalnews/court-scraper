@@ -1,5 +1,6 @@
 import logging
 from court_scraper.base.runner import BaseRunner
+
 logger = logging.getLogger(__name__)
 
 
@@ -31,19 +32,14 @@ class Runner(BaseRunner):
 
         """
         SiteKls = self._get_site_class()
-        url = self.site_meta['home_url']
+        url = self.site_meta["home_url"]
         username, password = self._get_login_creds()
         pos_args = [self.place_id]
         site = SiteKls(
-            *pos_args,
-            url=url,
-            download_dir=self.cache_dir,
-            headless=headless
+            *pos_args, url=url, download_dir=self.cache_dir, headless=headless
         )
         if username and password:
             site.login(username, password)
-        logger.info(
-            "Executing search for {}".format(self.place_id)
-        )
+        logger.info("Executing search for {}".format(self.place_id))
         data = site.search(case_numbers=case_numbers)
         return data
