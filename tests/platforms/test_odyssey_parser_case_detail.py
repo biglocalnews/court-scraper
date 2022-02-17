@@ -13,6 +13,45 @@ def case_detail_html():
     return read_fixture("ga_dekalb/19D67383.html")
 
 
+def test_data_attribute(case_detail_html):
+    "should have a data property that simplifies access to parsable data"
+    cdp = CaseDetailParser(case_detail_html)
+    data = cdp.data
+    assert data["case_number"] == "19D67383"
+    assert data["court"] == "Division 0"
+    assert data["judicial_officer"] == "Anderson, Berryl A"
+    assert data["file_date"] == "01/02/2019"
+    assert data["case_type"] == "Magistrate Dispossessory - Non Payment of Rent"
+    assert data["case_status"] == "Closed"
+    assert data["disposition"] == [
+        {"judgment_date": "01/28/2019", "judgment": "Dismissed with Prejudice"}
+    ]
+    assert data["parties"] == [
+        {
+            "party_type": "Plaintiff",
+            "party_name": "Johnson, Arthur",
+            "address": "3000 Kelley Chapel RD Decatur GA 30034",
+            "attorney": "Pro Se",
+        },
+        {
+            "party_type": "Defendant",
+            "party_name": "LAKE, JARROD",
+            "address": "2755 KNOLLIGEN DR DECATUR GA 30034",
+            "attorney": "Pro Se",
+        },
+        {"party_type": "Defendant", "party_name": "MOORE, PAULA"},
+    ]
+
+
+def test_data_call_with_missing(case_detail_html):
+    "should propagate an error on dynamic attributes missing from the page"
+    html = read_fixture("ga_chatham/MGCV17-11099.html")
+    cdp = CaseDetailParser(html)
+    expected_err_msg = "HTML page has no Judicial Officer element"
+    with pytest.raises(MissingMetadataException, match=expected_err_msg):
+        assert cdp.data
+
+
 def test_dynamic_attributes(case_detail_html):
     "should extract basic metadata dynamically"
     cdp = CaseDetailParser(case_detail_html)
@@ -173,27 +212,27 @@ def test_party_claimant(case_detail_html):
     cdp = CaseDetailParser(html)
     expected = [
         {
-            'party_type': 'Plaintiff',
-            'party_name': 'Loving Life Real Estate, LLC',
-            'attorney': 'Myers, Alexander James',
+            "party_type": "Plaintiff",
+            "party_name": "Loving Life Real Estate, LLC",
+            "attorney": "Myers, Alexander James",
         },
         {
-            'party_type': 'Defendant',
-            'party_name': 'Saldana, Jose',
-            'address': '1413 Spring ST St Helena CA 94574',
-            'attorney': 'Pro Se',
+            "party_type": "Defendant",
+            "party_name": "Saldana, Jose",
+            "address": "1413 Spring ST St Helena CA 94574",
+            "attorney": "Pro Se",
         },
         {
-            'party_type': 'Defendant',
-            'party_name': 'Saldana, Amelia',
-            'address': '1461 Main ST UNIT 631 St Helena CA 94574-7427',
-            'attorney': 'Pro Se',
+            "party_type": "Defendant",
+            "party_name": "Saldana, Amelia",
+            "address": "1461 Main ST UNIT 631 St Helena CA 94574-7427",
+            "attorney": "Pro Se",
         },
         {
-            'party_type': 'Defendant',
-            'party_name': 'Botto, Jorge',
-            'address': '1413 Springs ST St Helena CA 94574',
-            'attorney': 'Pro Se Attorney Imperiale, James Thomas Work Phone 6196309615',
+            "party_type": "Defendant",
+            "party_name": "Botto, Jorge",
+            "address": "1413 Springs ST St Helena CA 94574",
+            "attorney": "Pro Se Attorney Imperiale, James Thomas Work Phone 6196309615",
         },
     ]
     assert cdp.parties == expected

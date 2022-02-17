@@ -31,6 +31,24 @@ class CaseDetailParser:
                 )
 
     @property
+    def data(self):
+        """This property returns data for common page types
+
+        Non-standard pages require falling back to the dynamic behavior
+        provided by this class in the __getattribute__ method.
+        """
+        return {
+            'case_number': self.case_number,
+            'case_type': self.case_type,
+            'case_status': self.case_status,
+            'court': self.court,
+            'file_date': self.file_date,
+            'judicial_officer': self.judicial_officer,
+            'parties': self.parties,
+            'disposition': self.disposition,
+        }
+
+    @property
     def parties(self):
         party_div = self._get_party_div()
         party_types = ["Plaintiff", "Defendant", "Respondant"]
