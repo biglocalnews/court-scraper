@@ -14,7 +14,7 @@ from court_scraper.cli import _get_runner
 @pytest.mark.slow
 @pytest.mark.webtest
 @pytest.mark.captcha
-@pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
+@pytest.mark.usefixtures("set_env", "create_scraper_dir", "create_config")
 def test_integration_wicourts(court_scraper_dir, config_path, headless):
     # Add captcha key to test config file
     from tests.conftest import CAPTCHA_API_KEY
@@ -60,7 +60,7 @@ def test_integration_oscn(court_scraper_dir):
 @pytest.mark.slow
 @pytest.mark.webtest
 @pytest.mark.nocaptcha
-@pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
+@pytest.mark.usefixtures("set_env", "create_scraper_dir", "create_config")
 def test_integration_odyssey(court_scraper_dir):
     # Using a non-login and non-Captcha site
     runner = CliRunner()

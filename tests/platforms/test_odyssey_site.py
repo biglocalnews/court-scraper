@@ -162,7 +162,9 @@ def test_maximize_displayed_results(test_input, headless, court_scraper_dir):
 @pytest.mark.slow
 @pytest.mark.webtest
 @pytest.mark.nocaptcha
-def test_malformed_result_listing(test_input, headless, live_configs, court_scraper_dir):
+def test_malformed_result_listing(
+    test_input, headless, live_configs, court_scraper_dir
+):
     "should handle result listings that have an extra leading blank cell"
     auth = live_configs["ga_dekalb"]
     username = auth["username"]

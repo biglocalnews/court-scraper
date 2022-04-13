@@ -18,6 +18,7 @@ tox = "*"
 twine = "*"
 watchdog = "*"
 wheel = "*"
+black = "*"
 
 [packages]
 bs4 = "*"
@@ -32,3 +33,4 @@ sqlalchemy = "*"
 anticaptchaofficial = "*"
 typing-extensions = "*"
 cssselect = "*"
+requests = "*"
