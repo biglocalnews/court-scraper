@@ -38,14 +38,14 @@ class CaseDetailParser:
         provided by this class in the __getattribute__ method.
         """
         return {
-            'case_number': self.case_number,
-            'case_type': self.case_type,
-            'case_status': self.case_status,
-            'court': self.court,
-            'file_date': self.file_date,
-            'judicial_officer': self.judicial_officer,
-            'parties': self.parties,
-            'disposition': self.disposition,
+            "case_number": self.case_number,
+            "case_type": self.case_type,
+            "case_status": self.case_status,
+            "court": self.court,
+            "file_date": self.file_date,
+            "judicial_officer": self.judicial_officer,
+            "parties": self.parties,
+            "disposition": self.disposition,
         }
 
     @property

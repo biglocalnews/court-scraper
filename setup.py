@@ -42,65 +42,60 @@ to scrape county-level court data by case number and date range.
 from setuptools import setup, find_packages
 
 
-
 requirements = [
-    'anticaptchaofficial',
-    'bs4',
-    'click',
-    'click-option-group',
-    'cssselect',
-    'lxml',
-    'my-fake-useragent',
-    'pyyaml',
-    'retrying',
-    'selenium',
-    'sqlalchemy',
-    'typing-extensions'
+    "anticaptchaofficial",
+    "bs4",
+    "click",
+    "click-option-group",
+    "cssselect",
+    "lxml",
+    "my-fake-useragent",
+    "pyyaml",
+    "retrying",
+    "selenium",
+    "sqlalchemy",
+    "typing-extensions",
 ]
 
 
-test_requirements = [
-    'flake8',
-    'pytest',
-    'pytest-vcr'
-]
+test_requirements = ["flake8", "pytest", "pytest-vcr"]
 
 
 setup(
-    name='court-scraper',
-    version='0.1.1',
+    name="court-scraper",
+    version="0.1.1",
     description="Command-line tool for scraping data from U.S. county courts",
     long_description=__doc__,
-    long_description_content_type='text/x-rst',
+    long_description_content_type="text/x-rst",
     author="Serdar Tumgoren",
-    author_email='zstumgoren@gmail.com',
-    url='https://github.com/biglocalnews/court-scraper',
+    author_email="zstumgoren@gmail.com",
+    url="https://github.com/biglocalnews/court-scraper",
     packages=find_packages(),
-    package_data={'court_scraper': ['data/*.csv']},
-    entry_points='''
+    package_data={"court_scraper": ["data/*.csv"]},
+    entry_points="""
         [console_scripts]
         court-scraper=court_scraper.cli:cli
-    ''',
+    """,
     install_requires=requirements,
     license="ISC license",
     zip_safe=False,
     classifiers=[
-        'Development Status :: 4 - Beta',
-        'Environment :: Console',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: ISC License (ISCL)',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
+        "Development Status :: 4 - Beta",
+        "Environment :: Console",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: ISC License (ISCL)",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
-    test_suite='tests',
+    test_suite="tests",
     tests_require=test_requirements,
     project_urls={
-        'Maintainer': 'https://github.com/biglocalnews',
-        'Source': 'https://github.com/biglocalnews/court-scraper',
-        'Tracker': 'https://github.com/biglocalnews/court-scraper/issues'
+        "Maintainer": "https://github.com/biglocalnews",
+        "Source": "https://github.com/biglocalnews/court-scraper",
+        "Tracker": "https://github.com/biglocalnews/court-scraper/issues",
     },
 )

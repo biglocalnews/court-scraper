@@ -15,7 +15,7 @@ from .conftest import CAPTCHA_API_KEY, update_test_configs
 )
 @pytest.mark.slow
 @pytest.mark.nocaptcha
-@pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
+@pytest.mark.usefixtures("set_env", "create_scraper_dir", "create_config")
 def test_site(place_id, site_class):
     site = Site(place_id)
     assert site.__class__.__name__ == site_class
@@ -24,7 +24,7 @@ def test_site(place_id, site_class):
 @pytest.mark.webtest
 @pytest.mark.slow
 @pytest.mark.nocaptcha
-@pytest.mark.usefixtures('create_scraper_dir', 'create_config')
+@pytest.mark.usefixtures("create_scraper_dir", "create_config")
 def test_site_odyssey(headless):
     site = Site("ca_napa", headless=headless)
     case_numbers = ["20CV000569"]
@@ -35,7 +35,7 @@ def test_site_odyssey(headless):
 @pytest.mark.webtest
 @pytest.mark.slow
 @pytest.mark.captcha
-@pytest.mark.usefixtures('set_env', 'create_scraper_dir', 'create_config')
+@pytest.mark.usefixtures("set_env", "create_scraper_dir", "create_config")
 def test_site_wicourts(config_path, headless):
     # Add captcha key to test config file in order to
     # test automatic lookup of CAPTCHA api key
