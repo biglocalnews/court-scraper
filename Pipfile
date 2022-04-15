@@ -21,6 +21,7 @@ wheel = "*"
 black = "*"
 myst-parser = "*"
 sphinxcontrib-napoleon = "*"
+setuptools-scm = "*"
 
 [packages]
 bs4 = "*"
