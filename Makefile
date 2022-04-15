@@ -1,5 +1,62 @@
 .DEFAULT_GOAL := help
 
+#
+# Colors
+#
+
+# Define ANSI color codes
+RESET_COLOR   = \033[m
+
+BLUE       = \033[1;34m
+YELLOW     = \033[1;33m
+GREEN      = \033[1;32m
+RED        = \033[1;31m
+BLACK      = \033[1;30m
+MAGENTA    = \033[1;35m
+CYAN       = \033[1;36m
+WHITE      = \033[1;37m
+
+DBLUE      = \033[0;34m
+DYELLOW    = \033[0;33m
+DGREEN     = \033[0;32m
+DRED       = \033[0;31m
+DBLACK     = \033[0;30m
+DMAGENTA   = \033[0;35m
+DCYAN      = \033[0;36m
+DWHITE     = \033[0;37m
+
+BG_WHITE   = \033[47m
+BG_RED     = \033[41m
+BG_GREEN   = \033[42m
+BG_YELLOW  = \033[43m
+BG_BLUE    = \033[44m
+BG_MAGENTA = \033[45m
+BG_CYAN    = \033[46m
+
+# Name some of the colors
+COM_COLOR   = $(DBLUE)
+OBJ_COLOR   = $(DCYAN)
+OK_COLOR    = $(DGREEN)
+ERROR_COLOR = $(DRED)
+WARN_COLOR  = $(DYELLOW)
+NO_COLOR    = $(RESET_COLOR)
+
+OK_STRING    = "[OK]"
+ERROR_STRING = "[ERROR]"
+WARN_STRING  = "[WARNING]"
+
+define banner
+    @echo "  $(BLUE)__________$(RESET_COLOR)"
+    @echo "$(BLUE) |$(RED)BIG🌲LOCAL$(RESET_COLOR)$(BLUE)|$(RESET_COLOR)"
+    @echo "$(BLUE) |&&& ======|$(RESET_COLOR)"
+    @echo "$(BLUE) |=== ======|$(RESET_COLOR)  $(DWHITE)This is a $(RESET_COLOR)$(BG_RED)$(WHITE)Big Local News$(RESET_COLOR)$(DWHITE) automation$(RESET_COLOR)"
+    @echo "$(BLUE) |=== == %%%|$(RESET_COLOR)"
+    @echo "$(BLUE) |[_] ======|$(RESET_COLOR)  $(1)"
+    @echo "$(BLUE) |=== ===!##|$(RESET_COLOR)"
+    @echo "$(BLUE) |__________|$(RESET_COLOR)"
+    @echo ""
+endef
+
 
 #
 # Browser helpers
@@ -48,50 +105,16 @@ help:
 
 
 #
-# Cleaning
-#
-
-## remove all build, test, coverage and Python artifacts
-clean: clean-build \
-       clean-pyc \
-       clean-test
-
-
-clean-build: ## remove build artifacts
-	@rm -fr build/
-	@rm -fr dist/
-	@rm -fr .eggs/
-	@find . -name '*.egg-info' -exec rm -fr {} +
-	@find . -name '*.egg' -exec rm -f {} +
-
-
-clean-pyc: ## remove Python file artifacts
-	@find . -name '*.pyc' -exec rm -f {} +
-	@find . -name '*.pyo' -exec rm -f {} +
-	@find . -name '*~' -exec rm -f {} +
-	@find . -name '__pycache__' -exec rm -fr {} +
-
-
-clean-test: ## remove test and coverage artifacts
-	@rm -fr .tox/
-	@rm -f .coverage
-	@rm -fr htmlcov/
-
-
-#
 # Tests
 #
 
-lint: ## check style with flake8
-	@$(PIPENV) flake8 court_scraper tests
+lint: ## run the linter
+	$(call banner,        💅 Linting code 💅)
+	@$(PIPENV) flake8 ./
 
 
 test: ## run all quick tests with the default Python
 	@$(PYTEST)
-
-
-test-tox: ## run all quick tests on all Python versions
-	@$(PYTEST) tox -p auto
 
 
 test-slow: ## run all slow tests
@@ -117,17 +140,14 @@ coverage: ## check code coverage quickly with the default Python
 # Docs
 #
 
-docs: ## generate Sphinx HTML documentation, including API docs
-	@rm -f docs/court_scraper.rst
-	@rm -f docs/modules.rst
-	@$(PIPENV) sphinx-apidoc -o docs/ court_scraper
-	@$(PIPENV) $(MAKE) -C docs clean
-	@$(PIPENV) $(MAKE) -C docs html
-	@$(BROWSER) docs/_build/html/index.html
+serve-docs: ## start the documentation test server
+	$(call banner,         📃 Serving docs 📃)
+	cd docs && $(PIPENV) make livehtml;
 
 
-servedocs: docs ## compile the docs watching for changes
-	@$(PIPENV) watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+test-docs: ## build the docs as html
+	$(call banner,        📃 Building docs 📃)
+	cd docs && $(PIPENV) make html;
 
 
 #
@@ -135,48 +155,26 @@ servedocs: docs ## compile the docs watching for changes
 #
 
 check-release: ## check release for potential errors
+	$(call banner,      🔎 Checking release 🔎)
 	@$(PIPENV) twine check dist/*
 
 
-test-release: clean dist ## release distros to test.pypi.org
-	@$(PIPENV) twine upload -r testpypi dist/*
-
-
-release: clean dist ## package and upload a release
-	@$(PIPENV) twine upload -r pypi dist/*
-
-
-dist: clean ## builds source and wheel package
+build-release: ## builds source and wheel package
+	$(call banner,      📦 Building release 📦)
 	@$(PYTHON) setup.py sdist
 	@$(PYTHON) setup.py bdist_wheel
 	@ls -l dist
 
 
-#
-# Installation
-#
-
-install: clean ## install the package to the active Python's site-packages
-	@$(PYTHON) setup.py install
-
 
 # Mark all the commands that don't have a target
 .PHONY: help \
-        clean \
-        clean-test \
-        clean-pyc \
-        clean-build \
         lint \
         test \
-        test-tox \
         test-slow \
         test-slow-nocaptcha \
         test-slow-captcha \
         coverage \
-        docs \
-        servedocs \
-        check-release \
-        test-release \
-        release \
-        dist \
-        install
+        test-docs \
+        serve-docs \
+        check-release
