@@ -9,9 +9,7 @@ try:
 except ImportError:
     from yaml import Loader
 
-
 from court_scraper.sites_meta import SitesMeta
-
 
 logger = logging.getLogger(__name__)
 
@@ -57,8 +55,8 @@ class BaseRunner:
                 page_source = case.html
             outdir = Path(self.cache_dir).joinpath("cache").joinpath(self.place_id)
             outdir.mkdir(parents=True, exist_ok=True)
-            outfile = str(outdir.joinpath("{}.html".format(case.number)))
-            logger.info("Caching file: {}".format(outfile))
+            outfile = str(outdir.joinpath(f"{case.number}.html"))
+            logger.info(f"Caching file: {outfile}")
             with open(outfile, "w") as fh:
                 fh.write(page_source)
 
@@ -80,7 +78,7 @@ class BaseRunner:
             parent_mod = "scrapers"
         else:
             parent_mod = "platforms"
-        target_module = "court_scraper.{}.{}".format(parent_mod, self.site_type)
+        target_module = f"court_scraper.{parent_mod}.{self.site_type}"
         mod = importlib.import_module(target_module)
         return getattr(mod, "Site")
 
@@ -102,7 +100,7 @@ class BaseRunner:
             return self._site_meta
 
     def _get_login_creds(self):
-        with open(self.config_path, "r") as fh:
+        with open(self.config_path) as fh:
             username = None
             password = None
             configs = yaml.load(fh, Loader=Loader)

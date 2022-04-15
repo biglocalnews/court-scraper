@@ -1,4 +1,5 @@
 import logging
+
 from court_scraper.base.runner import BaseRunner
 
 logger = logging.getLogger(__name__)
@@ -40,6 +41,6 @@ class Runner(BaseRunner):
         )
         if username and password:
             site.login(username, password)
-        logger.info("Executing search for {}".format(self.place_id))
+        logger.info(f"Executing search for {self.place_id}")
         data = site.search(case_numbers=case_numbers)
         return data

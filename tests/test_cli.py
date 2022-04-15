@@ -5,10 +5,10 @@ from unittest.mock import patch
 import pytest
 from click.testing import CliRunner
 
-from .conftest import file_contents, update_test_configs
-
 from court_scraper import cli
 from court_scraper.cli import _get_runner
+
+from .conftest import file_contents, update_test_configs
 
 
 @pytest.mark.slow
@@ -35,7 +35,7 @@ def test_integration_wicourts(court_scraper_dir, config_path, headless):
     cache_file = Path(court_scraper_dir).joinpath(
         "cache/wi_green_lake/2021CV000055.json"
     )
-    with open(cache_file, "r") as fh:
+    with open(cache_file) as fh:
         data = json.load(fh)
     # Check for presence of some key data points
     assert data["caseNo"] == "2021CV000055"

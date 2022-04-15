@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 .. image:: https://img.shields.io/pypi/v/court-scraper.svg
         :target: https://pypi.python.org/pypi/court-scraper
@@ -39,8 +38,7 @@ to scrape county-level court data by case number and date range.
 .. _Apache license: https://github.com/biglocalnews/court-scraper/blob/master/LICENSE
 
 """
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 requirements = [
     "anticaptchaofficial",

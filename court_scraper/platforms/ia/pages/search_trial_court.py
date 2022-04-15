@@ -1,12 +1,13 @@
 # Scraping tools
-from selenium.webdriver.common.by import By
-from court_scraper.captcha import resolve_recaptcha_v2
-from selenium.webdriver.support.ui import WebDriverWait
-from court_scraper.base.selenium_helpers import SeleniumHelpers
-from selenium.webdriver.support import expected_conditions as EC
-
 # Logging
 import logging
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from court_scraper.base.selenium_helpers import SeleniumHelpers
+from court_scraper.captcha import resolve_recaptcha_v2
 
 logger = logging.getLogger(__name__)
 

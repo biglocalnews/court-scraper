@@ -4,14 +4,13 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from .db import Base, Case
 
-
 Session = sessionmaker()
 
 
 class Datastore:
     def __init__(self, path):
         self.db_path = path
-        self.engine = create_engine("sqlite:///{}".format(path))
+        self.engine = create_engine(f"sqlite:///{path}")
         Base.metadata.create_all(self.engine)
         Session.configure(bind=self.engine)
 

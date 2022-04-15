@@ -1,8 +1,8 @@
 import pytest
-from tests.conftest import CAPTCHA_API_KEY
+
 from court_scraper.platforms.wicourts import Site as WicourtsSite
 from court_scraper.platforms.wicourts.site import SearchConfigurationError
-
+from tests.conftest import CAPTCHA_API_KEY
 
 skip_test_reason = (
     "You must configure captcha_service_api_key in ~/.court-scraper/config.yaml"

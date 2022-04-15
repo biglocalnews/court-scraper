@@ -18,10 +18,11 @@
      "/Users/amydipierro/GitHub/court_sites.csv"
 
  """
-import requests
-from socket import timeout
-import bs4
 import csv
+
+import bs4
+import requests
+
 
 # Code
 def read_csv(file_in):
@@ -31,7 +32,7 @@ def read_csv(file_in):
     """
     raw_list = []
 
-    with open(file_in, "r") as f:
+    with open(file_in) as f:
         for line in f:
             raw_url = line.strip().strip(",")
             if raw_url not in raw_list:
@@ -96,13 +97,10 @@ def try_site(url, url_format, site_type):
 
     # Try to reach the site
     print("trying ", format_url)
-    try:
-        response = requests.get(format_url)
-    except OSError or ConnectionError or ProtocolError:
-        print("Connection timed out.")
+    response = requests.get(format_url)
 
     # Try to extract metadata
-    if response != None and response.status_code == 200:
+    if response is not None and response.status_code == 200:
         print(format_url, " 200 response!")
         title, raw_text = get_metadata(format_url, response)
         site_dict = {
@@ -137,13 +135,13 @@ def get_metadata(url, response):
     # Get page title
     if (
         "/default.aspx" in url
-        and soup.table != None
-        and soup.table.td != None
-        and soup.table.td.td != None
+        and soup.table is not None
+        and soup.table.td is not None
+        and soup.table.td.td is not None
     ):
         title = soup.table.td.td.text.strip()
     else:
-        if soup.title != None:
+        if soup.title is not None:
             title = soup.title.text.strip()
         else:
             title = None

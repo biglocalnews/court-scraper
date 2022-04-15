@@ -1,11 +1,11 @@
 import logging
+
 import requests
 
 from court_scraper.utils import dates_for_range
 
 from .base_search import BaseSearch
 from .search_results import SearchResultsPage
-
 
 logger = logging.getLogger(__name__)
 

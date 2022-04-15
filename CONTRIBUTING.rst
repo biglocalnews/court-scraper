@@ -8,7 +8,7 @@ Contributing
 
 Contributions are welcome, and they are greatly appreciated! Every
 little bit helps, and credit will always be given. There are plenty of ways
-to get involved besides writing code. We've listed a few options below, so 
+to get involved besides writing code. We've listed a few options below, so
 take a gander and reach out on Gitter_ if you have questions.
 
 .. _Gitter: https://gitter.im/court-scraper/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
@@ -21,11 +21,11 @@ Write a scraper
 ~~~~~~~~~~~~~~~
 
 Don't see a scraper for your state or county? We'd love to have you
-write a scraper to help us expand coverage! 
+write a scraper to help us expand coverage!
 
 Our :ref:`Writing a scraper <writing a scraper>` page is the best place to get started.
 It's also a good idea to file a new ticket for the work on our `Issue tracker`_, or claim
-the ticket if one already exists. We're happy to talk through strategies for scraping and 
+the ticket if one already exists. We're happy to talk through strategies for scraping and
 integration with the framework, so please do `reach out`_!
 
 Report Bugs
@@ -100,9 +100,9 @@ below steps on setting up `court-scraper` for local development.
 
     $ git clone git@github.com:your_name_here/court-scraper.git
 
-3. Set up a local virtual environment and install dev dependencies 
+3. Set up a local virtual environment and install dev dependencies
    for local development with Pipenv_::
-    
+
     cd court-scraper/
     pipenv install --dev
 
@@ -138,7 +138,7 @@ Pull Request Guidelines
 Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include tests.
-2. If the pull request adds functionality, please be sure to review the docs 
+2. If the pull request adds functionality, please be sure to review the docs
    and include necessary updates. For example, new classes, methods
    and functions should be documented.
 3. The pull request should work for Python version 3.6 or higher. Check the `Actions tab`_ on GitHub

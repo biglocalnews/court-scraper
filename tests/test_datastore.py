@@ -1,5 +1,7 @@
-import pytest
 from datetime import datetime
+
+import pytest
+
 from court_scraper.datastore import Datastore, Session
 from court_scraper.db import Case
 

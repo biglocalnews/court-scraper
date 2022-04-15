@@ -4,7 +4,7 @@ class SearchResultsWrapper(dict):
 
     @property
     def dates(self):
-        return sorted([k for k in self.keys()])
+        return sorted(k for k in self.keys())
 
     @property
     def cases(self):

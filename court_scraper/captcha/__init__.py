@@ -1,5 +1,6 @@
 import selenium
 from anticaptchaofficial.recaptchav2proxyless import recaptchaV2Proxyless
+
 from court_scraper.configs import Configs
 
 

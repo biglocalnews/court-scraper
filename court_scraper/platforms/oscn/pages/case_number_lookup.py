@@ -1,4 +1,5 @@
 from court_scraper.case_info import CaseInfo
+
 from .case_detail import CaseDetailPage
 
 

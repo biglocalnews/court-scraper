@@ -7,8 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from court_scraper.base.selenium_helpers import SeleniumHelpers
 from court_scraper.utils import dates_for_range
-from .search_results import SearchResultsPage
+
 from ..search_api import SearchApi
+from .search_results import SearchResultsPage
 
 
 class SearchLocators:

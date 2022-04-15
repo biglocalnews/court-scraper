@@ -7,12 +7,12 @@ Overview
 --------
 
 *court-scraper* is developed primarily on Python 3.7 and uses the pytest_ library for unit testing.
-We use pytest-vcr_ for scrapers that use the `requests` library 
+We use pytest-vcr_ for scrapers that use the `requests` library
 (e.g. :py:class:`oscn.Site <court_scraper.platforms.oscn.site.Site>`). Scrapers that
 use Selenium should include a minimal set of :ref:`live webtests <live tests>` to ensure
 correct functionality and guard against regressions.
 
-.. note:: Selenium and other long-running tests should be marked as :ref:`slow <slow tests>` 
+.. note:: Selenium and other long-running tests should be marked as :ref:`slow <slow tests>`
     to enable optional running of these tests.
 
 .. _pytest: https://docs.pytest.org/en/latest/contents.html
@@ -21,7 +21,7 @@ correct functionality and guard against regressions.
 Install and run tests
 ----------------------
 
-Assuming you've cloned this repo locally and installed test and application dependencies, 
+Assuming you've cloned this repo locally and installed test and application dependencies,
 you can run tests by executing pytest in an active virtual environment::
 
     cd court-scraper/
@@ -72,7 +72,7 @@ In many cases, tests that hit live websites should be marked as both `webtest` a
     # On the command line, use both flags to target long-running webtests
     pytest --runslow -m webtest
 
-Live web tests of Selenium-based scrapers will open a web browser by default. 
+Live web tests of Selenium-based scrapers will open a web browser by default.
 All tests of Selenium scrapers should use the :code:`headless` fixture in order to provide
 the ability to disable running tests in browser.
 

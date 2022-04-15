@@ -1,9 +1,11 @@
-import pytest
 from pathlib import Path
-from tests.conftest import file_contents
-from unittest.mock import call, patch, Mock
+from unittest.mock import Mock, call, patch
+
+import pytest
+
 from court_scraper.case_info import CaseInfo
 from court_scraper.platforms.odyssey.runner import Runner
+from tests.conftest import file_contents
 
 
 @pytest.mark.usefixtures("create_scraper_dir", "create_config")

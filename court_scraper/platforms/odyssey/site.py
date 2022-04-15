@@ -1,5 +1,5 @@
-from court_scraper.case_info import CaseInfo
 from court_scraper.base.selenium_site import SeleniumSite
+from court_scraper.case_info import CaseInfo
 
 from .pages.case_detail import CaseDetailPage
 from .pages.login import LoginPage

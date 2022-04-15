@@ -19,6 +19,8 @@ twine = "*"
 watchdog = "*"
 wheel = "*"
 black = "*"
+myst-parser = "*"
+sphinxcontrib-napoleon = "*"
 
 [packages]
 bs4 = "*"
@@ -34,3 +36,4 @@ anticaptchaofficial = "*"
 typing-extensions = "*"
 cssselect = "*"
 requests = "*"
+pre-commit = "*"

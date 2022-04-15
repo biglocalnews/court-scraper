@@ -48,7 +48,7 @@ To use an alternate cache directory, set the below environment variable
    export COURT_SCRAPER_DIR=/tmp/some_other_dir
 
 
-.. _configuration: 
+.. _configuration:
 
 Configuration
 -------------

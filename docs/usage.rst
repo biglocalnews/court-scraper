@@ -11,7 +11,7 @@ that can be used to scrape data about court cases.  The command-line tool suppor
 basic search by case numbers. The Python library offers a wider range of options
 for more advanced use cases (e.g. filtering search results by case type).
 
-Our project focuses on scraping data from platforms used by county-level courts. 
+Our project focuses on scraping data from platforms used by county-level courts.
 These platforms vary in features. Some only offer basic search by party or case number,
 whereas others support advanced search by one or more parameters such as date range and case type.
 
@@ -69,10 +69,10 @@ find the `Place ID` for your jurisdiction.
 Command line
 ------------
 
-.. note:: Before using the command-line tool, check out the :ref:`install docs <install>` 
+.. note:: Before using the command-line tool, check out the :ref:`install docs <install>`
    and read up on :ref:`finding a court site to scrape <find a site>`.
 
-The command-line tool helps pinpoint counties currently supported by *court-scraper* 
+The command-line tool helps pinpoint counties currently supported by *court-scraper*
 and enables scraping case files by number.
 
 Use the :code:`--help` flag to view available sub-commands::
@@ -139,7 +139,7 @@ the :code:`--with-browser` flag::
 File storage
 ~~~~~~~~~~~~~
 
-Files scraped by the :code:`search` sub-command are saved to a :ref:`standard <default cache dir>`  -- but :ref:`configurable <customize cache dir>` -- location 
+Files scraped by the :code:`search` sub-command are saved to a :ref:`standard <default cache dir>`  -- but :ref:`configurable <customize cache dir>` -- location
 in the user's home directory, based on the court's :ref:`Place ID <place id>` (:code:`~/.court-scraper/cache/<place_id>` on Linux/Mac).
 
 For example, HTML files scraped for Tulsa, Oklahoma are stored in :code:`~/.court-scraper/cache/ok_tulsa`.
@@ -166,12 +166,12 @@ It stores the following fields:
 Custom scripts
 --------------
 
-*court-scraper* provides an importable Python package for users who are comfortable creating their 
+*court-scraper* provides an importable Python package for users who are comfortable creating their
 own scripts. The Python package provides access to a wider variety of features for
 added flexibility and more advanced scenarios such as searching by date and filtering by case type.
 
 .. note:: Court websites offer different search functionality, so it's important to review
-   the site and its corresponding Site class (and search methods) in this library to get a sense 
+   the site and its corresponding Site class (and search methods) in this library to get a sense
    of supported features.
 
 
@@ -200,10 +200,10 @@ the jurisdiction. Then call the :code:`search` method with one or more case numb
 Scrape by date
 ~~~~~~~~~~~~~~
 
-Some court sites support date-based search. In such cases, you can use the platform's :code:`Site.search_by_date` method 
+Some court sites support date-based search. In such cases, you can use the platform's :code:`Site.search_by_date` method
 to scrape data for one or more days.
 
-By default, :code:`search_by_date` only gathers case metadata (e.g. case numbers, filing dates, status, etc.) that 
+By default, :code:`search_by_date` only gathers case metadata (e.g. case numbers, filing dates, status, etc.) that
 typically appear on a results page after performing a search.
 
 .. note:: See :ref:`below <scrape details>` for details on scraping case detail file artifacts (e.g. HTML, JSON, etc.).
@@ -238,7 +238,7 @@ Depending on the site, these pages can include:
 
 Links to case detail pages are listed on a results page after conducting a search.
 These are typically HTML, but may be JSON or other file formats depending on the site.
- 
+
 By default, :code:`search_by_date` only scrapes metadata from search results pages (as described in :ref:`Scrape by date`).
 
 To scrape case detail files, pass the :code:`case_details=True` keyword argument::
@@ -258,7 +258,7 @@ Filter by case type
 
 Some court sites support a variety of parameters for more targeted filtering of
 search results. These filters can be useful for more surgical scrapes, and in scenarios
-where a site truncates results. If a site limits search results to 500 records, for example, 
+where a site truncates results. If a site limits search results to 500 records, for example,
 scraping in a more targeted way with filters can help stay under that cap.
 
 
@@ -270,7 +270,7 @@ offers a variety of additional search parameters. In *court-scraper*, the site's
 corresponding :py:meth:`search_by_date <court_scraper.platforms.wicourts.site.Site.search_by_date>` method
 supports a :code:`case_types` argument that accepts a list of one or more case types.
 
-.. note:: For Wisconsin, these case types are two-letter, upper-case codes that can be found by 
+.. note:: For Wisconsin, these case types are two-letter, upper-case codes that can be found by
    examining the source code for the *Case types* select menu on the `Advanced Search`_ page.
 
 Here's a sample usage that searches for civil (CV) and small claims (SC) cases

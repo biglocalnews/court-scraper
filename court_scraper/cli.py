@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 
 import click
-from click_option_group import optgroup, RequiredMutuallyExclusiveOptionGroup
+from click_option_group import RequiredMutuallyExclusiveOptionGroup, optgroup
 
 from court_scraper.configs import Configs
 from court_scraper.datastore import Datastore
@@ -74,7 +74,7 @@ def search(place_id, case_number, case_numbers_file, with_browser):
     results = runner.search(**kwargs)
     runner.cache_detail_pages(results)
     dstore = Datastore(configs.db_path)
-    logger.info("Adding {} results to {}".format(len(results), configs.db_path))
+    logger.info(f"Adding {len(results)} results to {configs.db_path}")
     to_db = []
     for result in results:
         # Place ID is required Case db table
@@ -113,6 +113,6 @@ def _get_runner(place_id):
         parent_mod = "scrapers"
     else:
         parent_mod = "platforms"
-    target_module = "court_scraper.{}.{}.runner".format(parent_mod, site_type)
+    target_module = f"court_scraper.{parent_mod}.{site_type}.runner"
     mod = importlib.import_module(target_module)
     return getattr(mod, "Runner")

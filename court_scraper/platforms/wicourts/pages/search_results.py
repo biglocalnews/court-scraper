@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from court_scraper.base.selenium_helpers import SeleniumHelpers
+
 from ..search_api import SearchApi
 
 
