@@ -4,8 +4,8 @@ from pathlib import Path
 
 from court_scraper.base.runner import BaseRunner
 from court_scraper.configs import Configs
-from .site import Site
 
+from .site import Site
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +40,7 @@ class Runner(BaseRunner):
         # Look up the catcha API key as env variable, then fall back to config file
         configs = Configs()
         site = Site(self.place_id, captcha_api_key=configs.captcha_service_api_key)
-        logger.info("Executing search for {}".format(self.place_id))
+        logger.info(f"Executing search for {self.place_id}")
         data = site.search(case_numbers=case_numbers, headless=headless)
         return data
 

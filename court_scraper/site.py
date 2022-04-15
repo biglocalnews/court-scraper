@@ -1,4 +1,5 @@
 import importlib
+
 from court_scraper.sites_meta import SitesMeta
 
 
@@ -46,6 +47,6 @@ class Site:
             parent_mod = "scrapers"
         else:
             parent_mod = "platforms"
-        target_module = "court_scraper.{}.{}".format(parent_mod, site_type)
+        target_module = f"court_scraper.{parent_mod}.{site_type}"
         mod = importlib.import_module(target_module)
         return getattr(mod, "Site")

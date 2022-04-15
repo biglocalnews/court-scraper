@@ -1,13 +1,15 @@
-from os.path import expanduser
 import shutil
+from os.path import expanduser
 from pathlib import Path
+
 import pytest
 import yaml
 
 try:
-    from yaml import CLoader as Loader, CDumper as Dumper
+    from yaml import CDumper as Dumper
+    from yaml import CLoader as Loader
 except ImportError:
-    from yaml import Loader, Dumper
+    from yaml import Dumper, Loader
 
 
 # NOTE: To check if vcrpy/pytest-vcr
@@ -29,12 +31,12 @@ def get_live_configs(home=expanduser("~")):
         config_path = Path(home, ".court-scraper/config.yaml")
     except KeyError:
         return ""
-    with open(config_path, "r") as fh:
+    with open(config_path) as fh:
         return yaml.load(fh, Loader=Loader)
 
 
 def load_yaml(path):
-    with open(path, "r") as fh:
+    with open(path) as fh:
         return yaml.load(fh, Loader=Loader)
 
 
@@ -127,7 +129,7 @@ def read_fixture(file_name):
 
 
 def file_contents(pth):
-    with open(pth, "r") as f:
+    with open(pth) as f:
         return f.read()
 
 

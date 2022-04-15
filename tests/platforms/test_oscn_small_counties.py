@@ -21,9 +21,9 @@ def test_small_counties_date_search_basic():
     site = Oscn(place_id)
     results = site.search_by_date(start_date=day, end_date=day, case_details=False)
     # There should be a single date
-    dates = set([case.filing_date for case in results])
+    dates = {case.filing_date for case in results}
     assert len(dates) == 1
-    assert dates == set([day])
+    assert dates == {day}
     cases = sorted(results, key=lambda case: case.number)
     # There should be four cases on this day
     assert len(cases) == 4
@@ -81,7 +81,7 @@ def test_small_counties_defaults_to_current_day():
         place_id = "ok_alfalfa"
         site = Oscn(place_id)
         results = site.search_by_date(case_details=False)
-        dates = set([case.filing_date for case in results])
+        dates = {case.filing_date for case in results}
         assert len(dates) == 1
         assert len(results) == 4
 
@@ -93,8 +93,8 @@ def test_small_counties_multiple_day_results():
     end = "2021-07-02"
     site = Oscn(place_id)
     results = site.search_by_date(start_date=start, end_date=end, case_details=False)
-    dates = set([case.filing_date for case in results])
-    assert dates == set([start, end])
+    dates = {case.filing_date for case in results}
+    assert dates == {start, end}
     assert len(results) == 10
 
 
@@ -106,7 +106,7 @@ def test_small_counties_case_details():
     # Here we set case_details to True to trigger detail page scraping
     results = site.search_by_date(start_date=day, end_date=day, case_details=True)
     # There should be a single entry for the searched date
-    dates = set([case.filing_date for case in results])
+    dates = {case.filing_date for case in results}
     assert len(dates) == 1
     first = sorted(results, key=lambda case: case.number)[0]
     # Check for presence of other expected data points

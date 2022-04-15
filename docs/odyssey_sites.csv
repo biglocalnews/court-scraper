@@ -4,54 +4,54 @@ ca,butte,"Superior Court of California, County of Butte",odyssey_site,1,NA,https
 Click here for the Butte County Courts main website.
 
 
-      Note: Please do not use the “Register” option to apply for an account. An account is not required to search for public cases or hearings. 
-    
+      Note: Please do not use the “Register” option to apply for an account. An account is not required to search for public cases or hearings.
+
 
       Hint: You can search for a partial name in Smart Search by using the asterisk character (e.g. Smith, J*).
-    
+
 
       ***The online portal for case access will be offline on Sunday, 09/13/2020 from 4:00 a.m. - 8:00 a.m., for maintenance.***
-    
+
 ",TRUE
 ca,calaveras,Court Records Inquiry,odyssey_site,2,NA,https://cacalaverasodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
 ca,calaveras,NA,odyssey_site,1,NA,https://cacalaverasportal.tylerhost.net/Portal,"
 
-      Information on the portal is made available pursuant to California Rules of Court. An account is not required to search for hearings, court calendars or register of actions.  For daily court calendars you will need to know who the judge is, that information is available on the main website by selecting “Judicial Calendar Assignment” under USEFUL INFORMATION. 
-    
+      Information on the portal is made available pursuant to California Rules of Court. An account is not required to search for hearings, court calendars or register of actions.  For daily court calendars you will need to know who the judge is, that information is available on the main website by selecting “Judicial Calendar Assignment” under USEFUL INFORMATION.
+
 
       Registration for the portal is only required if you are an Attorney of Record or Justice Partner. After Registration remember to Request Access for your specific role.  NOTE: Access Request may take as long as 30 Business days to complete while account verification is completed.
-    
+
 ",TRUE
 ca,calaveras,Court Records Inquiry,odyssey_site,2,NA,https://cacalaverasodytest.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
 ca,glenn,"Superior Court of California, County of Glenn",odyssey_site,1,NA,https://caglennportal.tylerhost.net/Portal,"
 
       Note: Please do not use the “Register” option to apply for an account. An account is not required to search for public cases or hearings.
-    
 
-      Hint: You can search for a partial name in Smart Search by using the asterisk character (e.g. Smith, J*). 
-    
+
+      Hint: You can search for a partial name in Smart Search by using the asterisk character (e.g. Smith, J*).
+
 ",TRUE
 ca,kings,"Superior Court of California, County of Kings",odyssey_site,1,NA,https://cakingsportal.tylerhost.net/Portal,"
 
       Please note that financial case information for cases filed prior to October 24, 2014, will not be accessible through this web-portal. For cases filed prior to this date please contact the Clerk’s Office at 559-582-1010 extension 6100 for assistance in obtaining financial information. Cases filed after October 24, 2014, will be accessible through the web-portal for on-line payments with a credit/debit card transaction.
-    
+
 
       ATTENTION: The Court has been experiencing technical problems with the online credit card payment system.  If you receive an error message indicating that your payment was not processed, DO NOT ATTEMPT TO MAKE ANOTHER PAYMENT. Please call the Court at 559-582-1010 Ext. 6100 for assistance.
-    
+
 
       ATTENTION: Do not use the ""Pay Online"" web payment option if you want to contest your citation or appear before a judge.
-    
+
 ",TRUE
 ca,kings,"Superior Court of California, County of Kings",odyssey_site,1,NA,https://cakingsodyprod.tylerhost.net/Portal,"
 
       Please note that financial case information for cases filed prior to October 24, 2014, will not be accessible through this web-portal. For cases filed prior to this date please contact the Clerk’s Office at 559-582-1010 extension 6100 for assistance in obtaining financial information. Cases filed after October 24, 2014, will be accessible through the web-portal for on-line payments with a credit/debit card transaction.
-    
+
 
       ATTENTION: The Court has been experiencing technical problems with the online credit card payment system.  If you receive an error message indicating that your payment was not processed, DO NOT ATTEMPT TO MAKE ANOTHER PAYMENT. Please call the Court at 559-582-1010 Ext. 6100 for assistance.
-    
+
 
       ATTENTION: Do not use the ""Pay Online"" web payment option if you want to contest your citation or appear before a judge.
-    
+
 ",FALSE
 ca,sutter,"Superior Court of California, County of Sutter Portal",odyssey_site,1,NA,https://casutterportal.tylerhost.net/Portal,"
 
@@ -62,13 +62,13 @@ Click here to return to the Sutter Superior Court homepage
 
 
       Welcome to the Superior Court of California, County of Sutter Public Portal.  Do not register to make payments or search for cases.  Some cases may not be visible to the public.  Access to additional documents and case types is available at the Sutter Superior Courthouse pursuant to California Rule of Court 2.503.
-    
 
-      •	 When you select the Smart Search option it is important to note the way names must be entered  (Last name, First name). You may use a * as a wildcard character (such as Smi* for Smith or Smitty), however, entering too little information will limit your results and you may not see the case you are searching for, in which case you will see a message asking that you narrow the search by entering more precise criteria. 
-    
+
+      •	 When you select the Smart Search option it is important to note the way names must be entered  (Last name, First name). You may use a * as a wildcard character (such as Smi* for Smith or Smitty), however, entering too little information will limit your results and you may not see the case you are searching for, in which case you will see a message asking that you narrow the search by entering more precise criteria.
+
 
       •	 When entering a case number you must include all of the case number digits after the year or none of the zeros after the year to find a specific case. Example CVFL-17-1234 must be searched as CVFL171234 or CVFL170001234.
-    
+
 
 For additional help please see the Online User Guide
 
@@ -90,12 +90,12 @@ ga,fulton,NA,odyssey_site,1,NA,https://publicrecordsaccess.fultoncountyga.gov/Po
 ga,houston,Houston County State Court Public Search  Portal,odyssey_site,1,NA,https://gahoustonportal.tylerhost.net/Portal,"
 
       To pay your traffic citation, choose the search option ""Make Payment"", then choose the ""citation"" option.  Enter the citation number. If that does not work, then try the citation number without the alpha letter and first zero. (for example, T022222 would be 22222).  Prior to calling the Clerk's Office, if you are unable to locate your case by citation number, please try using your name and date of birth. Once your citation comes up, you must click the box in the left-hand column.
-    
+
 ",TRUE
 ga,spalding,Spalding County Online Records Search,odyssey_site,1,NA,https://gaspaldingprodportal.tylerhost.net/Portal,"
 
     No notifications exist.
-  
+
 ",TRUE
 ga,statewide,re:SearchGA,odyssey_site,1,NA,https://researchga.tylerhost.net/Portal,re:SearchGA,FALSE
 il,state,NA,odyssey_site,3,NA,https://researchil.tylerhost.net/CourtRecordsSearch/Home#/home,NA,TRUE
@@ -160,34 +160,34 @@ tx,burnet,Burnet County Court Records Search,odyssey_site,2,NA,https://txburneto
 tx,calhoun,Tyler Odyssey Portal,odyssey_site,1,NA,https://txcalhounportal.tylerhost.net/Portal,"
 
     No notifications exist.
-  
+
 ",TRUE
 tx,cameron,NA,odyssey_site,1,NA,https://portal.co.cameron.tx.us/PortalProd/,NA,TRUE
 tx,chambers,Chambers County - Portal,odyssey_site,1,NA,https://txchambersportal.tylerhost.net/Portal,"
 
       Chambers County provides this web site as a public service. Information available on this web site is collected, maintained, and provided solely for the convenience of public users. While every effort is made to ensure that this information is accurate, the District and County Clerks and Justices of the Peace do not certify the authenticity of the information contained herein. The District and County Clerks and Justices of the Peace shall under no circumstance be responsible for any error or omission which may occur in these records, nor liable for any actions taken as a result of reliance upon any information contained within this web site from whatever source, or any other consequence from such reliance. Images may be unavailable while system backups are in progress.
-    
+
 
       This website offers access to certain cases not otherwise sealed or secure by court order or applicable law. Cases are searchable by cause number, party or date range and unlimited view only access is free.  Documents can be viewed and purchased for $.10 a page.  If you do not find a case in this system you can review the case by coming into the clerk's office or contacting them by phone or email to purchase the documents.  As a courtesy to our users we offer several levels of access.
-    
+
 
       Anonymous User – provides an index to all cases, unlimited searches.
-    
+
 
       Registered User – provides an index, events and orders of the court, and view/purchase documents, unlimited access.
-    
+
 
       Party to a Case - an individual directly involved in a case. Allowed access to case information and free copies of documents (must provide case number(s)).
-    
+
 
       Special Access – specialized access to case information and documents. Must provide business information at registration.  For paralegals and bondsman.
-    
+
 
       Attorney Access – specialized access to case information and documents on cases within their portfolio. Must provide firm information and bar number.
-    
+
 
       State Agency-specialized access to case information and documents. Limited to governmental agencies.
-    
+
 ",TRUE
 tx,chambers,Court Records Inquiry,odyssey_site,2,NA,https://txchambersodyprod.tylerhost.net/PublicAccess/default.aspx,Court Records Inquiry,FALSE
 tx,denton,NA,odyssey_site,2,NA,http://justice1.dentoncounty.com/PublicAccess/default.aspx,NA,TRUE
@@ -199,44 +199,44 @@ tx,harrison,Court Records Inquiry,odyssey_site,2,NA,https://txharrisonodyprod.ty
 tx,henderson,Henderson County Discovery Portal,odyssey_site,1,NA,https://txhendersonodyprod.tylerhost.net/Portal,"
 
     No notifications exist.
-  
+
 ",FALSE
 tx,hood,Hood County District Clerk Court Records Portal,odyssey_site,1,NA,https://txhoododyprod.tylerhost.net/Portal,"
 
       CONFIDENTIALITY NOTICE: At this time, only a registered user with elevated access, i.e. Attorney of Record, District Attorney, or Attorney General, will have access to documents on their cases. For the Attorney of Record, a one page preview will be enabled. It is our intent to provide the documents needed, however, the Portal will only allow access to original documents not requiring redaction and redacted documents. If payment is made for copies, and upon download the user discovers a ‘redacted’ version instead of an ‘original’, the user may request via email the ‘original’ document by providing proof of the ‘redacted’ document attached to the email request. As an elevated access user having access to documents on the case, be advised they are intended only for you, the elevated access user. They may contain information which is confidential, sensitive, or both. You are further notified that any disclosure, copying, forwarding, or other distribution of documents, or the taking of any action in reliance upon the information contained in the documents is strictly prohibited and reason for us to discontinue your registered/elevated access.
-    
+
 ",TRUE
 tx,howard,Howard County Judicial and Jail Record Searches,odyssey_site,2,NA,https://txhowardodyprod.tylerhost.net/PublicAccess/default.aspx,Howard County Judicial and Jail Record Searches,FALSE
 tx,karnes,Karnes County Court Records,odyssey_site,2,NA,https://txkarnesprodportal.tylerhost.net/PublicAccess/default.aspx,Karnes County Court Records,FALSE
 tx,kaufman,Tyler Odyssey Portal,odyssey_site,1,NA,https://txkaufmanportal.tylerhost.net/Portal,"
 
     No notifications exist.
-  
+
 ",TRUE
 tx,kaufman,Kaufman County Courts Records Inquiry,odyssey_site,2,NA,https://txkaufmanodyprod.tylerhost.net/PublicAccess/default.aspx,Kaufman County Courts Records Inquiry,FALSE
 tx,kendall,Tyler Odyssey Portal,odyssey_site,1,NA,https://txkendallportal.tylerhost.net/Portal,"
 
     No notifications exist.
-  
+
 ",FALSE
 tx,kerr,NA,odyssey_site,2,NA,http://courts.co.kerr.tx.us/CaseManagement/PublicAccess/default.aspx,NA,TRUE
 tx,lamar,Lamar County Court Records Inquiry,odyssey_site,2,NA,https://txlamarodyprod.tylerhost.net/PublicAccess/default.aspx,Lamar County Court Records Inquiry,FALSE
 tx,lamar,Lamar County Court Records Portal,odyssey_site,1,NA,https://txlamarodyportal.tylerhost.net/Portal,"
 
       Welcome to the Lamar County Portal. If you would like to make a payment on a criminal or traffic case, please click on the ""Make Payments"" button below. You do not need to register with the site if you are making a criminal/traffic case payment.
-    
 
-      Although Lamar County Courts make every effort to ensure that the information provided is accurate, neither Lamar County nor any agency, officer, elected official or employee of Lamar County, warrants the accuracy, reliability or timeliness of any information on the website and shall not be liable for any losses caused by such reliance on the accuracy, reliability or timeliness of such information, including, but not limited to incidental and consequential damages. 
-    
 
-      Not all cases are eligible for online payment. No online payments will be accepted from those considered a juvenile as defined by certain offenses, and may include defendants who are under the age of 21. 
-    
+      Although Lamar County Courts make every effort to ensure that the information provided is accurate, neither Lamar County nor any agency, officer, elected official or employee of Lamar County, warrants the accuracy, reliability or timeliness of any information on the website and shall not be liable for any losses caused by such reliance on the accuracy, reliability or timeliness of such information, including, but not limited to incidental and consequential damages.
+
+
+      Not all cases are eligible for online payment. No online payments will be accepted from those considered a juvenile as defined by certain offenses, and may include defendants who are under the age of 21.
+
 
       Payments constitute a plea of no contest and will result in a conviction.
-    
 
-      Contact the court if you would like to request drivers safety course, deferred disposition, jail credit or to plead not guilty. Once a payment is made online, you will not be able to ask for a drivers safety course, deferred disposition, jail credit, or change your plea at a later date. 
-    
+
+      Contact the court if you would like to request drivers safety course, deferred disposition, jail credit or to plead not guilty. Once a payment is made online, you will not be able to ask for a drivers safety course, deferred disposition, jail credit, or change your plea at a later date.
+
 ",TRUE
 tx,montgomery,NA,odyssey_site,2,NA,http://odyssey.mctx.org/Unsecured/default.aspx,NA,TRUE
 tx,morris,Morris County's Court Records Inquiry,odyssey_site,2,NA,https://txmorrisodyprod.tylerhost.net/PublicAccess/default.aspx,Morris County's Court Records Inquiry,FALSE
@@ -247,12 +247,12 @@ tx,smith,NA,odyssey_site,2,NA,https://odysseypa.smith-county.com/PublicAccess/de
 tx,walker,Tyler Odyssey Portal,odyssey_site,1,NA,https://txwalkerportal.tylerhost.net/Portal,"
 
     No notifications exist.
-  
+
 ",TRUE
 tx,wichita,Tyler Odyssey Portal,odyssey_site,1,NA,https://txwichitaportal.tylerhost.net/Portal,"
 
     No notifications exist.
-  
+
 ",TRUE
 tx,wichita,Wichita County Jail Records Inquiry,odyssey_site,2,NA,https://txwichitaodyprod.tylerhost.net/PublicAccess/default.aspx,Wichita County Jail Records Inquiry,FALSE
 tx,williamson,NA,odyssey_site,2,NA,http://judicialrecords.wilco.org/PublicAccess/default.aspx,NA,TRUE

@@ -1,7 +1,7 @@
 import re
 
-from lxml import html
 from bs4 import BeautifulSoup
+from lxml import html
 
 
 class MissingMetadataException(Exception):
@@ -122,7 +122,7 @@ class CaseDetailParser:
 
     def _get_text_from_p_tag(self, lookup_text):
         # Select last text node of span's parent p tag
-        xpath = "//span[contains(text(), '{}')]/../text()[last()]".format(lookup_text)
+        xpath = f"//span[contains(text(), '{lookup_text}')]/../text()[last()]"
         return self.tree.xpath(xpath)[0].strip()
 
     def _get_party_div(self):

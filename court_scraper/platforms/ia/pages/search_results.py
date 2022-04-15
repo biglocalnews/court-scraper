@@ -1,9 +1,10 @@
 # Scraping tools
-from selenium.webdriver.common.by import By
-from court_scraper.base.selenium_helpers import SeleniumHelpers
-
 # Logging
 import logging
+
+from selenium.webdriver.common.by import By
+
+from court_scraper.base.selenium_helpers import SeleniumHelpers
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 from datetime import datetime
 
+from sqlalchemy import Column, DateTime, Integer, String, UniqueConstraint, event
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import event, DateTime, Column, Integer, String, UniqueConstraint
 
 
 # Source for timestamp mixin cribbed from

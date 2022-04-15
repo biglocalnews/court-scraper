@@ -1,9 +1,10 @@
 # Scraping
-from .site import Site
-from court_scraper.base.runner import BaseRunner
-
 # Logging
 import logging
+
+from court_scraper.base.runner import BaseRunner
+
+from .site import Site
 
 logger = logging.getLogger(__name__)
 

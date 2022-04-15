@@ -2,10 +2,10 @@ from datetime import date
 from typing import List
 
 from court_scraper.case_info import CaseInfo
+
 from .pages.case_number_lookup import CaseNumberLookup
 from .pages.daily_filings import DailyFilings
 from .pages.search import Search
-
 
 # These counties are supported by
 # DailyFilings by County search,

@@ -1,5 +1,7 @@
 import requests
+
 from court_scraper.utils import dates_for_range
+
 from .base_search import BaseSearch
 from .daily_filings_results import DailyFilingsResultsPage
 

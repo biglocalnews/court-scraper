@@ -1,6 +1,5 @@
 import pytest
 
-
 from court_scraper.platforms.odyssey.parsers.case_detail import (
     CaseDetailParser,
     MissingMetadataException,

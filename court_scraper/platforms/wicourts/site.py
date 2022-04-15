@@ -2,8 +2,8 @@ from datetime import date
 
 from court_scraper.base.selenium_site import SeleniumSite
 from court_scraper.utils import dates_for_range, get_captcha_service_api_key
-from .pages.search import SearchPage
 
+from .pages.search import SearchPage
 from .search_api import SearchApi
 
 

@@ -1,5 +1,7 @@
-import pytest
 from unittest import mock
+
+import pytest
+
 from court_scraper.platforms.oscn import Site as Oscn
 
 
@@ -74,7 +76,7 @@ def test_date_search_basic():
     # Returns list of CaseInfo instances
     results = site.search_by_date(start_date=day, end_date=day, case_details=False)
     # There should be a single entry for the searched date
-    dates = set([case.filing_date for case in results])
+    dates = {case.filing_date for case in results}
     assert len(dates) == 1
     # There shoud be a single case on this day
     assert len(results) == 1
@@ -111,7 +113,7 @@ def test_date_search_defaults_to_current_day():
         site = Oscn(place_id)
         results = site.search_by_date(case_details=False)
         # There should be a single entry for the searched date
-        dates = set([case.filing_date for case in results])
+        dates = {case.filing_date for case in results}
         assert len(dates) == 1
         case = results[0]
         # Check for presence of other expected data points
@@ -126,31 +128,29 @@ def test_date_search_many_results():
     site = Oscn(place_id)
     results = site.search_by_date(start_date=day, end_date=day, case_details=False)
     # There should be a single entry for the searched date
-    dates = set([case.filing_date for case in results])
+    dates = {case.filing_date for case in results}
     assert len(dates) == 1
     # There should be many cases on this day
     assert len(results) == 219
     # Test case type section headers
-    expected_case_types = set(
-        [
-            "Civil Misc. (CV)",
-            "Civil relief less than $10,000 (CS)",
-            "Civil relief more than $10,000 (CJ)",
-            "Criminal Felony (CF)",
-            "Criminal Miscellaneous (MI)",
-            "Criminal Misdemeanor (CM)",
-            "Family and Domestic (FD)",
-            "Marriage license (ML)",
-            "Minister's Credentials (MC)",
-            "Miscellaneous Receipts - Criminal (MRC)",
-            "Paternity (FP)",
-            "Probate (PB)",
-            "Protective Order (PO)",
-            "Small Claims (SC)",
-        ]
-    )
+    expected_case_types = {
+        "Civil Misc. (CV)",
+        "Civil relief less than $10,000 (CS)",
+        "Civil relief more than $10,000 (CJ)",
+        "Criminal Felony (CF)",
+        "Criminal Miscellaneous (MI)",
+        "Criminal Misdemeanor (CM)",
+        "Family and Domestic (FD)",
+        "Marriage license (ML)",
+        "Minister's Credentials (MC)",
+        "Miscellaneous Receipts - Criminal (MRC)",
+        "Paternity (FP)",
+        "Probate (PB)",
+        "Protective Order (PO)",
+        "Small Claims (SC)",
+    }
     # Quite a few case types as well
-    case_types = set([case.type_short for case in results])
+    case_types = {case.type_short for case in results}
     assert case_types == expected_case_types
 
 
@@ -162,9 +162,9 @@ def test_date_search_multiple_day_results():
     site = Oscn(place_id)
     results = site.search_by_date(start_date=start, end_date=end, case_details=False)
     # Cases should span multiple days
-    dates = set([case.filing_date for case in results])
+    dates = {case.filing_date for case in results}
     assert len(dates) == 2
-    assert dates == set([start, end])
+    assert dates == {start, end}
     # There should be many cases on this day
     assert len(results) == 2
     first = results[0]
@@ -182,7 +182,7 @@ def test_date_search_with_case_details():
     # Here we set case_details to True to trigger detail page scraping
     results = site.search_by_date(start_date=day, end_date=day, case_details=True)
     # There should be a single date
-    dates = set([case.filing_date for case in results])
+    dates = {case.filing_date for case in results}
     assert len(dates) == 1
     # There should only be a single case on this day
     assert len(results) == 1
@@ -208,7 +208,7 @@ def test_date_search_multiple_cases():
     # Set case_details to True to trigger detail page scraping
     results = site.search_by_date(start_date=day, end_date=day, case_details=True)
     # There should be a single date
-    dates = set([case.filing_date for case in results])
+    dates = {case.filing_date for case in results}
     assert len(dates) == 1
     # There should two cases on this day
     assert len(results) == 2

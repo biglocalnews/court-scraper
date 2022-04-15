@@ -1,21 +1,21 @@
 # Pages
-from .pages.home import HomePage
-from .pages.case_detail import CaseDetailPage
-from .pages.search_results import SearchResultsPage
-from .pages.search_selection import SearchSelectionPage
-from .pages.search_trial_court import SearchTrialCourtPage
-
-# Parsers
-from . import parsers
+# Logging
+import logging
 
 # Other stuff
 from typing import List
-from court_scraper.case_info import CaseInfo
+
 from court_scraper.base.selenium_site import SeleniumSite
+from court_scraper.case_info import CaseInfo
 from court_scraper.utils import get_captcha_service_api_key
 
-# Logging
-import logging
+# Parsers
+from . import parsers
+from .pages.case_detail import CaseDetailPage
+from .pages.home import HomePage
+from .pages.search_results import SearchResultsPage
+from .pages.search_selection import SearchSelectionPage
+from .pages.search_trial_court import SearchTrialCourtPage
 
 logger = logging.getLogger(__name__)
 
