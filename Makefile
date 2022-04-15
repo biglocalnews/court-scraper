@@ -162,7 +162,6 @@ check-release: ## check release for potential errors
 build-release: ## builds source and wheel package
 	$(call banner,      📦 Building release 📦)
 	@$(PYTHON) setup.py sdist
-	@$(PYTHON) setup.py bdist_wheel
 	@ls -l dist
 
 
