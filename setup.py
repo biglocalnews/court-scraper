@@ -40,6 +40,34 @@ to scrape county-level court data by case number and date range.
 """
 from setuptools import find_packages, setup
 
+
+def version_scheme(version):
+    """
+    Version scheme hack for setuptools_scm.
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+    If that issue is resolved, this method can be removed.
+    """
+    import time
+
+    from setuptools_scm.version import guess_next_version
+
+    if version.exact:
+        return version.format_with("{tag}")
+    else:
+        _super_value = version.format_next_version(guess_next_version)
+        now = int(time.time())
+        return _super_value + str(now)
+
+
+def local_version(version):
+    """
+    Local version scheme hack for setuptools_scm.
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+    If that issue is resolved, this method can be removed.
+    """
+    return ""
+
+
 requirements = [
     "anticaptchaofficial",
     "bs4",
@@ -61,7 +89,6 @@ test_requirements = ["flake8", "pytest", "pytest-vcr"]
 
 setup(
     name="court-scraper",
-    version="0.1.1",
     description="Command-line tool for scraping data from U.S. county courts",
     long_description=__doc__,
     long_description_content_type="text/x-rst",
@@ -84,10 +111,10 @@ setup(
         "License :: OSI Approved :: ISC License (ISCL)",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     test_suite="tests",
     tests_require=test_requirements,
@@ -96,4 +123,6 @@ setup(
         "Source": "https://github.com/biglocalnews/court-scraper",
         "Tracker": "https://github.com/biglocalnews/court-scraper/issues",
     },
+    setup_requires=["setuptools_scm"],
+    use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
 )
