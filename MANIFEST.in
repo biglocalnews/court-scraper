@@ -1,6 +1,5 @@
-include CONTRIBUTING.rst
 include LICENSE
-include README.rst
+include README.me
 
 recursive-include tests *
 recursive-exclude * __pycache__
