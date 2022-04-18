@@ -40,7 +40,7 @@ def local_version(version):
 
 setup(
     name="court-scraper",
-    description="Command-line tool for scraping data from U.S. county courts",
+    description="Download case information from U.S. county courts",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="Big Local News",

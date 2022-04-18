@@ -1,12 +1,13 @@
-% court-scraper documentation master file
+# court-scraper
 
-```{eval-rst}
-.. include:: ../README.rst
-```
+A Python library that downloads case information from U.S. county courts
 
-# Documentation
+## Documentation
 
 ```{toctree}
+:glob:
+:maxdepth: 1
+
 install
 usage
 contributing
@@ -15,8 +16,9 @@ testing
 history
 ```
 
-# Indices and tables
+## Links
 
-- {ref}`genindex`
-- {ref}`modindex`
-- {ref}`search`
+- Gitter for chat: https://gitter.im/court-scraper/general
+- Documentation: http://court-scraper.readthedocs.io/en/latest/
+- GitHub: https://github.com/biglocalnews/court-scraper
+- PyPI: https://pypi.python.org/pypi/court-scraper
