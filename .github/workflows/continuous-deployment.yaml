@@ -14,9 +14,9 @@ jobs:
       - name: Install pipenv
         run: pipx install pipenv
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
-          python-version: "3.7"
+          python-version: "3.9"
           cache: "pipenv"
 
       - id: pipenv-install
