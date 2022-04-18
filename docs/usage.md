@@ -2,8 +2,6 @@
 
 # Usage
 
-## Overview
-
 *court-scraper* provides a command-line tool and underlying Python library
 that can be used to scrape data about court cases.  The command-line tool supports
 basic search by case numbers. The Python library offers a wider range of options
@@ -22,11 +20,11 @@ Wherever possible, *court-scraper* attempts to provide support for search by:
 The library is currently focused on acquring raw file artifacts (e.g. HTML and JSON files containing case data).
 *court-scraper* does not automate the extraction and standardization of data from these raw files.
 
-:::{note}
+```{note}
 We hope to eventually provide tools to help with data extraction and standardization. However,
 due to the wide variability of case types even within a single platform, this effort remains
 on our long-term roadmap. We welcome {ref}`contributions <contributing>` on this front!
-:::
+```
 
 (find-a-site)=
 
@@ -61,10 +59,10 @@ find the `Place ID` for your jurisdiction.
 
 ## Command line
 
-:::{note}
+```{note}
 Before using the command-line tool, check out the {ref}`install docs <install>`
 and read up on {ref}`finding a court site to scrape <find a site>`.
-:::
+```
 
 The command-line tool helps pinpoint counties currently supported by *court-scraper*
 and enables scraping case files by number.
@@ -85,9 +83,9 @@ The {code}`info` sub-command lists the currently supported counties:
 court-scraper info
 ```
 
-:::{note}
+```{note}
 See {ref}`find a site` for advice if your jurisdiction is not among those listed.
-:::
+```
 
 ### Case number search
 
@@ -170,11 +168,11 @@ It stores the following fields:
 own scripts. The Python package provides access to a wider variety of features for
 added flexibility and more advanced scenarios such as searching by date and filtering by case type.
 
-:::{note}
+```{note}
 Court websites offer different search functionality, so it's important to review
 the site and its corresponding Site class (and search methods) in this library to get a sense
 of supported features.
-:::
+```
 
 ### Scrape case details by number
 
@@ -192,12 +190,12 @@ case_numbers=['CJ-2021-1904', 'CJ-2021-1905']
 results = site.search(case_numbers=case_numbers)
 ```
 
-:::{note}
+```{note}
 {py:class}`Site <court_scraper.site.Site>` provides a generic interface to simplify import and configuration
 of platform-specific Site classes, such as {py:class}`court_scraper.platforms.oscn.site.Site`.
 Platform Site classes typically have varying options for initialization and search, so it's a good
 idea to review their options when using this generic Site class.
-:::
+```
 
 (scrape-by-date)=
 
@@ -209,9 +207,9 @@ to scrape data for one or more days.
 By default, {code}`search_by_date` only gathers case metadata (e.g. case numbers, filing dates, status, etc.) that
 typically appear on a results page after performing a search.
 
-:::{note}
+```{note}
 See {ref}`below <scrape details>` for details on scraping case detail file artifacts (e.g. HTML, JSON, etc.).
-:::
+```
 
 To scrape case metadata for the current day:
 
@@ -278,10 +276,10 @@ offers a variety of additional search parameters. In *court-scraper*, the site's
 corresponding {py:meth}`search_by_date <court_scraper.platforms.wicourts.site.Site.search_by_date>` method
 supports a {code}`case_types` argument that accepts a list of one or more case types.
 
-:::{note}
+```{note}
 For Wisconsin, these case types are two-letter, upper-case codes that can be found by
 examining the source code for the *Case types* select menu on the [Advanced Search] page.
-:::
+```
 
 Here's a sample usage that searches for civil (CV) and small claims (SC) cases
 on July 1, 2021 in Milwaukee, WI:

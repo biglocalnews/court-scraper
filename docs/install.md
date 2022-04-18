@@ -2,30 +2,23 @@
 
 # Installation
 
-## Install
+Install the library from the Python Package Index with `pipenv`.
 
-```
-pip install court-scraper
+```bash
+pipenv install court-scraper
 ```
 
 Upon installation, you should have access to the {code}`court-scraper` tool on the command line. Use the
 {code}`--help` flag to view available sub-commands:
 
-```
+```bash
 court-scraper --help
 ```
 
-You should also be able to import the {code}`court_scraper` package from a Python script.:
-
-```
-import court_scraper
-print(court_scraper.__version__)
-```
-
-:::{note}
+```{note}
 See {ref}`the usage docs <usage>` for details on using *court-scraper* on
 the command line and in custom scripts.
-:::
+```
 
 (default-cache-dir)=
 

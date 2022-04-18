@@ -2,18 +2,16 @@
 
 # Testing
 
-## Overview
-
 *court-scraper* is developed primarily on Python 3.7 and uses the [pytest] library for unit testing.
 We use [pytest-vcr] for scrapers that use the `requests` library
 (e.g. {py:class}`oscn.Site <court_scraper.platforms.oscn.site.Site>`). Scrapers that
 use Selenium should include a minimal set of {ref}`live webtests <live tests>` to ensure
 correct functionality and guard against regressions.
 
-:::{note}
+```{note}
 Selenium and other long-running tests should be marked as {ref}`slow <slow tests>`
 to enable optional running of these tests.
-:::
+```
 
 ## Install and run tests
 

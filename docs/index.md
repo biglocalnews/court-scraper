@@ -12,8 +12,8 @@ install
 usage
 contributing
 writing_a_scraper
+site-discovery
 testing
-history
 ```
 
 ## Links

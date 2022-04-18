@@ -2,8 +2,6 @@
 
 # Writing a scraper
 
-## Overview
-
 *court-scraper*'s main goal is to serve as a framework for acquiring basic
 court case metadata and raw file artifacts (e.g. HTML, JSON, PDFs, etc.) for county-level
 courts.
@@ -45,10 +43,10 @@ uses both libraries to achieve faster scrapes while handling (and minimizing the
 
 ### Add a Site class
 
-:::{note}
+```{note}
 Check out the docs for {ref}`getting started on code contributions <code contribution bootstrap>`
 for details on setting up a fork for local development.
-:::
+```
 
 The main task involved in contributing a scraper is creating a {code}`Site` class that
 provides a {code}`search` method capable of scraping one or more case numbers.
@@ -109,18 +107,17 @@ Many counties use common software platforms, such as Odyssey by Tyler Technologi
 To add a platform-based scraper for use in more than one jurisdiction, add a site class to the {code}`court_scraper.platforms` namespace.
 For example, {py:class}`court_scraper.platforms.odyssey.site.Site`.
 
-:::{note}
+```{note}
 We've provided some base classes and helper functions to help with common
 scenarios (e.g. see {py:class}`SeleniumHelpers <court_scraper.base.selenium_helpers.SeleniumHelpers>` and functions
 in {py:mod}`court_scraper.utils`).
-:::
+```
 
 ### Add tests
 
 New site classes should include test coverage for the {code}`search` and {code}`search_by_date` methods.
 
-Check out our {ref}`Testing docs <testing>` and review test modules for the Odyssey, Oklahoma (oscn) or Wisconsin (wicourts)
-site classes for examples that can help you get started.
+Check out our {ref}`Testing docs <testing>` and review test modules for the Odyssey, Oklahoma (oscn) or Wisconsin (wicourts) site classes for examples that can help you get started.
 
 ### Update *court_scraper.site.Site*
 
