@@ -1,4 +1,20 @@
+# court-scraper
+
 A Python library that downloads case information from U.S. county courts
+
+## Documentation
+
+```{toctree}
+:glob:
+:maxdepth: 1
+
+install
+usage
+contributing
+writing_a_scraper
+site-discovery
+testing
+```
 
 ## Links
 
