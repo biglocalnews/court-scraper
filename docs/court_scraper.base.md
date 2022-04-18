@@ -1,37 +1,39 @@
-court\_scraper.base package
-===========================
+# court_scraper.base package
 
-Submodules
-----------
+## Submodules
 
-court\_scraper.base.runner module
----------------------------------
+## court_scraper.base.runner module
 
+```{eval-rst}
 .. automodule:: court_scraper.base.runner
    :members:
    :undoc-members:
    :show-inheritance:
+```
 
-court\_scraper.base.selenium\_helpers module
---------------------------------------------
+## court_scraper.base.selenium_helpers module
 
+```{eval-rst}
 .. automodule:: court_scraper.base.selenium_helpers
    :members:
    :undoc-members:
    :show-inheritance:
+```
 
-court\_scraper.base.selenium\_site module
------------------------------------------
+## court_scraper.base.selenium_site module
 
+```{eval-rst}
 .. automodule:: court_scraper.base.selenium_site
    :members:
    :undoc-members:
    :show-inheritance:
+```
 
-Module contents
----------------
+## Module contents
 
+```{eval-rst}
 .. automodule:: court_scraper.base
    :members:
    :undoc-members:
    :show-inheritance:
+```

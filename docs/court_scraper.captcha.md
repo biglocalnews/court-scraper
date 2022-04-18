@@ -1,10 +1,10 @@
-court\_scraper.captcha package
-==============================
+# court_scraper.captcha package
 
-Module contents
----------------
+## Module contents
 
+```{eval-rst}
 .. automodule:: court_scraper.captcha
    :members:
    :undoc-members:
    :show-inheritance:
+```
