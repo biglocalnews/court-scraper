@@ -14,6 +14,7 @@ contributing
 writing_a_scraper
 site-discovery
 testing
+releasing
 ```
 
 ## Links
