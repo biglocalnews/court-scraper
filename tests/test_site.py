@@ -48,7 +48,19 @@ def test_site_wicourts(config_path, headless):
 
 @pytest.mark.vcr()
 def test_site_ok():
-    site = Site("ok_tulsa")
+    # Test a case number search
+    tulsa = Site("ok_tulsa")
     case_numbers = ["CJ-2021-1904"]
-    results = site.search(case_numbers=case_numbers)
+    results = tulsa.search(case_numbers=case_numbers)
     assert len(results) == 1
+
+
+@pytest.mark.vcr()
+def test_by_date_ok():
+    # Test a date search on a country with a dedicated daily filings page
+    tulsa = Site("ok_tulsa")
+    tulsa.search_by_date()
+
+    # Test a date search on a county without one
+    kiowa = Site("ok_kiowa")
+    kiowa.search_by_date()
