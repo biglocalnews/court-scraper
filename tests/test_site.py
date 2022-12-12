@@ -48,7 +48,6 @@ def test_site_wicourts(config_path, headless):
 
 @pytest.mark.vcr()
 def test_site_ok():
-    # Test a case number search
     site = Site("ok_tulsa")
     case_numbers = ["CJ-2021-1904"]
     results = site.search(case_numbers=case_numbers)
