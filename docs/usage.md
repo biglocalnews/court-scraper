@@ -154,7 +154,7 @@ The database can be helpful for quickly checking which cases have been scraped.
 It stores the following fields:
 
 - `created` (*datetime*) - The date and time of the case was initially scraped.
-- `udpated` (*datetime*) - The date and time of last scrape for the case.
+- `updated` (*datetime*) - The date and time of last scrape for the case.
 - `place_id` (*str*) - The state postal and county name in "snake case" (e.g. *ok_tulsa*).
 - `number` (*str*) - The case number.
 - `filing_date` (*date*) - The filing date of the case (if available).
