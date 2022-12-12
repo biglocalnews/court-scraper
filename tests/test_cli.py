@@ -5,8 +5,7 @@ from unittest.mock import patch
 import pytest
 from click.testing import CliRunner
 
-from court_scraper import cli
-from court_scraper.cli import _get_runner
+from court_scraper import cli, utils
 
 from .conftest import file_contents, update_test_configs
 
@@ -89,6 +88,6 @@ def test_list_scrapers(sites_csv_text):
 
 
 def test_get_runner():
-    runner_kls = _get_runner("ga_dekalb")
+    runner_kls = utils.get_runner("ga_dekalb")
     expected = "court_scraper.platforms.odyssey.runner"
     assert runner_kls.__module__ == expected

@@ -63,11 +63,6 @@ class Site(SeleniumSite):
         logger.debug(f"Returning {len(case_list)} CaseInfo objects")
         return case_list
 
-    def search_by_date(
-        self, start_date=None, end_date=None, case_details=False, case_types=[]
-    ) -> List[CaseInfo]:
-        raise NotImplementedError
-
     def login(self, username, password):
         # Perform login with username and password
         raise NotImplementedError
