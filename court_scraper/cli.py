@@ -116,3 +116,7 @@ def _get_runner(place_id):
     target_module = f"court_scraper.{parent_mod}.{site_type}.runner"
     mod = importlib.import_module(target_module)
     return getattr(mod, "Runner")
+
+
+if __name__ == "__main__":
+    cli()
