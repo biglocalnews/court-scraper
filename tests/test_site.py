@@ -49,9 +49,9 @@ def test_site_wicourts(config_path, headless):
 @pytest.mark.vcr()
 def test_site_ok():
     # Test a case number search
-    tulsa = Site("ok_tulsa")
+    site = Site("ok_tulsa")
     case_numbers = ["CJ-2021-1904"]
-    results = tulsa.search(case_numbers=case_numbers)
+    results = site.search(case_numbers=case_numbers)
     assert len(results) == 1
 
 
