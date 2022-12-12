@@ -85,13 +85,12 @@ def search(place_id, case_number, case_numbers_file, with_browser):
 
 @cli.command(help="Get info about available scrapers")
 def info():
+    """Print inforomation about the available scrapers."""
     msg = "\nAvailable scrapers:\n\n"
     meta = SitesMeta()
     for state, county in meta.data.keys():
-        entry = " * {} - {} ({})\n".format(
-            state.upper(), county.title(), "_".join((state, county.replace(" ", "_")))
-        )
-        msg += entry
+        place_id = f"{state}_{county.replace(' ', '_')}"
+        msg += f" * {state.upper()} - {county.title()} ({place_id})\n"
     end_note = (
         "\nNOTE: Scraper IDs (in parentheses) should be "
         + "used with the search command's --place-id argument."
