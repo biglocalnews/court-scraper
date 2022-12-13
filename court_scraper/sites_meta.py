@@ -2,6 +2,7 @@
 import csv
 import io
 import pkgutil
+import typing
 
 
 class SitesMeta:
@@ -22,6 +23,16 @@ class SitesMeta:
         key = (state, county)
         return self.data[key]["home_url"]
 
+    def get_state_list(self, postal_code: str) -> typing.List:
+        """Get a list of all sites in the provided state."""
+        site_list = []
+        for (state, county), site in self.data.items():
+            if state.lower() == postal_code.lower():
+                site_list.append(site)
+        if len(site_list) == 0:
+            raise ValueError("No sites found!")
+        return site_list
+
     def _get_sites_data(self):
         try:
             # If the metadata is already in the cache, use that
@@ -34,6 +45,7 @@ class SitesMeta:
             for row in reader:
                 state = row.pop("state")
                 county = row.pop("county")
+                row["place_id"] = f"{state.lower()}_{county.lower().replace(' ', '_')}"
                 key = (state, county)
                 data[key] = row
             self._data = data

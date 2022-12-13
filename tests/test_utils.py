@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pytest
 
-from court_scraper.utils import dates_for_range
+from court_scraper.utils import dates_for_range, get_runners_in_state
 
 
 @pytest.mark.parametrize(
@@ -31,3 +31,8 @@ from court_scraper.utils import dates_for_range
 def test_dates_for_range(start, end, kwargs, expected):
     dates = dates_for_range(start, end, **kwargs)
     assert dates == expected
+
+
+def test_get_runners():
+    runner_list = get_runners_in_state("ok")
+    assert len(runner_list) == 81

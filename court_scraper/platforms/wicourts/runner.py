@@ -61,3 +61,11 @@ class Runner(BaseRunner):
             logger.info(f"Caching file: {outfile}")
             with open(outfile, "w") as fh:
                 json.dump(case.data, fh)
+
+    def search_by_date(self, start_date=None, end_date=None, case_details=False):
+        """Execute the search_by_date method."""
+        site = Site(self.place_id)
+        logger.info(f"Executing search_by_date for {self.place_id}")
+        return site.search_by_date(
+            start_date=start_date, end_date=end_date, case_details=case_details
+        )
