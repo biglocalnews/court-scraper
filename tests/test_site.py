@@ -56,11 +56,14 @@ def test_site_ok():
 
 
 @pytest.mark.vcr()
-def test_by_date_ok():
+def test_by_date_tulsa():
     # Test a date search on a country with a dedicated daily filings page
     tulsa = Site("ok_tulsa")
     tulsa.search_by_date()
 
-    # Test a date search on a county without one
-    kiowa = Site("ok_kiowa")
-    kiowa.search_by_date()
+
+# @pytest.mark.vcr()
+# def test_by_date_kiowa():
+#     # Test a date search on a county without one
+#     kiowa = Site("ok_kiowa")
+#     kiowa.search_by_date()

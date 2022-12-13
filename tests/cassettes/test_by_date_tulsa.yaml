@@ -1,0 +1,314 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.27.1
+    method: GET
+    uri: https://www.oscn.net/applications/oscn/report.asp?report=DailyFilings&errorcheck=true&database=&db=Tulsa&StartDate=12-13-22
+  response:
+    body:
+      string: "<!DOCTYPE html>\r\n<!--[if lt IE 7]>      <html lang=\"en-US\" class=\"no-js
+        lt-ie9 lt-ie8 lt-ie7\"> <![endif]-->\r\n<!--[if IE 7]>         <html lang=\"en-US\"
+        class=\"no-js lt-ie9 lt-ie8\"> <![endif]-->\r\n<!--[if IE 8]>         <html
+        lang=\"en-US\" class=\"no-js lt-ie9\"> <![endif]-->\r\n<!--[if gt IE 8]><!-->
+        <html lang=\"en-US\" class=\"no-js\"> <!--<![endif]-->\r\n    <head>\r\n\r\n
+        \       <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n\t\t<meta
+        charset=\"ISO-8859-1\">\r\n        <meta name=\"viewport\" content=\"width=device-width,
+        initial-scale=1\">\r\n\r\n        <link rel=\"stylesheet\" href=\"/assets/css/normalize.min.css\">\r\n
+        \       <link rel=\"stylesheet\" href=\"/assets/css/main.css\">\r\n        <link
+        rel=\"stylesheet\" href=\"/assets/css/bootstrap-2.3.2.min.css\">\r\n        <link
+        rel=\"stylesheet\" href=\"/assets/css/oscn-navigation.css\">\r\n        <link
+        rel=\"stylesheet\" href=\"/assets/css/oscn-footer.css\">\r\n\r\n        <script
+        src=\"/assets/js/modernizr-2.6.2.min.js\"></script>\r\n\t\t<!--[if lt IE 9]>\t\r\n\t\t<script
+        src=\"/assets/js/respond.min.js\"></script>\r\n\t\t<script>\r\n\t\twindow.onload
+        = function() {\r\n\t\t\tsetTimeout(function(){\t\t\t\t\r\n\t\t\t\tvar height
+        = $(\".footer\").outerHeight(true);\r\n\t\t\t\t$(\"#oscn-content\").css(\"padding-bottom\",
+        function(){\r\n\t\t\t\t\treturn height;\r\n\t\t\t\t});}, 2000);\r\n\t\t}\r\n\t\t</script>\r\n\t\t<![endif]-->\r\n
+        \       <script src=\"/assets/js/cookies.js\"></script>\r\n<style>.row { margin-left:
+        auto; } </style>\t\t\r\n\t\t\r\n<style type=\"text/css\">\r\nblockquote {
+        border: 0 solid black; }\r\nhr { margin: 4px 0;}\r\n.clspg, table { line-height:
+        14px;}\r\n#oscn-content a { text-decoration: underline; }\r\n</style>\r\n
+        \   \r\n<script>\r\n  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\r\n
+        \ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\r\n
+        \ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\r\n
+        \ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\r\n\r\n
+        \ ga('create', 'UA-54280338-1', {'sampleRate': 50} );\r\n  ga('send', 'pageview');\r\n\r\n</script>\r\n\t</head>\r\n
+        \   <body>\r\n\t<div class=\"wrapper\">\r\n\t<div class=\"header\" data-elastic-exclude>\r\n\t<div
+        class=\"accessibility\">\r\n\t\t<a href=\"#oscn-content\">Skip to Main Content</a>\r\n\t\t<a
+        href=\"/v4/accessibility/\">Accessibility Statement</a>\r\n\t</div>\r\n\t<div
+        class=\"navigation-tophat\">\r\n\t\t<div class=\"sized\">\r\n\t\t\t<div class=\"left\">\r\n\t\t\t\t<ul>\r\n\t\t\t\t\t<li><a
+        href=\"http://www.oscn.net/applications/oscn/SimpleHelp.asp?HelpContextID=\">Help</a></li>\r\n\t\t\t\t\t<li><a
+        href=\"http://www.oscn.net/applications/oscn/SimpleHelp.asp?HelpContextID=84\">Contact
+        Us</a></li>\r\n\t\t\t\t</ul>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"right\">\r\n\t\t\t\t<ul>\r\n\t\t\t\t\t<li><a
+        href=\"https://pay.oscn.net/epayments/\">e-payments</a></li>\r\n\t\t\t\t\t<li><a
+        href=\"/jobs/\">Careers</a></li>\r\n\t\t\t\t</ul>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div
+        class=\"navigation-spectacles sized\">\r\n\t\t<div class=\"navigation-utility\">\r\n\t\t\t<div
+        class=\"brand\"><a href=\"/\"><img id=\"logo\" class=\"screen-logo\" alt=\"OSCN\"
+        src=\"/assets/img/logo.jpg\" /><img class=\"print-logo\" alt=\"\" src=\"/assets/img/logo-bw.jpg\"
+        /></a></div>\r\n\t\t\t<div class=\"toggle\" style=\"display: none;\"><button
+        type=\"button\" data-toggle=\"navigation\"><span class=\"sr-only\">toggle
+        navigation</span></button></div>\r\n\t\t</div>\r\n\t\t<nav>\r\n\t\t\t<ol class=\"nav-menu\">\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"home\"><a href=\"/v4/\">Home</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"courts_menu\"><a href=\"/courts/\">Courts</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"decisions\"><a href=\"/decisions/\">Decisions</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"programs\"><a href=\"/v4/programs/\">Programs</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"news\"><a href=\"/news/\">News</a></li>\r\n\t\t\t\t<li
+        class=\"nav-item\" id=\"legal-research\"><a href=\"/applications/oscn/start.asp?viewType=LIBRARY\">Legal
+        Research</a></li>\r\n\t\t\t\t<li class=\"nav-item\" id=\"court-records\"><a
+        href=\"/dockets/\">Court Records</a></li>\r\n\t\t\t\t<li class=\"nav-item\"
+        id=\"quick-links\"><a href=\"/v4/quicklinks/\">Quick Links</a></li>\r\n\t\t\t</ol>\r\n\t\t</nav>\r\n\t</div>\r\n</div>\t\t\t\r\n\t<div
+        id=\"oscn-content\">\r\n\t\t<div class=\"container-fluid sized\"><HTML><HEAD><TITLE>Daily
+        Filings</TITLE><STYLE MEDIA=all>P.clspg {page-break-after:always}</STYLE></HEAD>\r\n<BODY
+        TOPMARGIN=0 LEFTMARGIN=0 BGCOLOR=WHITE><!--Responding Server:OSCNL1WEB2502
+        -->\r\n  \r\n\r\n\r\n<FONT FACE=ARIAL SIZE=4>Daily Filings for Tuesday, December
+        13, 2022</FONT><HR>\r\n<FONT FACE=ARIAL SIZE=1>Report generated by the Oklahoma
+        Court Information System on 12/13/2022 at 11:42:36:133.</FONT><HR>\r\n<FONT
+        FACE=ARIAL SIZE=3><B>The following actions were filed in the District Court
+        of Tulsa County:</FONT></B><HR>\r\n<FONT FACE=ARIAL SIZE=2><B>Criminal Felony
+        (CF)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568307&db=Tulsa\">CF-2022-4582</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. MALQUAN DEMARQUEZ JACKSON</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568308&db=Tulsa\">CF-2022-4583</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. KENNETH EDWARD BATTAGLIA</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568309&db=Tulsa\">CF-2022-4584</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. ELIJAH PAUL TITONE RAY ALEXANDER VILLALBA</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568408&db=Tulsa\">CF-2022-4585</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. EVAN JAMON WOODARD</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568412&db=Tulsa\">CF-2022-4586</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. TRACY RENEE OVERSTREET DEANDA NAPOLEON
+        ALLEN</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT FACE=ARIAL
+        SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568418&db=Tulsa\">CF-2022-4587</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. JOHN DANIEL ENGLAND</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568421&db=Tulsa\">CF-2022-4588</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. TONI JO WALLACE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568422&db=Tulsa\">CF-2022-4589</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. GARRY ALLEN BUSSELL</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568427&db=Tulsa\">CF-2022-4590</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. MARVIN SPARKMAN</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568431&db=Tulsa\">CF-2022-4591</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. CHRISTOPHER CLAY ROACH</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568434&db=Tulsa\">CF-2022-4592</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. TERRYL RAYSEAN BROOKS</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568436&db=Tulsa\">CF-2022-4593</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. KYLE AUSIN WASSERMAN</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568438&db=Tulsa\">CF-2022-4594</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. SEAN GUILD</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568441&db=Tulsa\">CF-2022-4595</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. LAQUAIN QUINCY STEWART</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568444&db=Tulsa\">CF-2022-4596</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. KEALYONA JOY BULLARD</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568445&db=Tulsa\">CF-2022-4597</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. JESSIE LEA EDENS</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568446&db=Tulsa\">CF-2022-4598</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. LANDON JEORGE DUPLESSIS</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568448&db=Tulsa\">CF-2022-4599</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. JOSHUA EVERETT ANTLE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568449&db=Tulsa\">CF-2022-4600</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. MATHIS, JERRELL JERMAINE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Civil relief more than $10,000 (CJ)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568327&db=Tulsa\">CJ-2022-3751</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>PROGRESSIVE NORTHERN INSURANCE COMPANY v. NUTTALL, JAMES
+        PAUL</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT FACE=ARIAL
+        SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568339&db=Tulsa\">CJ-2022-3752</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>BKL INC v. GWIN, DAVID</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568343&db=Tulsa\">CJ-2022-3753</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>INTERSTATE RESTORATION LLC v. PIONEER PROPERTIES LLC</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568356&db=Tulsa\">CJ-2022-3754</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>CENTRAL TRUST BANK v. AGEE, PAUL D</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568360&db=Tulsa\">CJ-2022-3755</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>FOURSIGHT CAPITAL LLC v. KEYS, DANIEL</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568363&db=Tulsa\">CJ-2022-3756</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>LAKEVIEW LOAN SERVICING LLC v. VOSS, CHRISTIAN A</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568371&db=Tulsa\">CJ-2022-3757</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>NATIONSTAR MORTGAGE LLC v. CARLTON, RICHARD</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568378&db=Tulsa\">CJ-2022-3758</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>FOURSIGHT CAPITAL LLC v. RAKE, DAVID</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568399&db=Tulsa\">CJ-2022-3759</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>WELLS FARGO BANK N.A. v. WANG, XIAOHONG</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568403&db=Tulsa\">CJ-2022-3760</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>UNIVERSITY OF TULSA v. LEE, ALEXSIS A</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568411&db=Tulsa\">CJ-2022-3761</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>UNIVERSITY OF TULSA v. ADAMS, AUSTIN MICHAEL</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568424&db=Tulsa\">CJ-2022-3762</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>WELLS FARGO BANK N.A. v. CHAFFIN, RYAN H</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568433&db=Tulsa\">CJ-2022-3763</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>WELLS FARGO BANK N.A. v. LIST, PATRICK WAYNE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568442&db=Tulsa\">CJ-2022-3764</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>MIDFIRST BANK v. HURT, TALONNA SHANECE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Criminal Misdemeanor (CM)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568423&db=Tulsa\">CM-2022-4123</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>STATE OF OKLAHOMA v. Travis W Stotts KEESHA RACHELLE MATNEY</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568430&db=Tulsa\">CM-2022-4124</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Robason, Stephanie Michelle</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568435&db=Tulsa\">CM-2022-4125</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. BIVENS, BRADLEY SCOTT</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568440&db=Tulsa\">CM-2022-4126</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Bower, Michael John</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568443&db=Tulsa\">CM-2022-4127</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Ledgerwood, Wade allen</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Civil relief less than $10,000 (CS)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568311&db=Tulsa\">CS-2022-5110</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>LVNV FUNDING LLC v. CUPPLES, JOHN</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568312&db=Tulsa\">CS-2022-5111</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>LVNV FUNDING LLC v. GILLASPIE, JERRY</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568314&db=Tulsa\">CS-2022-5112</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>LVNV FUNDING LLC v. LYNCH, TED</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568316&db=Tulsa\">CS-2022-5113</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>LVNV FUNDING LLC v. HILL, WILBURN</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568324&db=Tulsa\">CS-2022-5114</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>ALTAMIRA LLC v. 7315 INVESTMENTS LLC</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568326&db=Tulsa\">CS-2022-5115</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>MIDLAND CREDIT MANAGEMENT INC v. MARTIN, MARK</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568333&db=Tulsa\">CS-2022-5116</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>MIDLAND CREDIT MANAGEMENT INC v. STEFFENS, BRANDON</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568340&db=Tulsa\">CS-2022-5117</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>MIDLAND FUNDING LLC v. SCHROEDER, JOHN</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568341&db=Tulsa\">CS-2022-5118</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>MIDLAND CREDIT MANAGEMENT INC v. BENTLEY, CHRISTOPHER J</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568349&db=Tulsa\">CS-2022-5119</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>BOKF NA v. LIFESTREAM RESOURCCES FOUNDATION</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568353&db=Tulsa\">CS-2022-5120</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>FIRST FIDELITY BANK NA v. SMITH, PATRICK</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568366&db=Tulsa\">CS-2022-5121</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>AUTO ADVANTAGE FINANCE LLC v. THOMAS, PATRICIA ELAINE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568370&db=Tulsa\">CS-2022-5122</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>AGENCY OF CREDIT CONTROL INC v. WEST, GARRETT D</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568374&db=Tulsa\">CS-2022-5123</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>COMMUNICATION FEDERAL CREDIT UNION v. BROOKS, TROYLEESHA</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568377&db=Tulsa\">CS-2022-5124</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>AUTO ADVANTAGE FINANCE LLC v. BROWN, MICCKAH YUH-NEE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568407&db=Tulsa\">CS-2022-5125</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>UNIVERSITY OF TULSA v. JOHNSON, KYLE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568439&db=Tulsa\">CS-2022-5126</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>AUTO ADVANTAGE FINANCE LLC v. SIMMS, TYLER CORBETT</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Civil Misc. (CV)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568305&db=Tulsa\">CV-2022-2517</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>HENRY, ANGELA v. SERVICE OKLAHOMA</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568342&db=Tulsa\">CV-2022-2518</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>JONES, ASHLEY v. IN RE CHANGE OF NAME</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Declined Traffic Tickets (DTR)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568389&db=Tulsa\">DTR-2022-86</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Sier, Noelle Renay</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Family and Domestic (FD)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568317&db=Tulsa\">FD-2022-2508</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>In re the Marriage of: XIONG, PAKOU and LEE, KONG PHENG</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Marriage license (ML)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568313&db=Tulsa\">ML-2022-4223</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>In Re the marriage of DESHANON TERRELL LOWE  and ASHLEY
+        LOREN BERNARD</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568332&db=Tulsa\">ML-2022-4224</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>In Re the marriage of MADISON ANNE SNOW  and TYLER DON DULWORTH</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568351&db=Tulsa\">ML-2022-4225</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>In Re the marriage of HALEY NICOLE MAGGARD  and COLTON MALACHI
+        VOSS</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT FACE=ARIAL
+        SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568388&db=Tulsa\">ML-2022-4226</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>TERCERO COLIN BAUTISTA</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568414&db=Tulsa\">ML-2022-4227</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>In Re the marriage of TEYLOR ANDERSON ARGUETA BARRIOS  and
+        NAYELI ARICENI MORALES GARCIA</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Probate (PB)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568357&db=Tulsa\">PB-2022-1262</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>ESTATE OF:  MICHAEL BAILEY CARROLL</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568381&db=Tulsa\">PB-2022-1263</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>ESTATE OF LILLIAN RITCHEY</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Protective Order (PO)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568354&db=Tulsa\">PO-2022-4297</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>BRUCE CHRIS CHANCE BRUCE v. LYRIC MICOLE WHITE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568358&db=Tulsa\">PO-2022-4298</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>KAYLA MARIE WELCH v. CHASE DEWIAN DAKOYTA OVERTON</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568368&db=Tulsa\">PO-2022-4299</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>FERGUSON HENDERSON HENDERSON CHANTELLE AUGUSTA HENDERSON
+        v. TONY JEROME FERGUSON</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568390&db=Tulsa\">PO-2022-4300</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>KUPER KENNETH SPARKS v. TATIANNA MARIE MILLTER HOLMES</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568391&db=Tulsa\">PO-2022-4301</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>BELLOWS BELLOWS BELLOWS BELLOWS BRITTANY NASHE WADE v. JOEY
+        PAUL JACKSON</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568400&db=Tulsa\">PO-2022-4302</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>CHANTELLE A HENDERSON v. ANGELA D ELLIOT</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568401&db=Tulsa\">PO-2022-4303</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>KAYLA RENEE BERTALOT v. MICHAEL DON DOSHIER</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568404&db=Tulsa\">PO-2022-4304</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>IVONNE FLORES v. MIGUEL ANGEL PECINA</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568409&db=Tulsa\">PO-2022-4305</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>SHIQUITA LA TOUSHA ALEXANDER v. CHRISTOPHER ALEXANDER JR</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Small Claims (SC)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568315&db=Tulsa\">SC-2022-16121</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>COLBURN ELECTRIC Colburn Electric, LLC v. Five Guys - Riverside</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568318&db=Tulsa\">SC-2022-16122</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Colburn Electric, LLC v. Five Guys Broken Arrow</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568319&db=Tulsa\">SC-2022-16123</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Colburn Electric, LLC v. Kidz Town Playschool, LLC</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568321&db=Tulsa\">SC-2022-16124</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Colburn Electric, LLC v. Tulsa Facility Maintenance And
+        Remodeling, LLC</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568323&db=Tulsa\">SC-2022-16125</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Colburn Electric, LLC v. Trifusion Tactical, LLC</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568325&db=Tulsa\">SC-2022-16126</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Colburn Electric, LLC v. Barbee, Thomas</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568396&db=Tulsa\">SC-2022-16127</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Romeo Homes Oklahoma Llc v. Rommel, Kathy Anne</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568417&db=Tulsa\">SC-2022-16128</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Romeo Homes Oklahoma Llc v. Zotigh, Caitlin</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568437&db=Tulsa\">SC-2022-16129</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Kazaz, Gahlib Al v. Gutierrez-Beyes, Luis A</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568447&db=Tulsa\">SC-2022-16130</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>Malveaux, Dontell Sr v. Jones, Imani</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n<FONT
+        FACE=ARIAL SIZE=2><B>Traffic (TR)</B></FONT><HR>\r\n<BLOCKQUOTE>\r\n\t<TABLE>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568331&db=Tulsa\">TR-2022-11598</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. GONZALEZ, GABRIEL</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568334&db=Tulsa\">TR-2022-11599</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. GONZALEZ, GABRIEL</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568394&db=Tulsa\">TR-2022-11615</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Bain, Wyat Mitchell</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568397&db=Tulsa\">TR-2022-11616</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Chung, Hong</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568402&db=Tulsa\">TR-2022-11617</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. LUCAS, KAREN ANNETTE</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568405&db=Tulsa\">TR-2022-11618</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Reyes, Raul Lino</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568406&db=Tulsa\">TR-2022-11619</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Reyes, Raul Lino</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568410&db=Tulsa\">TR-2022-11620</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Benn, Joy Olivia</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568413&db=Tulsa\">TR-2022-11621</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Hernandez, Nery Edgardo</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568415&db=Tulsa\">TR-2022-11622</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Bryant, Mark Dewayne</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568416&db=Tulsa\">TR-2022-11623</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Bryant, Mark Dewayne</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568419&db=Tulsa\">TR-2022-11624</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Bryant, Mark Dewayne</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568420&db=Tulsa\">TR-2022-11625</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Gilliam, Rebecca Lee</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568425&db=Tulsa\">TR-2022-11626</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Russell, Todd Wade dale</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t\t<TR>\r\n\t\t\t<TD><FONT
+        FACE=ARIAL SIZE=2>\r\n\t\t\t\t<A HREF=\"GetCaseInformation.asp?viewtype=&submitted=true&casemasterID=3568428&db=Tulsa\">TR-2022-11627</A></FONT></TD><TD><FONT
+        FACE=ARIAL SIZE=2>State of Oklahoma v. Muan, Kham Sian</FONT>\r\n\t\t\t</TD>\r\n\t\t</TR>\r\n\t</TABLE>\r\n</BLOCKQUOTE>\r\n</BODY></HTML>\r\n<BR><!--End
+        Transmission--><HR><FONT FACE=ARIAL SIZE=1>End of transmission.</FONT></BODY></HTML>"
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '32202'
+      Content-Type:
+      - text/html
+      Date:
+      - Tue, 13 Dec 2022 17:43:22 GMT
+      Server:
+      - Microsoft-IIS/10.0
+      Set-Cookie:
+      - LastQuerydb=Tulsa; path=/applications/oscn
+      - OSCNVersion=3%2E4%2E1; path=/applications/oscn
+      - ASPSESSIONIDSATTBQBB=HMGLNDNCKCNAABNCMKCGAHIP; path=/
+    status:
+      code: 200
+      message: OK
+version: 1
