@@ -32,3 +32,9 @@ def test_get_by_place_id(sites_csv_text):
         meta = SitesMeta()
         row = meta.get("ca_san_mateo")
         assert row["site_type"] == "odyssey"
+
+
+def test_get_by_state(sites_csv_text):
+    meta = SitesMeta()
+    state_list = meta.get_state_list("ok")
+    assert len(state_list) == 81

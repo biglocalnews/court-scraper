@@ -1,4 +1,5 @@
 import importlib
+import typing
 from datetime import datetime, timedelta
 
 from court_scraper.configs import Configs
@@ -41,6 +42,17 @@ def get_runner(place_id: str):
     target_module = f"court_scraper.{parent_mod}.{site_type}.runner"
     mod = importlib.import_module(target_module)
     return getattr(mod, "Runner")
+
+
+def get_runners_in_state(postal_code: str) -> typing.List:
+    """Retrieve the runners in the provided state."""
+    meta = SitesMeta()
+    site_list = meta.get_state_list(postal_code)
+    runner_list = []
+    for site in site_list:
+        runner = get_runner(site["place_id"])
+        runner_list.append(runner)
+    return runner_list
 
 
 def get_site_meta(place_id: str):
